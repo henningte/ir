@@ -2,7 +2,7 @@
 #'
 #' \code{ir_bc_rubberband} performs baseline correction for infrared
 #' spectra using a rubberband algorithm. \code{ir_bc_rubberband} is an
-#' extended wrapper function for \code{hyperSpec::spc.rubberband}.
+#' extended wrapper function for \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}.
 #'
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}
 #' @param return_bl A logical value indicating if for each spectrum the baseline

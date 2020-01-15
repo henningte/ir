@@ -33,7 +33,7 @@ is either performed by using a polynomial with user defined
 degree fitted to each spectrum (see
 \code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}) or by using a rubberband
 function that is fitted to each spectrum
-(see \code{hyperSpec::spc.rubberband}).
+(see \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}).
 }
 \seealso{
 \code{\link{ir_bc_polynomial}},

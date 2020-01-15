@@ -23,7 +23,7 @@
 #'   \item{data_point_number}{The number of data points in the spectrum}
 #'   \item{x_variable_type}{The type of the x variable.}
 #'   \item{y_variable_type}{The type of the y variable.}
-#'   \item{measurement date}{A POSIXct representing the measurement date and time.}
+#'   \item{measurement_date}{A POSIXct representing the measurement date and time.}
 #'   \item{measurement_device}{The name of the measurement device.}
 #' }
 #' @export

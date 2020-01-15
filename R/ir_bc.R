@@ -6,7 +6,7 @@
 #' degree fitted to each spectrum (see
 #' \code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}) or by using a rubberband
 #' function that is fitted to each spectrum
-#' (see \code{hyperSpec::spc.rubberband}).
+#' (see \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}).
 #'
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
 #' @param method A character value indicating which method should be used

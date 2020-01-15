@@ -20,7 +20,7 @@ corrected spectra and, if \code{returnbl = TRUE},  the baselines.
 \description{
 \code{ir_bc_rubberband} performs baseline correction for infrared
 spectra using a rubberband algorithm. \code{ir_bc_rubberband} is an
-extended wrapper function for \code{hyperSpec::spc.rubberband}.
+extended wrapper function for \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}.
 }
 \seealso{
 \code{\link{ir_bc}},

@@ -32,9 +32,14 @@ Imports:
   grDevices,
   rlang,
   methods,
-  units
+  units,
+  devtools,
+  Rdpack
 Suggests:
-    fda,
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr
+  fda,
+  knitr,
+  rmarkdown
+VignetteBuilder: 
+  knitr
+RdMacros: 
+  Rdpack

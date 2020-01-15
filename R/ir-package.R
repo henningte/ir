@@ -6,7 +6,7 @@
 ## usethis namespace: start
 ## usethis namespace: end
 
-
+#' @importFrom Rdpack reprompt
 #' @importClassesFrom hyperSpec hyperSpec
 #' @importFrom rlang .data
 NULL

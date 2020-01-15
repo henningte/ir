@@ -1,0 +1,40 @@
+Package: ir
+Title: Simple Package to Handle and Preprocess Infrared Spectra
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Henning",
+           family = "Teickner",
+           role = c("aut", "cre"),
+           email = "h_teic01@wwu.de")
+Description: 
+  Basic functions to import
+  and handle infrared spectra (import from .csv and
+  Thermo Galactic's .spc, baseline correction, binning, clipping,
+  interpolating, smoothing, averaging, plotting).
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
+Depends:
+  R (>= 3.5.0)
+Imports:
+  tidyr,
+  dplyr,
+  purrr,
+  plyr,
+  tibble,
+  ggplot2,
+  stringr,
+  ChemoSpec,
+  hyperSpec,
+  signal,
+  baseline,
+  grDevices,
+  rlang,
+  methods,
+  units
+Suggests:
+    fda,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

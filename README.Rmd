@@ -1,5 +1,7 @@
 ---
-output: github_document
+output: 
+  github_document
+bibliography: inst\\REFERENCES.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -90,7 +92,7 @@ ir::ir_bc(sample_data, method = "rubberband") %>%    # baseline correction
 
 Please cite this R package as:
 
-> Henning Teickner, (`r format(Sys.Date(), "%Y")`). _ir:A Simple Package to Handle and Preprocess Infrared Spectra'_. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://github.com/henningte/ir>.
+> Henning Teickner, (`r format(Sys.Date(), "%Y")`). _ir: A Simple Package to Handle and Preprocess Infrared Spectra'_. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://github.com/henningte/ir>.
 
 
 ### Licenses
@@ -106,5 +108,7 @@ Please cite this R package as:
 We welcome contributions from everyone. Before you get started, please see our [contributor guidelines](CONTRIBUTING.md). Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ### Sources
+
+This packages was developed in R (`r R.Version()$version.string`) [@RCoreTeam.2019] using functions from devtools [@Wickham.2019], usethis [@Wickham.2019b] and rrtools [@Marwick.2019].
 
 ### References

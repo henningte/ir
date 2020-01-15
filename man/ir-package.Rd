@@ -4,7 +4,7 @@
 \name{ir-package}
 \alias{ir}
 \alias{ir-package}
-\title{ir: Simple Package to Handle and Preprocess Infrared Spectra}
+\title{ir: A Simple Package to Handle and Preprocess Infrared Spectra}
 \description{
 Basic functions to import
   and handle infrared spectra (import from .csv and

@@ -1,5 +1,5 @@
 Package: ir
-Title: Simple Package to Handle and Preprocess Infrared Spectra
+Title: A Simple Package to Handle and Preprocess Infrared Spectra
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Henning",

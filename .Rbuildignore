@@ -1,3 +1,7 @@
 ^ir\.Rproj$
 ^\.Rproj\.user$
-^analysis$
+^LICENSE\.md$
+^CONDUCT\.md$
+^CONTRIBUTING\.md$
+^README\.md$
+^README\.Rmd$

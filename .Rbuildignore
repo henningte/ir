@@ -5,3 +5,4 @@
 ^CONTRIBUTING\.md$
 ^README\.md$
 ^README\.Rmd$
+^data-raw$

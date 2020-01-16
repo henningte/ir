@@ -19,6 +19,8 @@ ir_bc_rubberband <- function(x,
 
   # flatten x
   x_flat <- ir_flatten(x = x, measurement_id = as.character(x$measurement_id))
+  x_flat_empty <- ir_flat_clean(x = x_flat, return_empty = TRUE)
+  x_flat <- ir_flat_clean(x = x_flat, return_empty = FALSE)
 
   # create a hyperSpec object
   x_hs <- methods::new("hyperSpec",
@@ -40,6 +42,11 @@ ir_bc_rubberband <- function(x,
   # substract the baseline
   x_bc <- x_flat
   x_bc[,-1] <- x_bc[,-1] - x_bl1[,-1]
+
+  x_bl1 <- dplyr::left_join(x_bl1, x_flat_empty, by = "x")
+  x_bl1 <- x_bl1[, match(c("x", x$measurement_id), c(colnames(x_bl1)))]
+  x_bc <- dplyr::left_join(x_bc, x_flat_empty, by = "x")
+  x_bc <- x_bc[, match(c("x", x$measurement_id), c(colnames(x_bc)))]
 
   # replace the values in x by the baseline corrected values
   x$spectra <- ir_stack(x_bc)$spectra

@@ -21,7 +21,7 @@
 \source{
 The data set was derived from \url{https://www.nature.com/articles/s41467-018-06050-2}
 and published by \insertCite{Hodgkins.2018;textual}{ir} under the CC BY 4.0 license \url{https://creativecommons.org/licenses/by/4.0/}.
-... derived the data set from \insertCite{LaCruz.2015;textual}{ir} \url{https://www.liebertpub.com/doi/full/10.1089/ees.2014.0402}.
+\insertCite{Hodgkins.2018;textual}{ir} derived the data set from \insertCite{LaCruz.2015;textual}{ir} \url{https://www.liebertpub.com/doi/full/10.1089/ees.2014.0402}.
 }
 \usage{
 ir_sample_data

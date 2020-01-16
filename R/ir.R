@@ -149,5 +149,21 @@ ir_check_ir <- function(x) {
   x_sym <- as.character(rlang::get_expr(rlang::enquo(x)))
   if(!inherits(x, "ir"))
    rlang::abort(paste0("`", x_sym, "` must be of class `ir`, not ", class(x)[[1]], "."))
+  x
+}
 
+#' Drops the column \code{spectra} from an object is of class \code{ir}.
+#'
+#' \code{ir_drop_spectra} removes the column \code{spectra} from an object
+#' of class \code{ir} and removes the \code{"ir"} class label.
+#'
+#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
+#' @return A \code{data.frame} identical to \code{x}, but without
+#' column \code{spectra}.
+#' @export
+ir_drop_spectra <- function(x) {
+  ir_check_ir(x)
+  x$spectra <- NULL
+  class(x) <- class(x)[class(x) != "ir"]
+  x
 }

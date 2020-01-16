@@ -14,9 +14,7 @@ ir_flatten(x, measurement_id = as.character(x$measurement_id))
 in the matrix.}
 }
 \value{
-A matrix where the first column (\code{"x"}) contains the
-unique x axis values (e.g. wavenumbers) in \code{ir} and all remaining
-columns represent intensity values from the spectra in \code{x}.
+An object of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.
 }
 \description{
 \code{ir_flatten} takes and object of class \code{ir}, extracts

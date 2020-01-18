@@ -46,7 +46,7 @@ ir_new_ir_flat <- function(x) {
 
 #' Checks if an object is of class \code{ir_flat}.
 #'
-#' \code{ir_flat_check} checks if an object is of class \code{\link[ir:ir_flat]{ir_flat}}.
+#' \code{ir_flat_check} checks if an object is of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.
 #'
 #' @param x An object.
 #' @return An object of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.

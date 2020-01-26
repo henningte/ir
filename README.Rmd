@@ -105,7 +105,7 @@ We welcome contributions from everyone. Before you get started, please see our [
 
 ### Sources
 
-The complete data in this package is derived from @Hodgkins.2018 and was restructured to match the requirements of ir. The original article containing the data can be downloaded from https://www.nature.com/articles/s41467-018-06050-2 and is distributed under the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/). The data was originally derived from @LaCruz.2015.
+The complete data in this package is derived from @Hodgkins.2018 and was restructured to match the requirements of ir. The original article containing the data can be downloaded from https://www.nature.com/articles/s41467-018-06050-2 and is distributed under the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/). The data on Klason Lignin and Holocellulose content was originally derived from @LaCruz.2015.
 
 This packages was developed in R (`r R.Version()$version.string`) [@RCoreTeam.2019] using functions from devtools [@Wickham.2019], usethis [@Wickham.2019b] and rrtools [@Marwick.2019].
 

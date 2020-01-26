@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "README-",
-  eval = FALSE
+  eval = TRUE
 )
 ```
 
@@ -76,12 +76,12 @@ ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>%
 
 Column `x` represents the x values (in this case wavenumbers [cm<sup>-1</sup>]) and column `y` the corresponding intensity values.
 
-A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalise them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected samples for each sample:
+A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalise them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected spectra for each sample and sample type:
 ```{r sample_data_workflow}
 ir::ir_bc(ir_sample_data, method = "rubberband") %>%    # baseline correction
-  ir::ir_bin(width = 10) %>%                         # binning
-  ir::ir_normalise(method = "zeroone") %>%           # normalisation
-  plot() + ggplot2::facet_wrap(~ sample_type)        # plot
+  ir::ir_bin(width = 10) %>%                            # binning
+  ir::ir_normalise(method = "zeroone") %>%              # normalisation
+  plot() + ggplot2::facet_wrap(~ sample_type)           # plot
 ```
 
 ### How to cite
@@ -105,8 +105,8 @@ We welcome contributions from everyone. Before you get started, please see our [
 
 ### Sources
 
-The complete data in this package is derived from @Hodgkins.2018 and was restructured to match the requirements of ir. The original article containing the data can be downloaded from https://www.nature.com/articles/s41467-018-06050-2 and is distributed under the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/). The data was originally derived from @LaCruz.2015.
+The complete data in this package is derived from @Hodgkins.2018 and was restructured to match the requirements of ir. The original article containing the data can be downloaded from https://www.nature.com/articles/s41467-018-06050-2 and is distributed under the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/). The data on Klason lignin and holocellulose content was originally derived from @LaCruz.2015.
 
-This packages was developed in R (`r R.Version()$version.string`) [@RCoreTeam.2019] using functions from devtools [@Wickham.2019], usethis [@Wickham.2019b] and rrtools [@Marwick.2019].
+This packages was developed in R (`r R.Version()$version.string`) [@RCoreTeam.2019] using functions from devtools [@Wickham.2019], usethis [@Wickham.2019b], rrtools [@Marwick.2019] and roxygen2 [@Wickham.2019c].
 
 ### References

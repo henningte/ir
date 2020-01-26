@@ -124,7 +124,7 @@ We welcome contributions from everyone. Before you get started, please see our [
 
 ### Sources
 
-The complete data in this package is derived from Hodgkins et al. (2018) and was restructured to match the requirements of ir. The original article containing the data can be downloaded from <https://www.nature.com/articles/s41467-018-06050-2> and is distributed under the Creative Commons Attribution 4.0 International License (<http://creativecommons.org/licenses/by/4.0/>). The data on Klason lignin and holocellulose content was originally derived from F. B. de La Cruz et al. (2015).
+The complete data in this package is derived from Hodgkins et al. (2018) and was restructured to match the requirements of ir. The original article containing the data can be downloaded from <https://www.nature.com/articles/s41467-018-06050-2> and is distributed under the Creative Commons Attribution 4.0 International License (<http://creativecommons.org/licenses/by/4.0/>). The data on Klason lignin and holocellulose content was originally derived from La Cruz, Osborne, and Barlaz (2016).
 
 This packages was developed in R (R version 3.5.3 (2019-03-11)) (R Core Team 2019) using functions from devtools (Wickham, Hester, and Chang 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and roxygen2 (Wickham et al. 2019).
 
@@ -132,7 +132,7 @@ This packages was developed in R (R version 3.5.3 (2019-03-11)) (R Core Team 201
 
 Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang, Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “Tropical peatland carbon storage linked to global latitudinal trends in peat recalcitrance.” *Nature communications* 9 (1): 3640. doi:[10.1038/s41467-018-06050-2](https://doi.org/10.1038/s41467-018-06050-2).
 
-La Cruz, Florentino Banaag de, Thorsten Dittmar, Jutta Niggemann, Christopher L. Osburn, and Morton A. Barlaz. 2015. “Evaluation of Copper Oxide Oxidation for Quantification of Lignin in Municipal Solid Waste.” *Environmental Engineering Science* 32 (6): 486–96. doi:[10.1089/ees.2014.0402](https://doi.org/10.1089/ees.2014.0402).
+La Cruz, Florentino B. de, Jason Osborne, and Morton A. Barlaz. 2016. “Determination of Sources of Organic Matter in Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of Lignin.” *Journal of Environmental Engineering* 142 (2): 04015076. doi:[10.1061/(ASCE)EE.1943-7870.0001038](https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038).
 
 Marwick, Ben. 2019. “rrtools: Creates a Reproducible Research Compendium.” <https://github.com/benmarwick/rrtools>.
 

@@ -43,3 +43,4 @@ VignetteBuilder:
   knitr
 RdMacros: 
   Rdpack
+Date: 2020-01-30

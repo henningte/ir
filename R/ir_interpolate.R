@@ -43,6 +43,10 @@ ir_interpolate <- function(x,
 
   x_flat <- dplyr::arrange(x_flat, x)
 
+  # fill NA values to support easy indexing
+  x_flat <- as.data.frame(data.table::nafill(x_flat, type = "locf"))
+  colnames(x_flat) <- c("x", x$measurement_id)
+
   # define the new wavenumber values
   d <- tibble::tibble(x = seq(from = start,
                               to = max(x_flat$x, na.rm = TRUE),

@@ -33,6 +33,7 @@ Imports:
   rlang,
   methods,
   units,
+  data.table,
   devtools,
   Rdpack
 Suggests:

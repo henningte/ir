@@ -9,16 +9,19 @@ ir_clip(x, range)
 \arguments{
 \item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
 
-\item{range}{A numeric vector of length two
-with the first element specifying the start
-of the new wavenumber range and the second
-element specifying the end of the new wavenumber
-range.}
+\item{range}{A \code{data.frame} with two columns and a
+row for each wavenumber range to keep. The columns are:
+\describe{
+  \item{start}{A numeric vector with start values for wavenumber ranges.}
+  \item{end}{A numeric vector with end values for wavenumber ranges.}
+}
+If \code{range} has more than one row, multiple ranges are clipped from
+\code{x} and merged together. Overlapping ranges are not allowed.}
 }
 \value{
 An object of class \code{ir}.
 }
 \description{
 \code{ir_clip} clips infrared spectra to a new, specified,
-wavenumber range.
+wavenumber range or multiple new specified wavenumber ranges.
 }

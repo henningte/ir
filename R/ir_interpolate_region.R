@@ -40,7 +40,7 @@ ir_interpolate_region <- function(x,
                                   wavenumber = as.matrix(range),
                                   warn = TRUE)
   index <- matrix(index, byrow = FALSE, nrow = nrow(range))
-  x_ranges <- apply(index, 1, function(x) x[[1]]:x[[2]])
+  x_ranges <- purrr::map(seq_len(nrow(index)), function(x) index[x, ][[1]]:index[x, ][[2]])
 
   for(index in x_ranges) {
 

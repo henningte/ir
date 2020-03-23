@@ -8,19 +8,19 @@ ir is an R package that contains simple functions to import, handle and preproce
 Supported file formats for import currently are:
 
 1.  .csv files with indiidual spectra.
-2.  Thermo Galactics .spc files with individual spectra.
+2.  Thermo Galactic's .spc files with individual spectra.
 
 Provided functions for preprocessing and general handling are:
 
 1.  baseline correction with:
-    -   a polynomial
-    -   a convex hull procedure.
+    -   a polynomial baseline
+    -   a convex hull baseline.
 2.  binning.
 3.  clipping.
 4.  interpolating (resampling, linearly).
 5.  replacing selected parts of a spectrum by a straight line.
 6.  averaging spectra within specified groups.
-7.  normalise spectra:
+7.  normalising spectra:
     -   to the maximum intensity
     -   to the intensity at a specific x value
     -   so that all itensity values sum to 1.
@@ -69,7 +69,7 @@ ir::ir_sample_data
 #> #   spectra <list>
 ```
 
-`ir_sample_data` is an object of class `ir`. An Object of class `ir` is basically a `data.frame` where each row represents one infrared measurement and column `spectra` contains the infrared spectra (one per row) and columns `measurement_id` and `sample_id` represent identifiers for each measurement and sample, respectively. This allows effectively storing repeated measurements for the same sample in the same table, as-well-as any metadata and accessory data (e.g. nitrogen content of the sample).
+`ir_sample_data` is an object of class `ir`. An Object of class `ir` is basically a `data.frame` where each row represents one infrared measurement and column `spectra` contains the infrared spectra (one per row) and columns `measurement_id` and `sample_id` represent identifiers for each measurement and sample, respectively. This allows effectively storing repeated measurements for the same sample in the same table, as well as any metadata and accessory data (e.g. nitrogen content of the sample).
 
 The column `spectra` is a list column of `data.frame`s, meaning that each cell in `sample_data` contains for column `spectra` a `data.frame`. For example, the first element of `ir_sample_data$spectra` represents the first spectrum as a `data.frame`:
 
@@ -96,7 +96,8 @@ Column `x` represents the x values (in this case wavenumbers \[cm<sup>-1</sup>\]
 A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalise them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected spectra for each sample and sample type:
 
 ``` r
-ir::ir_bc(ir_sample_data, method = "rubberband") %>%    # baseline correction
+ir_sample_data %>%                                      # data
+  ir::ir_bc(method = "rubberband") %>%                  # baseline correction
   ir::ir_bin(width = 10) %>%                            # binning
   ir::ir_normalise(method = "zeroone") %>%              # normalisation
   plot() + ggplot2::facet_wrap(~ sample_type)           # plot
@@ -108,7 +109,7 @@ ir::ir_bc(ir_sample_data, method = "rubberband") %>%    # baseline correction
 
 Please cite this R package as:
 
-> Henning Teickner, (2020). *ir: A Simple Package to Handle and Preprocess Infrared Spectra'*. Accessed 27 Jan 2020. Online at <https://github.com/henningte/ir>.
+> Henning Teickner (2020). *ir: A Simple Package to Handle and Preprocess Infrared Spectra'*. Accessed 23 Mrz 2020. Online at <https://github.com/henningte/ir>.
 
 ### Licenses
 

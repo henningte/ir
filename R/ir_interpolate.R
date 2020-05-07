@@ -48,59 +48,22 @@ ir_interpolate <- function(x,
   colnames(x_flat) <- c("x", x$measurement_id)
 
   # define the new wavenumber values
-  d <- tibble::tibble(x = seq(from = start,
-                              to = max(x_flat$x, na.rm = TRUE),
-                              by = dw))
+  wavenumber_new <- seq(from = start,
+                        to = max(x_flat$x, na.rm = TRUE),
+                        by = dw)
 
-  index <- purrr::map_df(d$x, function(x){
-
-    # index of the next smaller wavenumber value
-    if(length(which(x_flat$x <= x)) > 0) {
-      nextsmaller <- which(x_flat$x <= x)[length(which(x_flat$x <= x))]
-    } else {
-      nextsmaller <- NA
-    }
-
-    # index of the next larger wavenumber value
-    if(length(which(x_flat$x >= x)) > 0) {
-      nextlarger <- which(x_flat$x >= x)[[1]]
-    } else {
-      nextlarger <- nextsmaller
-    }
-
-    # difference to the next smaller wavenumber value
-    differencenextsmaller <- ifelse(!is.na(nextsmaller),
-                                    x - x_flat$x[nextsmaller],
-                                    NA)
-    differencenextsmaller <- ifelse(differencenextsmaller == 0, NA, differencenextsmaller)
-
-    data.frame(previous = nextsmaller,
-               following = nextlarger,
-               difference_to_previous = differencenextsmaller,
-               stringsAsFactors = FALSE)
-
-  })
+  # do the interpolation
+  x_flat_new <- cbind(x = wavenumber_new, purrr::map_df(x_flat[, -1, drop = FALSE], function(y){
+    stats::approx(x = x_flat$x,
+                  y = y,
+                  xout = wavenumber_new,
+                  method = "linear",
+                  rule = 1,
+                  ties = "ordered")$y
+  }))
 
   # interpolate new wavenumber values
-  new_x_flat <- cbind(d$x, interpolate_linear(x = x_flat$x, y = x_flat[,-1, drop = FALSE], index = index))
-  x$spectra <- ir_stack(new_x_flat)$spectra
+  x$spectra <- ir_stack(x_flat_new)$spectra
   x
-
-}
-
-# function definition in order to interpolat values
-interpolate_linear <- function(x,
-                               y,
-                               index) {
-
-  purrr::map_df(seq_len(nrow(index)), function(i){
-    index <- unlist(index[i, ])
-    if(is.na(index[3])){
-      y[index[2], ]
-    }else{
-      gradient <- (y[index[2], ] - y[index[1], ])/(x[index[2]] - x[index[1]])
-      y[index[1], ] + gradient * index[3]
-    }
-  })
 
 }

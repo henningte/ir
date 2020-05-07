@@ -4,7 +4,8 @@
 \name{ir_sample_data}
 \alias{ir_sample_data}
 \title{Sample object of class \code{ir}.}
-\format{A data frame with 58 rows and 7 variables:
+\format{
+A data frame with 58 rows and 7 variables:
 \describe{
   \item{measurement_id}{See \code{\link{ir_new_ir}}.}
   \item{sample_id}{See \code{\link{ir_new_ir}}.}
@@ -17,7 +18,8 @@
   \item{holocellulose}{A numeric vector with the mass fractions of
   holocellulose in each sample.}
   \item{spectra}{See \code{\link{ir_new_ir}}.}
-}}
+}
+}
 \source{
 The data set was derived from \url{https://www.nature.com/articles/s41467-018-06050-2}
 and published by \insertCite{Hodgkins.2018;textual}{ir} under the CC BY 4.0 license \url{https://creativecommons.org/licenses/by/4.0/}.

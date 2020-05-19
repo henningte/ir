@@ -41,12 +41,6 @@ ir_interpolate <- function(x,
     rlang::abort("`dw` must be of length 1, not ", length(dw), ".")
   }
 
-  x_flat <- dplyr::arrange(x_flat, x)
-
-  # fill NA values to support easy indexing
-  x_flat <- as.data.frame(data.table::nafill(x_flat, type = "locf"))
-  colnames(x_flat) <- c("x", x$measurement_id)
-
   # define the new wavenumber values
   wavenumber_new <- seq(from = start,
                         to = max(x_flat$x, na.rm = TRUE),
@@ -54,12 +48,16 @@ ir_interpolate <- function(x,
 
   # do the interpolation
   x_flat_new <- cbind(x = wavenumber_new, purrr::map_df(x_flat[, -1, drop = FALSE], function(y){
-    stats::approx(x = x_flat$x,
-                  y = y,
-                  xout = wavenumber_new,
-                  method = "linear",
-                  rule = 1,
-                  ties = "ordered")$y
+    if(all(is.na(y))) {
+      rep(NA_real_, length(wavenumber_new))
+    } else {
+      stats::approx(x = x_flat$x,
+                    y = y,
+                    xout = wavenumber_new,
+                    method = "linear",
+                    rule = 1,
+                    ties = "ordered")$y
+    }
   }))
 
   # interpolate new wavenumber values

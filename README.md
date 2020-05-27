@@ -1,32 +1,42 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-ir
-==
 
-ir is an R package that contains simple functions to import, handle and preprocess infrared spectra. Infrared spectra are stored as list columns in `data.frame`s to enable efficient storage of metadata along with the spectra and support further analyses containing other data for the same samples.
+# ir
+
+<!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+ir is an R package that contains simple functions to import, handle and
+preprocess infrared spectra. Infrared spectra are stored as list columns
+in `data.frame`s to enable efficient storage of metadata along with the
+spectra and support further analyses containing other data for the same
+samples.
 
 Supported file formats for import currently are:
 
 1.  .csv files with indiidual spectra.
-2.  Thermo Galactic's .spc files with individual spectra.
+2.  Thermo Galactic’s .spc files with individual spectra.
 
 Provided functions for preprocessing and general handling are:
 
 1.  baseline correction with:
-    -   a polynomial baseline
-    -   a convex hull baseline.
+      - a polynomial baseline
+      - a convex hull baseline.
 2.  binning.
 3.  clipping.
 4.  interpolating (resampling, linearly).
 5.  replacing selected parts of a spectrum by a straight line.
 6.  averaging spectra within specified groups.
 7.  normalising spectra:
-    -   to the maximum intensity
-    -   to the intensity at a specific x value
-    -   so that all itensity values sum to 1.
+      - to the maximum intensity
+      - to the intensity at a specific x value
+      - so that all itensity values sum to 1.
 8.  smoothing:
-    -   Savitzky-Golay smoothing
-    -   Fourier smoothing.
+      - Savitzky-Golay smoothing
+      - Fourier smoothing.
 
 ### How to install
 
@@ -69,9 +79,19 @@ ir::ir_sample_data
 #> #   spectra <list>
 ```
 
-`ir_sample_data` is an object of class `ir`. An Object of class `ir` is basically a `data.frame` where each row represents one infrared measurement and column `spectra` contains the infrared spectra (one per row) and columns `measurement_id` and `sample_id` represent identifiers for each measurement and sample, respectively. This allows effectively storing repeated measurements for the same sample in the same table, as well as any metadata and accessory data (e.g. nitrogen content of the sample).
+`ir_sample_data` is an object of class `ir`. An Object of class `ir` is
+basically a `data.frame` where each row represents one infrared
+measurement and column `spectra` contains the infrared spectra (one per
+row) and columns `measurement_id` and `sample_id` represent identifiers
+for each measurement and sample, respectively. This allows effectively
+storing repeated measurements for the same sample in the same table, as
+well as any metadata and accessory data (e.g. nitrogen content of the
+sample).
 
-The column `spectra` is a list column of `data.frame`s, meaning that each cell in `sample_data` contains for column `spectra` a `data.frame`. For example, the first element of `ir_sample_data$spectra` represents the first spectrum as a `data.frame`:
+The column `spectra` is a list column of `data.frame`s, meaning that
+each cell in `sample_data` contains for column `spectra` a `data.frame`.
+For example, the first element of `ir_sample_data$spectra` represents
+the first spectrum as a `data.frame`:
 
 ``` r
 ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>% 
@@ -91,9 +111,14 @@ ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>%
 #> 10  3991 0.000565
 ```
 
-Column `x` represents the x values (in this case wavenumbers \[cm<sup>-1</sup>\]) and column `y` the corresponding intensity values.
+Column `x` represents the x values (in this case wavenumbers
+\[cm<sup>-1</sup>\]) and column `y` the corresponding intensity values.
 
-A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalise them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected spectra for each sample and sample type:
+A simple workflow would be, for example, to baseline correct the
+spectra, then bin them to bins with a width of 10 wavenumber units, then
+normalise them so that the maximum intensity value is 1 and the minimum
+intensity value is 0 and then plot the baseline corrected spectra for
+each sample and sample type:
 
 ``` r
 ir_sample_data %>%                                      # data
@@ -103,44 +128,110 @@ ir_sample_data %>%                                      # data
   plot() + ggplot2::facet_wrap(~ sample_type)           # plot
 ```
 
-![](README-sample_data_workflow-1.png)
+![](README-sample_data_workflow-1.png)<!-- -->
 
 ### How to cite
 
 Please cite this R package as:
 
-> Henning Teickner (2020). *ir: A Simple Package to Handle and Preprocess Infrared Spectra'*. Accessed 23 Mrz 2020. Online at <https://github.com/henningte/ir>.
+> Henning Teickner (2020). *ir: A Simple Package to Handle and
+> Preprocess Infrared Spectra’*. Accessed 27 Mai 2020. Online at
+> <https://github.com/henningte/ir>.
 
 ### Licenses
 
-**Text and figures :** [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
+**Text and figures :**
+[CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
 
 **Code :** See the [DESCRIPTION](DESCRIPTION) file
 
-**Data :** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) attribution requested in reuse. See the sources section for data sources and how to give credit to the original author(s) and the source.
+**Data :** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+attribution requested in reuse. See the sources section for data sources
+and how to give credit to the original author(s) and the source.
 
 ### Contributions
 
-We welcome contributions from everyone. Before you get started, please see our [contributor guidelines](CONTRIBUTING.md). Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+We welcome contributions from everyone. Before you get started, please
+see our [contributor guidelines](CONTRIBUTING.md). Please note that this
+project is released with a [Contributor Code of Conduct](CONDUCT.md). By
+participating in this project you agree to abide by its terms.
 
 ### Sources
 
-The complete data in this package is derived from Hodgkins et al. (2018) and was restructured to match the requirements of ir. The original article containing the data can be downloaded from <https://www.nature.com/articles/s41467-018-06050-2> and is distributed under the Creative Commons Attribution 4.0 International License (<http://creativecommons.org/licenses/by/4.0/>). The data on Klason lignin and holocellulose content was originally derived from De La Cruz, Florentino B., Osborne, and Barlaz (2016).
+The complete data in this package is derived from Hodgkins et al. (2018)
+and was restructured to match the requirements of ir. The original
+article containing the data can be downloaded from
+<https://www.nature.com/articles/s41467-018-06050-2> and is distributed
+under the Creative Commons Attribution 4.0 International License
+(<http://creativecommons.org/licenses/by/4.0/>). The data on Klason
+lignin and holocellulose content was originally derived from De La Cruz,
+Florentino B., Osborne, and Barlaz (2016).
 
-This packages was developed in R (R version 3.5.3 (2019-03-11)) (R Core Team 2019) using functions from devtools (Wickham, Hester, and Chang 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and roxygen2 (Wickham et al. 2019).
+This packages was developed in R (R version 3.5.3 (2019-03-11)) (R Core
+Team 2019) using functions from devtools (Wickham, Hester, and Chang
+2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and
+roxygen2 (Wickham et al. 2019).
 
 ### References
 
-De La Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016. “Determination of Sources of Organic Matter in Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of Lignin.” *Journal of Environmental Engineering* 142 (2): 04015076. doi:[10.1061/(ASCE)EE.1943-7870.0001038](https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038).
+<div id="refs" class="references hanging-indent">
 
-Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang, Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “Tropical peatland carbon storage linked to global latitudinal trends in peat recalcitrance.” *Nature communications* 9 (1): 3640. doi:[10.1038/s41467-018-06050-2](https://doi.org/10.1038/s41467-018-06050-2).
+<div id="ref-LaCruz.2016">
 
-Marwick, Ben. 2019. “rrtools: Creates a Reproducible Research Compendium.” <https://github.com/benmarwick/rrtools>.
+De La Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016.
+“Determination of Sources of Organic Matter in Solid Waste by Analysis
+of Phenolic Copper Oxide Oxidation Products of Lignin.” *Journal of
+Environmental Engineering* 142 (2): 04015076.
+<https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038>.
 
-R Core Team. 2019. “R: A Language and Environment for Statistical Computing.” Vienna, Austria: R Foundation for Statistical Computing. <https://www.R-project.org/>.
+</div>
 
-Wickham, Hadley, and Jennifer Bryan. 2019. “usethis: Automate Package and Project Setup.” <https://CRAN.R-project.org/package=usethis>.
+<div id="ref-Hodgkins.2018">
 
-Wickham, Hadley, Peter Danenberg, Gábor Csárdi, and Manuel Eugster. 2019. “roxygen2: In-Line Documentation for R.” <https://CRAN.R-project.org/package=roxygen2>.
+Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
+Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
+“Tropical peatland carbon storage linked to global latitudinal trends
+in peat recalcitrance.” *Nature communications* 9 (1): 3640.
+<https://doi.org/10.1038/s41467-018-06050-2>.
 
-Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “devtools: Tools to Make Developing R Packages Easier.” <https://CRAN.R-project.org/package=devtools>.
+</div>
+
+<div id="ref-Marwick.2019">
+
+Marwick, Ben. 2019. “rrtools: Creates a Reproducible Research
+Compendium.” <https://github.com/benmarwick/rrtools>.
+
+</div>
+
+<div id="ref-RCoreTeam.2019">
+
+R Core Team. 2019. “R: A Language and Environment for Statistical
+Computing.” Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-Wickham.2019b">
+
+Wickham, Hadley, and Jennifer Bryan. 2019. “usethis: Automate Package
+and Project Setup.” <https://CRAN.R-project.org/package=usethis>.
+
+</div>
+
+<div id="ref-Wickham.2019c">
+
+Wickham, Hadley, Peter Danenberg, Gábor Csárdi, and Manuel Eugster.
+2019. “roxygen2: In-Line Documentation for R.”
+<https://CRAN.R-project.org/package=roxygen2>.
+
+</div>
+
+<div id="ref-Wickham.2019">
+
+Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “devtools: Tools
+to Make Developing R Packages Easier.”
+<https://CRAN.R-project.org/package=devtools>.
+
+</div>
+
+</div>

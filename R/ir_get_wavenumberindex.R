@@ -8,7 +8,9 @@
 #' values in the \code{ir} object, the indices for the next
 #' wavenumber values will be returned, along with a warning.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
+#' @param x A data.frame with two columns x and y, whereby column x
+#' represents the x units of one spectrum and column y contains the
+#' corresponding intensity values.
 #' @param wavenumber A numeric vector with wavenumber values
 #' for which to get indices.
 #' @param warn logical value indicating if warnings should be
@@ -22,14 +24,28 @@ ir_get_wavenumberindex <- function(x,
                                    warn = TRUE) {
 
   # checks
-  if(!(is.numeric(wavenumber))){
+  if(!(is.numeric(wavenumber))) {
     rlang::abort("`wavenumber` must be numeric.")
+  }
+  if(!is.data.frame(x)) {
+    rlang::abort(paste0("`x` must be a data.frame, but is of class ", class(x)[[1]], "."))
+  }
+  if(ncol(x) != 2) {
+    rlang::abort(paste0("`x` must have two columns, but has ", ncol(x), "."))
+  }
+  cond <- colnames(x)
+  if(!all(cond %in% c("x", "y"))) {
+    rlang::abort('`x` must have column names "x" and "y", but has column names ', paste(cond, collapse = " and "), '.')
   }
 
   # get matching wavenumber values
-  d <- purrr::map_int(wavenumber, function(y){
-    which.min(abs(y - x$x))
-  })
+  if(nrow(x) == 0) {
+    d <- NA
+  } else {
+    d <- purrr::map_int(wavenumber, function(y){
+      which.min(abs(y - x$x))
+    })
+  }
 
   # get the corresponding wavenumber values
   d_wavenumber <- x$x[d]

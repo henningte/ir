@@ -8,9 +8,9 @@
 #' values in the \code{ir} object, the indices for the next
 #' wavenumber values will be returned, along with a warning.
 #'
-#' @param x A data.frame with two columns x and y, whereby column x
-#' represents the x units of one spectrum and column y contains the
-#' corresponding intensity values.
+#' @param x A data.frame with a column x representing the x units of
+#' a spectrum or several spectra (e.g. in the form of an object of class
+#' \code{\link[ir:ir_new_ir_flat]{ir_flat}}).
 #' @param wavenumber A numeric vector with wavenumber values
 #' for which to get indices.
 #' @param warn logical value indicating if warnings should be
@@ -29,13 +29,6 @@ ir_get_wavenumberindex <- function(x,
   }
   if(!is.data.frame(x)) {
     rlang::abort(paste0("`x` must be a data.frame, but is of class ", class(x)[[1]], "."))
-  }
-  if(ncol(x) != 2) {
-    rlang::abort(paste0("`x` must have two columns, but has ", ncol(x), "."))
-  }
-  cond <- colnames(x)
-  if(!all(cond %in% c("x", "y"))) {
-    rlang::abort('`x` must have column names "x" and "y", but has column names ', paste(cond, collapse = " and "), '.')
   }
 
   # get matching wavenumber values

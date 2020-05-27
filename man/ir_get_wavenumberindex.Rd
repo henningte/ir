@@ -7,9 +7,9 @@
 ir_get_wavenumberindex(x, wavenumber, warn = TRUE)
 }
 \arguments{
-\item{x}{A data.frame with two columns x and y, whereby column x
-represents the x units of one spectrum and column y contains the
-corresponding intensity values.}
+\item{x}{A data.frame with a column x representing the x units of
+a spectrum or several spectra (e.g. in the form of an object of class
+\code{\link[ir:ir_new_ir_flat]{ir_flat}}).}
 
 \item{wavenumber}{A numeric vector with wavenumber values
 for which to get indices.}

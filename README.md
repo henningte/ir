@@ -17,7 +17,7 @@ samples.
 
 Supported file formats for import currently are:
 
-1.  .csv files with indiidual spectra.
+1.  .csv files with individual spectra.
 2.  Thermo Galactic’s .spc files with individual spectra.
 
 Provided functions for preprocessing and general handling are:
@@ -64,18 +64,18 @@ You can load the sample data with:
 ir::ir_sample_data
 #> # A tibble: 58 x 7
 #>    measurement_id sample_id sample_type sample_comment klason_lignin
-#>  *          <int> <chr>     <chr>       <chr>                  <dbl>
-#>  1              1 GN 11-389 needles     Abies Firma M~         0.360
-#>  2              2 GN 11-400 needles     Cupressocypar~         0.339
-#>  3              3 GN 11-407 needles     Juniperus chi~         0.268
-#>  4              4 GN 11-411 needles     Metasequoia g~         0.350
-#>  5              5 GN 11-416 needles     Pinus strobus~         0.331
-#>  6              6 GN 11-419 needles     Pseudolarix a~         0.279
-#>  7              7 GN 11-422 needles     Sequoia sempe~         0.330
-#>  8              8 GN 11-423 needles     Taxodium dist~         0.357
-#>  9              9 GN 11-428 needles     Thuja occiden~         0.369
-#> 10             10 GN 11-434 needles     Tsuga carolin~         0.289
-#> # ... with 48 more rows, and 2 more variables: holocellulose <dbl>,
+#>  *          <int> <chr>     <chr>       <chr>          <units>      
+#>  1              1 GN 11-389 needles     Abies Firma M~ 0.359944     
+#>  2              2 GN 11-400 needles     Cupressocypar~ 0.339405     
+#>  3              3 GN 11-407 needles     Juniperus chi~ 0.267552     
+#>  4              4 GN 11-411 needles     Metasequoia g~ 0.350016     
+#>  5              5 GN 11-416 needles     Pinus strobus~ 0.331100     
+#>  6              6 GN 11-419 needles     Pseudolarix a~ 0.279360     
+#>  7              7 GN 11-422 needles     Sequoia sempe~ 0.329672     
+#>  8              8 GN 11-423 needles     Taxodium dist~ 0.356950     
+#>  9              9 GN 11-428 needles     Thuja occiden~ 0.369360     
+#> 10             10 GN 11-434 needles     Tsuga carolin~ 0.289050     
+#> # ... with 48 more rows, and 2 more variables: holocellulose <units>,
 #> #   spectra <list>
 ```
 
@@ -135,13 +135,13 @@ ir_sample_data %>%                                      # data
 Please cite this R package as:
 
 > Henning Teickner (2020). *ir: A Simple Package to Handle and
-> Preprocess Infrared Spectra’*. Accessed 27 Mai 2020. Online at
+> Preprocess Infrared Spectra’*. Accessed 01 Jul 2020. Online at
 > <https://github.com/henningte/ir>.
 
 ### Licenses
 
-**Text and figures :**
-[CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
+**Text and figures :** [CC
+BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 **Code :** See the [DESCRIPTION](DESCRIPTION) file
 
@@ -167,7 +167,7 @@ under the Creative Commons Attribution 4.0 International License
 lignin and holocellulose content was originally derived from De La Cruz,
 Florentino B., Osborne, and Barlaz (2016).
 
-This packages was developed in R (R version 3.5.3 (2019-03-11)) (R Core
+This packages was developed in R (R version 4.0.1 (2020-06-06)) (R Core
 Team 2019) using functions from devtools (Wickham, Hester, and Chang
 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and
 roxygen2 (Wickham et al. 2019).

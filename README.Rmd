@@ -25,7 +25,7 @@ ir is an R package that contains simple functions to import, handle and preproce
 
 Supported file formats for import currently are:
 
-1. .csv files with indiidual spectra.
+1. .csv files with individual spectra.
 2. Thermo Galactic's .spc files with individual spectra.
 
 Provided functions for preprocessing and general handling are:
@@ -98,7 +98,7 @@ Please cite this R package as:
 
 ### Licenses
 
-**Text and figures :**  [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
+**Text and figures :**  [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 **Code :** See the [DESCRIPTION](DESCRIPTION) file
 

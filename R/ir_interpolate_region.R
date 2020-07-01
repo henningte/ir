@@ -44,7 +44,7 @@ ir_interpolate_region <- function(x,
 
   for(index in x_ranges) {
 
-    x_flat[index, -1] <- purrr::map_df(x_flat[, -1, drop = FALSE], function(y){
+    x_flat[index, -1] <- t(purrr::map_df(x_flat[, -1, drop = FALSE], function(y){
       d <- data.frame(y = y[index], z = x_flat[index, 1, drop = TRUE])
       if(all(is.na(d$y))) {
         rep(NA_real_, length(index))
@@ -52,7 +52,7 @@ ir_interpolate_region <- function(x,
         m <- stats::lm(y ~ z, data = d[c(1, nrow(d)), , drop = FALSE])
         stats::predict(m, newdata = d)
       }
-    })
+    }))
 
   }
 

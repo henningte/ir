@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
 ir is an R package that contains simple functions to import, handle and
@@ -30,13 +30,14 @@ Provided functions for preprocessing and general handling are:
 4.  interpolating (resampling, linearly).
 5.  replacing selected parts of a spectrum by a straight line.
 6.  averaging spectra within specified groups.
-7.  normalising spectra:
+7.  normalizing spectra:
       - to the maximum intensity
       - to the intensity at a specific x value
-      - so that all itensity values sum to 1.
+      - so that all intensity values sum to 1.
 8.  smoothing:
       - Savitzky-Golay smoothing
       - Fourier smoothing.
+9.  computing derivatives of spectra using Savitzky-Golay smoothing.
 
 ### How to install
 
@@ -116,7 +117,7 @@ Column `x` represents the x values (in this case wavenumbers
 
 A simple workflow would be, for example, to baseline correct the
 spectra, then bin them to bins with a width of 10 wavenumber units, then
-normalise them so that the maximum intensity value is 1 and the minimum
+normalize them so that the maximum intensity value is 1 and the minimum
 intensity value is 0 and then plot the baseline corrected spectra for
 each sample and sample type:
 
@@ -135,7 +136,7 @@ ir_sample_data %>%                                      # data
 Please cite this R package as:
 
 > Henning Teickner (2020). *ir: A Simple Package to Handle and
-> Preprocess Infrared Spectra’*. Accessed 01 Jul 2020. Online at
+> Preprocess Infrared Spectra’*. Accessed 11 Jul 2020. Online at
 > <https://github.com/henningte/ir>.
 
 ### Licenses

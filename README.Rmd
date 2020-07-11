@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 # ir
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 <!-- badges: end -->
 
 ir is an R package that contains simple functions to import, handle and preprocess infrared spectra. Infrared spectra are stored as list columns in `data.frame`s to enable efficient storage of metadata along with the spectra and support further analyses containing other data for the same samples.
@@ -38,13 +38,14 @@ Provided functions for preprocessing and general handling are:
 4. interpolating (resampling, linearly).
 5. replacing selected parts of a spectrum by a straight line.
 6. averaging spectra within specified groups.
-7. normalising spectra:
+7. normalizing spectra:
     * to the maximum intensity
     * to the intensity at a specific x value
-    * so that all itensity values sum to 1.
+    * so that all intensity values sum to 1.
 8. smoothing: 
     * Savitzky-Golay smoothing 
     * Fourier smoothing.
+9. computing derivatives of spectra using Savitzky-Golay smoothing.
 
 ### How to install
 
@@ -80,7 +81,7 @@ ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>%
 
 Column `x` represents the x values (in this case wavenumbers [cm<sup>-1</sup>]) and column `y` the corresponding intensity values.
 
-A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalise them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected spectra for each sample and sample type:
+A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalize them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected spectra for each sample and sample type:
 ```{r sample_data_workflow}
 ir_sample_data %>%                                      # data
   ir::ir_bc(method = "rubberband") %>%                  # baseline correction

@@ -3,7 +3,8 @@
 #' \code{ir_smooth} applies smoothing functions to infrared spectra.
 #' \code{ir_smooth} either performs
 #' Savitzky-Golay smoothing, based on \code{\link[signal:sgolayfilt]{sgolayfilt}},
-#' or Fourier smoothing using a user-defined smoothing function.
+#' or Fourier smoothing using \code{\link[fda:smooth.basis]{smooth.basis}}.
+#' Savitzky-Golay smoothing can also be used to compute derivatives of spectra.
 #'
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
 #' @param method A character value specifying which smoothing method to apply.
@@ -13,7 +14,7 @@
 #' If \code{method = "fourier"}, Fourier smoothing will be performed.
 #' Fourier transformation of the spectra is performed using the fast
 #' discrete Fourier transformation (FFT) as implemented in
-#' \code{\link[stats:fft]{fft}}. A smoothing function can be defined by the
+#' \code{\link[fda:smooth.basis]{smooth.basis}}. A smoothing function can be defined by the
 #' argment \code{f}.
 #' @param k A positive odd integer representing the number of Fourier
 #' basis functions to use as smoothed representation of the spectra
@@ -23,7 +24,9 @@
 #' @param n An odd integer value representing the length (i.e. the
 #' number of wavenumber values used to construct the polynom) of the
 #' Savitzky-Golay filter if \code{method = "sg"}.
-#' @param ts time scaling factor. See \code{link[signal:sgolayfilt]{sgolayfilt}}.
+#' @param ts time scaling factor. See \code{\link[signal:sgolayfilt]{sgolayfilt}}.
+#' @param m An integer value representing the mth derivative to compute. This option
+#' can be used to compute derivatives of spectra. See \code{\link[signal:sgolayfilt]{sgolayfilt}}.
 #' @param ... additional arguments (ignored).
 #' @return An object of class \code{ir} containing the smoothed
 #' spectra.
@@ -33,7 +36,9 @@ ir_smooth <- function(x,
                       p = 3,
                       n = p + 3 - p %% 2,
                       ts = 1,
-                      k = 111) {
+                      m = 0,
+                      k = 111,
+                      ...) {
 
   # checks
   if(!inherits(x, "ir")) {
@@ -48,7 +53,7 @@ ir_smooth <- function(x,
   # smooth the spectra
   switch(method,
          sg = {
-           x_flat[,-1] <- apply(x_flat[,-1], 2, function(x){signal::sgolayfilt(x = x, p = p, n = n, ts = ts)})
+           x_flat[,-1] <- apply(x_flat[,-1], 2, function(x){signal::sgolayfilt(x = x, p = p, n = n, ts = ts, m = m)})
            },
          fourier = {
 

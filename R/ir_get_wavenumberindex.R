@@ -36,7 +36,7 @@ ir_get_wavenumberindex <- function(x,
     d <- NA
   } else {
     d <- purrr::map_int(wavenumber, function(y){
-      which.min(abs(y - x$x))
+      ifelse(is.na(y), NA_integer_, which.min(abs(y - x$x)))
     })
   }
 

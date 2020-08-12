@@ -35,7 +35,7 @@ ir_bin <- function(x,
   # define bins
   nbins <- diff(range(x_flat$x)) %/% width
   bins_wn <- tibble::tibble(start = seq(0, nbins * width, width) + min(x_flat$x),
-                        end = .data$start + width - 1)
+                            end = .data$start + width - 1)
 
   bins_index <- purrr::map2_df(bins_wn$start, bins_wn$end, function(x, y){
     tibble::tibble(start = which(x_flat$x >= x)[[1]], end = rev(which(x_flat$x <= y))[[1]])
@@ -48,13 +48,16 @@ ir_bin <- function(x,
   }
 
   # perform binning
+  x_flat$bins_group <-
+    unlist(purrr::map(seq_len(nrow(bins_index)), function(i) {
+      rep(i, length(bins_index$start[[i]]:bins_index$end[[i]]))
+    }))
+
+  x_flat <- dplyr::group_by(x_flat[, -1, drop = FALSE], .data$bins_group)
+  x_flat <- dplyr::summarise_all(x_flat, mean)
   x_binned <- cbind(x = apply(bins_wn, 1, mean),
-                    t(apply(bins_index, 1, function(z1){
-                      apply(x_flat[,-1], 2, function(z2){
-                        mean(as.numeric(z2[z1[1]:z1[2]]), na.rm = TRUE)
-                      })
-                    }))
-                    )
+                    x_flat[, colnames(x_flat) != "bins_group", drop = FALSE]
+  )
 
   x$spectra <- ir_stack(x_binned)$spectra
   x

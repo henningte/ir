@@ -55,15 +55,15 @@ ir_normalise <- function(x,
          zeroone = {
            index <- NULL
            f <- plyr::colwise(function(y, ...){
-             y <- y - min(y)
-             y/max(y)
+             y <- y - min(y, na.rm = TRUE)
+             y/max(y, na.rm = TRUE)
            })
          },
          # normalise to the area
          area = {
            index <- NULL
            f <- plyr::colwise(function(y, ...){
-             y/sum(y)
+             y/sum(y, na.rm = TRUE)
            })
          },
          # normalise to a specific wavenumber
@@ -72,7 +72,7 @@ ir_normalise <- function(x,
                                            wavenumber = method_wn,
                                            warn = TRUE)
            f <- plyr::colwise(function(y, ...){
-             y <- y - min(y)
+             y <- y - min(y, na.rm = TRUE)
              y/y[index]
            })
          })

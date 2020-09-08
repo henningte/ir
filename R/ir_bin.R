@@ -35,7 +35,7 @@ ir_bin <- function(x,
   # define bins
   nbins <- diff(range(x_flat$x)) %/% width
   bins_wn <- tibble::tibble(start = seq(0, nbins * width, width) + min(x_flat$x),
-                            end = .data$start + width - 1)
+                            end = .data$start + width)
 
   bins_index <- purrr::map2_df(bins_wn$start, bins_wn$end, function(x, y){
     tibble::tibble(start = which(x_flat$x >= x)[[1]], end = rev(which(x_flat$x <= y))[[1]])

@@ -4,7 +4,9 @@
 #' defined width or into a defined number of bins.
 #'
 #' If the last bin contains fewer input values than the remaining bins, it
-#' will be dropped and a warning will be printed.
+#' will be dropped and a warning will be printed. If a wavenumber value exactly
+#' matches the boundary of a bin window, the respective intensity value will be
+#' assigned to both neighbouring bins.
 #'
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}} with integer wavenumber
 #' values increasing by 1.
@@ -37,6 +39,8 @@ ir_bin <- function(x,
   bins_wn <- tibble::tibble(start = seq(0, nbins * width, width) + min(x_flat$x),
                             end = .data$start + width)
 
+  # avoid overlapping bins
+  index_overlaps <- bins_wn$end[-nrow(bins_wn)] - bins_wn$start[-1]
   bins_index <- purrr::map2_df(bins_wn$start, bins_wn$end, function(x, y){
     tibble::tibble(start = which(x_flat$x >= x)[[1]], end = rev(which(x_flat$x <= y))[[1]])
   })
@@ -48,16 +52,15 @@ ir_bin <- function(x,
   }
 
   # perform binning
-  x_flat$bins_group <-
-    unlist(purrr::map(seq_len(nrow(bins_index)), function(i) {
-      rep(i, length(bins_index$start[[i]]:bins_index$end[[i]]))
-    }))
-
-  x_flat <- dplyr::group_by(x_flat[, -1, drop = FALSE], .data$bins_group)
-  x_flat <- dplyr::summarise_all(x_flat, mean)
-  x_binned <- cbind(x = apply(bins_wn, 1, mean),
-                    x_flat[, colnames(x_flat) != "bins_group", drop = FALSE]
-  )
+  x_binned <-
+    purrr::map_df(seq_len(nrow(bins_index)), function(i) {
+      dplyr::summarise_all(x_flat[bins_index[i, 1, drop = TRUE]:bins_index[i, 2, drop = TRUE], -1], mean)
+    })
+  colnames(x_binned) <- x$measurement_id
+  x_binned_wn <- purrr::map_dbl(seq_len(nrow(bins_wn)), function(i) {
+    mean(bins_wn[i, 1, drop = TRUE], bins_wn[i, 2, drop = TRUE])
+  })
+  x_binned <- dplyr::bind_cols(x = x_binned_wn, x_binned)
 
   x$spectra <- ir_stack(x_binned)$spectra
   x

@@ -23,5 +23,7 @@ defined width or into a defined number of bins.
 }
 \details{
 If the last bin contains fewer input values than the remaining bins, it
-will be dropped and a warning will be printed.
+will be dropped and a warning will be printed. If a wavenumber value exactly
+matches the boundary of a bin window, the respective intensity value will be
+assigned to both neighbouring bins.
 }

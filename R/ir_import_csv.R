@@ -55,8 +55,7 @@ ir_import_csv <- function(filenames,
       sample_id <- vapply(sample_id, function(x) x[[length(x)]], FUN.VALUE = character(1))
       sample_id <- substring(sample_id, 1, regexpr("\\.[^\\.]*$", sample_id) - 1)
       sample_id <- rep(sample_id, x_nsamples)
-    }
-    if(sample_id == "from_colnames") {
+    } else if(sample_id == "from_colnames") {
       sample_id <- unlist(lapply(x, function(y) colnames(y)[-1]))
     }
   }

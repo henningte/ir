@@ -53,7 +53,7 @@ ir_smooth <- function(x,
   # smooth the spectra
   switch(method,
          sg = {
-           x_flat[,-1] <- apply(x_flat[,-1], 2, function(x){signal::sgolayfilt(x = x, p = p, n = n, ts = ts, m = m)})
+           x_flat[, -1] <- apply(x_flat[, -1, drop = FALSE], 2, function(x){signal::sgolayfilt(x = x, p = p, n = n, ts = ts, m = m)})
            },
          fourier = {
 
@@ -62,7 +62,7 @@ ir_smooth <- function(x,
 
            # functional data object
            fd <- fda::smooth.basis(argvals = x_flat$x,
-                                   y = as.matrix(x_flat[, -1]),
+                                   y = as.matrix(x_flat[, -1, drop = FALSE]),
                                    fdParobj = fourier_basis)$fd
 
            # smoothing

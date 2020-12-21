@@ -12,7 +12,7 @@ ir_get_intensity(x, wavenumber, warn = TRUE)
 \item{wavenumber}{A numeric vector with x axis values
 (e.g. wavenumber values) for which to extract intensities.}
 
-\item{warn}{logical value indicating if warnings should be
+\item{warn}{A logical value indicating if warnings should be
 displayed (\code{TRUE}) or not (\code{FALSE}).}
 }
 \value{

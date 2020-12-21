@@ -6,7 +6,7 @@
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
 #' @param wavenumber A numeric vector with x axis values
 #' (e.g. wavenumber values) for which to extract intensities.
-#' @param warn logical value indicating if warnings should be
+#' @param warn A logical value indicating if warnings should be
 #' displayed (\code{TRUE}) or not (\code{FALSE}).
 #' @return \code{x} with an additional column \code{intensity}.
 #' \code{x$intensity} is a list column with each element representing

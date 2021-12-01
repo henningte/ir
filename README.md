@@ -7,6 +7,7 @@
 
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![DOI](https://zenodo.org/badge/234117897.svg)](https://zenodo.org/badge/latestdoi/234117897)
 <!-- badges: end -->
 
 ir is an R package that contains simple functions to import, handle and
@@ -56,6 +57,7 @@ library(ir)
 
 # load additional packages needed for this tutorial
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.0.2
 library(magrittr)
 ```
 
@@ -135,9 +137,9 @@ ir_sample_data %>%                                      # data
 
 Please cite this R package as:
 
-> Henning Teickner (2020). *ir: A Simple Package to Handle and
-> Preprocess Infrared Spectra’*. Accessed 11 Jul 2020. Online at
-> <https://github.com/henningte/ir>.
+> Henning Teickner (2021). *ir: A Simple Package to Handle and
+> Preprocess Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed
+> 01 Dez 2021. Online at <https://github.com/henningte/ir>.
 
 ### Licenses
 

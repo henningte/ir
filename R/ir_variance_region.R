@@ -27,7 +27,7 @@
 #' \code{subtract_smoothed = FALSE} (the default), nothing is subtracted from
 #' \code{x} before computing the variance of the intensity values.
 #' @param ... Arguments passed to \code{\link{ir_smooth}} (except for
-#' \code{method} which is always set to \code{sg} if \code{subtract_smoothed} is
+#' \code{method} which is always set to \code{"sg"} if \code{subtract_smoothed} is
 #' \code{TRUE}). If \code{subtract_smoothed = FALSE}, these arguments will be
 #' ignored.
 #' @param range See \code{\link{ir_clip}}. This is the range for which the

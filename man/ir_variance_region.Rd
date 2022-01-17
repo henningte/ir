@@ -19,7 +19,7 @@ noise level in a specific region of spectra. If
 \code{x} before computing the variance of the intensity values.}
 
 \item{...}{Arguments passed to \code{\link{ir_smooth}} (except for
-\code{method} which is always set to \code{sg} if \code{subtract_smoothed} is
+\code{method} which is always set to \code{"sg"} if \code{subtract_smoothed} is
 \code{TRUE}). If \code{subtract_smoothed = FALSE}, these arguments will be
 ignored.}
 

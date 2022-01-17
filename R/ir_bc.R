@@ -101,7 +101,7 @@ ir_bc <- function(x,
 #' @export
 ir_bc_sg <- function(x, ..., return_bl = FALSE) {
 
-  x_bl <- ir::ir_smooth(x, ...)
+  x_bl <- ir::ir_smooth(x, method = "sg", ...)
   if(return_bl) {
     x_bl
   } else {

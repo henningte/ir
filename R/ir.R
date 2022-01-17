@@ -203,3 +203,30 @@ ir_as_ir <- function(x, ...) {
 ir_as_ir.data.frame <- function(x, ...) {
   ir_new_ir(spectra = x$spectra, sample_id = x$sample_id, metadata = x[, -match("spectra", colnames(x))])
 }
+
+#### Replicate ir objects ####
+
+#' Replicate ir objects
+#'
+#' \code{rep.ir} is the replicate method for \code{\link{ir}} objects.
+#' Replicating and \code{ir} object means to replicate its rows and bind these
+#' together to a larger \code{ir} object.
+#'
+#' @param x An object of class \code{\link{ir}}.
+#' @param ... See \code{\link{rep}}.
+#' @examples
+#' # replicate the sample data
+#' x <- rep(ir::ir_sample_data, times = 2)
+#' x <- rep(ir::ir_sample_data, each = 2)
+#' x <- rep(ir::ir_sample_data, length.out = 3)
+#' @return An object of class \code{ir} with replicated spectra.
+#' @export
+rep.ir <- function(x, ...) {
+
+  x %>%
+    dplyr::slice(rep(dplyr::row_number(), ...)) %>%
+    dplyr::mutate(
+      measurement_id = seq_along(.data$spectra)
+    )
+
+}

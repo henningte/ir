@@ -2,6 +2,7 @@
 
 S3method(ir_as_ir,data.frame)
 S3method(plot,ir)
+S3method(rep,ir)
 export("%>%")
 export(ir_add)
 export(ir_as_ir)

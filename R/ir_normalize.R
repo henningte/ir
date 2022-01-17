@@ -57,41 +57,51 @@ ir_normalise <- function(x,
     method <- "wavenumber"
   }
 
-  x_flat <- ir_flatten(x)
-
-  # normalising functions
+  # normalizing functions
   switch(
     method,
-    # normalise to [0;1]
+    # normalize to [0;1]
     zeroone = {
       index <- NULL
-      f <- plyr::colwise(function(y, ...){
-        y <- y - min(y, na.rm = TRUE)
-        y/max(y, na.rm = TRUE)
-      })
+      f <-
+        function(y, ...) {
+          y <- y - min(y, na.rm = TRUE)
+          y/max(y, na.rm = TRUE)
+        }
     },
-    # normalise to the area
+    # normalize to the area
     area = {
       index <- NULL
-      f <- plyr::colwise(function(y, ...){
-        y/sum(y, na.rm = TRUE)
-      })
+      f <-
+        function(y, ...) {
+          y/sum(y, na.rm = TRUE)
+        }
     },
     # normalize to a specific wavenumber
     wavenumber = {
-      index <- ir_get_wavenumberindex(x_flat,
-                                      wavenumber = method_wn,
-                                      warn = TRUE)
-      f <- plyr::colwise(function(y, ...){
-        y <- y - min(y, na.rm = TRUE)
-        y/y[index]
-      })
+      x_flat <- ir_flatten(x)
+      index <-
+        ir_get_wavenumberindex(x_flat,
+                               wavenumber = method_wn,
+                               warn = TRUE)
+      f <-
+        function(y, ...){
+          y <- y - min(y, na.rm = TRUE)
+          y/y[index]
+        }
     },
     {rlang::abort("Unknown method.")})
 
-  x_flat[,-1] <- f(x_flat[,-1], index)
-  x$spectra <- ir_stack(x_flat)$spectra
-  x
+  # normalize
+  x %>%
+    dplyr::mutate(
+      spectra = purrr::map(.data$spectra, function(z) {
+        z %>%
+          dplyr::mutate(
+            y = f(.data$y, index)
+          )
+      })
+    )
 
 }
 

@@ -40,7 +40,9 @@ samples.
       - Fourier smoothing.
 9.  computing derivatives of spectra using Savitzky-Golay smoothing.
 10. subtracting and adding intensity values.
-11. plotting.
+11. computing the variance of intensity values (optionally after
+    subtracting reference spectra).
+12. plotting.
 
 ### How to install
 

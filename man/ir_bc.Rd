@@ -4,7 +4,7 @@
 \alias{ir_bc}
 \title{Performs baseline correction on infrared spectra}
 \usage{
-ir_bc(x, method = "rubberband", degree = 2, return_bl = FALSE)
+ir_bc(x, method = "rubberband", ..., return_bl = FALSE)
 }
 \arguments{
 \item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
@@ -12,10 +12,12 @@ ir_bc(x, method = "rubberband", degree = 2, return_bl = FALSE)
 \item{method}{A character value indicating which method should be used
 for baseline correction. If \code{method = "polynomial"}, a polynomial
 is used for baseline correction. If \code{method = "rubberband"}, a
-rubberband function is used for baseline correction.}
+rubberband function is used for baseline correction. If \code{method = "sg"},
+a Savitzky-Golay smoothed version of the input spectra is used for baseline
+correction.}
 
-\item{degree}{An integer value representing the degree of the polynomial
-used for baseline correction if \code{method = "polynomial"}.}
+\item{...}{Further arguments passed to \code{\link{ir_bc_polynomial}} or
+\code{\link{ir_bc_sg}}.}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
 should be returned in addition to the corrected intensity values
@@ -31,9 +33,11 @@ corrected spectra and if \code{returnbl = TRUE} a new list column
 spectra. Baseline correction
 is either performed by using a polynomial with user defined
 degree fitted to each spectrum (see
-\code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}) or by using a rubberband
-function that is fitted to each spectrum
-(see \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}).
+\code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}), or by using a
+rubberband function that is fitted to each spectrum
+(see \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}), or using a
+Savitzky-Golay smoothed version of the input spectra (see
+\code{\link{ir_bc_sg}}).
 }
 \examples{
 # rubberband baseline correction
@@ -45,4 +49,9 @@ x1 <-
 x2 <-
    ir::ir_sample_data \%>\%
    ir::ir_bc(method = "polynomial", degree = 2)
+
+# Savitzky-Golay baseline correction
+x3 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
 }

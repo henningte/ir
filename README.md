@@ -26,6 +26,7 @@ samples.
 1.  baseline correction with:
       - a polynomial baseline
       - a convex hull baseline.
+      - a Savitzky-Golay baseline (Lasch 2012).
 2.  binning.
 3.  clipping.
 4.  interpolating (resampling, linearly).
@@ -224,6 +225,15 @@ Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
 “Tropical peatland carbon storage linked to global latitudinal trends
 in peat recalcitrance.” *Nature communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.
+
+</div>
+
+<div id="ref-Lasch.2012">
+
+Lasch, Peter. 2012. “Spectral Pre-Processing for Biomedical Vibrational
+Spectroscopy and Microspectroscopic Imaging.” *Chemometrics and
+Intelligent Laboratory Systems* 117 (August): 100–114.
+<https://doi.org/10.1016/j.chemolab.2012.03.011>.
 
 </div>
 

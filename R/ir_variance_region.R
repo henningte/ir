@@ -56,7 +56,7 @@
 #' # only from a specific region
 #' x3 <-
 #'    ir::ir_sample_data %>%
-#'    ir::ir_variance_region(subtract_smoothed = FALSE, range = range,
+#'    ir::ir_variance_region(subtract_smoothed = TRUE, range = range,
 #'                           p = 3, n = 31, ts = 1, m = 0)
 #' @export
 ir_variance_region <- function(x, subtract_smoothed = FALSE, ..., range = NULL) {
@@ -70,11 +70,14 @@ ir_variance_region <- function(x, subtract_smoothed = FALSE, ..., range = NULL) 
       x %>%
       ir::ir_smooth(method = "sg", ...)
     res <-
-      ir::ir_subtract(x, y) %>%
-      ir::ir_normalise()
+      ir::ir_subtract(x, y)
   } else {
     res <- x
   }
+
+  res <-
+    res %>%
+    ir::ir_normalize(method = "area")
 
   if(!is.null(range)) {
     res <-

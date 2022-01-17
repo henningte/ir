@@ -3,7 +3,7 @@
 \docType{data}
 \name{ir_sample_data}
 \alias{ir_sample_data}
-\title{Sample object of class \code{ir}.}
+\title{Sample object of class \code{ir}}
 \format{
 A data frame with 58 rows and 7 variables:
 \describe{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir.R
 \name{ir_check_ir}
 \alias{ir_check_ir}
-\title{Checks if an object is of class \code{ir}.}
+\title{Checks if an object is of class \code{ir}}
 \usage{
 ir_check_ir(x)
 }

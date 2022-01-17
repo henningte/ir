@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_bc_polynomial.R
 \name{ir_bc_polynomial}
 \alias{ir_bc_polynomial}
-\title{Performs baseline correction on infrared spectra using a polynomial.}
+\title{Performs baseline correction on infrared spectra using a polynomial}
 \usage{
 ir_bc_polynomial(x, degree = 2, return_bl = FALSE)
 }
@@ -17,9 +17,8 @@ should be returned instead of the corrected intensity values
 (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).}
 }
 \value{
-An object of class \code{ir} with the baseline
-corrected spectra if \code{returnbl = FALSE} or the baselines if
-\code{returnbl = TRUE}.
+An object of class \code{ir} with the baseline corrected spectra if
+\code{returnbl = FALSE} or the baselines if \code{returnbl = TRUE}.
 }
 \description{
 \code{ir_bc_polynomial} performs baseline correction for infrared
@@ -27,7 +26,11 @@ spectra using a polynomial.
 \code{ir_bc_polynomial} is an extended wrapper function
 for \code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}.
 }
+\examples{
+x2 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
+}
 \seealso{
-\code{\link{ir_bc}},
-\code{\link{ir_bc_rubberband}}.
+\code{\link{ir_bc}}
 }

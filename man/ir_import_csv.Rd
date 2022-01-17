@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_import_csv.R
 \name{ir_import_csv}
 \alias{ir_import_csv}
-\title{Imports infrared spectra from various files.}
+\title{Imports infrared spectra from various files}
 \usage{
 ir_import_csv(filenames, sample_id = NULL, ...)
 }
@@ -25,24 +25,27 @@ extracted from the .csv file(s).
 \description{
 \code{ir_import_csv} imports raw infrared spectra from one or more .csv file
 that contains at least one spectrum, with x axis values (e.g. wavenumbers) in
-the first column and intensity values of spectra in remaining columns. Note that
-the function does not perform any checks for the validity of the content read
-from the .csv file.
+the first column and intensity values of spectra in remaining columns. Note
+that the function does not perform any checks for the validity of the content
+read from the .csv file.
 }
 \examples{
 # get sample data
 d <- ir::ir_sample_data
+
 # transform to list
 dl <-
   list(
     ir::ir_flatten(d[1:10, ]),
     ir::ir_flatten(d[11:nrow(d), ])
     )
+
 # save to temporary files
 tf1 <- tempfile(fileext = ".csv")
 tf2 <- tempfile(fileext = ".csv")
 write.csv(dl[[1]], tf1, row.names = FALSE)
 write.csv(dl[[2]], tf2, row.names = FALSE)
+
 # import data from csv files
 filenames <- list.files(gsub("\\\\\\\\file.+$", "", tf1), pattern = ".csv", full.names = TRUE)
 d <- ir::ir_import_csv(filenames, sample_id = "from_colnames")

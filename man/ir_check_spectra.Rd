@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir.R
 \name{ir_check_spectra}
 \alias{ir_check_spectra}
-\title{Checks a list of spectra.}
+\title{Checks a list of spectra}
 \usage{
 ir_check_spectra(x)
 }

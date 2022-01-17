@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir.R
 \name{ir_drop_spectra}
 \alias{ir_drop_spectra}
-\title{Drops the column \code{spectra} from an object is of class \code{ir}.}
+\title{Drops the column \code{spectra} from an object is of class \code{ir}}
 \usage{
 ir_drop_spectra(x)
 }

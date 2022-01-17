@@ -1,4 +1,4 @@
-#' Creates an object of class ir.
+#' Creates an object of class ir
 #'
 #' \code{ir_new_ir} is the constructor function for objects of class
 #' \code{ir}.
@@ -6,19 +6,16 @@
 #' sample in each row and a list column containing spectra for each sample.
 #'
 #' @param spectra A named list in which each element contains spectral data
-#' for one measurement. Each list element
-#' must be a \code{data.frame} with two columns and a row for each
-#' wavenumber value in the spectra data. The first column must contain
-#' unique wavenumber values and the second column intensity values of
-#' the measured spectrum of the sample.
-#' @param sample_id A character vector with the same length as
-#' \code{spectra} containing sample names for the measured samples in
-#' \code{spectra}.
+#' for one measurement. Each list element must be a \code{data.frame} with two
+#' columns and a row for each wavenumber value in the spectra data. The first
+#' column must contain unique wavenumber values and the second column intensity
+#' values of the measured spectrum of the sample.
+#' @param sample_id A character vector with the same length as \code{spectra}
+#' containing sample names for the measured samples in \code{spectra}.
 #' @param metadata A \code{data.frame} with a column
-#' \code{sample_id} and a column \code{measurement_id} and optional
-#' additional columns containing
-#' metadata for the samples. Optionally, an empty \code{data.frame}
-#' can be defined if no metadata are available.
+#' \code{sample_id} and a column \code{measurement_id} and optional additional
+#' columns containing metadata for the samples. Optionally, an empty
+#' \code{data.frame} can be defined if no metadata are available.
 #' @return An object of class \code{ir} with the following columns:
 #' \describe{
 #'   \item{measurement_id}{An integer starting with 1 and increasing by 1
@@ -33,25 +30,37 @@ ir_new_ir <- function(spectra,
                       sample_id,
                       metadata = tibble::tibble()) {
 
+  # checks
   ir_check_spectra(spectra)
   ir_check_metadata(metadata)
   if(!is.character(sample_id))
     rlang::abort(paste0("`sample_id` must be a character, not, ", class(sample_id)[[1]], "."))
+  if(length(sample_id) != length(spectra))
+    rlang::abort(paste0("`sample_id` must have the same length as `spectra`."))
 
-  spectra <- lapply(spectra, function(x){
-    colnames(x) <- c("x", "y")
-    x
-  })
-  x <- tibble::tibble(measurement_id = seq_along(spectra),
-                      sample_id = sample_id,
-                      spectra = spectra)
-  if(ncol(metadata) > 0)
-    x <- dplyr::full_join(metadata, x, by = c("sample_id", "measurement_id"))
+  # combine data
+  x <-
+    tibble::tibble(
+      measurement_id = seq_along(spectra),
+      sample_id = sample_id,
+      spectra =
+        lapply(spectra, function(x){
+          colnames(x) <- c("x", "y")
+          x
+        })
+    )
+
+  # add metadata
+  if(ncol(metadata) > 0) {
+    x <-
+      dplyr::full_join(metadata, x, by = c("sample_id", "measurement_id"))
+  }
+
   structure(x, class = c("ir", class(x)))
 
 }
 
-#' Checks a list of spectra.
+#' Checks a list of spectra
 #'
 #' \code{ir_check_spectra} checks if a list of infrared spectra
 #' matches the requirement of the argument \code{spectra} of
@@ -73,7 +82,7 @@ ir_check_spectra <- function(x) {
   }
   x_is_df <- vapply(x,
                     FUN = inherits, "data.frame",
-                    FUN.VALUE = rlang::na_lgl)
+                    FUN.VALUE = logical(1))
   if(!all(x_is_df)) {
     rlang::abort(paste0("`x` must be a list of data.frames.\n
                         Elements ", which(!x_is_df), " are no data.frames."))
@@ -106,7 +115,7 @@ ir_check_spectra <- function(x) {
 
 }
 
-#' Checks infrared spectra metadata.
+#' Checks infrared spectra metadata
 #'
 #' \code{ir_check_metadata} checks if a \code{data.frame}
 #' matches the requirement of the argument \code{metadata} of
@@ -138,7 +147,7 @@ ir_check_metadata <- function(x) {
 
 }
 
-#' Checks if an object is of class \code{ir}.
+#' Checks if an object is of class \code{ir}
 #'
 #' \code{ir_check_ir} checks if an object is of class \code{\link[ir:ir_new_ir]{ir}}.
 #'
@@ -152,7 +161,7 @@ ir_check_ir <- function(x) {
   x
 }
 
-#' Drops the column \code{spectra} from an object is of class \code{ir}.
+#' Drops the column \code{spectra} from an object is of class \code{ir}
 #'
 #' \code{ir_drop_spectra} removes the column \code{spectra} from an object
 #' of class \code{ir} and removes the \code{"ir"} class label.
@@ -166,4 +175,31 @@ ir_drop_spectra <- function(x) {
   x$spectra <- NULL
   class(x) <- class(x)[class(x) != "ir"]
   x
+}
+
+
+#### Casting ####
+
+#' Generic to convert objects to class \code{ir}
+#'
+#' \code{ir_as_ir} ir the generic to convert an object to an object of class
+#' \code{\link{ir}}.
+#'
+#' @param x An object.
+#' @param ... Further arguments passed to individual methods. If \code{x} is a
+#' dataframe, these are ignored.
+#' @return An object of class \code{ir}.
+#' @name ir_as_ir
+#' @export
+ir_as_ir <- function(x, ...) {
+  UseMethod("ir_as_ir")
+}
+
+#' @rdname ir_as_ir
+#' @examples
+#' # conversion from a data frame
+#' ir::ir_as_ir(tibble::as_tibble(ir::ir_sample_data))
+#' @export
+ir_as_ir.data.frame <- function(x, ...) {
+  ir_new_ir(spectra = x$spectra, sample_id = x$sample_id, metadata = x[, -match("spectra", colnames(x))])
 }

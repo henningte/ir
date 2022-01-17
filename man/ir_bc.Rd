@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_bc.R
 \name{ir_bc}
 \alias{ir_bc}
-\title{Performs baseline correction on infrared spectra.}
+\title{Performs baseline correction on infrared spectra}
 \usage{
 ir_bc(x, method = "rubberband", degree = 2, return_bl = FALSE)
 }
@@ -35,7 +35,14 @@ degree fitted to each spectrum (see
 function that is fitted to each spectrum
 (see \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}).
 }
-\seealso{
-\code{\link{ir_bc_polynomial}},
-\code{\link{ir_bc_rubberband}}.
+\examples{
+# rubberband baseline correction
+x1 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_bc(method = "rubberband")
+
+# polynomial baseline correction
+x2 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_bc(method = "polynomial", degree = 2)
 }

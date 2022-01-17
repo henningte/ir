@@ -1,23 +1,27 @@
-#' Gets the index of a defined wavenumber value for a spectrum.
+#' Gets the index of a defined wavenumber value for a spectrum
 #'
-#' \code{ir_get_wavenumberindex} gets for a defined wavenumber
-#' value or set of wavenumber values the corresponding indices
-#' (row number) in an object of class \code{ir} that has been
-#' flattened with \code{\link{ir_stack}}. If the
-#' specified wavenumber values do not match exactly the wavenumber
-#' values in the \code{ir} object, the indices for the next
-#' wavenumber values will be returned, along with a warning.
+#' \code{ir_get_wavenumberindex} gets for a defined wavenumber value or set of
+#' wavenumber values the corresponding indices (row number) in an object of
+#' class \code{ir} that has been flattened with \code{\link{ir_flatten}}. If the
+#' specified wavenumber values do not match exactly the wavenumber values in the
+#' \code{ir} object, the indices for the next wavenumber values will be
+#' returned, along with a warning.
 #'
-#' @param x A data.frame with a column x representing the x units of
-#' a spectrum or several spectra (e.g. in the form of an object of class
+#' @param x A data.frame with a column x representing the x units of a spectrum
+#' or several spectra (e.g. in the form of an object of class
 #' \code{\link[ir:ir_new_ir_flat]{ir_flat}}).
-#' @param wavenumber A numeric vector with wavenumber values
-#' for which to get indices.
-#' @param warn logical value indicating if warnings should be
-#' displayed (\code{TRUE}) or not (\code{FALSE}).
-#' @return An integer vector with the same length as \code{wavenumber}
-#' with the row indices of \code{x} corresponding to the wavenumber
-#' values in \code{wavenumber}.
+#' @param wavenumber A numeric vector with wavenumber values for which to get
+#' indices.
+#' @param warn logical value indicating if warnings should be displayed
+#' (\code{TRUE}) or not (\code{FALSE}).
+#' @return An integer vector with the same length as \code{wavenumber} with the
+#' row indices of \code{x} corresponding to the wavenumber values in
+#' \code{wavenumber}.
+#' @examples
+#' x_index_1090 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_flatten() %>%
+#'    ir::ir_get_wavenumberindex(wavenumber = 1090)
 #' @export
 ir_get_wavenumberindex <- function(x,
                                    wavenumber,
@@ -33,22 +37,25 @@ ir_get_wavenumberindex <- function(x,
 
   # get matching wavenumber values
   if(nrow(x) == 0) {
-    d <- NA
+    res <- NA
   } else {
-    d <- purrr::map_int(wavenumber, function(y){
-      ifelse(is.na(y), NA_integer_, which.min(abs(y - x$x)))
-    })
+    res <-
+      purrr::map_int(wavenumber, function(y){
+        ifelse(is.na(y), NA_integer_, which.min(abs(y - x$x)))
+      })
   }
 
   # get the corresponding wavenumber values
-  d_wavenumber <- x$x[d]
+  d_wavenumber <- x$x[res]
 
   # check if the specified wavenumber equals the selected wavenumber value
-  match_wavenumber <- purrr::map2_lgl(d_wavenumber, wavenumber, function(x, y) all.equal(x, y) == TRUE)
+  match_wavenumber <-
+    purrr::map2_lgl(d_wavenumber, wavenumber, function(x, y) all.equal(x, y) == TRUE)
+
   if(any(!match_wavenumber) && warn){
     rlang::warn(paste0(d_wavenumber[!match_wavenumber], " selected instead of ", wavenumber[!match_wavenumber],"."))
   }
 
-  d
+  res
 
 }

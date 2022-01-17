@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_import_spc.R
 \name{ir_import_spc}
 \alias{ir_import_spc}
-\title{Imports infrared spectra from various files.}
+\title{Imports infrared spectra from various files}
 \usage{
 ir_import_spc(filenames)
 }
@@ -11,9 +11,10 @@ ir_import_spc(filenames)
 the .spc files to import.}
 }
 \value{
-An object of class \code{\link[ir:ir_new_ir]{ir}} containing the infrared spectra
-extracted from the .spc file(s) and the metadata as extracted by
-\code{\link[hyperSpec:read.spc]{read.spc}}. Metadata variables are:
+An object of class \code{\link[ir:ir_new_ir]{ir}} containing the
+infrared spectra extracted from the .spc file(s) and the metadata as
+extracted by \code{\link[hyperSpec:read.spc]{read.spc}}. Metadata variables
+are:
 \describe{
   \item{scan_number}{An integer value representing the number of scans.}
   \item{detection_gain_factor}{The detection gain factor.}
@@ -22,18 +23,25 @@ extracted from the .spc file(s) and the metadata as extracted by
   \item{detector_name}{The name of the detector.}
   \item{source_name}{The name of the infrared radiation source.}
   \item{purge_delay}{The duration of purge delay before a measurement [s].}
-  \item{zero_filling_factor}{A numeric value representing the zero filling factor.}
+  \item{zero_filling_factor}{A numeric value representing the zero filling
+  factor.}
   \item{apodisation_function}{The name of the apodisation function.}
-  \item{exponentiation factor}{The exponentiation factor used for file compression.}
+  \item{exponentiation factor}{The exponentiation factor used for file
+  compression.}
   \item{data_point_number}{The number of data points in the spectrum}
   \item{x_variable_type}{The type of the x variable.}
   \item{y_variable_type}{The type of the y variable.}
-  \item{measurement_date}{A POSIXct representing the measurement date and time.}
+  \item{measurement_date}{A POSIXct representing the measurement date and
+  time.}
   \item{measurement_device}{The name of the measurement device.}
 }
 }
 \description{
 \code{ir_import_spc} imports raw infrared spectra from a Thermo Galactic's
-.spc file or several of such files. \code{ir_import_spc} is a wrapper function
-to \code{\link[hyperSpec:read.spc]{read.spc}}.
+.spc file or several of such files. \code{ir_import_spc} is a wrapper
+function to \code{\link[hyperSpec:read.spc]{read.spc}}.
+}
+\examples{
+# import a sample .spc file
+x <- ir::ir_import_spc(system.file("extdata/1.spc", package = "ir"))
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir.R
 \name{ir_check_metadata}
 \alias{ir_check_metadata}
-\title{Checks infrared spectra metadata.}
+\title{Checks infrared spectra metadata}
 \usage{
 ir_check_metadata(x)
 }

@@ -1,4 +1,4 @@
-#' Performs baseline correction on infrared spectra.
+#' Performs baseline correction on infrared spectra
 #'
 #' \code{ir_bc} performs baseline correction for infrared
 #' spectra. Baseline correction
@@ -21,9 +21,16 @@
 #' @return An object of class \code{ir} with the baseline
 #' corrected spectra and if \code{returnbl = TRUE} a new list column
 #' "baselines" with the baselines.
-#' @seealso
-#' \code{\link{ir_bc_polynomial}},
-#' \code{\link{ir_bc_rubberband}}.
+#' @examples
+#' # rubberband baseline correction
+#' x1 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_bc(method = "rubberband")
+#'
+#' # polynomial baseline correction
+#' x2 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_bc(method = "polynomial", degree = 2)
 #' @export
 ir_bc <- function(x,
                   method = "rubberband",
@@ -31,29 +38,33 @@ ir_bc <- function(x,
                   return_bl = FALSE) {
 
   # checks
-  if(!inherits(x, "ir")){
-    stop("x has to be of class ir")
-  }
+  ir_check_ir(x)
   if(!(is.logical(return_bl) |
        length(return_bl) == 1)){
-    stop("return_bl must be a logical value")
+    rlang::abort("`return_bl` must be a logical value")
   }
   if(!(is.integer(degree) |
        length(degree) == 1)){
-    stop("degree must be an integer value")
+    rlang::abort("`degree` must be an integer value")
   }
 
   # perform baseline correction
-  switch(method,
-         polynomial = {
-           ir_bc_polynomial(x,
-                            degree = degree,
-                            return_bl = return_bl)
-         },
-         rubberband = {
-           ir_bc_rubberband(x,
-                            return_bl = return_bl)
-         }
+  switch(
+    method,
+    polynomial = {
+      ir_bc_polynomial(
+        x,
+        degree = degree,
+        return_bl = return_bl
+      )
+    },
+    rubberband = {
+      ir_bc_rubberband(
+        x,
+        return_bl = return_bl
+      )
+    },
+    {rlang::abort("Unknown method.")}
   )
 
 }

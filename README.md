@@ -12,16 +12,16 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 
 ir is an R package that contains simple functions to import, handle and
 preprocess infrared spectra. Infrared spectra are stored as list columns
-in `data.frame`s to enable efficient storage of metadata along with the
+in data frames to enable efficient storage of metadata along with the
 spectra and support further analyses containing other data for the same
 samples.
 
-Supported file formats for import currently are:
+**Supported file formats for import are:**
 
 1.  .csv files with individual spectra.
 2.  Thermo Galactic’s .spc files with individual spectra.
 
-Provided functions for preprocessing and general handling are:
+**Provided functions for preprocessing and general handling are:**
 
 1.  baseline correction with:
       - a polynomial baseline
@@ -39,6 +39,8 @@ Provided functions for preprocessing and general handling are:
       - Savitzky-Golay smoothing
       - Fourier smoothing.
 9.  computing derivatives of spectra using Savitzky-Golay smoothing.
+10. subtracting and adding intensity values.
+11. plotting.
 
 ### How to install
 
@@ -53,18 +55,50 @@ remotes::install_github(repo = "henningte/ir")
 You can load ir in R with:
 
 ``` r
+# load ir package
 library(ir)
+#> Registered S3 methods overwritten by 'tibble':
+#>   method     from  
+#>   format.tbl pillar
+#>   print.tbl  pillar
 
 # load additional packages needed for this tutorial
 library(ggplot2)
 #> Warning: package 'ggplot2' was built under R version 4.0.2
-library(magrittr)
 ```
+
+#### Sample workflow
+
+A simple workflow would be, for example, to baseline correct the
+spectra, then bin them to bins with a width of 10 wavenumber units, then
+normalize them so that the maximum intensity value is 1 and the minimum
+intensity value is 0 and then plot the baseline corrected spectra for
+each sample and sample type. Here’s the ir code using the built-in
+sample data `ir_sample_data`.
+
+``` r
+ir_sample_data %>%                                      # data
+  ir::ir_bc(method = "rubberband") %>%                  # baseline correction
+  ir::ir_bin(width = 10) %>%                            # binning
+  ir::ir_normalize(method = "zeroone") %>%              # normalization
+  plot() + ggplot2::facet_wrap(~ sample_type)           # plot
+```
+
+![](man/figures/README-sample_data_workflow-1.png)<!-- -->
+
+#### Data structure
 
 You can load the sample data with:
 
 ``` r
 ir::ir_sample_data
+#> Warning: `...` is not empty.
+#> 
+#> We detected these problematic arguments:
+#> * `needs_dots`
+#> 
+#> These dots only exist to allow future extensions and should be empty.
+#> Did you misspecify an argument?
 #> # A tibble: 58 x 7
 #>    measurement_id sample_id sample_type sample_comment klason_lignin
 #>  *          <int> <chr>     <chr>       <chr>          <units>      
@@ -83,7 +117,7 @@ ir::ir_sample_data
 ```
 
 `ir_sample_data` is an object of class `ir`. An Object of class `ir` is
-basically a `data.frame` where each row represents one infrared
+basically a data frame where each row represents one infrared
 measurement and column `spectra` contains the infrared spectra (one per
 row) and columns `measurement_id` and `sample_id` represent identifiers
 for each measurement and sample, respectively. This allows effectively
@@ -91,14 +125,22 @@ storing repeated measurements for the same sample in the same table, as
 well as any metadata and accessory data (e.g. nitrogen content of the
 sample).
 
-The column `spectra` is a list column of `data.frame`s, meaning that
-each cell in `sample_data` contains for column `spectra` a `data.frame`.
-For example, the first element of `ir_sample_data$spectra` represents
-the first spectrum as a `data.frame`:
+The column `spectra` is a list column of data frames, meaning that each
+cell in `sample_data` contains for column `spectra` a data frame. For
+example, the first element of `ir_sample_data$spectra` represents the
+first spectrum as a data frame:
 
 ``` r
+# View the first ten rows of the first spectrum in ir_sample_data
 ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>% 
   head(10)
+#> Warning: `...` is not empty.
+#> 
+#> We detected these problematic arguments:
+#> * `needs_dots`
+#> 
+#> These dots only exist to allow future extensions and should be empty.
+#> Did you misspecify an argument?
 #> # A tibble: 10 x 2
 #>        x        y
 #>    <int>    <dbl>
@@ -117,29 +159,13 @@ ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>%
 Column `x` represents the x values (in this case wavenumbers
 \[cm<sup>-1</sup>\]) and column `y` the corresponding intensity values.
 
-A simple workflow would be, for example, to baseline correct the
-spectra, then bin them to bins with a width of 10 wavenumber units, then
-normalize them so that the maximum intensity value is 1 and the minimum
-intensity value is 0 and then plot the baseline corrected spectra for
-each sample and sample type:
-
-``` r
-ir_sample_data %>%                                      # data
-  ir::ir_bc(method = "rubberband") %>%                  # baseline correction
-  ir::ir_bin(width = 10) %>%                            # binning
-  ir::ir_normalise(method = "zeroone") %>%              # normalisation
-  plot() + ggplot2::facet_wrap(~ sample_type)           # plot
-```
-
-![](README-sample_data_workflow-1.png)<!-- -->
-
 ### How to cite
 
 Please cite this R package as:
 
-> Henning Teickner (2021). *ir: A Simple Package to Handle and
-> Preprocess Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed
-> 01 Dez 2021. Online at <https://github.com/henningte/ir>.
+> Henning Teickner (2022). *ir: Functions to Handle and Preprocess
+> Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed 17 Jan 2022.
+> Online at <https://zenodo.org/record/5747170>.
 
 ### Licenses
 

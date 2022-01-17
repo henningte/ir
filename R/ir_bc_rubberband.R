@@ -1,18 +1,21 @@
-#' Performs baseline correction on infrared spectra using a rubberband algorithm.
+#' Performs baseline correction on infrared spectra using a rubberband algorithm
 #'
-#' \code{ir_bc_rubberband} performs baseline correction for infrared
-#' spectra using a rubberband algorithm. \code{ir_bc_rubberband} is an
-#' extended wrapper function for \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}.
+#' \code{ir_bc_rubberband} performs baseline correction for infrared spectra
+#' using a rubberband algorithm. \code{ir_bc_rubberband} is an extended wrapper
+#' function for \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}.
 #'
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}
 #' @param return_bl A logical value indicating if for each spectrum the baseline
 #' should be returned in addition to the corrected intensity values
 #' (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).
-#' @return An object of class \code{ir} with the baseline
-#' corrected spectra and, if \code{returnbl = TRUE},  the baselines.
+#' @return An object of class \code{ir} with the baseline corrected spectra and,
+#' if \code{returnbl = TRUE},  the baselines.
 #' @seealso
-#' \code{\link{ir_bc}},
-#' \code{\link{ir_bc_polynomial}}.
+#' \code{\link{ir_bc}}
+#' @examples
+#' x1 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_bc_rubberband(return_bl = FALSE)
 #' @export
 ir_bc_rubberband <- function(x,
                              return_bl = FALSE) {

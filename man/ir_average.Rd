@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_average.R
 \name{ir_average}
 \alias{ir_average}
-\title{Averages infrared spectra within groups.}
+\title{Averages infrared spectra within groups}
 \usage{
 ir_average(x, ...)
 }
@@ -17,4 +17,10 @@ An object of class \code{ir}.
 \description{
 \code{ir_average} averages infrared spectra within
 a user-defined group. \code{NA} values are omitted by default
+}
+\examples{
+# average the sample data specta across sample types
+x <-
+  ir::ir_sample_data \%>\%
+  ir::ir_average(sample_type)
 }

@@ -1,7 +1,7 @@
-#' Interpolates selected regions in infrared spectra.
+#' Interpolates selected regions in infrared spectra
 #'
-#' \code{ir_interpolate_region} linearly interpolates a user-defined
-#' region in infrared spectra.
+#' \code{ir_interpolate_region} linearly interpolates a user-defined region in
+#' infrared spectra.
 #'
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
 #' @param range A \code{data.frame} with a row for each region to interpolate
@@ -15,6 +15,14 @@
 #' For each row in \code{range}, the values in \code{range$start} have to be
 #' smaller than the values in \code{range$end}.
 #' @return \code{x} with the defined wavenumber region(s) interpolated linearly.
+#' @examples
+#' # interpolation range
+#' range <- data.frame(start = 1000, end = 1500)
+#'
+#' # do the interpolation
+#' x <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_interpolate_region(range = range)
 #' @export
 ir_interpolate_region <- function(x,
                                   range) {
@@ -36,9 +44,12 @@ ir_interpolate_region <- function(x,
   range <- range[order(range[, 1, drop = TRUE], decreasing = FALSE), ]
 
   x_flat <- ir_flatten(x)
-  index <- ir_get_wavenumberindex(x_flat,
-                                  wavenumber = as.matrix(range),
-                                  warn = TRUE)
+  index <-
+    ir_get_wavenumberindex(
+      x_flat,
+      wavenumber = as.matrix(range),
+      warn = TRUE
+    )
   index <- matrix(index, byrow = FALSE, nrow = nrow(range))
   x_ranges <- purrr::map(seq_len(nrow(index)), function(x) index[x, ][[1]]:index[x, ][[2]])
 

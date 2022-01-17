@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_flat.R
 \name{ir_flat_check}
 \alias{ir_flat_check}
-\title{Checks if an object is of class \code{ir_flat}.}
+\title{Checks if an object is of class \code{ir_flat}}
 \usage{
 ir_flat_check(x)
 }

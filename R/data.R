@@ -1,4 +1,4 @@
-#' Sample object of class \code{ir}.
+#' Sample object of class \code{ir}
 #'
 #' A sample object of class \code{\link[ir:ir_new_ir]{ir}}. The data set
 #' contains ATR-MIR spectra for a set of organic reference materials

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_interpolate_region.R
 \name{ir_interpolate_region}
 \alias{ir_interpolate_region}
-\title{Interpolates selected regions in infrared spectra.}
+\title{Interpolates selected regions in infrared spectra}
 \usage{
 ir_interpolate_region(x, range)
 }
@@ -24,6 +24,15 @@ smaller than the values in \code{range$end}.}
 \code{x} with the defined wavenumber region(s) interpolated linearly.
 }
 \description{
-\code{ir_interpolate_region} linearly interpolates a user-defined
-region in infrared spectra.
+\code{ir_interpolate_region} linearly interpolates a user-defined region in
+infrared spectra.
+}
+\examples{
+# interpolation range
+range <- data.frame(start = 1000, end = 1500)
+
+# do the interpolation
+x <-
+   ir::ir_sample_data \%>\%
+   ir::ir_interpolate_region(range = range)
 }

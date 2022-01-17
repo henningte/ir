@@ -2,22 +2,27 @@
 % Please edit documentation in R/ir_get_spectrum.R
 \name{ir_get_spectrum}
 \alias{ir_get_spectrum}
-\title{Extracts selected spectra from an object of class \code{ir}.}
+\title{Extracts selected spectra from an object of class \code{ir}}
 \usage{
 ir_get_spectrum(x, what)
 }
 \arguments{
 \item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
 
-\item{what}{A numeric vector with each element representing
-a row in \code{x} for which to extract the spectrum.}
+\item{what}{A numeric vector with each element representing a row in \code{x}
+for which to extract the spectrum.}
 }
 \value{
-An integer vector with the same length as \code{wavenumber}
-with the row indices of \code{x} corresponding to the wavenumber
-values in \code{wavenumber}.
+An integer vector with the same length as \code{wavenumber} with the
+row indices of \code{x} corresponding to the wavenumber values in
+\code{wavenumber}.
 }
 \description{
-\code{ir_get_spectrum} extracts selected spectra from an
-object of class \code{ir}.
+\code{ir_get_spectrum} extracts selected spectra from an object of class
+\code{ir}.
+}
+\examples{
+x <-
+   ir::ir_sample_data \%>\%
+   ir::ir_get_spectrum(what = c(5, 9))
 }

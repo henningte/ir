@@ -2,20 +2,20 @@
 % Please edit documentation in R/ir_bin.R
 \name{ir_bin}
 \alias{ir_bin}
-\title{Bins infrared spectra.}
+\title{Bins infrared spectra}
 \usage{
 ir_bin(x, width = 10)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}} with integer wavenumber
-values increasing by 1.}
+\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}} with integer
+wavenumber values increasing by 1.}
 
-\item{width}{An integer value indicating the wavenumber width of
-each resulting bin. Must be set to \code{NULL} if \code{n} is
-specified.}
+\item{width}{An integer value indicating the wavenumber width of each
+resulting bin. Must be set to \code{NULL} if \code{n} is specified.}
 }
 \value{
-An object of class \code{ir} representing a binned version of \code{x}.
+An object of class \code{ir} representing a binned version of
+\code{x}.
 }
 \description{
 \code{ir_bin} bins intensity values of infrared spectra into bins of a
@@ -25,5 +25,10 @@ defined width or into a defined number of bins.
 If the last bin contains fewer input values than the remaining bins, it
 will be dropped and a warning will be printed. If a wavenumber value exactly
 matches the boundary of a bin window, the respective intensity value will be
-assigned to both neighbouring bins.
+assigned to both neighboring bins.
+}
+\examples{
+x <-
+   ir::ir_sample_data \%>\%
+   ir_bin(width = 50)
 }

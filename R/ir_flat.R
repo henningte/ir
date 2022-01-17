@@ -1,16 +1,19 @@
-#' Creates an object of class \code{ir_flat}.
+#' Creates an object of class \code{ir_flat}
 #'
 #' \code{ir_new_ir_flat} is the constructor function for objects of class
 #' \code{ir_flat}.
-#' An object of class \code{ir_flat} is a \code{data.frame}
-#' where the first column (\code{"x"}) contains unique x values of
-#' spectra (e.g. wavenumbers) and all remaining
-#' columns represent intensity values from spectra corresponding to the
-#' x values.
+#' An object of class \code{ir_flat} is a \code{data.frame} where the first
+#' column (\code{"x"}) contains unique x values of spectra (e.g. wavenumbers)
+#' and all remaining columns represent intensity values from spectra
+#' corresponding to the x values.
 #'
 #' @param x A \code{data.frame} with only numeric columns and only the first
 #' column name being "x".
 #' @return An object of class \code{ir_flat}.
+#' @examples
+#' x_flat <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_flatten()
 #' @export
 ir_new_ir_flat <- function(x) {
 
@@ -44,7 +47,7 @@ ir_new_ir_flat <- function(x) {
 
 }
 
-#' Checks if an object is of class \code{ir_flat}.
+#' Checks if an object is of class \code{ir_flat}
 #'
 #' \code{ir_flat_check} checks if an object is of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.
 #'

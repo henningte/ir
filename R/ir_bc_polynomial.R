@@ -1,4 +1,4 @@
-#' Performs baseline correction on infrared spectra using a polynomial.
+#' Performs baseline correction on infrared spectra using a polynomial
 #'
 #' \code{ir_bc_polynomial} performs baseline correction for infrared
 #' spectra using a polynomial.
@@ -11,16 +11,18 @@
 #' @param return_bl A logical value indicating if for each spectrum the baseline
 #' should be returned instead of the corrected intensity values
 #' (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).
-#' @return An object of class \code{ir} with the baseline
-#' corrected spectra if \code{returnbl = FALSE} or the baselines if
-#' \code{returnbl = TRUE}.
+#' @return An object of class \code{ir} with the baseline corrected spectra if
+#' \code{returnbl = FALSE} or the baselines if \code{returnbl = TRUE}.
 #' @seealso
-#' \code{\link{ir_bc}},
-#' \code{\link{ir_bc_rubberband}}.
+#' \code{\link{ir_bc}}
+#' @examples
+#' x2 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
 #' @export
 ir_bc_polynomial <- function(x,
-                              degree = 2,
-                              return_bl = FALSE){
+                             degree = 2,
+                             return_bl = FALSE){
 
   # flatten x
   x_flat <- ir_flatten(x = x, measurement_id = as.character(x$measurement_id))
@@ -48,11 +50,14 @@ ir_bc_polynomial <- function(x,
   attr(x_cs, "class") <- "Spectra"
 
   # compute the baseline and the corrected spectra
-  x_bc <- ChemoSpec::baselineSpectra(x_cs,
-                                     int = FALSE,
-                                     method = "modpolyfit",
-                                     degree = degree,
-                                     retC = FALSE)
+  x_bc <-
+    ChemoSpec::baselineSpectra(
+      x_cs,
+      int = FALSE,
+      method = "modpolyfit",
+      degree = degree,
+      retC = FALSE
+    )
   grDevices::dev.off()
 
   # prepare the baseline as data.frame

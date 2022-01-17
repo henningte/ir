@@ -2,27 +2,31 @@
 % Please edit documentation in R/ir_interpolate.R
 \name{ir_interpolate}
 \alias{ir_interpolate}
-\title{Interpolates intensity values of infrared spectra for new wavenumber values.}
+\title{Interpolates intensity values of infrared spectra for new wavenumber values}
 \usage{
 ir_interpolate(x, start = NULL, dw = 1)
 }
 \arguments{
 \item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
 
-\item{start}{A numerical value indicating the start wavenumber value
-relative to which new wavenumber values will be interpolated. The value
-is not allowed to be < \code{floor(firstvalue) - 2}, whereby \code{firstvalue}
-is the first wavenumber value within \code{x}. If \code{start = NULL},
+\item{start}{A numerical value indicating the start wavenumber value relative
+to which new wavenumber values will be interpolated. The value is not allowed
+to be < \code{floor(firstvalue) - 2}, whereby \code{firstvalue} is the first
+wavenumber value within \code{x}. If \code{start = NULL},
 \code{floor(firstvalue)} will be used as first wavenumber value.}
 
 \item{dw}{A numerical value representing the desired wavenumber value
 difference between adjacent values.}
 }
 \value{
-An object of class \code{ir} containing the interpolated
-spectra.
+An object of class \code{ir} containing the interpolated spectra.
 }
 \description{
-\code{ir_interpolate} interpolates intensity values for infrared spectra
-for new wavenumber values.
+\code{ir_interpolate} interpolates intensity values for infrared spectra for
+new wavenumber values.
+}
+\examples{
+x <-
+   ir::ir_sample_data \%>\%
+   ir::ir_interpolate(start = NULL, dw = 1)
 }

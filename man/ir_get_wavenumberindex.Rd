@@ -2,32 +2,37 @@
 % Please edit documentation in R/ir_get_wavenumberindex.R
 \name{ir_get_wavenumberindex}
 \alias{ir_get_wavenumberindex}
-\title{Gets the index of a defined wavenumber value for a spectrum.}
+\title{Gets the index of a defined wavenumber value for a spectrum}
 \usage{
 ir_get_wavenumberindex(x, wavenumber, warn = TRUE)
 }
 \arguments{
-\item{x}{A data.frame with a column x representing the x units of
-a spectrum or several spectra (e.g. in the form of an object of class
+\item{x}{A data.frame with a column x representing the x units of a spectrum
+or several spectra (e.g. in the form of an object of class
 \code{\link[ir:ir_new_ir_flat]{ir_flat}}).}
 
-\item{wavenumber}{A numeric vector with wavenumber values
-for which to get indices.}
+\item{wavenumber}{A numeric vector with wavenumber values for which to get
+indices.}
 
-\item{warn}{logical value indicating if warnings should be
-displayed (\code{TRUE}) or not (\code{FALSE}).}
+\item{warn}{logical value indicating if warnings should be displayed
+(\code{TRUE}) or not (\code{FALSE}).}
 }
 \value{
-An integer vector with the same length as \code{wavenumber}
-with the row indices of \code{x} corresponding to the wavenumber
-values in \code{wavenumber}.
+An integer vector with the same length as \code{wavenumber} with the
+row indices of \code{x} corresponding to the wavenumber values in
+\code{wavenumber}.
 }
 \description{
-\code{ir_get_wavenumberindex} gets for a defined wavenumber
-value or set of wavenumber values the corresponding indices
-(row number) in an object of class \code{ir} that has been
-flattened with \code{\link{ir_stack}}. If the
-specified wavenumber values do not match exactly the wavenumber
-values in the \code{ir} object, the indices for the next
-wavenumber values will be returned, along with a warning.
+\code{ir_get_wavenumberindex} gets for a defined wavenumber value or set of
+wavenumber values the corresponding indices (row number) in an object of
+class \code{ir} that has been flattened with \code{\link{ir_flatten}}. If the
+specified wavenumber values do not match exactly the wavenumber values in the
+\code{ir} object, the indices for the next wavenumber values will be
+returned, along with a warning.
+}
+\examples{
+x_index_1090 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_flatten() \%>\%
+   ir::ir_get_wavenumberindex(wavenumber = 1090)
 }

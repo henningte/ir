@@ -2,27 +2,24 @@
 % Please edit documentation in R/ir.R
 \name{ir_new_ir}
 \alias{ir_new_ir}
-\title{Creates an object of class ir.}
+\title{Creates an object of class ir}
 \usage{
 ir_new_ir(spectra, sample_id, metadata = tibble::tibble())
 }
 \arguments{
 \item{spectra}{A named list in which each element contains spectral data
-for one measurement. Each list element
-must be a \code{data.frame} with two columns and a row for each
-wavenumber value in the spectra data. The first column must contain
-unique wavenumber values and the second column intensity values of
-the measured spectrum of the sample.}
+for one measurement. Each list element must be a \code{data.frame} with two
+columns and a row for each wavenumber value in the spectra data. The first
+column must contain unique wavenumber values and the second column intensity
+values of the measured spectrum of the sample.}
 
-\item{sample_id}{A character vector with the same length as
-\code{spectra} containing sample names for the measured samples in
-\code{spectra}.}
+\item{sample_id}{A character vector with the same length as \code{spectra}
+containing sample names for the measured samples in \code{spectra}.}
 
 \item{metadata}{A \code{data.frame} with a column
-\code{sample_id} and a column \code{measurement_id} and optional
-additional columns containing
-metadata for the samples. Optionally, an empty \code{data.frame}
-can be defined if no metadata are available.}
+\code{sample_id} and a column \code{measurement_id} and optional additional
+columns containing metadata for the samples. Optionally, an empty
+\code{data.frame} can be defined if no metadata are available.}
 }
 \value{
 An object of class \code{ir} with the following columns:

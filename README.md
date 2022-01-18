@@ -25,7 +25,7 @@ samples.
 
 1.  baseline correction with:
       - a polynomial baseline
-      - a convex hull baseline.
+      - a convex hull baseline
       - a Savitzky-Golay baseline (Lasch 2012).
 2.  binning.
 3.  clipping.
@@ -44,7 +44,8 @@ samples.
     division).
 11. computing the variance of intensity values (optionally after
     subtracting reference spectra).
-12. plotting.
+12. computing maxima, minima, and ranges of intensity values of spectra.
+13. plotting.
 
 ### How to install
 

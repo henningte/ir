@@ -40,7 +40,8 @@ samples.
       - Savitzky-Golay smoothing
       - Fourier smoothing.
 9.  computing derivatives of spectra using Savitzky-Golay smoothing.
-10. subtracting and adding intensity values.
+10. mathematical transformations (addition, subtraction, multiplication,
+    division).
 11. computing the variance of intensity values (optionally after
     subtracting reference spectra).
 12. plotting.
@@ -60,10 +61,6 @@ You can load ir in R with:
 ``` r
 # load ir package
 library(ir)
-#> Registered S3 methods overwritten by 'tibble':
-#>   method     from  
-#>   format.tbl pillar
-#>   print.tbl  pillar
 
 # load additional packages needed for this tutorial
 library(ggplot2)
@@ -95,26 +92,19 @@ You can load the sample data with:
 
 ``` r
 ir::ir_sample_data
-#> Warning: `...` is not empty.
-#> 
-#> We detected these problematic arguments:
-#> * `needs_dots`
-#> 
-#> These dots only exist to allow future extensions and should be empty.
-#> Did you misspecify an argument?
 #> # A tibble: 58 x 7
-#>    measurement_id sample_id sample_type sample_comment klason_lignin
-#>  *          <int> <chr>     <chr>       <chr>          <units>      
-#>  1              1 GN 11-389 needles     Abies Firma M~ 0.359944     
-#>  2              2 GN 11-400 needles     Cupressocypar~ 0.339405     
-#>  3              3 GN 11-407 needles     Juniperus chi~ 0.267552     
-#>  4              4 GN 11-411 needles     Metasequoia g~ 0.350016     
-#>  5              5 GN 11-416 needles     Pinus strobus~ 0.331100     
-#>  6              6 GN 11-419 needles     Pseudolarix a~ 0.279360     
-#>  7              7 GN 11-422 needles     Sequoia sempe~ 0.329672     
-#>  8              8 GN 11-423 needles     Taxodium dist~ 0.356950     
-#>  9              9 GN 11-428 needles     Thuja occiden~ 0.369360     
-#> 10             10 GN 11-434 needles     Tsuga carolin~ 0.289050     
+#>    measurement_id sample_id sample_type sample_comment             klason_lignin
+#>  *          <int> <chr>     <chr>       <chr>                      <units>      
+#>  1              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     
+#>  2              2 GN 11-400 needles     Cupressocyparis leylandii~ 0.339405     
+#>  3              3 GN 11-407 needles     Juniperus chinensis Chine~ 0.267552     
+#>  4              4 GN 11-411 needles     Metasequoia glyptostroboi~ 0.350016     
+#>  5              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     
+#>  6              6 GN 11-419 needles     Pseudolarix amabili Golde~ 0.279360     
+#>  7              7 GN 11-422 needles     Sequoia sempervirens Cali~ 0.329672     
+#>  8              8 GN 11-423 needles     Taxodium distichum Cascad~ 0.356950     
+#>  9              9 GN 11-428 needles     Thuja occidentalis Easter~ 0.369360     
+#> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin~ 0.289050     
 #> # ... with 48 more rows, and 2 more variables: holocellulose <units>,
 #> #   spectra <list>
 ```
@@ -137,13 +127,6 @@ first spectrum as a data frame:
 # View the first ten rows of the first spectrum in ir_sample_data
 ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>% 
   head(10)
-#> Warning: `...` is not empty.
-#> 
-#> We detected these problematic arguments:
-#> * `needs_dots`
-#> 
-#> These dots only exist to allow future extensions and should be empty.
-#> Did you misspecify an argument?
 #> # A tibble: 10 x 2
 #>        x        y
 #>    <int>    <dbl>
@@ -167,7 +150,7 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed 17 Jan 2022.
+> Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed 18 Jan 2022.
 > Online at <https://zenodo.org/record/5747170>.
 
 ### Licenses

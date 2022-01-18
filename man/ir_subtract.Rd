@@ -9,20 +9,30 @@ ir_subtract(x, y)
 \arguments{
 \item{x}{An object of class \code{\link{ir}}.}
 
-\item{y}{An object of class \code{\link{ir}} with the same number of rows as
+\item{y}{An object of class \code{\link{ir}} or a numeic value. If \code{y}
+is an object of class \code{ir}, it must have the same number of rows as
 \code{x} and the same x axis values (e.g. wavenumber values) in each matching
 spectrum as in \code{x}.}
 }
 \value{
 \code{x} where for each spectrum the respective intensity values in
-\code{y} are subtracted.
+\code{y} are subtracted (if \code{y} is an object of class \code{ir}), or
+where for each spectrum \code{y} has been subtracted from the intensity
+values.
 }
 \description{
 \code{ir_subtract} takes two objects of class \code{ir}, \code{x} and
 \code{y}, and subtracts the intensity values of spectra in matching rows from
-\code{y} from that of \code{x}.
+\code{y} from that of \code{x}. Alternatively, takes an object of class
+\code{ir}, \code{x}, and a numeric value, \code{y}, and subtracts \code{y}
+from all intensity values in \code{x}.
 }
 \examples{
+# subtracting two objects of class ir
 x1 <-
   ir::ir_subtract(ir::ir_sample_data, ir::ir_sample_data)
+
+# subtracting a numeric value from an object of class \code{ir}.
+x2 <-
+  ir::ir_subtract(ir::ir_sample_data, 20)
 }

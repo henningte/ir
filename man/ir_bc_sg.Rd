@@ -7,10 +7,10 @@
 ir_bc_sg(x, ..., return_bl = FALSE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}}
+\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
 
 \item{...}{Arguments passed to \code{\link{ir_smooth}} (except for
-\code{method} which is always set to \code{"sg"}.}
+\code{method} which is always set to \code{"sg"}).}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
 should be returned in addition to the corrected intensity values

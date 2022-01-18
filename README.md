@@ -44,7 +44,8 @@ samples.
     division).
 11. computing the variance of intensity values (optionally after
     subtracting reference spectra).
-12. computing maxima, minima, and ranges of intensity values of spectra.
+12. computing maxima, minima, median, and ranges of intensity values of
+    spectra.
 13. plotting.
 
 ### How to install

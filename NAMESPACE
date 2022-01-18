@@ -2,6 +2,7 @@
 
 S3method(ir_as_ir,data.frame)
 S3method(max,ir)
+S3method(median,ir)
 S3method(min,ir)
 S3method(plot,ir)
 S3method(range,ir)
@@ -45,3 +46,4 @@ importClassesFrom(hyperSpec,hyperSpec)
 importFrom(Rdpack,reprompt)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
+importFrom(stats,median)

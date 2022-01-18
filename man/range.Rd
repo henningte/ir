@@ -5,7 +5,8 @@
 \alias{range.ir}
 \alias{min.ir}
 \alias{max.ir}
-\title{Get the range of x axis values or intensity values of infrared spectra}
+\alias{median.ir}
+\title{Get the minima/maxima/range/median of x axis values or intensity values of infrared spectra}
 \usage{
 \method{range}{ir}(
   x,
@@ -18,6 +19,8 @@
 \method{min}{ir}(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_min")
 
 \method{max}{ir}(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_max")
+
+\method{median}{ir}(x, na.rm = FALSE, ..., .dimension = "y", .col_name = "y_median")
 }
 \arguments{
 \item{x}{An object of class \code{\link{ir}}.}
@@ -28,10 +31,10 @@
 
 \item{.dimension}{A character value. Must be one of the following:
 \describe{
-  \item{"x"}{In this case, the minimum/maximum/range of x axis values of the
-  spectra in \code{x} are extracted.}
-  \item{"y"}{In this case, the minimum/maximum/range of intensity values of
-  the spectra in \code{x} are extracted.}
+  \item{"x"}{In this case, the minimum/maximum/range/median of x axis values
+  of the spectra in \code{x} are extracted.}
+  \item{"y"}{In this case, the minimum/maximum/range/median of intensity
+  values of the spectra in \code{x} are extracted.}
 }}
 
 \item{.col_names}{A character vector of length 2 representing the names of the
@@ -54,12 +57,16 @@ intensity value of infrared spectra.
 
 \code{max.ir} extracts the maximum x axis value (e.g. wavenumber) or
 intensity value of infrared spectra.
+
+\code{median.ir} extracts the median x axis value (e.g. wavenumber) or
+intensity value of infrared spectra.
 }
 \examples{
 # range of intensity values
 x1 <-
    ir::ir_sample_data \%>\%
    range(.dimension = "y")
+
 # minimum intensity values
 x1 <-
    ir::ir_sample_data \%>\%
@@ -69,5 +76,10 @@ x1 <-
 x1 <-
    ir::ir_sample_data \%>\%
    max(.dimension = "y")
+
+# median intensity values
+x1 <-
+   ir::ir_sample_data \%>\%
+   stats::median(.dimension = "y")
 
 }

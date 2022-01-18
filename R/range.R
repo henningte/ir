@@ -1,6 +1,6 @@
-#' Get the range of x axis values or intensity values of infrared spectra
+#' Get the minima/maxima/range/median of x axis values or intensity values of infrared spectra
 #'
-#' \code{range.ir} extracts the range of x axis values (e.g. wavenumbers) or
+#' @description \code{range.ir} extracts the range of x axis values (e.g. wavenumbers) or
 #' intensity values of infrared spectra.
 #'
 #' @name range
@@ -9,10 +9,10 @@
 #' @param na.rm A logical value. See \code{\link{max}}.
 #' @param .dimension A character value. Must be one of the following:
 #' \describe{
-#'   \item{"x"}{In this case, the minimum/maximum/range of x axis values of the
-#'   spectra in \code{x} are extracted.}
-#'   \item{"y"}{In this case, the minimum/maximum/range of intensity values of
-#'   the spectra in \code{x} are extracted.}
+#'   \item{"x"}{In this case, the minimum/maximum/range/median of x axis values
+#'   of the spectra in \code{x} are extracted.}
+#'   \item{"y"}{In this case, the minimum/maximum/range/median of intensity
+#'   values of the spectra in \code{x} are extracted.}
 #' }
 #' @param .col_names A character vector of length 2 representing the names of the
 #' columns in which to store the extracted values. The first element is the name
@@ -24,6 +24,7 @@
 #' x1 <-
 #'    ir::ir_sample_data %>%
 #'    range(.dimension = "y")
+#'
 #' @export
 range.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_names = c("y_min", "y_max")) {
 
@@ -36,9 +37,7 @@ range.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_names = c("y_
 
 }
 
-#' Get the minimum x axis value or intensity value of infrared spectra
-#'
-#' \code{min.ir} extracts the minimum x axis value (e.g. wavenumber) or
+#'@description \code{min.ir} extracts the minimum x axis value (e.g. wavenumber) or
 #' intensity value of infrared spectra.
 #'
 #' @rdname range
@@ -70,9 +69,7 @@ min.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_min")
 }
 
 
-#' Get the maximum x axis value or intensity value of infrared spectra
-#'
-#' \code{max.ir} extracts the maximum x axis value (e.g. wavenumber) or
+#' @description \code{max.ir} extracts the maximum x axis value (e.g. wavenumber) or
 #' intensity value of infrared spectra.
 #'
 #' @rdname range
@@ -93,6 +90,37 @@ max.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_max")
       res =
         x$spectra %>%
         purrr::map_dbl(function(z) max(z[, .dimension, drop = TRUE], na.rm = na.rm))
+    )
+
+  colnames(res)[[1]] <- .col_name
+
+  dplyr::bind_cols(x, res)
+
+}
+
+
+#' @description \code{median.ir} extracts the median x axis value (e.g. wavenumber) or
+#' intensity value of infrared spectra.
+#'
+#' @rdname range
+#' @examples
+#' # median intensity values
+#' x1 <-
+#'    ir::ir_sample_data %>%
+#'    stats::median(.dimension = "y")
+#'
+#' @importFrom stats median
+#' @export
+median.ir <- function(x, na.rm = FALSE, ..., .dimension = "y", .col_name = "y_median") {
+
+  stopifnot(is.character(.dimension) && length(.dimension) == 1 && .dimension %in% c("x", "y"))
+  stopifnot(is.character(.col_name) && length(.col_name) == 1)
+
+  res <-
+    tibble::tibble(
+      res =
+        x$spectra %>%
+        purrr::map_dbl(function(z) stats::median(z[, .dimension, drop = TRUE], na.rm = na.rm))
     )
 
   colnames(res)[[1]] <- .col_name

@@ -35,7 +35,8 @@ Imports:
     units,
     data.table,
     Rdpack,
-    magrittr
+    magrittr,
+    stats
 Suggests:
   fda,
   knitr,
@@ -44,4 +45,4 @@ VignetteBuilder:
   knitr
 RdMacros: 
   Rdpack
-Date: 2022-01-17
+Date: 2022-01-18

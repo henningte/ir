@@ -230,3 +230,22 @@ rep.ir <- function(x, ...) {
     )
 
 }
+
+
+#### Helper functions ####
+
+#' Drop all non-required columns in an ir object
+#'
+#' @param x An object of class \code{\link{ir}}
+#' @keywords internal
+#' @examples
+#' x1 <-
+#'    ir::ir_sample_data %>%
+#'    ir_drop_unneccesary_cols()
+#' @export
+ir_drop_unneccesary_cols <- function(x) {
+
+  x %>%
+    ir_check_ir() %>%
+    dplyr::select(dplyr::any_of(c("sample_id", "measurement_id", "spectra")))
+}

@@ -7,9 +7,9 @@
 #'   Note that for different spectra, for different wavenumber values the
 #'   intensity may be 1 after normalization, depending on the location of the
 #'   peak with the maximum height.}
-#'   \item{"area"}{Normalization so that the area under the spectral curve sums
-#'   to 1. Note that in the case of negative intensities values, these will be
-#'   count as negative values during summation.}
+#'   \item{"area"}{Normalization so that the intensity values of each spectrum
+#'   sum to 1. Note that in the case of negative intensities values, these will
+#'   be count as negative values during summation.}
 #'   \item{A numeric value}{Normalization so that the intensity at a specified
 #'   wavenumber value has value 1 and the minimum intensity value is 0.}
 #' }

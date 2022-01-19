@@ -19,7 +19,8 @@ wavenumber value within \code{x}. If \code{start = NULL},
 difference between adjacent values.}
 }
 \value{
-An object of class \code{ir} containing the interpolated spectra.
+An object of class \code{ir} containing the interpolated spectra. Any
+\code{NA} values resulting from interpolation will be automatically dropped.
 }
 \description{
 \code{ir_interpolate} interpolates intensity values for infrared spectra for

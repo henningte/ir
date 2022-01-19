@@ -24,8 +24,7 @@
 #'    ir::ir_sample_data %>%
 #'    ir::ir_interpolate_region(range = range)
 #' @export
-ir_interpolate_region <- function(x,
-                                  range) {
+ir_interpolate_region <- function(x, range) {
 
   ir_check_ir(x)
   if(!inherits(range, "data.frame")) {
@@ -43,31 +42,34 @@ ir_interpolate_region <- function(x,
 
   range <- range[order(range[, 1, drop = TRUE], decreasing = FALSE), ]
 
-  x_flat <- ir_flatten(x)
-  index <-
-    ir_get_wavenumberindex(
-      x_flat,
-      wavenumber = as.matrix(range),
-      warn = TRUE
+  # detect the corresponding row indices
+  range_nrow <- nrow(range)
+
+  x_ranges <-
+    purrr::map(x$spectra, function(z) {
+      z_range <- ir_get_wavenumberindex(z, wavenumber = as.matrix(range), warn = TRUE)
+      z_range <- matrix(z_range, byrow = FALSE, nrow = range_nrow)
+      purrr::map(seq_len(nrow(z_range)), function(x) z_range[x, ][[1]]:z_range[x, ][[2]])
+    })
+
+  x %>%
+    dplyr::mutate(
+      spectra =
+        purrr::map2(.data$spectra, x_ranges, function(z, i) {
+          y_new <-
+            purrr::map(i, function(j) {
+              if(all(is.na(z$y))) {
+                y_new <- rep(NA_real_, length(j))
+              } else {
+                d <- z[j, ]
+                m <- stats::lm(y ~ x, data = d[c(1, nrow(d)), , drop = FALSE])
+                y_new <- stats::predict(m, newdata = d)
+              }
+            }) %>%
+            unlist()
+          z$y[unlist(i)] <- y_new
+          z
+        })
     )
-  index <- matrix(index, byrow = FALSE, nrow = nrow(range))
-  x_ranges <- purrr::map(seq_len(nrow(index)), function(x) index[x, ][[1]]:index[x, ][[2]])
-
-  for(index in x_ranges) {
-
-    x_flat[index, -1] <- t(purrr::map_df(x_flat[, -1, drop = FALSE], function(y){
-      d <- data.frame(y = y[index], z = x_flat[index, 1, drop = TRUE])
-      if(all(is.na(d$y))) {
-        rep(NA_real_, length(index))
-      } else {
-        m <- stats::lm(y ~ z, data = d[c(1, nrow(d)), , drop = FALSE])
-        stats::predict(m, newdata = d)
-      }
-    }))
-
-  }
-
-  x$spectra <- ir_stack(x_flat)$spectra
-  x
 
 }

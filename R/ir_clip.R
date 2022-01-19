@@ -36,8 +36,7 @@
 #'    ir::ir_sample_data %>%
 #'    ir::ir_clip(range = range)
 #' @export
-ir_clip <- function(x,
-                    range) {
+ir_clip <- function(x, range) {
 
   # checks
   ir_check_ir(x)
@@ -57,14 +56,24 @@ ir_clip <- function(x,
   range <- range[order(range[, 1, drop = TRUE], decreasing = FALSE), ]
 
   # detect the corresponding row indices
-  x_flat <- ir_flatten(x)
   range_nrow <- nrow(range)
-  range <- ir_get_wavenumberindex(x_flat, wavenumber = as.matrix(range), warn = TRUE)
-  range <- matrix(range, byrow = FALSE, nrow = range_nrow)
-  index <- unlist(apply(range, 1, function(x) x[[1]]:x[[2]]))
 
-  # clip x
-  x$spectra <- ir_stack(x_flat[index, ])$spectra
-  x
+  indices <-
+    purrr::map(x$spectra, function(z) {
+      z_range <- ir_get_wavenumberindex(z, wavenumber = as.matrix(range), warn = TRUE)
+      z_range <- matrix(z_range, byrow = FALSE, nrow = range_nrow)
+      unlist(apply(z_range, 1, function(x) x[[1]]:x[[2]]))
+    })
+
+  # clip
+  x %>%
+    dplyr::mutate(
+      spectra =
+        purrr::map2(.data$spectra, !!indices, function(z, i) {
+          z %>% dplyr::slice(i)
+        })
+    )
 
 }
+
+

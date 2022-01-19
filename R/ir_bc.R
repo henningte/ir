@@ -181,49 +181,46 @@ ir_bc_polynomial <- function(x,
 ir_bc_rubberband <- function(x,
                              return_bl = FALSE) {
 
-  # flatten x
-  x_flat <- ir_flatten(x = x, measurement_id = as.character(x$measurement_id))
-  x_flat_empty <- ir_flat_clean(x = x_flat, return_empty = TRUE)
-  x_flat <- ir_flat_clean(x = x_flat, return_empty = FALSE)
+  x_bl <-
+    x %>%
+    dplyr::mutate(
+      spectra =
+        purrr::map(.data$spectra, function(z) {
 
-  # create a hyperSpec object
-  x_hs <- methods::new("hyperSpec",
-                       spc = t(x_flat[,-1]),
-                       wavelength = x_flat$x)
+          # create a hyperSpec object
+          z_hs <-
+            methods::new(
+              "hyperSpec",
+              spc = t(z$y),
+              wavelength = z$x
+            )
 
-  # calculate the baseline
-  x_bl <- hyperSpec::spc.rubberband(x_hs,
-                                    spline = FALSE,
-                                    df = 30)@data$spc
+          # calculate the baseline
+          z_bl <-
+            hyperSpec::spc.rubberband(
+              z_hs,
+              spline = FALSE,
+              df = 30
+            )@data$spc
 
-  # remove NAs at the beginning and end
-  x_bl[is.na(x_bl)] <- 0 # ___ remove if bug in hyperSpec is fixed
+          # remove NAs at the beginning and end
+          z_bl[is.na(z_bl)] <- 0 # ___ remove if bug in hyperSpec is fixed
 
-  # prepare the baseline as table
-  x_bl1 <- x_flat
-  x_bl1[, -1] <- t(x_bl)
+          z %>%
+            dplyr::mutate(
+              y = z_bl[1, ]
+            )
 
-  # substract the baseline
-  x_bc <- x_flat
-  x_bc[,-1] <- x_bc[,-1] - x_bl1[,-1]
+        })
+    )
 
-  x_bl1 <- dplyr::left_join(x_bl1, x_flat_empty, by = "x")
-  x_bl1 <- x_bl1[, match(c("x", x$measurement_id), c(colnames(x_bl1)))]
-  x_bc <- dplyr::left_join(x_bc, x_flat_empty, by = "x")
-  x_bc <- x_bc[, match(c("x", x$measurement_id), c(colnames(x_bc)))]
-
-  # replace the values in x by the baseline corrected values
-  x$spectra <- ir_stack(x_bc)$spectra
-
-  # add baselines to x
   if(return_bl) {
-    x$spectra <- ir_stack(x_bl1)$spectra
+    x_bl
+  } else {
+    ir_subtract(x, x_bl)
   }
 
-  x
-
 }
-
 
 
 #' Performs baseline correction on infrared spectra using a Savitzky-Golay baseline
@@ -245,11 +242,11 @@ ir_bc_rubberband <- function(x,
 #' @export
 ir_bc_sg <- function(x, ..., return_bl = FALSE) {
 
-  x_bl <- ir::ir_smooth(x, method = "sg", ...)
+  x_bl <- ir_smooth(x, method = "sg", ...)
   if(return_bl) {
     x_bl
   } else {
-    ir::ir_subtract(x, x_bl)
+    ir_subtract(x, x_bl)
   }
 
 }

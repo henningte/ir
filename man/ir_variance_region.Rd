@@ -4,7 +4,14 @@
 \alias{ir_variance_region}
 \title{Computes the variance of a spectrum in a given region}
 \usage{
-ir_variance_region(x, subtract_smoothed = FALSE, ..., range = NULL)
+ir_variance_region(
+  x,
+  subtract_smoothed = FALSE,
+  do_normalize = FALSE,
+  normalize_method,
+  ...,
+  range = NULL
+)
 }
 \arguments{
 \item{x}{An object of class \code{\link{ir}}. These are the spectra for which
@@ -17,6 +24,12 @@ intensity values from \code{x} is computed. This allows e.g. to estimate the
 noise level in a specific region of spectra. If
 \code{subtract_smoothed = FALSE} (the default), nothing is subtracted from
 \code{x} before computing the variance of the intensity values.}
+
+\item{do_normalize}{A logical value. If set to \code{TRUE}, the spectra in
+\code{x} are normalized after subtraction of a smoothed version, else no
+normalization is performed.}
+
+\item{normalize_method}{See \code{\link{ir_normalize}}.}
 
 \item{...}{Arguments passed to \code{\link{ir_smooth}} (except for
 \code{method} which is always set to \code{"sg"} if \code{subtract_smoothed} is
@@ -50,27 +63,38 @@ arguments computes the following summary:
   represented by \code{range}.}
 }
 }
-\details{
-The computed variance is always the variance of normalized spectra
-(\code{ir::ir_normalize(method = "area")}).
-}
 \examples{
 # Whole spectra variance
 x1 <-
    ir::ir_sample_data \%>\%
-   ir::ir_variance_region(subtract_smoothed = FALSE, range = NULL)
+   ir::ir_variance_region(
+      subtract_smoothed = FALSE,
+      do_normalize = TRUE,
+      normalize_method = "area",
+      range = NULL
+   )
 
 # Spectra variance, but only from a specific region
 range <- data.frame(start = 2700, end = 2800)
 
 x2 <-
    ir::ir_sample_data \%>\%
-   ir::ir_variance_region(subtract_smoothed = FALSE, range = range)
+   ir::ir_normalize(method = "area") \%>\%
+   ir::ir_variance_region(
+      subtract_smoothed = FALSE,
+      do_normalize = TRUE,
+      normalize_method = "area",
+      range = range
+   )
 
 # Spectra variance after subtracting a smoothed version of the spectra and
 # only from a specific region
 x3 <-
    ir::ir_sample_data \%>\%
-   ir::ir_variance_region(subtract_smoothed = TRUE, range = range,
-                          p = 3, n = 31, ts = 1, m = 0)
+   ir::ir_variance_region(
+      subtract_smoothed = TRUE,
+      do_normalize = FALSE,
+      range = range,
+      p = 3, n = 31, ts = 1, m = 0
+   )
 }

@@ -21,7 +21,7 @@
 ir_interpolate <- function(x, start = NULL, dw = 1) {
 
   # checks
-  .start <- match.call()$start # avoid confusion with function `start()`
+  .start <- eval(match.call()$start, parent.frame()) # avoid confusion with function `start()`
   ir_check_ir(x)
   x_range_max <-
     x %>%

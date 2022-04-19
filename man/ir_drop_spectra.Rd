@@ -10,10 +10,15 @@ ir_drop_spectra(x)
 \item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
 }
 \value{
-A \code{data.frame} identical to \code{x}, but without
-column \code{spectra}.
+\code{x} without column \code{spectra} and without \code{"ir"} class
+attribute.
 }
 \description{
 \code{ir_drop_spectra} removes the column \code{spectra} from an object
-of class \code{ir} and removes the \code{"ir"} class label.
+of class \code{ir} and removes the \code{"ir"} class attribute.
+}
+\examples{
+ir::ir_sample_data \%>\%
+  ir_drop_spectra()
+
 }

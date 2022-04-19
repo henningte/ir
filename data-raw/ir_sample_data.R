@@ -1,10 +1,10 @@
 ## code to prepare `sample_data` dataset goes here
 
 # import raw data
-d_mir <- utils::read.csv("./data-raw/klh_hodgkins_mir.csv",
+d_mir <- utils::read.csv("./inst/extdata/klh_hodgkins_mir.csv",
                          header = TRUE)
 
-d_reference <- utils::read.csv("./data-raw/klh_hodgkins_reference.csv",
+d_reference <- utils::read.csv("./inst/extdata/klh_hodgkins_reference.csv",
                                header = TRUE,
                                as.is = TRUE)
 

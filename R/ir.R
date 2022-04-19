@@ -10,12 +10,15 @@
 #' columns and a row for each wavenumber value in the spectra data. The first
 #' column must contain unique wavenumber values and the second column intensity
 #' values of the measured spectrum of the sample.
+#'
 #' @param sample_id A character vector with the same length as \code{spectra}
 #' containing sample names for the measured samples in \code{spectra}.
+#'
 #' @param metadata A \code{data.frame} with a column
 #' \code{sample_id} and a column \code{measurement_id} and optional additional
 #' columns containing metadata for the samples. Optionally, an empty
 #' \code{data.frame} can be defined if no metadata are available.
+#'
 #' @return An object of class \code{ir} with the following columns:
 #' \describe{
 #'   \item{measurement_id}{An integer starting with 1 and increasing by 1
@@ -25,6 +28,7 @@
 #'   \item{spectra}{A list column identical to \code{spectra}.}
 #' }
 #' ... and additional columns contained in \code{metadata}.
+#'
 #' @export
 ir_new_ir <- function(spectra,
                       sample_id,
@@ -66,15 +70,17 @@ ir_new_ir <- function(spectra,
 #' matches the requirement of the argument \code{spectra} of
 #' \code{\link{ir_new_ir}}.
 #'
-#' @param x A named list in which each element contains spectral data
-#' for one measurement. Each list element
-#' must be a \code{data.frame} with two columns and a row for each
-#' wavenumber value in the spectra data. The first column must contain
-#' unique wavenumber values and the second column intensity values of
-#' the measured spectrum of the sample.
+#' @param x A list in which each element contains spectral data for one
+#' measurement. Each list element must be a \code{data.frame} with two columns
+#' and a row for each wavenumber value in the spectra data. The first column
+#' must contain unique wavenumber values and the second column intensity values
+#' of the measured spectrum of the sample.
+#'
 #' @return A list that matches the requirements of the argument \code{spectra}
 #' of \code{\link{ir_new_ir}}.
-#' @export
+#'
+#' @keywords Internal
+#' @noRd
 ir_check_spectra <- function(x) {
 
   if(!is.list(x)) {
@@ -126,9 +132,12 @@ ir_check_spectra <- function(x) {
 #' additional columns containing
 #' metadata for the samples. Optionally, an empty \code{data.frame}
 #' can be defined if no metadata are available.
+#'
 #' @return A \code{data.frame} that matches the requirements of the
 #' argument \code{metadata} of \code{\link{ir_new_ir}}.
-#' @export
+#'
+#' @keywords Internal
+#' @noRd
 ir_check_metadata <- function(x) {
 
   if(!inherits(x, "data.frame")) {
@@ -149,11 +158,15 @@ ir_check_metadata <- function(x) {
 
 #' Checks if an object is of class \code{ir}
 #'
-#' \code{ir_check_ir} checks if an object is of class \code{\link[ir:ir_new_ir]{ir}}.
+#' \code{ir_check_ir} checks if an object is of class
+#' \code{\link[ir:ir_new_ir]{ir}}.
 #'
 #' @param x An object.
-#' @return An object of class \code{\link[ir:ir_new_ir]{ir}}.
-#' @export
+#'
+#' @return \code{x} if it is of class \code{ir}.
+#'
+#' @keywords Internal
+#' @noRd
 ir_check_ir <- function(x) {
   x_sym <- as.character(rlang::get_expr(rlang::enquo(x)))
   if(!inherits(x, "ir"))
@@ -164,21 +177,27 @@ ir_check_ir <- function(x) {
 #' Drops the column \code{spectra} from an object is of class \code{ir}
 #'
 #' \code{ir_drop_spectra} removes the column \code{spectra} from an object
-#' of class \code{ir} and removes the \code{"ir"} class label.
+#' of class \code{ir} and removes the \code{"ir"} class attribute.
 #'
 #' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
-#' @return A \code{data.frame} identical to \code{x}, but without
-#' column \code{spectra}.
+#'
+#' @return \code{x} without column \code{spectra} and without \code{"ir"} class
+#' attribute.
+#'
+#' @examples
+#' ir::ir_sample_data %>%
+#'   ir_drop_spectra()
+#'
 #' @export
 ir_drop_spectra <- function(x) {
   ir_check_ir(x)
   x$spectra <- NULL
-  class(x) <- class(x)[class(x) != "ir"]
+  class(x) <- setdiff(class(x), "ir")
   x
 }
 
 
-#### Casting ####
+#### Casting: to ir ####
 
 #' Generic to convert objects to class \code{ir}
 #'
@@ -186,10 +205,14 @@ ir_drop_spectra <- function(x) {
 #' \code{\link{ir}}.
 #'
 #' @param x An object.
-#' @param ... Further arguments passed to individual methods. If \code{x} is a
-#' dataframe, these are ignored.
+#'
+#' @param ... Further arguments passed to individual methods.
+#' \itemize{
+#' \item If \code{x} is a data frame or an object of class \code{ir}, these are
+#'   ignored.
+#' }
 #' @return An object of class \code{ir}.
-#' @name ir_as_ir
+#'
 #' @export
 ir_as_ir <- function(x, ...) {
   UseMethod("ir_as_ir")
@@ -197,12 +220,34 @@ ir_as_ir <- function(x, ...) {
 
 #' @rdname ir_as_ir
 #' @examples
+#' # conversion from an ir object
+#' ir::ir_sample_data %>%
+#'   ir_as_ir()
+#'
+#' @export
+ir_as_ir.ir <- function(x, ...) {
+  x
+}
+
+#' @rdname ir_as_ir
+#' @examples
 #' # conversion from a data frame
-#' ir::ir_as_ir(tibble::as_tibble(ir::ir_sample_data))
+#' x_ir <- ir::ir_sample_data
+#'
+#' x_df <-
+#'   x_ir %>%
+#'   ir_drop_spectra() %>%
+#'   dplyr::mutate(
+#'     spectra = x_ir$spectra
+#'   ) %>%
+#'   ir_as_ir()
+#'
 #' @export
 ir_as_ir.data.frame <- function(x, ...) {
   ir_new_ir(spectra = x$spectra, sample_id = x$sample_id, metadata = x[, -match("spectra", colnames(x))])
 }
+
+#### Casting: from ir ####
 
 #### Replicate ir objects ####
 

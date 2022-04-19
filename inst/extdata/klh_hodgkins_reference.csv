@@ -1,0 +1,59 @@
+Sample Name,Category,Description,% Cellulose + Hemicellulose (measured),% Klason lignin (measured)
+GN 11-389,needles,Abies Firma Momi fir,30.84,35.9944
+GN 11-400,needles,Cupressocyparis leylandii Leyland cypress,24.97,33.9405
+GN 11-407,needles,Juniperus chinensis Chinese juniper,33.62,26.7552
+GN 11-411,needles,Metasequoia glyptostroboides Dawn redwood,18.44,35.0016
+GN 11-416,needles,Pinus strobus Torulosa,30.92,33.11
+GN 11-419,needles,Pseudolarix amabili Golden Larch,33.55,27.936
+GN 11-422,needles,Sequoia sempervirens California redwood,24.08,32.9672
+GN 11-423,needles,Taxodium distichum Cascade Falls,12.53,35.695
+GN 11-428,needles,Thuja occidentalis Eastern Arborvitae,25.17,36.936
+GN 11-434,needles,Tsuga caroliniana Carolina Hemlock,34.87,28.905
+GN 11-435,needles,Picea abies Norway Spruce,32.14,28.8
+GN 11-460,needles,Pinus taeda Loblolly pine,32.92,32.23
+HW 07-151,hardwood,Quercus sp. Red oak (from local lumber yard),60.1,23.8095
+HW 11-137,hardwood,Acer saccharum Sugar maple,51.69,24.2592
+HW 11-144,hardwood,Fraxinus americana White ash,52.12,25.9224
+HW 11-146,hardwood,Aesculus octandra Buckeye,41.36,23.3184
+HW 11-148,hardwood,Ailanthus altissima Tree of Heaven,62.54,15.812
+HW 11-149,hardwood,Salix nigra Black willow,58.91,19.9957
+HW 11-172,hardwood,Quercus viginiana Live oak,46.51,28.2295
+HW 11-173,hardwood,Populus alba White Poplar,58.89,18.6427
+HW 11-176,hardwood,Quercus rubra red oak,55.13,21.8946
+HW 11-179,hardwood,Betula papyrifera Paper birch,60.67,17.1396
+HW 11-184,hardwood,Acer rubrum red maple,58.11,22.5148
+LG 09-384,leaves and grasses,,36.7,12.74308
+LG 11-309,leaves and grasses,Betula nigra Red birch,22.14,32.9235
+LG 11-393,leaves and grasses,Camelia japonica white by the gate,20.77,25.938
+LG 11-395,leaves and grasses,Carpitus betulus European Hornbeam,25.32,22.3468
+LG 11-397,leaves and grasses,Clethra alnifolia Sweet pepperbrush,18.91,38.8884
+LG 11-404,leaves and grasses,Ilex calina Carolina holly,25.7,27.1362
+LG 11-412,leaves and grasses,Miscanthus sinensis Maiden grass,53.55,17.8377
+LG 11-414,leaves and grasses,Nyssa sylvatica Black tupelo,20.35,21.8879
+LG 11-418,leaves and grasses,Prunus incisa Fuji cherry,15.45,32.585
+LG 11-432,leaves and grasses,Acer rubrum red maple,17.56,23.8752
+LG 11-433,leaves and grasses,Cornus florida Flowering dogwood,21.34,18.0765
+LG 11-438,leaves and grasses,Eremochloa ophiuroides Centipede grass,49.41,16.9155
+LG 11-461,leaves and grasses,Quercus viginiana Live oak,25.68,31.7532
+SW 11-138,softwood,Tsuga heterophyla Western hemlock,47.33,34.7116
+SW 11-139,softwood,Pinus monticola Western white pine,54.44,27.4905
+SW 11-154,softwood,Pinus strobus Eastern white pine,52.7,31.176
+SW 11-158,softwood,Pinus taeda Loblolly pine,56.59,27.4715
+SW 11-178,softwood,Tsuga caroliniana Carolina Hemlock,45.91,34.587
+OCC 11-457,old corrugated cardboard,OCC 1,77.09,10.186
+OCC 11-462,old corrugated cardboard,OCC 3,75.75,14.1818
+OCC 11-463,old corrugated cardboard,OCC 2,71.82,13.7368
+OMG 08-82,old magazines,Australia Paper,46.35,19.5738
+OMG 11-454,old magazines,ESPN Magazine dated Sept 2011,47.6,19.3536
+OMG 11-455,old magazines,W Magazine dated Sept 2011,48.99,14.5761
+OMG 11-456,old magazines,CPU Magazine,59.13,10.6645
+ONP 08-78,old newsprint,Australia Paper,63.2,24.0786
+ONP 09-388,old newsprint,Eleazer 1997 sample,57.5,23.8994
+ONP 11-450,old newsprint,News and Observer dated Aug 2011,69.52,16.3485
+ONP 11-451,old newsprint,Houston Chronicle dated Sept 2011,59.77,24.0492
+ONP 11-458,old newsprint,Indianapolis star,57.16,28.842
+ONP 11-459,old newsprint,Los Angeles Times,65.03,19.5228
+OFF 10-506,office paper,,72.54,20.3574
+OFF 13-144,office paper,,73.62,31.8451
+OFF 08-80,office paper,,72.68,56.245
+OFF 08-852,office paper,,70.07,5.423

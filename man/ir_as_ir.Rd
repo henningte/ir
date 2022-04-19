@@ -2,18 +2,24 @@
 % Please edit documentation in R/ir.R
 \name{ir_as_ir}
 \alias{ir_as_ir}
+\alias{ir_as_ir.ir}
 \alias{ir_as_ir.data.frame}
 \title{Generic to convert objects to class \code{ir}}
 \usage{
 ir_as_ir(x, ...)
+
+\method{ir_as_ir}{ir}(x, ...)
 
 \method{ir_as_ir}{data.frame}(x, ...)
 }
 \arguments{
 \item{x}{An object.}
 
-\item{...}{Further arguments passed to individual methods. If \code{x} is a
-dataframe, these are ignored.}
+\item{...}{Further arguments passed to individual methods.
+\itemize{
+\item If \code{x} is a data frame or an object of class \code{ir}, these are
+  ignored.
+}}
 }
 \value{
 An object of class \code{ir}.
@@ -23,6 +29,19 @@ An object of class \code{ir}.
 \code{\link{ir}}.
 }
 \examples{
+# conversion from an ir object
+ir::ir_sample_data \%>\%
+  ir_as_ir()
+
 # conversion from a data frame
-ir::ir_as_ir(tibble::as_tibble(ir::ir_sample_data))
+x_ir <- ir::ir_sample_data
+
+x_df <-
+  x_ir \%>\%
+  ir_drop_spectra() \%>\%
+  dplyr::mutate(
+    spectra = x_ir$spectra
+  ) \%>\%
+  ir_as_ir()
+
 }

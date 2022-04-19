@@ -6,7 +6,7 @@
 #' degree fitted to each spectrum (see
 #' \code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}), or by using a
 #' rubberband function that is fitted to each spectrum
-#' (see \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}), or using a
+#' (see \code{\link[hyperSpec]{spc.rubberband}}), or using a
 #' Savitzky-Golay smoothed version of the input spectra (see
 #' \code{\link{ir_bc_sg}}).
 #'
@@ -166,7 +166,7 @@ ir_bc_polynomial <- function(x,
 #'
 #' \code{ir_bc_rubberband} performs baseline correction for infrared spectra
 #' using a rubberband algorithm. \code{ir_bc_rubberband} is an extended wrapper
-#' function for \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}.
+#' function for \code{\link[hyperSpec]{spc.rubberband}}.
 #'
 #' @inheritParams ir_bc
 #' @return An object of class \code{ir} with the baseline corrected spectra and,

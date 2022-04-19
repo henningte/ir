@@ -35,7 +35,7 @@ is either performed by using a polynomial with user defined
 degree fitted to each spectrum (see
 \code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}), or by using a
 rubberband function that is fitted to each spectrum
-(see \code{\link[hyperSpec:spc.rubberband]{spc.rubberband}}), or using a
+(see \code{\link[hyperSpec]{spc.rubberband}}), or using a
 Savitzky-Golay smoothed version of the input spectra (see
 \code{\link{ir_bc_sg}}).
 }

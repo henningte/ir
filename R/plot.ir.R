@@ -20,11 +20,14 @@ plot.ir <- function(x,
   x_unnested <-
     tidyr::unnest(x, cols = .data$spectra)
 
-  ggplot2::ggplot(x_unnested) +
-    ggplot2::geom_path(
-      ggplot2::aes(x = .data$x,
-                   y = .data$y,
-                   group = .data$measurement_id)
+  ggplot2::ggplot(
+    x_unnested,
+    mapping = ggplot2::aes(
+      x = .data$x,
+      y = .data$y,
+      group = .data$measurement_id
     )
+  ) +
+    ggplot2::geom_path()
 
 }

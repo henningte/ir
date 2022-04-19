@@ -23,7 +23,7 @@ ir_average <- function(x,
     dplyr::summarise(
       spectra = {
         x_flat <- .data$spectra
-        purrr::map2(x_flat, .data$measurement_id, function(x, y) {
+        purrr::map2(x_flat, seq_along(.data$spectra), function(x, y) {
           colnames(x)[[2]] <- y
           x
         })
@@ -31,14 +31,6 @@ ir_average <- function(x,
         list(data.frame(x = x_flat$x,
                         y = apply(x_flat[, -1, drop = FALSE], 1, mean, na.rm = TRUE)))
       }) %>%
-    dplyr::mutate(
-      sample_id =
-        seq_along(spectra) %>%
-        as.character(),
-      measurement_id =
-        seq_along(spectra)
-    ) %>%
-    dplyr::relocate(dplyr::any_of(c("sample_id", "measurement_id")), .before = 1L) %>%
     ir_as_ir()
 
 }

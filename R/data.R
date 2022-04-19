@@ -7,8 +7,8 @@
 #'
 #' @format A data frame with 58 rows and 7 variables:
 #' \describe{
-#'   \item{measurement_id}{See \code{\link{ir_new_ir}}.}
-#'   \item{sample_id}{See \code{\link{ir_new_ir}}.}
+#'   \item{id_measurement}{See \code{\link{ir_new_ir}}.}
+#'   \item{id_sample}{See \code{\link{ir_new_ir}}.}
 #'   \item{sample_type}{A character vector containing class labels
 #'   for the types of reference materials.}
 #'   \item{sample_comment}{A character vector containing comments to

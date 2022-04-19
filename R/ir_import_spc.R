@@ -70,7 +70,6 @@ ir_import_spc <- function(filenames) {
         stringsAsFactors = FALSE
       )
     })
-  metadata$measurement_id <- seq_len(nrow(metadata))
   spectra <-
     purrr::map(d, function(x){
       tibble::tibble(
@@ -82,7 +81,6 @@ ir_import_spc <- function(filenames) {
   d <-
     ir_new_ir(
       spectra = spectra,
-      sample_id = metadata$sample_id,
       metadata = metadata
     )
   d$scan_speed <- units::set_units(d$scan_speed, "kHz")

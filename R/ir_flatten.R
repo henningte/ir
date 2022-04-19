@@ -14,7 +14,7 @@
 #'    ir::ir_flatten()
 #' @export
 ir_flatten <- function(x,
-                       measurement_id = as.character(x$measurement_id)) {
+                       measurement_id = as.character(seq_len(nrow(x)))) {
 
   if(!is.character(measurement_id)) {
     rlang::abort(paste0("`measurement_id` must be a character vector, not", class(measurement_id)[[1]], "."))

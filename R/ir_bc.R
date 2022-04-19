@@ -106,7 +106,7 @@ ir_bc_polynomial <- function(x,
                              return_bl = FALSE){
 
   # flatten x
-  x_flat <- ir_flatten(x = x, measurement_id = as.character(x$measurement_id))
+  x_flat <- ir_flatten(x = x, measurement_id = as.character(seq_len(nrow(x))))
 
   # dummy grouping vector for samples
   n <- nrow(x)

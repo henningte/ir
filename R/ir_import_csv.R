@@ -8,14 +8,24 @@
 #'
 #' @param filenames A character vector representing the complete paths to
 #' the .csv files to import.
-#' @param sample_id A character vector with the same length as \code{filenames}
-#' representing the name of each sample. Can alternatively be set to \code{NULL} or
-#' \code{"from_colnames"}. If set to \code{NULL}, the sample name(s) will be extracted
-#' from \code{filenames}. If set to \code{"from_colnames"}, the sample name(s) will be
-#' extracted from the column names of the imported data.
-#' @param ... Further arguments passed to \code{\link[utils:read.table]{read.csv}}.
-#' @return An object of class \code{\link[ir:ir_new_ir]{ir}} containing the infrared spectra
-#' extracted from the .csv file(s).
+#'
+#' @param sample_id Either:
+#' \itemize{
+#'   \item \code{NULL}: Nothing additional happens.
+#'   \item A character vector with the same length as \code{filenames}: This
+#'     vector will be added as column \code{sample_id} to the \code{ir} object.
+#'   \item \code{"from_filenames"}: The file name(s) will be used as values for
+#'     a new column \code{sample_id} to add (the default).
+#'   \item \code{"from_colnames"}: The header in the csv file will be used as
+#'     values for a new column \code{sample_id} to add.
+#' }
+#'
+#' @param ... Further arguments passed to
+#' \code{\link[utils:read.table]{read.csv}}.
+#'
+#' @return An object of class \code{\link[ir:ir_new_ir]{ir}} containing the
+#' infrared spectra extracted from the .csv file(s).
+#'
 #' @examples
 #' # get sample data
 #' d <- ir::ir_sample_data
@@ -36,9 +46,10 @@
 #' # import data from csv files
 #' filenames <- list.files(gsub("\\\\file.+$", "", tf1), pattern = ".csv", full.names = TRUE)
 #' d <- ir::ir_import_csv(filenames, sample_id = "from_colnames")
+#'
 #' @export
 ir_import_csv <- function(filenames,
-                          sample_id = NULL,
+                          sample_id = "from_filenames",
                           ...) {
 
   # import the data
@@ -46,22 +57,30 @@ ir_import_csv <- function(filenames,
 
   # define the sample names
   x_nsamples <- vapply(x, ncol, FUN.VALUE = integer(1)) - 1
-  if(!is.null(sample_id) && sample_id != "from_colnames") {
+  if(!is.null(sample_id) && ! sample_id %in% c("from_filenames", "from_colnames")) { # sample_id represents the sample_id values
+
     x_nsamples_sum <- sum(x_nsamples)
     nsample_id <- length(sample_id)
     if(x_nsamples_sum != nsample_id) {
       rlang::abort(paste0("The files contain ", x_nsamples_sum, " spectra, but `sample_id` has ", nsample_id, " elements. `sample_id` must have the same number of elements."))
     }
-  } else {
-    if(is.null(sample_id)){
-      sample_id <- strsplit(filenames, split = "/")
-      sample_id <- vapply(sample_id, function(x) x[[length(x)]], FUN.VALUE = character(1))
-      sample_id <- substring(sample_id, 1, regexpr("\\.[^\\.]*$", sample_id) - 1)
-      sample_id <- rep(sample_id, x_nsamples)
-    } else if(sample_id == "from_colnames") {
-      sample_id <- unlist(lapply(x, function(y) colnames(y)[-1]))
-    }
+
+  } else if (sample_id %in% c("from_filenames", "from_colnames")) {
+    switch(
+      sample_id,
+      "from_filenames" = {
+        sample_id <- strsplit(filenames, split = "/")
+        sample_id <- vapply(sample_id, function(x) x[[length(x)]], FUN.VALUE = character(1))
+        sample_id <- substring(sample_id, 1, regexpr("\\.[^\\.]*$", sample_id) - 1)
+        sample_id <- rep(sample_id, x_nsamples)
+      },
+      "from_colnames" = {
+        sample_id <- unlist(lapply(x, function(y) colnames(y)[-1]))
+      }
+    )
   }
+  metadata <- tibble::tibble(sample_id = sample_id)
+
 
   # get list column spectra
   x <- lapply(x, function(y) {
@@ -71,8 +90,6 @@ ir_import_csv <- function(filenames,
   })
   x <- unlist(x, recursive = FALSE)
 
-  ir_new_ir(spectra = x,
-            sample_id = sample_id,
-            metadata = tibble::tibble())
+  ir_new_ir(spectra = x, metadata = metadata)
 
 }

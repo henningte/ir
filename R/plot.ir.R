@@ -16,9 +16,12 @@
 plot.ir <- function(x,
                     ...) {
 
-  ir_check_ir(x)
+
   x_unnested <-
-    tidyr::unnest(x, cols = .data$spectra)
+    x %>%
+    ir_check_ir() %>%
+    dplyr::mutate(measurement_id = seq_along(.data$spectra)) %>%
+    tidyr::unnest(cols = .data$spectra)
 
   ggplot2::ggplot(
     x_unnested,

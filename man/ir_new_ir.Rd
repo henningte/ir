@@ -2,9 +2,9 @@
 % Please edit documentation in R/ir.R
 \name{ir_new_ir}
 \alias{ir_new_ir}
-\title{Creates an object of class ir}
+\title{Creates an object of class \code{ir}}
 \usage{
-ir_new_ir(spectra, sample_id, metadata = tibble::tibble())
+ir_new_ir(spectra, metadata = tibble::tibble())
 }
 \arguments{
 \item{spectra}{A named list in which each element contains spectral data
@@ -13,24 +13,16 @@ columns and a row for each wavenumber value in the spectra data. The first
 column must contain unique wavenumber values and the second column intensity
 values of the measured spectrum of the sample.}
 
-\item{sample_id}{A character vector with the same length as \code{spectra}
-containing sample names for the measured samples in \code{spectra}.}
-
-\item{metadata}{A \code{data.frame} with a column
-\code{sample_id} and a column \code{measurement_id} and optional additional
-columns containing metadata for the samples. Optionally, an empty
-\code{data.frame} can be defined if no metadata are available.}
+\item{metadata}{An optional \code{data.frame} with additional
+columns containing metadata for the spectra in \code{spectra}. Optionally, an
+empty \code{data.frame} can be defined if no metadata are available.}
 }
 \value{
 An object of class \code{ir} with the following columns:
 \describe{
-  \item{measurement_id}{An integer starting with 1 and increasing by 1
-  representing an identifier for individual measurements.}
-  \item{sample_id}{A character identical to \code{sample_id} and
-  representing an identifier for individual samples.}
   \item{spectra}{A list column identical to \code{spectra}.}
+  \item{...}{Additional columns contained in \code{metadata}.}
 }
-... and additional columns contained in \code{metadata}.
 }
 \description{
 \code{ir_new_ir} is the constructor function for objects of class

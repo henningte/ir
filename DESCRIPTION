@@ -38,9 +38,10 @@ Imports:
     magrittr,
     stats
 Suggests:
-  fda,
-  knitr,
-  rmarkdown
+    kableExtra,
+    fda,
+    knitr,
+    rmarkdown
 VignetteBuilder: 
   knitr
 RdMacros: 

@@ -65,7 +65,7 @@ ir_bin <- function(x,
     purrr::map_df(seq_len(nrow(bins_index)), function(i) {
       dplyr::summarise_all(x_flat[bins_index[i, 1, drop = TRUE]:bins_index[i, 2, drop = TRUE], -1], mean)
     })
-  colnames(x_binned) <- x$measurement_id
+  colnames(x_binned) <- as.character(seq_len(nrow(x)))
   x_binned_wn <-
     purrr::map_dbl(seq_len(nrow(bins_wn)), function(i) {
       mean(bins_wn[i, 1, drop = TRUE], bins_wn[i, 2, drop = TRUE])

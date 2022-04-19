@@ -4,7 +4,7 @@
 \alias{ir_flatten}
 \title{Converts objects of class \code{ir} to wide matrices}
 \usage{
-ir_flatten(x, measurement_id = as.character(x$measurement_id))
+ir_flatten(x, measurement_id = as.character(seq_len(nrow(x))))
 }
 \arguments{
 \item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}

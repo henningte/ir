@@ -1,4 +1,4 @@
-#' Creates an object of class ir
+#' Creates an object of class \code{ir}
 #'
 #' \code{ir_new_ir} is the constructor function for objects of class
 #' \code{ir}.
@@ -11,54 +11,36 @@
 #' column must contain unique wavenumber values and the second column intensity
 #' values of the measured spectrum of the sample.
 #'
-#' @param sample_id A character vector with the same length as \code{spectra}
-#' containing sample names for the measured samples in \code{spectra}.
-#'
-#' @param metadata A \code{data.frame} with a column
-#' \code{sample_id} and a column \code{measurement_id} and optional additional
-#' columns containing metadata for the samples. Optionally, an empty
-#' \code{data.frame} can be defined if no metadata are available.
+#' @param metadata An optional \code{data.frame} with additional
+#' columns containing metadata for the spectra in \code{spectra}. Optionally, an
+#' empty \code{data.frame} can be defined if no metadata are available.
 #'
 #' @return An object of class \code{ir} with the following columns:
 #' \describe{
-#'   \item{measurement_id}{An integer starting with 1 and increasing by 1
-#'   representing an identifier for individual measurements.}
-#'   \item{sample_id}{A character identical to \code{sample_id} and
-#'   representing an identifier for individual samples.}
 #'   \item{spectra}{A list column identical to \code{spectra}.}
+#'   \item{...}{Additional columns contained in \code{metadata}.}
 #' }
-#' ... and additional columns contained in \code{metadata}.
 #'
 #' @export
 ir_new_ir <- function(spectra,
-                      sample_id,
                       metadata = tibble::tibble()) {
 
   # checks
   ir_check_spectra(spectra)
-  ir_check_metadata(metadata)
-  if(!is.character(sample_id))
-    rlang::abort(paste0("`sample_id` must be a character, not, ", class(sample_id)[[1]], "."))
-  if(length(sample_id) != length(spectra))
-    rlang::abort(paste0("`sample_id` must have the same length as `spectra`."))
+  stopifnot(is.data.frame(metadata))
+  stopifnot(nrow(metadata) == length(spectra))
+  stopifnot(any(colnames(metadata) != "spectra"))
 
   # combine data
   x <-
     tibble::tibble(
-      measurement_id = seq_along(spectra),
-      sample_id = sample_id,
       spectra =
         lapply(spectra, function(x){
           colnames(x) <- c("x", "y")
           x
         })
-    )
-
-  # add metadata
-  if(ncol(metadata) > 0) {
-    x <-
-      dplyr::full_join(metadata, x, by = c("sample_id", "measurement_id"))
-  }
+    ) %>%
+    dplyr::bind_cols(metadata)
 
   structure(x, class = c("ir", class(x)))
 
@@ -115,41 +97,6 @@ ir_check_spectra <- function(x) {
   if(any(x_values_duplicated)) {
     rlang::abort(paste0("The first column of each element of `x` must not contain duplicated values.\n
                         Elements ", which(x_values_duplicated), " have duplicate values in the first column."))
-  }
-
-  x
-
-}
-
-#' Checks infrared spectra metadata
-#'
-#' \code{ir_check_metadata} checks if a \code{data.frame}
-#' matches the requirement of the argument \code{metadata} of
-#' \code{\link{ir_new_ir}}.
-#'
-#' @param x A \code{data.frame} with a column
-#' \code{sample_id} and a column \code{measurement_id} and optional
-#' additional columns containing
-#' metadata for the samples. Optionally, an empty \code{data.frame}
-#' can be defined if no metadata are available.
-#'
-#' @return A \code{data.frame} that matches the requirements of the
-#' argument \code{metadata} of \code{\link{ir_new_ir}}.
-#'
-#' @keywords Internal
-#' @noRd
-ir_check_metadata <- function(x) {
-
-  if(!inherits(x, "data.frame")) {
-    rlang::abort(paste0("`metadata` must be a data.frame, not, ", class(x)[[1]], "."))
-  }
-  if(ncol(x) != 0) {
-    if(!any(colnames(x) == "sample_id")) {
-      rlang::abort("`metadata` must either contain a column `sample_id` or no columns.")
-    }
-    if(!any(colnames(x) == "measurement_id")) {
-      rlang::abort("`metadata` must either contain a column `measurement_id` or no columns.")
-    }
   }
 
   x
@@ -244,7 +191,7 @@ ir_as_ir.ir <- function(x, ...) {
 #'
 #' @export
 ir_as_ir.data.frame <- function(x, ...) {
-  ir_new_ir(spectra = x$spectra, sample_id = x$sample_id, metadata = x[, -match("spectra", colnames(x))])
+  ir_new_ir(spectra = x$spectra, metadata = x[, -match("spectra", colnames(x))])
 }
 
 #### Casting: from ir ####
@@ -292,5 +239,5 @@ ir_drop_unneccesary_cols <- function(x) {
 
   x %>%
     ir_check_ir() %>%
-    dplyr::select(dplyr::any_of(c("sample_id", "measurement_id", "spectra")))
+    dplyr::select(dplyr::any_of(c("spectra")))
 }

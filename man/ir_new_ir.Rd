@@ -27,6 +27,6 @@ An object of class \code{ir} with the following columns:
 \description{
 \code{ir_new_ir} is the constructor function for objects of class
 \code{ir}.
-An object of class \code{ir} is a \code{\link[tibble]{tibble}} with a
+An object of class \code{ir} is a \code{\link[tibble]{tbl_df}} with a
 sample in each row and a list column containing spectra for each sample.
 }

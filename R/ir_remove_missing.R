@@ -16,7 +16,7 @@
 #' x <-
 #'    ir::ir_sample_data
 #' x$spectra[[1]] <- x$spectra[[1]][0, ]
-#' x$spectra[[2]][1:100, ] <- NA_real_
+#' x$spectra[[2]][1:100, "y"] <- NA_real_
 #'
 #' # remove missing values (but remove no rows in x)
 #' x1 <-

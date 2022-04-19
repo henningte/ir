@@ -24,4 +24,5 @@ together to a larger \code{ir} object.
 x <- rep(ir::ir_sample_data, times = 2)
 x <- rep(ir::ir_sample_data, each = 2)
 x <- rep(ir::ir_sample_data, length.out = 3)
+
 }

@@ -95,8 +95,8 @@ You can load the sample data with:
 ``` r
 ir::ir_sample_data
 #> # A tibble: 58 x 7
-#>    measurement_id sample_id sample_type sample_comment             klason_lignin
-#>  *          <int> <chr>     <chr>       <chr>                      <units>      
+#>    id_measurement id_sample sample_type sample_comment             klason_lignin
+#>             <int> <chr>     <chr>       <chr>                      <units>      
 #>  1              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     
 #>  2              2 GN 11-400 needles     Cupressocyparis leylandii~ 0.339405     
 #>  3              3 GN 11-407 needles     Juniperus chinensis Chine~ 0.267552     
@@ -108,17 +108,15 @@ ir::ir_sample_data
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter~ 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin~ 0.289050     
 #> # ... with 48 more rows, and 2 more variables: holocellulose <units>,
-#> #   spectra <list>
+#> #   spectra <named list>
 ```
 
 `ir_sample_data` is an object of class `ir`. An Object of class `ir` is
 basically a data frame where each row represents one infrared
 measurement and column `spectra` contains the infrared spectra (one per
-row) and columns `measurement_id` and `sample_id` represent identifiers
-for each measurement and sample, respectively. This allows effectively
-storing repeated measurements for the same sample in the same table, as
-well as any metadata and accessory data (e.g. nitrogen content of the
-sample).
+row). This allows effectively storing repeated measurements for the same
+sample in the same table, as well as any metadata and accessory data
+(e.g. nitrogen content of the sample).
 
 The column `spectra` is a list column of data frames, meaning that each
 cell in `sample_data` contains for column `spectra` a data frame. For

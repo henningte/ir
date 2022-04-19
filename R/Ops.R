@@ -235,3 +235,51 @@ ir_divide <- function(x, y) {
     )
 
 }
+
+
+#' Arithmetic operations for \code{ir} objects
+#'
+#' @param e1 An object of class \code{ir}.
+#' @param e2 An object of class \code{ir} or a numeric value.
+#'
+#' @examples
+#' ## addition
+#' ir::ir_sample_data + ir::ir_sample_data
+#' ir::ir_sample_data + 2
+#'
+#' ## subtraction
+#' ir::ir_sample_data - ir::ir_sample_data
+#' ir::ir_sample_data - 2
+#'
+#' ## multiplication
+#' ir::ir_sample_data * ir::ir_sample_data
+#' ir::ir_sample_data * 2
+#'
+#' ## division
+#' ir::ir_sample_data / ir::ir_sample_data
+#' ir::ir_sample_data / 2
+#'
+#' @export
+Ops.ir <- function(e1, e2) {
+
+  switch(
+    .Generic,
+    "+" = ir_add(x = e1, y = e2),
+    "-" = ir_subtract(x = e1, y = e2),
+    "*" = ir_multiply(x = e1, y = e2),
+    "/" = ir_divide(x = e1, y = e2),
+    "^" =,
+    "%%" =,
+    "&" =,
+    "!" =,
+    "|" =,
+    "%/%" =,
+    "==" =,
+    "!=",
+    "<"=,
+    ">"=,
+    "<="=,
+    ">="= rlang::abort("This method is not implemented yet for `ir` objects.")
+  )
+
+}

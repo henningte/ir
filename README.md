@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![DOI](https://zenodo.org/badge/234117897.svg)](https://zenodo.org/badge/latestdoi/234117897)
 <!-- badges: end -->
 
@@ -152,7 +152,7 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed 18 Jan 2022.
+> Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed 19 Apr 2022.
 > Online at <https://zenodo.org/record/5747170>.
 
 ### Licenses

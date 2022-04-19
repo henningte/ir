@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 # ir
 
 <!-- badges: start -->
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![DOI](https://zenodo.org/badge/234117897.svg)](https://zenodo.org/badge/latestdoi/234117897)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![DOI](https://zenodo.org/badge/234117897.svg)](https://zenodo.org/badge/latestdoi/234117897)
 <!-- badges: end -->
 
 ir is an R package that contains simple functions to import, handle and preprocess infrared spectra. Infrared spectra are stored as list columns in data frames to enable efficient storage of metadata along with the spectra and support further analyses containing other data for the same samples.

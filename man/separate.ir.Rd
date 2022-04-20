@@ -69,6 +69,11 @@ happens when there are not enough pieces. There are three valid options:
 
 \item{...}{Additional arguments passed on to methods.}
 }
+\value{
+\code{.data} with separated columns. If the \code{spectra} column is
+dropped or invalidated (see \code{\link[=ir_new_ir]{ir_new_ir()}}), the \code{ir} class is dropped, else
+the object is of class \code{ir}.
+}
 \description{
 Separate a character column in an \code{ir} object into multiple columns with a regular expression or numeric locations
 }

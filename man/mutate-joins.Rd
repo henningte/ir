@@ -8,7 +8,7 @@
 \alias{full_join.ir}
 \title{Mutating joins for an \code{ir} object}
 \source{
-\code{\link[dplyr:mutate-joins]{dplyr::mutate-joins()}}
+\code{\link[dplyr:mutate-joins]{mutate-joins}}
 }
 \usage{
 inner_join.ir(
@@ -99,6 +99,10 @@ The default, \code{"na"}, treats two \code{NA} or \code{NaN} values as equal, li
 
 Use \code{"never"} to always treat two \code{NA} or \code{NaN} values as different, like
 joins for database sources, similarly to \code{merge(incomparables = FALSE)}.}
+}
+\value{
+\code{x} and \code{y} joined. If the \code{spectra} column is renamed, the \code{ir}
+class is dropped. See \code{\link[dplyr:mutate-joins]{mutate-joins}}.
 }
 \description{
 Mutating joins for an \code{ir} object

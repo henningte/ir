@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_interpolate.R
 \name{ir_interpolate}
 \alias{ir_interpolate}
-\title{Interpolates intensity values of infrared spectra for new wavenumber values}
+\title{Interpolates intensity values of infrared spectra in an \code{ir} object for new wavenumber values}
 \usage{
 ir_interpolate(x, start = NULL, dw = 1)
 }
@@ -30,4 +30,5 @@ new wavenumber values.
 x <-
    ir::ir_sample_data \%>\%
    ir::ir_interpolate(start = NULL, dw = 1)
+
 }

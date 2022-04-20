@@ -21,6 +21,10 @@ multiple rows}
 \code{\link[=type.convert]{type.convert()}} on the key column. This is useful if the column
 types are actually numeric, integer, or logical.}
 }
+\value{
+\code{data} with a collapsed column separated into multiple rows. See
+\code{\link[tidyr:separate_rows]{tidyr::separate_rows()}}.
+}
 \description{
 Separate a collapsed column in an \code{ir} object into multiple rows
 }

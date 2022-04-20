@@ -6,7 +6,7 @@
 \alias{anti_join.ir}
 \title{Filtering joins for an \code{ir} object}
 \source{
-\code{\link[dplyr:filter-joins]{dplyr::filter-joins()}}
+\code{\link[dplyr:filter-joins]{filter-joins}}
 }
 \usage{
 semi_join.ir(x, y, by = NULL, copy = FALSE, ..., na_matches = c("na", "never"))
@@ -50,6 +50,10 @@ The default, \code{"na"}, treats two \code{NA} or \code{NaN} values as equal, li
 
 Use \code{"never"} to always treat two \code{NA} or \code{NaN} values as different, like
 joins for database sources, similarly to \code{merge(incomparables = FALSE)}.}
+}
+\value{
+\code{x} and \code{y} joined. If the \code{spectra} column is renamed, the \code{ir}
+class is dropped. See \code{\link[dplyr:filter-joins]{filter-joins}}.
 }
 \description{
 Filtering joins for an \code{ir} object

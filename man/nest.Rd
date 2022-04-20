@@ -4,7 +4,7 @@
 \alias{nest}
 \alias{nest.ir}
 \alias{unnest.ir}
-\title{Nest and unnest an \code{sf} object}
+\title{Nest and unnest an \code{ir} object}
 \source{
 \code{\link[tidyr:nest]{tidyr::nest()}}
 }
@@ -100,8 +100,13 @@ convert \code{df \%>\% unnest(x, .id = "id")} to \verb{df \%>\% mutate(id = name
 \item{.sep}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 use \code{names_sep} instead.}
 }
+\value{
+\code{.data} with nested or unnested columns. If the \code{spectra} column is
+dropped or invalidated (see \code{\link[=ir_new_ir]{ir_new_ir()}}), the \code{ir} class is dropped, else
+the object is of class \code{ir}.
+}
 \description{
-Nest and unnest an \code{sf} object
+Nest and unnest an \code{ir} object
 }
 \examples{
 ## nest

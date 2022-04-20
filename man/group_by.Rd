@@ -40,6 +40,10 @@ our naming conventions.}
 data? The default is \code{TRUE} except when \code{.data} has been previously
 grouped with \code{.drop = FALSE}. See \code{\link[dplyr:group_by_drop_default]{group_by_drop_default()}} for details.}
 }
+\value{
+\code{.data} with grouped rows (\code{group_by.ir()}) or ungrouped rows
+(\code{ungroup.ir()}).
+}
 \description{
 Group rows in \code{ir} objects by one or more variables
 }

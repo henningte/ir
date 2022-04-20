@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_remove_missing.R
 \name{ir_remove_missing}
 \alias{ir_remove_missing}
-\title{Removes empty data values in objects of class \code{ir}}
+\title{Removes empty data values in an object of class \code{ir}}
 \usage{
 ir_remove_missing(x, remove_rows = FALSE)
 }
@@ -44,4 +44,5 @@ x2 <-
 nrow(x)
 nrow(x1)
 nrow(x2)
+
 }

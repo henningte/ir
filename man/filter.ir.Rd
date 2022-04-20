@@ -21,6 +21,9 @@ Only rows for which all conditions evaluate to \code{TRUE} are kept.}
 If \code{.preserve = FALSE} (the default), the grouping structure
 is recalculated based on the resulting data, otherwise the grouping is kept as is.}
 }
+\value{
+\code{.data} with filtered rows.
+}
 \description{
 Subset rows in \code{ir} objects using column values
 }

@@ -59,6 +59,9 @@ class(ir_sample_data[, 1])
 class(ir_sample_data[, "spectra"])
 
 # subsetting values
+ir_sample_data[, 1] # drops the ir class
+ir_sample_data[, c("id_sample", "spectra")]
+ir_sample_data$id_sample
 ir_sample_data[[1, 1]]
 
 # setting and replacing columns

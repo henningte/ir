@@ -55,9 +55,16 @@ ir is an R package that contains simple functions to import, handle and preproce
 
 ### How to install
 
+You can install ir from CRAB using R via:
+
+```{r installation-cran}
+install.packages("ir")
+```
+
+
 You can install ir from GitHub using R via:
 
-```{r installation, eval = FALSE}
+```{r installation-github, eval = FALSE}
 remotes::install_github(repo = "henningte/ir")
 ```
 
@@ -115,7 +122,13 @@ Column `x` represents the x values (in this case wavenumbers [cm<sup>-1</sup>]) 
 
 Please cite this R package as:
 
-> Henning Teickner (`r format(Sys.Date(), "%Y")`). _ir: Functions to Handle and Preprocess Infrared Spectra'_. DOI: 10.5281/zenodo.5747170. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://zenodo.org/record/5747170>.
+> Henning Teickner (`r format(Sys.Date(), "%Y")`). _ir: Functions to Handle and Preprocess Infrared Spectra_. DOI: 10.5281/zenodo.5747170. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://zenodo.org/record/5747170>.
+
+
+### Companion packages
+
+[irpeat](https://github.com/henningte/irpeat/) builds on ir. irpeat provides functions to analyze infrared spectra of peat (humification indices, prediction models).
+
 
 
 ### Licenses

@@ -37,4 +37,5 @@ x1 <-
 # subtracting a numeric value from an object of class `ir`.
 x2 <-
   ir::ir_subtract(ir::ir_sample_data, 20)
+
 }

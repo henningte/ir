@@ -279,7 +279,7 @@ d_spc %>%
 
 ## Building preprocessing pipelines
 
-With ir, it is very easy to build complex reprocessing workflows by "piping" (using [marittr's](https://cran.r-project.org/web/packages/magrittr/index.html) pipe (`%>%`) operator) together different preprocessing steps:
+With ir, it is very easy to build complex reprocessing workflows by "piping" (using [magrittr's](https://cran.r-project.org/web/packages/magrittr/index.html) pipe (`%>%`) operator) together different preprocessing steps:
 
 ```{r}
 d_spc %>%

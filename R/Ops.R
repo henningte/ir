@@ -7,14 +7,17 @@
 #' from all intensity values in `x`.
 #'
 #' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @param y An object of class [`ir`][ir_new_ir()] or a numeic value. If `y`
 #' is an object of class `ir`, it must have the same number of rows as
 #' `x` and the same x axis values (e.g. wavenumber values) in each matching
 #' spectrum as in `x`.
+#'
 #' @return `x` where for each spectrum the respective intensity values in
 #' `y` are subtracted (if `y` is an object of class `ir`), or
 #' where for each spectrum `y` has been subtracted from the intensity
 #' values.
+#'
 #' @examples
 #' # subtracting two objects of class ir
 #' x1 <-
@@ -25,6 +28,7 @@
 #' # subtracting a numeric value from an object of class `ir`.
 #' x2 <-
 #'   ir::ir_subtract(ir::ir_sample_data, 20)
+#'
 #' @export
 ir_subtract <- function(x, y) {
 
@@ -81,13 +85,16 @@ ir_subtract <- function(x, y) {
 #' `y` to that of `x`.
 #'
 #' @inheritParams ir_subtract
+#'
 #' @return `x` where for each spectrum the respective intensity values in
 #' `y` are added.
+#'
 #' @examples
 #' x1 <-
 #'   ir::ir_add(ir::ir_sample_data, ir::ir_sample_data)
 #' x1 <-
 #'   ir::ir_add(ir::ir_sample_data, ir::ir_sample_data[1, ])
+#'
 #' @export
 ir_add <- function(x, y) {
 
@@ -145,10 +152,12 @@ ir_add <- function(x, y) {
 #' all intensity values in `x` with `y`.
 #'
 #' @inheritParams ir_subtract
+#'
 #' @return `x` where for each spectrum intensity values are multiplied with
 #' the respective intensity values in `y` (if `y` is an object of
 #' class `ir`), or where all intensity values are multiplied with `y`
 #' if `y` is a numeric value.
+#'
 #' @examples
 #' # multiplication with y as ir object
 #' x1 <-
@@ -159,6 +168,7 @@ ir_add <- function(x, y) {
 #' # multiplication with y being a numeric value
 #' x2 <-
 #'   ir::ir_multiply(ir::ir_sample_data, y = -1)
+#'
 #' @export
 ir_multiply <- function(x, y) {
 
@@ -217,10 +227,12 @@ ir_multiply <- function(x, y) {
 #' all intensity values in `x` by `y`.
 #'
 #' @inheritParams ir_subtract
+#'
 #' @return `x` where for each spectrum intensity values are divided by
 #' the respective intensity values in `y` (if `y` is an object of
 #' class `ir`), or where all intensity values are divided by `y` if
 #' `y` is a numeric value.
+#'
 #' @examples
 #' # division with y as ir object
 #' x1 <-
@@ -231,6 +243,7 @@ ir_multiply <- function(x, y) {
 #' # division with y being a numeric value
 #' x2 <-
 #'   ir::ir_divide(ir::ir_sample_data, y = 20)
+#'
 #' @export
 ir_divide <- function(x, y) {
 
@@ -284,6 +297,7 @@ ir_divide <- function(x, y) {
 #' Arithmetic operations for `ir` objects
 #'
 #' @param e1 An object of class `ir`.
+#'
 #' @param e2 An object of class `ir` or a numeric value.
 #'
 #' @examples

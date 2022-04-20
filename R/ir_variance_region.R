@@ -1,4 +1,4 @@
-#' Computes the variance of a spectrum in a given region
+#' Computes the variance of a spectrum in an `ir` object in a given region
 #'
 #' `ir_variance_region` takes a spectrum `x` and, depending on the
 #' arguments computes the following summary:
@@ -14,8 +14,9 @@
 #'   represented by `range`.}
 #' }
 #'
-#' @param x An object of class [`ir`][ir_new_ir()]. These are the spectra for which
-#' to compute the variance.
+#' @param x An object of class [`ir`][ir_new_ir()]. These are the spectra for
+#' which to compute the variance.
+#'
 #' @param subtract_smoothed A logical value. If `subtract_smoothed = TRUE`,
 #' `x` is copied, the copy smoothed using `ir_smooth` with
 #' `method = "sg"` and subtracted from `x` before the variance of the
@@ -23,16 +24,21 @@
 #' noise level in a specific region of spectra. If
 #' `subtract_smoothed = FALSE` (the default), nothing is subtracted from
 #' `x` before computing the variance of the intensity values.
+#'
 #' @param do_normalize A logical value. If set to `TRUE`, the spectra in
 #' `x` are normalized after subtraction of a smoothed version, else no
 #' normalization is performed.
+#'
 #' @param normalize_method See [ir_normalize()].
+#'
 #' @param ... Arguments passed to [ir_smooth()] (except for
 #' `method` which is always set to `"sg"` if `subtract_smoothed` is
 #' `TRUE`). If `subtract_smoothed = FALSE`, these arguments will be
 #' ignored.
+#'
 #' @param range See [ir_clip()]. This is the range for which the
 #' variance of the intensity values will be computed.
+#'
 #' @return `x` with two additional columns:
 #' \describe{
 #'   \item{variance}{A numeric vector with the computed variances of the
@@ -40,6 +46,7 @@
 #'   \item{n_variance}{An integer vector with the number of intensity values
 #'   used during computing the variance.}
 #' }
+#'
 #' @examples
 #' # Whole spectra variance
 #' x1 <-
@@ -74,6 +81,7 @@
 #'       range = range,
 #'       p = 3, n = 31, ts = 1, m = 0
 #'    )
+#'
 #' @export
 ir_variance_region <- function(x, subtract_smoothed = FALSE, do_normalize = FALSE, normalize_method, ..., range = NULL) {
 

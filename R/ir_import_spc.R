@@ -1,15 +1,15 @@
-#' Imports infrared spectra from various files
+#' Imports infrared spectra from Thermo Galactic's files
 #'
 #' `ir_import_spc` imports raw infrared spectra from a Thermo Galactic's
-#' .spc file or several of such files. `ir_import_spc` is a wrapper
+#' `.spc` file or several of such files. `ir_import_spc` is a wrapper
 #' function to [hyperSpec::read.spc()].
 #'
 #' @param filenames A character vector representing the complete paths to
-#' the .spc files to import.
+#' the `.spc` files to import.
+#'
 #' @return An object of class [`ir`][ir_new_ir()] containing the
-#' infrared spectra extracted from the .spc file(s) and the metadata as
-#' extracted by [hyperSpec::read.spc()]. Metadata variables
-#' are:
+#' infrared spectra extracted from the `.spc` file(s) and the metadata as
+#' extracted by [hyperSpec::read.spc()]. Metadata variables are:
 #' \describe{
 #'   \item{scan_number}{An integer value representing the number of scans.}
 #'   \item{detection_gain_factor}{The detection gain factor.}
@@ -30,9 +30,11 @@
 #'   time.}
 #'   \item{measurement_device}{The name of the measurement device.}
 #' }
+#'
 #' @examples
 #' # import a sample .spc file
 #' x <- ir::ir_import_spc(system.file("extdata/1.spc", package = "ir"))
+#'
 #' @export
 ir_import_spc <- function(filenames) {
 

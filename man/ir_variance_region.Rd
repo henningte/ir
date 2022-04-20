@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_variance_region.R
 \name{ir_variance_region}
 \alias{ir_variance_region}
-\title{Computes the variance of a spectrum in a given region}
+\title{Computes the variance of a spectrum in an \code{ir} object in a given region}
 \usage{
 ir_variance_region(
   x,
@@ -14,8 +14,8 @@ ir_variance_region(
 )
 }
 \arguments{
-\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}. These are the spectra for which
-to compute the variance.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}. These are the spectra for
+which to compute the variance.}
 
 \item{subtract_smoothed}{A logical value. If \code{subtract_smoothed = TRUE},
 \code{x} is copied, the copy smoothed using \code{ir_smooth} with
@@ -97,4 +97,5 @@ x3 <-
       range = range,
       p = 3, n = 31, ts = 1, m = 0
    )
+
 }

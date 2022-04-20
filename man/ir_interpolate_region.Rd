@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_interpolate_region.R
 \name{ir_interpolate_region}
 \alias{ir_interpolate_region}
-\title{Interpolates selected regions in infrared spectra}
+\title{Interpolates selected regions in infrared spectra in an \code{ir} object}
 \usage{
 ir_interpolate_region(x, range)
 }
@@ -35,4 +35,5 @@ range <- data.frame(start = 1000, end = 1500)
 x <-
    ir::ir_sample_data \%>\%
    ir::ir_interpolate_region(range = range)
+
 }

@@ -29,8 +29,8 @@ absorbance or transmittance spectra.
 \examples{
 # convert from absorbance to transmittance
 x1 <-
-    ir::ir_sample_data \%>\%
-    ir::ir_to_transmittance()
+    ir_sample_data \%>\%
+    ir_to_transmittance()
 
 # convert from transmittance to absorbance
 x2 <-

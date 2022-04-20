@@ -8,16 +8,19 @@
 #' matches the boundary of a bin window, the respective intensity value will be
 #' assigned to both neighboring bins.
 #'
-#' @param x An object of class [`ir`][ir_new_ir()] with integer
-#' wavenumber values increasing by 1.
+#' @param x An object of class [`ir`][ir_new_ir()] with integer wavenumber
+#' values increasing by 1.
+#'
 #' @param width An integer value indicating the wavenumber width of each
 #' resulting bin. Must be set to `NULL` if `n` is specified.
-#' @return An object of class `ir` representing a binned version of
-#' `x`.
+#'
+#' @return An object of class `ir` where spectra have been binned.
+#'
 #' @examples
 #' x <-
 #'    ir::ir_sample_data %>%
 #'    ir_bin(width = 50)
+#'
 #' @export
 ir_bin <- function(x,
                    width = 10) {

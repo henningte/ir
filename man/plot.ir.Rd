@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.ir.R
 \name{plot.ir}
 \alias{plot.ir}
-\title{Plots an object of class ir}
+\title{Plots an object of class \code{ir}}
 \usage{
 \method{plot}{ir}(x, ...)
 }
@@ -12,7 +12,7 @@
 \item{...}{Further arguments, will be ignored.}
 }
 \value{
-An object of class \code{\link[ggplot2:ggplot]{ggplot2()}}.
+An object of class \code{\link[ggplot2:ggplot]{ggplot2}}.
 }
 \description{
 \code{plot.ir} is the plot method for objects of class \code{ir}.

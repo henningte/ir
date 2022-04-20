@@ -7,8 +7,9 @@
 \format{
 A data frame with 58 rows and 7 variables:
 \describe{
-\item{id_measurement}{See \code{\link[=ir_new_ir]{ir_new_ir()}}.}
-\item{id_sample}{See \code{\link[=ir_new_ir]{ir_new_ir()}}.}
+\item{id_measurement}{An integer vector with a unique id for each
+spectrum.}
+\item{id_sample}{A character vector with a unique id for each sample.}
 \item{sample_type}{A character vector containing class labels
 for the types of reference materials.}
 \item{sample_comment}{A character vector containing comments to

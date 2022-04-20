@@ -36,4 +36,5 @@ x1 <-
 # division with y being a numeric value
 x2 <-
   ir::ir_divide(ir::ir_sample_data, y = 20)
+
 }

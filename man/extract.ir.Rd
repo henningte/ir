@@ -44,6 +44,10 @@ NB: this will cause string \code{"NA"}s to be converted to \code{NA}s.}
 
 \item{...}{Additional arguments passed on to methods.}
 }
+\value{
+\code{data} with an extracted character column. See
+\code{\link[tidyr:extract]{tidyr::extract()}}.
+}
 \description{
 Extract a character column in an \code{ir} object into multiple columns using regular expression groups
 }

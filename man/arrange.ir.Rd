@@ -18,6 +18,9 @@ variables. Use \code{\link[dplyr:desc]{desc()}} to sort a variable in descending
 \item{.by_group}{If \code{TRUE}, will sort first by grouping variable. Applies to
 grouped data frames only.}
 }
+\value{
+\code{.data} with arranged rows.
+}
 \description{
 Arrange rows in \code{ir} objects by column values
 }

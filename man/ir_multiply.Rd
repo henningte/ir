@@ -36,4 +36,5 @@ x1 <-
 # multiplication with y being a numeric value
 x2 <-
   ir::ir_multiply(ir::ir_sample_data, y = -1)
+
 }

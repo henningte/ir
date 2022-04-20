@@ -9,23 +9,25 @@
 #'
 #' @param x A data.frame with a column x representing the x units of a spectrum
 #' or several spectra (e.g. in the form of an object of class
-#' [`ir_flat()`][ir::ir_new_ir_flat]).
+#' [`ir_flat`][ir::ir_new_ir_flat]).
+#'
 #' @param wavenumber A numeric vector with wavenumber values for which to get
 #' indices.
+#'
 #' @param warn logical value indicating if warnings should be displayed
 #' (`TRUE`) or not (`FALSE`).
+#'
 #' @return An integer vector with the same length as `wavenumber` with the
-#' row indices of `x` corresponding to the wavenumber values in
-#' `wavenumber`.
+#' row indices of `x` corresponding to the wavenumber values in `wavenumber`.
+#'
 #' @examples
 #' x_index_1090 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_flatten() %>%
 #'    ir::ir_get_wavenumberindex(wavenumber = 1090)
+#'
 #' @export
-ir_get_wavenumberindex <- function(x,
-                                   wavenumber,
-                                   warn = TRUE) {
+ir_get_wavenumberindex <- function(x, wavenumber, warn = TRUE) {
 
   # checks
   if(!(is.numeric(wavenumber))) {

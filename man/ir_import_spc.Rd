@@ -2,19 +2,18 @@
 % Please edit documentation in R/ir_import_spc.R
 \name{ir_import_spc}
 \alias{ir_import_spc}
-\title{Imports infrared spectra from various files}
+\title{Imports infrared spectra from Thermo Galactic's files}
 \usage{
 ir_import_spc(filenames)
 }
 \arguments{
 \item{filenames}{A character vector representing the complete paths to
-the .spc files to import.}
+the \code{.spc} files to import.}
 }
 \value{
 An object of class \code{\link[=ir_new_ir]{ir}} containing the
-infrared spectra extracted from the .spc file(s) and the metadata as
-extracted by \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}. Metadata variables
-are:
+infrared spectra extracted from the \code{.spc} file(s) and the metadata as
+extracted by \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}. Metadata variables are:
 \describe{
 \item{scan_number}{An integer value representing the number of scans.}
 \item{detection_gain_factor}{The detection gain factor.}
@@ -38,10 +37,11 @@ time.}
 }
 \description{
 \code{ir_import_spc} imports raw infrared spectra from a Thermo Galactic's
-.spc file or several of such files. \code{ir_import_spc} is a wrapper
+\code{.spc} file or several of such files. \code{ir_import_spc} is a wrapper
 function to \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}.
 }
 \examples{
 # import a sample .spc file
 x <- ir::ir_import_spc(system.file("extdata/1.spc", package = "ir"))
+
 }

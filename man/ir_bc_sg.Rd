@@ -13,7 +13,7 @@ ir_bc_sg(x, ..., return_bl = FALSE)
 \code{method} which is always set to \code{"sg"}).}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
-should be returned in addition to the corrected intensity values
+should be returned instead of the corrected intensity values
 (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).}
 }
 \description{
@@ -26,6 +26,7 @@ which is subtracted from the spectra to perform a baseline correction
 x <-
    ir::ir_sample_data \%>\%
    ir::ir_bc_sg(p = 3, n = 199, ts = 1, m = 0, return_bl = FALSE)
+
 }
 \references{
 \insertAllCited{}

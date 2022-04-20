@@ -21,6 +21,9 @@ will use all variables.}
 If a combination of \code{...} is not distinct, this keeps the
 first row of values.}
 }
+\value{
+\code{.data} with distinct rows.
+}
 \description{
 Subset distinct/unique rows in \code{ir} objects
 }

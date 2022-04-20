@@ -4,4 +4,4 @@
 * Added tidyverse methods for `ir` objects.
 * `ir` objects no longer require columns `measurement_id` and `sample_id`, but only the column `spectra`.
 * Added subsetting and binding methods for `ir` objects.
-* Added arithmetic operators for `sf` objects.
+* Added arithmetic operators for `ir` objects.

@@ -104,6 +104,9 @@ NULL
 #'
 #' @examples
 #' # subsetting values
+#' ir_sample_data[, 1] # drops the ir class
+#' ir_sample_data[, c("id_sample", "spectra")]
+#' ir_sample_data$id_sample
 #' ir_sample_data[[1, 1]]
 #'
 #' @export
@@ -288,6 +291,8 @@ rep.ir <- function(x, ...) {
 #' Drop all non-required columns in an ir object
 #'
 #' @param x An object of class [`ir`][ir_new_ir()]
+#'
+#' @return `x` with all column except the column `spectra` dropped.
 #'
 #' @examples
 #' x1 <-

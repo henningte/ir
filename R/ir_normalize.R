@@ -1,4 +1,4 @@
-#' Normalizes infrared spectra
+#' Normalizes infrared spectra in an `ir` object
 #'
 #' `ir_normalize` normalizes the intensity values of infrared spectra.
 #' Spectra can be normalized in three ways (value for argument `method`):
@@ -29,6 +29,7 @@
 #'
 #' @return An object of class `ir` representing a normalized version of
 #' `x`.
+#'
 #' @examples
 #' # with method = "area"
 #' x <-

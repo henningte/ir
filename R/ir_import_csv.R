@@ -1,13 +1,13 @@
 #' Imports infrared spectra from various files
 #'
-#' `ir_import_csv` imports raw infrared spectra from one or more .csv file
+#' `ir_import_csv` imports raw infrared spectra from one or more `.csv` file
 #' that contains at least one spectrum, with x axis values (e.g. wavenumbers) in
 #' the first column and intensity values of spectra in remaining columns. Note
 #' that the function does not perform any checks for the validity of the content
 #' read from the .csv file.
 #'
 #' @param filenames A character vector representing the complete paths to
-#' the .csv files to import.
+#' the `.csv` files to import.
 #'
 #' @param sample_id Either:
 #' \itemize{
@@ -24,7 +24,7 @@
 #' [`read.csv()`][utils::read.table].
 #'
 #' @return An object of class [`ir`][ir_new_ir()] containing the
-#' infrared spectra extracted from the .csv file(s).
+#' infrared spectra extracted from the `.csv` file(s).
 #'
 #' @examples
 #' # get sample data

@@ -10,7 +10,7 @@ ir_bc_rubberband(x, return_bl = FALSE)
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
-should be returned in addition to the corrected intensity values
+should be returned instead of the corrected intensity values
 (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).}
 }
 \value{
@@ -26,6 +26,7 @@ function for \code{\link[hyperSpec:spc-rubberband]{hyperSpec::spc.rubberband()}}
 x1 <-
    ir::ir_sample_data \%>\%
    ir::ir_bc_rubberband(return_bl = FALSE)
+
 }
 \seealso{
 \code{\link[=ir_bc]{ir_bc()}}

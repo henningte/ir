@@ -2,15 +2,15 @@
 % Please edit documentation in R/ir_get_intensity.R
 \name{ir_get_intensity}
 \alias{ir_get_intensity}
-\title{Extracts intensities from spectra for specific x axis values}
+\title{Extracts intensities from spectra in an \code{ir} object for specific spectral channels}
 \usage{
 ir_get_intensity(x, wavenumber, warn = TRUE)
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{wavenumber}{A numeric vector with x axis values (e.g. wavenumber
-values) for which to extract intensities.}
+\item{wavenumber}{A numeric vector with spectral channels ("x axis values",
+e.g. wavenumber values) for which to extract intensities.}
 
 \item{warn}{logical value indicating if warnings should be displayed
 (\code{TRUE}) or not (\code{FALSE}).}
@@ -21,7 +21,7 @@ values) for which to extract intensities.}
 \code{data.frame} with a row for each element in \code{wavenumber} and two
 columns:
 \describe{
-\item{x}{The x axis values extracted with
+\item{x}{The "x axis values" extracted with
 \code{\link[=ir_get_wavenumberindex]{ir_get_wavenumberindex()}} applied on \code{wavenumber} and the
 corresponding spectrum in \code{x}.}
 \item{y}{The extracted intensity values}.
@@ -29,10 +29,11 @@ corresponding spectrum in \code{x}.}
 }
 \description{
 \code{ir_get_intensity} extracts intensity values of spectra for specific
-user-defined x axis values (e.g. wavenumber values).
+user-defined spectral channels ("x axis values", e.g. wavenumber values).
 }
 \examples{
 x <-
    ir::ir_sample_data \%>\%
    ir::ir_get_intensity(wavenumber = 1090)
+
 }

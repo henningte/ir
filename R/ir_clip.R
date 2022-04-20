@@ -4,6 +4,7 @@
 #' or multiple new specified wavenumber ranges.
 #'
 #' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @param range A `data.frame` with two columns and a row for each
 #' wavenumber range to keep. The columns are:
 #' \describe{
@@ -12,7 +13,9 @@
 #' }
 #' If `range` has more than one row, multiple ranges are clipped from
 #' `x` and merged together. Overlapping ranges are not allowed.
-#' @return An object of class `ir`.
+#'
+#' @return An object of class `ir` where spectra have been clipped.
+#'
 #' @examples
 #' ## clipping with one range
 #'

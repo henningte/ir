@@ -10,6 +10,8 @@
 #'
 #' @source [dplyr::filter()]
 #'
+#' @return `.data` with filtered rows.
+#'
 #' @examples
 #' ## filter
 #' dplyr::filter(ir_sample_data, sample_type == "office paper")
@@ -28,6 +30,8 @@ filter.ir <- function(.data, ..., .preserve = FALSE) {
 #' @inheritParams dplyr::arrange
 #'
 #' @param .data An object of class `ir`.
+#'
+#' @return `.data` with arranged rows.
 #'
 #' @source [dplyr::arrange()]
 #'
@@ -52,6 +56,9 @@ arrange.ir <- function(.data, ..., .by_group = FALSE) {
 #' @param .data An object of class `ir`.
 #'
 #' @source [dplyr::group_by()]
+#'
+#' @return `.data` with grouped rows (`group_by.ir()`) or ungrouped rows
+#' (`ungroup.ir()`).
 #'
 #' @examples
 #' ## group_by
@@ -83,6 +90,8 @@ ungroup.ir <- function(.data, ...) {
 #'
 #' @param data An object of class `ir`.
 #'
+#' @return `data` as row-wise data frame. See [dplyr::rowwise()].
+#'
 #' @source [dplyr::rowwise()]
 #'
 #' @examples
@@ -111,6 +120,10 @@ rowwise.ir <- function(.data, ...) {
 #' @inheritParams dplyr::mutate
 #'
 #' @param .data An object of class `ir`.
+#'
+#' @return `.data` with modified columns. If the `spectra` column is dropped or
+#' invalidated (see [ir_new_ir()]), the `ir` class is dropped, else the object
+#' is of class `ir`.
 #'
 #' @source [dplyr::mutate()]
 #'
@@ -149,6 +162,9 @@ transmute.ir <- function(.data, ...) {
 #'
 #' @param .data An object of class `ir`.
 #'
+#' @return `.data` with the selected columns. If the `spectra` column is dropped,
+#' the `ir` class is dropped, else the object is of class `ir`.
+#'
 #' @source [dplyr::select()]
 #'
 #' @examples
@@ -171,6 +187,10 @@ select.ir <- function(.data, ...) {
 #' @param .data An object of class `ir`.
 #'
 #' @source [dplyr::rename()]
+#'
+#' @return `.data` with renamed columns. If the `spectra` column is renamed,
+#' and no new valid `spectra` column is created, the `ir` class is dropped, else
+#' the object is of class `ir`.
 #'
 #' @name rename
 #'
@@ -207,6 +227,8 @@ rename_with.ir <- function(.data, .fn, .cols = dplyr::everything(), ...) {
 #' @inheritParams dplyr::slice
 #'
 #' @param .data An object of class `ir`.
+#'
+#' @return `.data` with subsetted rows.
 #'
 #' @source [dplyr::slice()]
 #'
@@ -247,6 +269,10 @@ slice_sample.ir <- function(.data, ..., n, prop, weight_by = NULL, replace = FAL
 #'
 #' @param .data An object of class `ir`.
 #'
+#' @return `.data` with summarized columns. If the `spectra` column is dropped
+#' or invalidated (see [ir_new_ir()]), the `ir` class is dropped, else the
+#' object is of class `ir`.
+#'
 #' @source [dplyr::summarize()]
 #'
 #' @examples
@@ -276,6 +302,8 @@ summarise.ir <- summarize.ir
 #'
 #' @param .data An object of class `ir`.
 #'
+#' @return `.data` with distinct rows.
+#'
 #' @source [dplyr::distinct()]
 #'
 #' @examples
@@ -288,13 +316,17 @@ distinct.ir <- function(.data, ..., .keep_all = FALSE) {
 }
 
 
-#' Pivot an `sf` object from wide to long
+#' Pivot an `ir` object from wide to long
 #'
 #' @family tidyverse
 #'
 #' @inheritParams tidyr::pivot_longer
 #'
 #' @param data An object of class `ir`.
+#'
+#' @return `data` in a long format. If the `spectra` column is dropped
+#' or invalidated (see [ir_new_ir()]), the `ir` class is dropped, else the
+#' object is of class `ir`.
 #'
 #' @source [tidyr::pivot_longer()]
 #'
@@ -325,13 +357,17 @@ pivot_longer.ir <- function(
   ir_reclass_ir(NextMethod())
 }
 
-#' Pivot an `sf` object from wide to long
+#' Pivot an `ir` object from wide to long
 #'
 #' @family tidyverse
 #'
 #' @inheritParams tidyr::pivot_wider
 #'
 #' @param data An object of class `ir`.
+#'
+#' @return `data` in a wide format. If the `spectra` column is dropped
+#' or invalidated (see [ir_new_ir()]), the `ir` class is dropped, else the
+#' object is of class `ir`.
 #'
 #' @source [tidyr::pivot_wider()]
 #'
@@ -362,7 +398,7 @@ pivot_wider.ir <- function(
 }
 
 
-#' Nest and unnest an `sf` object
+#' Nest and un-nest an `ir` object
 #'
 #' @family tidyverse
 #'
@@ -382,6 +418,10 @@ pivot_wider.ir <- function(
 #'   `nest()`, the new inner names will have the outer names + `names_sep`
 #'   automatically stripped. This makes `names_sep` roughly symmetric between
 #'   nesting and unnesting.
+#'
+#' @return `.data` with nested or unnested columns. If the `spectra` column is
+#' dropped or invalidated (see [ir_new_ir()]), the `ir` class is dropped, else
+#' the object is of class `ir`.
 #'
 #' @source [tidyr::nest()]
 #'
@@ -434,6 +474,10 @@ unnest.ir <- function(
 #'
 #' @param data An object of class `ir`.
 #'
+#' @return `.data` with separated columns. If the `spectra` column is
+#' dropped or invalidated (see [ir_new_ir()]), the `ir` class is dropped, else
+#' the object is of class `ir`.
+#'
 #' @source [tidyr::separate()]
 #'
 #' @examples
@@ -467,6 +511,10 @@ separate.ir <- function(
 #'
 #' @param data An object of class `ir`.
 #'
+#' @return `.data` with united columns. If the `spectra` column is
+#' dropped or invalidated (see [ir_new_ir()]), the `ir` class is dropped, else
+#' the object is of class `ir`.
+#'
 #' @source [tidyr::unite()]
 #'
 #' @examples
@@ -490,6 +538,9 @@ unite.ir <- function(data, col, ..., sep = "_", remove = TRUE, na.rm = FALSE) {
 #' @inheritParams tidyr::extract
 #'
 #' @param data An object of class `ir`.
+#'
+#' @return `data` with an extracted character column. See
+#' [tidyr::extract()].
 #'
 #' @source [tidyr::extract()]
 #'
@@ -522,6 +573,9 @@ extract.ir <- function(
 #'
 #' @param data An object of class `ir`.
 #'
+#' @return `data` with a collapsed column separated into multiple rows. See
+#' [tidyr::separate_rows()].
+#'
 #' @source [tidyr::separate_rows()]
 #'
 #' @examples
@@ -549,13 +603,16 @@ separate_rows.ir <- function(data, ..., sep = "[^[:alnum:].]+", convert = FALSE)
 #'
 #' @name mutate-joins
 #'
+#' @inheritParams dplyr::left_join
+#'
 #' @param x An object of class `ir`.
 #'
 #' @param y A data frame.
 #'
-#' @inheritParams dplyr::left_join
+#' @return `x` and `y` joined. If the `spectra` column is renamed, the `ir`
+#' class is dropped. See [`mutate-joins`][dplyr::left_join].
 #'
-#' @source [dplyr::mutate-joins()]
+#' @source [`mutate-joins`][dplyr::left_join]
 NULL
 
 
@@ -681,12 +738,16 @@ full_join.ir <- function(
 #'
 #' @name filter-joins
 #'
-#' @param x An object of class `ir`.
-#' @param y A data frame.
-#'
 #' @inheritParams dplyr::semi_join
 #'
-#' @source [dplyr::filter-joins()]
+#' @param x An object of class `ir`.
+#'
+#' @param y A data frame.
+#'
+#' @return `x` and `y` joined. If the `spectra` column is renamed, the `ir`
+#' class is dropped. See [`filter-joins`][dplyr::semi_join].
+#'
+#' @source [`filter-joins`][dplyr::semi_join]
 NULL
 
 

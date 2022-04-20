@@ -1,7 +1,6 @@
 #' Creates an object of class `ir_flat`
 #'
-#' `ir_new_ir_flat` is the constructor function for objects of class
-#' `ir_flat`.
+#' `ir_new_ir_flat` is the constructor function for objects of class `ir_flat`.
 #' An object of class `ir_flat` is a `data.frame` where the first
 #' column (`"x"`) contains unique x values of spectra (e.g. wavenumbers)
 #' and all remaining columns represent intensity values from spectra
@@ -9,11 +8,14 @@
 #'
 #' @param x A `data.frame` with only numeric columns and only the first
 #' column name being "x".
+#'
 #' @return An object of class `ir_flat`.
+#'
 #' @examples
 #' x_flat <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_flatten()
+#'
 #' @export
 ir_new_ir_flat <- function(x) {
 
@@ -49,14 +51,15 @@ ir_new_ir_flat <- function(x) {
 
 #' Checks if an object is of class `ir_flat`
 #'
-#' `ir_flat_check` checks if an object is of class [`ir_flat()`][ir::ir_new_ir_flat].
+#' `ir_flat_check` checks if an object is of class
+#' [`ir_flat()`][ir::ir_new_ir_flat].
 #'
 #' @param x An object.
 #'
+#' @return An object of class [`ir_flat()`][ir::ir_new_ir_flat].
+#'
 #' @noRd
 #' @keywords Internal
-#'
-#' @return An object of class [`ir_flat()`][ir::ir_new_ir_flat].
 ir_flat_check <- function(x) {
   x_sym <- as.character(rlang::get_expr(rlang::enquo(x)))
   if(!inherits(x, "ir_flat"))

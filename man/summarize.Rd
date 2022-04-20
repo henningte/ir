@@ -47,6 +47,11 @@ In addition, a message informs you of that choice, unless the result is ungroupe
 the option "dplyr.summarise.inform" is set to \code{FALSE},
 or when \code{summarise()} is called from a function in a package.}
 }
+\value{
+\code{.data} with summarized columns. If the \code{spectra} column is dropped
+or invalidated (see \code{\link[=ir_new_ir]{ir_new_ir()}}), the \code{ir} class is dropped, else the
+object is of class \code{ir}.
+}
 \description{
 Summarize each group in a \code{ir} object to fewer rows
 }

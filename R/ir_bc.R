@@ -1,31 +1,33 @@
 #' Performs baseline correction on infrared spectra
 #'
-#' `ir_bc` performs baseline correction for infrared
-#' spectra. Baseline correction
-#' is either performed by using a polynomial with user defined
-#' degree fitted to each spectrum (see
-#' [ChemoSpec::baselineSpectra()]), or by using a
-#' rubberband function that is fitted to each spectrum
-#' (see [hyperSpec::spc.rubberband()]), or using a
-#' Savitzky-Golay smoothed version of the input spectra (see
-#' [ir_bc_sg()]).
+#' `ir_bc` performs baseline correction for infrared spectra. Baseline
+#' correction is either performed by using a polynomial with user defined
+#' degree fitted to each spectrum (see [ChemoSpec::baselineSpectra()]), or by
+#' using a rubberband function that is fitted to each spectrum (see
+#' [hyperSpec::spc.rubberband()]), or using a Savitzky-Golay smoothed version of
+#' the input spectra (see [ir_bc_sg()]).
 #'
 #' @name ir_bc
+#'
 #' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @param method A character value indicating which method should be used
 #' for baseline correction. If `method = "polynomial"`, a polynomial
 #' is used for baseline correction. If `method = "rubberband"`, a
 #' rubberband function is used for baseline correction. If `method = "sg"`,
 #' a Savitzky-Golay smoothed version of the input spectra is used for baseline
 #' correction.
+#'
 #' @param ... Further arguments passed to [ir_bc_polynomial()] or
 #'  [ir_bc_sg()].
+#'
 #' @param return_bl A logical value indicating if for each spectrum the baseline
-#' should be returned in addition to the corrected intensity values
+#' should be returned instead of the corrected intensity values
 #' (`return_bl = TRUE`) or not (`return_bl = FALSE`).
-#' @return An object of class `ir` with the baseline
-#' corrected spectra and if `returnbl = TRUE` a new list column
-#' "baselines" with the baselines.
+#'
+#' @return An object of class `ir` with the baseline corrected spectra, or if
+#' `return_bl = TRUE`, the baselines instead of the spectra in column `spectra`.
+#'
 #' @examples
 #' # rubberband baseline correction
 #' x1 <-
@@ -41,6 +43,12 @@
 #' x3 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
+#'
+#' # return the baseline instead of the baseline corrected spectra
+#' x1_bl <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_bc(method = "rubberband", return_bl = TRUE)
+#'
 #' @export
 ir_bc <- function(x,
                   method = "rubberband",
@@ -90,16 +98,21 @@ ir_bc <- function(x,
 #' for [ChemoSpec::baselineSpectra()].
 #'
 #' @inheritParams ir_bc
+#'
 #' @param degree An integer value representing the degree of the polynomial
 #' used for baseline correction.
+#'
 #' @return An object of class `ir` with the baseline corrected spectra if
 #' `returnbl = FALSE` or the baselines if `returnbl = TRUE`.
+#'
 #' @seealso
 #' [ir_bc()]
+#'
 #' @examples
 #' x2 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
+#'
 #' @export
 ir_bc_polynomial <- function(x,
                              degree = 2,
@@ -169,14 +182,18 @@ ir_bc_polynomial <- function(x,
 #' function for [hyperSpec::spc.rubberband()].
 #'
 #' @inheritParams ir_bc
+#'
 #' @return An object of class `ir` with the baseline corrected spectra and,
 #' if `returnbl = TRUE`,  the baselines.
+#'
 #' @seealso
 #' [ir_bc()]
+#'
 #' @examples
 #' x1 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_bc_rubberband(return_bl = FALSE)
+#'
 #' @export
 ir_bc_rubberband <- function(x,
                              return_bl = FALSE) {
@@ -231,14 +248,18 @@ ir_bc_rubberband <- function(x,
 #' \insertCite{Lasch.2012}{ir}.
 #'
 #' @inheritParams ir_bc
+#'
 #' @param ... Arguments passed to [ir_smooth()] (except for
 #' `method` which is always set to `"sg"`).
+#'
 #' @references
 #' \insertAllCited{}
+#'
 #' @examples
 #' x <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_bc_sg(p = 3, n = 199, ts = 1, m = 0, return_bl = FALSE)
+#'
 #' @export
 ir_bc_sg <- function(x, ..., return_bl = FALSE) {
 

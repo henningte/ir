@@ -1,4 +1,4 @@
-#' Smooths infrared spectra
+#' Smooths infrared spectra in an `ir` object
 #'
 #' `ir_smooth` applies smoothing functions to infrared spectra.
 #' `ir_smooth` either performs Savitzky-Golay smoothing, using on
@@ -12,6 +12,7 @@
 #' these different spectra.
 #'
 #' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @param method A character value specifying which smoothing method to apply.
 #' If `method = "sg"`, a Savitzky-Golay filter will be applied on the
 #' spectra. The Savitzky-Golay smoothing will be performed using the function
@@ -20,24 +21,29 @@
 #' performed using the fast discrete Fourier transformation (FFT) as implemented
 #' in [fda::smooth.basis()]. A smoothing function can be
 #' defined by the argment `f`.
+#'
 #' @param k A positive odd integer representing the number of Fourier basis
 #' functions to use as smoothed representation of the spectra if
 #' `method = "fourier"`.
+#'
 #' @param p An integer value representing the filter order (i.e. the degree of
 #' the polynom) of the Savitzky-Golay filter if `method = "sg"`.
+#'
 #' @param n An odd integer value representing the length (i.e. the number of
 #' wavenumber values used to construct the polynom) of the Savitzky-Golay filter
 #' if `method = "sg"`.
-#' @param ts time scaling factor. See
-#' [signal::sgolayfilt()].
+#'
+#' @param ts time scaling factor. See [signal::sgolayfilt()].
+#'
 #' @param m An integer value representing the mth derivative to compute. This
 #' option can be used to compute derivatives of spectra. See
 #' [signal::sgolayfilt()].
+#'
 #' @param ... additional arguments (ignored).
-#' @return An object of class `ir` containing the smoothed
-#' spectra.
+#'
+#' @return `x` with smoothed spectra.
+#'
 #' @examples
-#' \dontrun{
 #' #' # Savitzky-Golay smoothing
 #' x1 <-
 #'    ir::ir_sample_data %>%
@@ -53,7 +59,7 @@
 #' x3 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 1)
-#' }
+#'
 #' @export
 ir_smooth <- function(x,
                       method = "sg",

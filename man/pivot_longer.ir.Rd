@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidyverse.R
 \name{pivot_longer.ir}
 \alias{pivot_longer.ir}
-\title{Pivot an \code{sf} object from wide to long}
+\title{Pivot an \code{ir} object from wide to long}
 \source{
 \code{\link[tidyr:pivot_longer]{tidyr::pivot_longer()}}
 }
@@ -108,8 +108,13 @@ values in \code{data} were created by its structure.}
 
 \item{...}{Additional arguments passed on to methods.}
 }
+\value{
+\code{data} in a long format. If the \code{spectra} column is dropped
+or invalidated (see \code{\link[=ir_new_ir]{ir_new_ir()}}), the \code{ir} class is dropped, else the
+object is of class \code{ir}.
+}
 \description{
-Pivot an \code{sf} object from wide to long
+Pivot an \code{ir} object from wide to long
 }
 \examples{
 ## pivot_longer

@@ -17,6 +17,10 @@ expressions separated by commas. Variable names can be used as if they
 were positions in the data frame, so expressions like \code{x:y} can
 be used to select a range of variables.}
 }
+\value{
+\code{.data} with the selected columns. If the \code{spectra} column is dropped,
+the \code{ir} class is dropped, else the object is of class \code{ir}.
+}
 \description{
 Subset columns in \code{ir} objects using column names and types
 }

@@ -54,6 +54,11 @@ variables and columns created by \code{...} are kept.
 should appear (the default is to add to the right hand side). See
 \code{\link[dplyr:relocate]{relocate()}} for more details.}
 }
+\value{
+\code{.data} with modified columns. If the \code{spectra} column is dropped or
+invalidated (see \code{\link[=ir_new_ir]{ir_new_ir()}}), the \code{ir} class is dropped, else the object
+is of class \code{ir}.
+}
 \description{
 Mutate an \code{ir} object by adding new or replacing existing columns
 }

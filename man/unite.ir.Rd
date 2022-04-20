@@ -30,6 +30,11 @@ tidyverse; we support it here for backward compatibility).}
 \item{na.rm}{If \code{TRUE}, missing values will be remove prior to uniting
 each value.}
 }
+\value{
+\code{.data} with united columns. If the \code{spectra} column is
+dropped or invalidated (see \code{\link[=ir_new_ir]{ir_new_ir()}}), the \code{ir} class is dropped, else
+the object is of class \code{ir}.
+}
 \description{
 Unite multiple columns in an \code{ir} object into one by pasting strings together
 }

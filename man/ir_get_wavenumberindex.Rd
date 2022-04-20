@@ -9,7 +9,7 @@ ir_get_wavenumberindex(x, wavenumber, warn = TRUE)
 \arguments{
 \item{x}{A data.frame with a column x representing the x units of a spectrum
 or several spectra (e.g. in the form of an object of class
-\code{\link[=ir_new_ir_flat]{ir_flat()}}).}
+\code{\link[=ir_new_ir_flat]{ir_flat}}).}
 
 \item{wavenumber}{A numeric vector with wavenumber values for which to get
 indices.}
@@ -19,8 +19,7 @@ indices.}
 }
 \value{
 An integer vector with the same length as \code{wavenumber} with the
-row indices of \code{x} corresponding to the wavenumber values in
-\code{wavenumber}.
+row indices of \code{x} corresponding to the wavenumber values in \code{wavenumber}.
 }
 \description{
 \code{ir_get_wavenumberindex} gets for a defined wavenumber value or set of
@@ -35,4 +34,5 @@ x_index_1090 <-
    ir::ir_sample_data \%>\%
    ir::ir_flatten() \%>\%
    ir::ir_get_wavenumberindex(wavenumber = 1090)
+
 }

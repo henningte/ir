@@ -14,8 +14,7 @@ column name being "x".}
 An object of class \code{ir_flat}.
 }
 \description{
-\code{ir_new_ir_flat} is the constructor function for objects of class
-\code{ir_flat}.
+\code{ir_new_ir_flat} is the constructor function for objects of class \code{ir_flat}.
 An object of class \code{ir_flat} is a \code{data.frame} where the first
 column (\code{"x"}) contains unique x values of spectra (e.g. wavenumbers)
 and all remaining columns represent intensity values from spectra
@@ -25,4 +24,5 @@ corresponding to the x values.
 x_flat <-
    ir::ir_sample_data \%>\%
    ir::ir_flatten()
+
 }

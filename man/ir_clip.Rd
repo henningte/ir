@@ -19,7 +19,7 @@ If \code{range} has more than one row, multiple ranges are clipped from
 \code{x} and merged together. Overlapping ranges are not allowed.}
 }
 \value{
-An object of class \code{ir}.
+An object of class \code{ir} where spectra have been clipped.
 }
 \description{
 \code{ir_clip} clips infrared spectra to a new, specified, wavenumber range

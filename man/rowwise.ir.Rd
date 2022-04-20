@@ -21,6 +21,9 @@ instead you can select multiple variables with (e.g.) \code{everything()}.}
 
 \item{data}{An object of class \code{ir}.}
 }
+\value{
+\code{data} as row-wise data frame. See \code{\link[dplyr:rowwise]{dplyr::rowwise()}}.
+}
 \description{
 Group input \code{ir} objects by rows
 }

@@ -6,17 +6,21 @@
 #' absorbance or transmittance spectra.
 #'
 #' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @return `x` with y values fore each spectrum as transmittance values
 #' (in case of `ir_to_transmittance`) or absorbance values (in case of
 #' `ir_to_absorbance`).
+#'
 #' @source \insertCite{Stuart.2004}{ir}.
+#'
 #' @references
 #' \insertAllCited{}
+#'
 #' @examples
 #' # convert from absorbance to transmittance
 #' x1 <-
-#'     ir::ir_sample_data %>%
-#'     ir::ir_to_transmittance()
+#'     ir_sample_data %>%
+#'     ir_to_transmittance()
 #'
 #' @export
 ir_to_transmittance <- function(x) {
@@ -32,6 +36,7 @@ ir_to_transmittance <- function(x) {
 }
 
 #' @rdname  ir_to_transmittance
+#'
 #' @examples
 #' # convert from transmittance to absorbance
 #' x2 <-

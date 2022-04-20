@@ -13,7 +13,7 @@ ir_bc_polynomial(x, degree = 2, return_bl = FALSE)
 used for baseline correction.}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
-should be returned in addition to the corrected intensity values
+should be returned instead of the corrected intensity values
 (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).}
 }
 \value{
@@ -30,6 +30,7 @@ for \code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}.
 x2 <-
    ir::ir_sample_data \%>\%
    ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
+
 }
 \seealso{
 \code{\link[=ir_bc]{ir_bc()}}

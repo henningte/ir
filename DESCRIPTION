@@ -4,12 +4,12 @@ Version: 0.1.0.9999
 Authors@R: 
     person(given = "Henning",
            family = "Teickner",
-           role = c("aut", "cre"),
-           email = "h_teic01@uni-muenster.de",
+           role = c("aut", "cre", "cph"),
+           email = "henning.teickner@uni-muenster.de",
            comment = c(ORCID = "0000-0002-3993-1182"))
 Description: 
-  Functions to import and handle infrared spectra (import from .csv and
-  Thermo Galactic's .spc, baseline correction, binning, clipping,
+  Functions to import and handle infrared spectra (import from '.csv' and
+  Thermo Galactic's '.spc', baseline correction, binning, clipping,
   interpolating, smoothing, averaging, adding, subtracting, dividing, 
   multiplying, plotting).
 License: GPL-3
@@ -41,11 +41,13 @@ Suggests:
     kableExtra,
     fda,
     knitr,
-    rmarkdown
+    rmarkdown,
+    spelling
 VignetteBuilder: 
   knitr
 RdMacros: 
   Rdpack
-Date: 2022-01-18
+Date: 2022-04-20
 Roxygen: list(markdown = TRUE)
 URL: https://henningte.github.io/ir/
+Language: en-US

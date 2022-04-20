@@ -4,22 +4,26 @@
 \alias{ir_average}
 \title{Averages infrared spectra within groups}
 \usage{
-ir_average(x, ...)
+ir_average(x, ..., na.rm = TRUE)
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{...}{Variables in \code{x} to use as groups.}
+
+\item{na.rm}{A logical value indicating if \code{NA} values should be dropped
+(\code{TRUE}) or not (\code{FALSE}).}
 }
 \value{
-An object of class \code{ir}.
+An object of class \code{ir} where spectra have been averaged within
+groups defined by \code{...}.
 }
 \description{
-\code{ir_average} averages infrared spectra within
-a user-defined group. \code{NA} values are omitted by default
+\code{ir_average} averages infrared spectra within a user-defined group. \code{NA}
+values are omitted by default.
 }
 \examples{
-# average the sample data specta across sample types
+# average the sample data spectra across sample types
 x <-
   ir::ir_sample_data \%>\%
   ir::ir_average(sample_type)

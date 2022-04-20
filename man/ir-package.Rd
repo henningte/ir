@@ -6,7 +6,7 @@
 \alias{ir-package}
 \title{ir: Functions to Handle and Preprocess Infrared Spectra}
 \description{
-Functions to import and handle infrared spectra (import from .csv and Thermo Galactic's .spc, baseline correction, binning, clipping, interpolating, smoothing, averaging, adding, subtracting, dividing, multiplying, plotting).
+Functions to import and handle infrared spectra (import from '.csv' and Thermo Galactic's '.spc', baseline correction, binning, clipping, interpolating, smoothing, averaging, adding, subtracting, dividing, multiplying, plotting).
 }
 \seealso{
 Useful links:
@@ -16,7 +16,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Henning Teickner \email{h_teic01@uni-muenster.de} (\href{https://orcid.org/0000-0002-3993-1182}{ORCID})
+\strong{Maintainer}: Henning Teickner \email{henning.teickner@uni-muenster.de} (\href{https://orcid.org/0000-0002-3993-1182}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}

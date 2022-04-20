@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_smooth.R
 \name{ir_smooth}
 \alias{ir_smooth}
-\title{Smooths infrared spectra}
+\title{Smooths infrared spectra in an \code{ir} object}
 \usage{
 ir_smooth(
   x,
@@ -34,8 +34,7 @@ the polynom) of the Savitzky-Golay filter if \code{method = "sg"}.}
 wavenumber values used to construct the polynom) of the Savitzky-Golay filter
 if \code{method = "sg"}.}
 
-\item{ts}{time scaling factor. See
-\code{\link[signal:sgolayfilt]{signal::sgolayfilt()}}.}
+\item{ts}{time scaling factor. See \code{\link[signal:sgolayfilt]{signal::sgolayfilt()}}.}
 
 \item{m}{An integer value representing the mth derivative to compute. This
 option can be used to compute derivatives of spectra. See
@@ -48,8 +47,7 @@ functions to use as smoothed representation of the spectra if
 \item{...}{additional arguments (ignored).}
 }
 \value{
-An object of class \code{ir} containing the smoothed
-spectra.
+\code{x} with smoothed spectra.
 }
 \description{
 \code{ir_smooth} applies smoothing functions to infrared spectra.
@@ -65,7 +63,6 @@ means that the filter window (if \code{method == "sg"}) will be different for
 these different spectra.
 }
 \examples{
-\dontrun{
 #' # Savitzky-Golay smoothing
 x1 <-
    ir::ir_sample_data \%>\%
@@ -81,5 +78,5 @@ x2 <-
 x3 <-
    ir::ir_sample_data \%>\%
    ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 1)
-}
+
 }

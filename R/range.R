@@ -4,9 +4,13 @@
 #' intensity values of infrared spectra.
 #'
 #' @name range
+#'
 #' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @param ... Further arguments, ignored.
+#'
 #' @param na.rm A logical value. See [max()].
+#'
 #' @param .dimension A character value. Must be one of the following:
 #' \describe{
 #'   \item{"x"}{In this case, the minimum/maximum/range/median of x axis values
@@ -14,11 +18,14 @@
 #'   \item{"y"}{In this case, the minimum/maximum/range/median of intensity
 #'   values of the spectra in `x` are extracted.}
 #' }
+#'
 #' @param .col_names A character vector of length 2 representing the names of the
 #' columns in which to store the extracted values. The first element is the name
 #' for the column with minima values, the second the name for the column with
 #' maxima values.
+#'
 #' @return `x` with the extracted values.
+#'
 #' @examples
 #' # range of intensity values
 #' x1 <-
@@ -41,8 +48,10 @@ range.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_names = c("y_
 #' intensity value of infrared spectra.
 #'
 #' @rdname range
+#'
 #' @param .col_name A character value representing the name of the column in
 #' which to store the extracted values.
+#'
 #' @examples
 #' # minimum intensity values
 #' x1 <-
@@ -73,6 +82,7 @@ min.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_min")
 #' intensity value of infrared spectra.
 #'
 #' @rdname range
+#'
 #' @examples
 #' # maximum intensity values
 #' x1 <-
@@ -103,6 +113,7 @@ max.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_max")
 #' intensity value of infrared spectra.
 #'
 #' @rdname range
+#'
 #' @examples
 #' # median intensity values
 #' x1 <-
@@ -110,6 +121,7 @@ max.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_max")
 #'    stats::median(.dimension = "y")
 #'
 #' @importFrom stats median
+#'
 #' @export
 median.ir <- function(x, na.rm = FALSE, ..., .dimension = "y", .col_name = "y_median") {
 

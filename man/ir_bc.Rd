@@ -20,24 +20,20 @@ correction.}
 \code{\link[=ir_bc_sg]{ir_bc_sg()}}.}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
-should be returned in addition to the corrected intensity values
+should be returned instead of the corrected intensity values
 (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).}
 }
 \value{
-An object of class \code{ir} with the baseline
-corrected spectra and if \code{returnbl = TRUE} a new list column
-"baselines" with the baselines.
+An object of class \code{ir} with the baseline corrected spectra, or if
+\code{return_bl = TRUE}, the baselines instead of the spectra in column \code{spectra}.
 }
 \description{
-\code{ir_bc} performs baseline correction for infrared
-spectra. Baseline correction
-is either performed by using a polynomial with user defined
-degree fitted to each spectrum (see
-\code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}), or by using a
-rubberband function that is fitted to each spectrum
-(see \code{\link[hyperSpec:spc-rubberband]{hyperSpec::spc.rubberband()}}), or using a
-Savitzky-Golay smoothed version of the input spectra (see
-\code{\link[=ir_bc_sg]{ir_bc_sg()}}).
+\code{ir_bc} performs baseline correction for infrared spectra. Baseline
+correction is either performed by using a polynomial with user defined
+degree fitted to each spectrum (see \code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}), or by
+using a rubberband function that is fitted to each spectrum (see
+\code{\link[hyperSpec:spc-rubberband]{hyperSpec::spc.rubberband()}}), or using a Savitzky-Golay smoothed version of
+the input spectra (see \code{\link[=ir_bc_sg]{ir_bc_sg()}}).
 }
 \examples{
 # rubberband baseline correction
@@ -54,4 +50,10 @@ x2 <-
 x3 <-
    ir::ir_sample_data \%>\%
    ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
+
+# return the baseline instead of the baseline corrected spectra
+x1_bl <-
+   ir::ir_sample_data \%>\%
+   ir::ir_bc(method = "rubberband", return_bl = TRUE)
+
 }

@@ -1,4 +1,4 @@
-#' Removes empty data values in objects of class `ir`
+#' Removes empty data values in an object of class `ir`
 #'
 #' `ir_remove_missing` takes and object of class `ir` and removes all
 #' rows in the `data.frame`s of the list column `spectra` that have
@@ -7,10 +7,13 @@
 #' spectra.
 #'
 #' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @param remove_rows A logical value indicating if rows in `x` with empty
 #' spectra should be discarded (`remove_rows = TRUE`) or not
 #' (`remove_rows = FALSE`).
+#'
 #' @return `x` with cleaned spectra.
+#'
 #' @examples
 #' # create sample data with some missing rows and one entire missing spectra
 #' x <-
@@ -32,6 +35,7 @@
 #' nrow(x)
 #' nrow(x1)
 #' nrow(x2)
+#'
 #' @export
 ir_remove_missing <- function(x,
                               remove_rows = FALSE) {

@@ -7,15 +7,14 @@
 ir_bin(x, width = 10)
 }
 \arguments{
-\item{x}{An object of class \code{\link[=ir_new_ir]{ir}} with integer
-wavenumber values increasing by 1.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}} with integer wavenumber
+values increasing by 1.}
 
 \item{width}{An integer value indicating the wavenumber width of each
 resulting bin. Must be set to \code{NULL} if \code{n} is specified.}
 }
 \value{
-An object of class \code{ir} representing a binned version of
-\code{x}.
+An object of class \code{ir} where spectra have been binned.
 }
 \description{
 \code{ir_bin} bins intensity values of infrared spectra into bins of a
@@ -31,4 +30,5 @@ assigned to both neighboring bins.
 x <-
    ir::ir_sample_data \%>\%
    ir_bin(width = 50)
+
 }

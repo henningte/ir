@@ -48,6 +48,9 @@ automatically standardised to sum to 1.}
 \item{replace}{Should sampling be performed with (\code{TRUE}) or without
 (\code{FALSE}, the default) replacement.}
 }
+\value{
+\code{.data} with subsetted rows.
+}
 \description{
 Subset rows in \code{ir} objects using their positions
 }

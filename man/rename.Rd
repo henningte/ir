@@ -27,6 +27,11 @@ return a character vector the same length as the input.}
 \item{.cols}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Columns to rename;
 defaults to all columns.}
 }
+\value{
+\code{.data} with renamed columns. If the \code{spectra} column is renamed,
+and no new valid \code{spectra} column is created, the \code{ir} class is dropped, else
+the object is of class \code{ir}.
+}
 \description{
 Rename columns in \code{ir} objects
 }

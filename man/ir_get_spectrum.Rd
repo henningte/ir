@@ -14,15 +14,14 @@ for which to extract the spectrum.}
 }
 \value{
 An integer vector with the same length as \code{wavenumber} with the
-row indices of \code{x} corresponding to the wavenumber values in
-\code{wavenumber}.
+row indices of \code{x} corresponding to the wavenumber values in \code{wavenumber}.
 }
 \description{
-\code{ir_get_spectrum} extracts selected spectra from an object of class
-\code{ir}.
+\code{ir_get_spectrum} extracts selected spectra from an object of class \code{ir}.
 }
 \examples{
 x <-
    ir::ir_sample_data \%>\%
    ir::ir_get_spectrum(what = c(5, 9))
+
 }

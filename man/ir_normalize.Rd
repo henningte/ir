@@ -3,7 +3,7 @@
 \name{ir_normalize}
 \alias{ir_normalize}
 \alias{ir_normalise}
-\title{Normalizes infrared spectra}
+\title{Normalizes infrared spectra in an \code{ir} object}
 \usage{
 ir_normalize(x, method = "area")
 

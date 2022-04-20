@@ -16,6 +16,8 @@ anti_join.ir(x, y, by = NULL, copy = FALSE, ..., na_matches = c("na", "never"))
 \arguments{
 \item{x}{An object of class \code{ir}.}
 
+\item{y}{A data frame.}
+
 \item{by}{A character vector of variables to join by.
 
 If \code{NULL}, the default, \verb{*_join()} will perform a natural join, using all
@@ -64,6 +66,7 @@ dplyr::semi_join(
   by = "id_measurement"
 )
 
+
 ## anti_join
 set.seed(234)
 dplyr::anti_join(
@@ -74,5 +77,6 @@ dplyr::anti_join(
   ),
   by = "id_measurement"
 )
+
 
 }

@@ -47,7 +47,9 @@ Group rows in \code{ir} objects by one or more variables
 ## group_by
 dplyr::group_by(ir_sample_data, sample_type)
 
+
 ## ungroup
 dplyr::ungroup(dplyr::group_by(ir_sample_data, sample_type))
+
 
 }

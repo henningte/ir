@@ -11,7 +11,7 @@
 \usage{
 rename.ir(.data, ...)
 
-rename_with.ir(.data, .fn, .cols = everything(), ...)
+rename_with.ir(.data, .fn, .cols = dplyr::everything(), ...)
 }
 \arguments{
 \item{.data}{An object of class \code{ir}.}
@@ -35,8 +35,11 @@ Rename columns in \code{ir} objects
 dplyr::rename(ir_sample_data, hol = "holocellulose")
 dplyr::rename(ir_sample_data, spec = "spectra") # drops ir class
 
+
 ## rename_with
-dplyr::rename(ir_sample_data, dplyr::starts_with("id_"))
-dplyr::rename(ir_sample_data, toupper) # drops ir class
+dplyr::rename_with(ir_sample_data, .cols = dplyr::starts_with("id_"),
+  toupper)
+dplyr::rename_with(ir_sample_data, toupper) # drops ir class
+
 
 }

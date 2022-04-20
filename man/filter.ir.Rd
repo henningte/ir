@@ -28,4 +28,5 @@ Subset rows in \code{ir} objects using column values
 ## filter
 dplyr::filter(ir_sample_data, sample_type == "office paper")
 
+
 }

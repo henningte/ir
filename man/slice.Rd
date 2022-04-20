@@ -3,10 +3,6 @@
 \name{slice}
 \alias{slice}
 \alias{slice.ir}
-\alias{slice_head.ir}
-\alias{slice_tail.ir}
-\alias{slice_min.ir}
-\alias{slice_max.ir}
 \alias{slice_sample.ir}
 \title{Subset rows in \code{ir} objects using their positions}
 \source{
@@ -14,14 +10,6 @@
 }
 \usage{
 slice.ir(.data, ..., .preserve = FALSE)
-
-slice_head.ir(.data, ..., n, prop)
-
-slice_tail.ir(.data, ..., n, prop)
-
-slice_min.ir(.data, order_by, ..., n, prop, with_ties = TRUE)
-
-slice_max.ir(.data, order_by, ..., n, prop, with_ties = TRUE)
 
 slice_sample.ir(.data, ..., n, prop, weight_by = NULL, replace = FALSE)
 }
@@ -53,12 +41,6 @@ the result will be silently truncated to the group size. If the
 \code{prop}ortion of a group size does not yield an integer number of rows, the
 absolute value of \code{prop*nrow(.data)} is rounded down.}
 
-\item{order_by}{Variable or function of variables to order by.}
-
-\item{with_ties}{Should ties be kept together? The default, \code{TRUE},
-may return more rows than you request. Use \code{FALSE} to ignore ties,
-and return the first \code{n} rows.}
-
 \item{weight_by}{Sampling weights. This must evaluate to a vector of
 non-negative numbers the same length as the input. Weights are
 automatically standardised to sum to 1.}
@@ -72,21 +54,14 @@ Subset rows in \code{ir} objects using their positions
 \examples{
 ## slice
 dplyr::slice(ir_sample_data, 1:5)
-
-## slice_head
-dplyr::slice_head(ir_sample_data, 5)
-
-## slice_tail
-dplyr::slice_tail(ir_sample_data, 5)
-
-## slice_min
 dplyr::slice_min(ir_sample_data, holocellulose, n = 3)
-
-## slice_max
 dplyr::slice_max(ir_sample_data, holocellulose, n = 3)
+dplyr::slice_head(ir_sample_data, n = 5)
+dplyr::slice_tail(ir_sample_data, n = 5)
 
 ## slice_sample
 set.seed(234)
 dplyr::slice_sample(ir_sample_data, n = 3)
+
 
 }

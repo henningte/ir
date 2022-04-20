@@ -25,4 +25,5 @@ Arrange rows in \code{ir} objects by column values
 ## arrange
 dplyr::arrange(ir_sample_data, dplyr::desc(sample_type))
 
+
 }

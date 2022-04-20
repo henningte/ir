@@ -7,29 +7,19 @@
 \code{\link[tidyr:separate_rows]{tidyr::separate_rows()}}
 }
 \usage{
-separate_rows.ir(
-  data,
-  col,
-  into,
-  sep = "[^[:alnum:]]+",
-  remove = TRUE,
-  convert = FALSE,
-  extra = "warn",
-  fill = "warn",
-  ...
-)
+separate_rows.ir(data, ..., sep = "[^[:alnum:].]+", convert = FALSE)
 }
 \arguments{
 \item{data}{An object of class \code{ir}.}
+
+\item{...}{<\code{\link[tidyr:tidyr_tidy_select]{tidy-select}}> Columns to separate across
+multiple rows}
 
 \item{sep}{Separator delimiting collapsed values.}
 
 \item{convert}{If \code{TRUE} will automatically run
 \code{\link[=type.convert]{type.convert()}} on the key column. This is useful if the column
 types are actually numeric, integer, or logical.}
-
-\item{...}{<\code{\link[tidyr:tidyr_tidy_select]{tidy-select}}> Columns to separate across
-multiple rows}
 }
 \description{
 Separate a collapsed column in an \code{ir} object into multiple rows
@@ -38,10 +28,11 @@ Separate a collapsed column in an \code{ir} object into multiple rows
 ## separate_rows
 ir_sample_data \%>\%
   tidyr::unite(
-    content, holocellulose, klason_lignin
+    col = content, holocellulose, klason_lignin
   ) \%>\%
   tidyr::separate_rows(
-    content
+    col
   )
+
 
 }

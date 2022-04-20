@@ -15,9 +15,9 @@ unite.ir(data, col, ..., sep = "_", remove = TRUE, na.rm = FALSE)
 \item{col}{The name of the new column, as a string or symbol.
 
 This argument is passed by expression and supports
-\link[rlang:quasiquotation]{quasiquotation} (you can unquote strings
+\link[rlang:nse-force]{quasiquotation} (you can unquote strings
 and symbols). The name is captured from the expression with
-\code{\link[rlang:ensym]{rlang::ensym()}} (note that this kind of interface where
+\code{\link[rlang:nse-defuse]{rlang::ensym()}} (note that this kind of interface where
 symbols do not represent actual objects is now discouraged in the
 tidyverse; we support it here for backward compatibility).}
 
@@ -37,8 +37,9 @@ Unite multiple columns in an \code{ir} object into one by pasting strings togeth
 ## unite
 ir_sample_data \%>\%
   tidyr::separate(
-    id_sample,  c("a", "b", "c")
+    "id_sample",  c("a", "b", "c")
   ) \%>\%
-  tidyr::unite(col = id_sample, a, b, c)
+  tidyr::unite(id_sample, a, b, c)
+
 
 }

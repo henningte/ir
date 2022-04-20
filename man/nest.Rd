@@ -32,7 +32,7 @@ unnest.ir(
 using name-variable pairs of the form \code{new_col = c(col1, col2, col3)}.
 The right hand side can be any valid tidy select expression.
 
-\Sexpr[results=rd, stage=render]{lifecycle::badge("deprecated")}:
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 previously you could write \code{df \%>\% nest(x, y, z)} and \code{df \%>\% unnest(x, y, z)}. Convert to \code{df \%>\% nest(data = c(x, y, z))}.
 and \code{df \%>\% unnest(c(x, y, z))}.
 
@@ -40,18 +40,7 @@ If you previously created new variable in \code{unnest()} you'll now need to
 do it explicitly with \code{mutate()}. Convert \code{df \%>\% unnest(y = fun(x, y, z))}
 to \code{df \%>\% mutate(y = fun(x, y, z)) \%>\% unnest(y)}.}
 
-\item{.names_sep, .names_sep}{If \code{NULL}, the default, the names will be left
-as is. In \code{nest()}, inner names will come from the former outer names;
-in \code{unnest()}, the new outer names will come from the inner names.
-
-If a string, the inner and outer names will be used together. In \code{nest()},
-the names of the new outer columns will be formed by pasting together the
-outer and the inner column names, separated by \code{names_sep}. In \code{unnest()},
-the new inner names will have the outer names (+ \code{names_sep}) automatically
-stripped. This makes \code{names_sep} roughly symmetric between nesting and
-unnesting.}
-
-\item{.key}{\Sexpr[results=rd, stage=render]{lifecycle::badge("deprecated")}:
+\item{.key}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 No longer needed because of the new \code{new_col = c(col1, col2, col3)} syntax.}
 
 \item{data}{A data frame.}
@@ -69,9 +58,21 @@ will be dropped from the output. If you want to preserve all rows,
 use \code{keep_empty = TRUE} to replace size-0 elements with a single row
 of missing values.}
 
-\item{ptype}{Optionally, supply a data frame prototype for the output \code{cols},
-overriding the default that will be guessed from the combination of
-individual values.}
+\item{ptype}{Optionally, a named list of column name-prototype pairs to
+coerce \code{cols} to, overriding the default that will be guessed from
+combining the individual values. Alternatively, a single empty ptype
+can be supplied, which will be applied to all \code{cols}.}
+
+\item{names_sep, .names_sep}{If \code{NULL}, the default, the names will be left
+as is. In \code{nest()}, inner names will come from the former outer names;
+in \code{unnest()}, the new outer names will come from the inner names.
+
+If a string, the inner and outer names will be used together. In
+\code{unnest()}, the names of the new outer columns will be formed by pasting
+together the outer and the inner column names, separated by \code{names_sep}. In
+\code{nest()}, the new inner names will have the outer names + \code{names_sep}
+automatically stripped. This makes \code{names_sep} roughly symmetric between
+nesting and unnesting.}
 
 \item{names_repair}{Used to check that output data frame has valid
 names. Must be one of the following options:
@@ -88,15 +89,15 @@ names. Must be one of the following options:
 See \code{\link[vctrs:vec_as_names]{vctrs::vec_as_names()}} for more details on these terms and the
 strategies used to enforce them.}
 
-\item{.drop, .preserve}{\Sexpr[results=rd, stage=render]{lifecycle::badge("deprecated")}:
+\item{.drop, .preserve}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 all list-columns are now preserved; If there are any that you
 don't want in the output use \code{select()} to remove them prior to
 unnesting.}
 
-\item{.id}{\Sexpr[results=rd, stage=render]{lifecycle::badge("deprecated")}:
+\item{.id}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 convert \code{df \%>\% unnest(x, .id = "id")} to \verb{df \%>\% mutate(id = names(x)) \%>\% unnest(x))}.}
 
-\item{.sep}{\Sexpr[results=rd, stage=render]{lifecycle::badge("deprecated")}:
+\item{.sep}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 use \code{names_sep} instead.}
 }
 \description{
@@ -109,11 +110,13 @@ ir_sample_data \%>\%
     contents = c(holocellulose, klason_lignin)
   )
 
+
 ## unnest
 ir_sample_data \%>\%
   tidyr::nest(
     contents = c(holocellulose, klason_lignin)
   ) \%>\%
   tidyr::unnest("contents")
+
 
 }

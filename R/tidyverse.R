@@ -12,8 +12,9 @@
 #' ## filter
 #' dplyr::filter(ir_sample_data, sample_type == "office paper")
 #'
-#' @export
+#'
 filter.ir <- function(.data, ..., .preserve = FALSE) {
+  class(.data) <- setdiff(class(.data), "ir")
   ir_reclass_ir(NextMethod())
 }
 
@@ -30,7 +31,7 @@ filter.ir <- function(.data, ..., .preserve = FALSE) {
 #' ## arrange
 #' dplyr::arrange(ir_sample_data, dplyr::desc(sample_type))
 #'
-#' @export
+#'
 arrange.ir <- function(.data, ..., .by_group = FALSE) {
   ir_reclass_ir(NextMethod())
 }
@@ -50,7 +51,7 @@ arrange.ir <- function(.data, ..., .by_group = FALSE) {
 #' ## group_by
 #' dplyr::group_by(ir_sample_data, sample_type)
 #'
-#' @export
+#'
 group_by.ir <- function(.data, ..., .add = FALSE, .drop = dplyr::group_by_drop_default(.data)) {
   ir_reclass_ir(NextMethod())
 }
@@ -62,7 +63,7 @@ group_by.ir <- function(.data, ..., .add = FALSE, .drop = dplyr::group_by_drop_d
 #' ## ungroup
 #' dplyr::ungroup(dplyr::group_by(ir_sample_data, sample_type))
 #'
-#' @export
+#'
 ungroup.ir <- function(.data, ...) {
   ir_reclass_ir(NextMethod())
 }
@@ -79,9 +80,15 @@ ungroup.ir <- function(.data, ...) {
 #' @examples
 #' ## rowwise
 #' dplyr::rowwise(ir_sample_data) %>%
-#'   dplyr::mutate(hkl = mean(klason_lignin, holocellulose))
+#'   dplyr::mutate(
+#'     hkl =
+#'       mean(
+#'         units::drop_units(klason_lignin),
+#'         units::drop_units(holocellulose)
+#'       )
+#'   )
 #'
-#' @export
+#'
 rowwise.ir <- function(.data, ...) {
   ir_reclass_ir(NextMethod())
 }
@@ -101,7 +108,7 @@ rowwise.ir <- function(.data, ...) {
 #' ## mutate
 #' dplyr::mutate(ir_sample_data, hkl = klason_lignin + holocellulose)
 #'
-#' @export
+#'
 mutate.ir <- function(
   .data,
   ...,
@@ -118,7 +125,7 @@ mutate.ir <- function(
 #' ## transmute
 #' dplyr::transmute(ir_sample_data, hkl = klason_lignin + holocellulose)
 #'
-#' @export
+#'
 transmute.ir <- function(.data, ...) {
   ir_reclass_ir(NextMethod())
 }
@@ -137,7 +144,7 @@ transmute.ir <- function(.data, ...) {
 #' dplyr::select(ir_sample_data, spectra)
 #' dplyr::select(ir_sample_data, holocellulose) # drops ir class
 #'
-#' @export
+#'
 select.ir <- function(.data, ...) {
   ir_reclass_ir(NextMethod())
 }
@@ -158,7 +165,7 @@ select.ir <- function(.data, ...) {
 #' dplyr::rename(ir_sample_data, hol = "holocellulose")
 #' dplyr::rename(ir_sample_data, spec = "spectra") # drops ir class
 #'
-#' @export
+#'
 rename.ir <- function(.data, ...) {
   ir_reclass_ir(NextMethod())
 }
@@ -167,11 +174,12 @@ rename.ir <- function(.data, ...) {
 #'
 #' @examples
 #' ## rename_with
-#' dplyr::rename(ir_sample_data, dplyr::starts_with("id_"))
-#' dplyr::rename(ir_sample_data, toupper) # drops ir class
+#' dplyr::rename_with(ir_sample_data, .cols = dplyr::starts_with("id_"),
+#'   toupper)
+#' dplyr::rename_with(ir_sample_data, toupper) # drops ir class
 #'
-#' @export
-rename_with.ir <- function(.data, .fn, .cols = everything(), ...) {
+#'
+rename_with.ir <- function(.data, .fn, .cols = dplyr::everything(), ...) {
   ir_reclass_ir(NextMethod())
 }
 
@@ -189,57 +197,12 @@ rename_with.ir <- function(.data, .fn, .cols = everything(), ...) {
 #' @examples
 #' ## slice
 #' dplyr::slice(ir_sample_data, 1:5)
-#'
-#' @export
-slice.ir <- function(.data, ..., .preserve = FALSE) {
-  ir_reclass_ir(NextMethod())
-}
-
-
-#' @rdname slice
-#'
-#' @examples
-#' ## slice_head
-#' dplyr::slice_head(ir_sample_data, 5)
-#'
-#' @export
-slice_head.ir <- function(.data, ..., n, prop) {
-  ir_reclass_ir(NextMethod())
-}
-
-
-#' @rdname slice
-#'
-#' @examples
-#' ## slice_tail
-#' dplyr::slice_tail(ir_sample_data, 5)
-#'
-#' @export
-slice_tail.ir <- function(.data, ..., n, prop) {
-  ir_reclass_ir(NextMethod())
-}
-
-
-#' @rdname slice
-#'
-#' @examples
-#' ## slice_min
 #' dplyr::slice_min(ir_sample_data, holocellulose, n = 3)
-#'
-#' @export
-slice_min.ir <- function(.data, order_by, ..., n, prop, with_ties = TRUE) {
-  ir_reclass_ir(NextMethod())
-}
-
-
-#' @rdname slice
-#'
-#' @examples
-#' ## slice_max
 #' dplyr::slice_max(ir_sample_data, holocellulose, n = 3)
+#' dplyr::slice_head(ir_sample_data, n = 5)
+#' dplyr::slice_tail(ir_sample_data, n = 5)
 #'
-#' @export
-slice_max.ir <- function(.data, order_by, ..., n, prop, with_ties = TRUE) {
+slice.ir <- function(.data, ..., .preserve = FALSE) {
   ir_reclass_ir(NextMethod())
 }
 
@@ -251,7 +214,7 @@ slice_max.ir <- function(.data, order_by, ..., n, prop, with_ties = TRUE) {
 #' set.seed(234)
 #' dplyr::slice_sample(ir_sample_data, n = 3)
 #'
-#' @export
+#'
 slice_sample.ir <- function(.data, ..., n, prop, weight_by = NULL, replace = FALSE) {
   ir_reclass_ir(NextMethod())
 }
@@ -276,14 +239,14 @@ slice_sample.ir <- function(.data, ..., n, prop, weight_by = NULL, replace = FAL
 #'   dplyr::group_by(sample_type) %>%
 #'   dplyr::summarize(spectra = spectra[[1]])
 #'
-#' @export
+#'
 summarize.ir <- function(.data, ..., .groups = NULL) {
   ir_reclass_ir(NextMethod())
 }
 
 #' @rdname summarize
 #'
-#' @export
+#'
 summarise.ir <- summarize.ir
 
 
@@ -299,7 +262,7 @@ summarise.ir <- summarize.ir
 #' ## distinct
 #' dplyr::distinct(rep(ir_sample_data, 2))
 #'
-#' @export
+#'
 distinct.ir <- function(.data, ..., .keep_all = FALSE) {
   ir_reclass_ir(NextMethod())
 }
@@ -309,7 +272,7 @@ distinct.ir <- function(.data, ..., .keep_all = FALSE) {
 #'
 #' @inheritParams tidyr::pivot_longer
 #'
-#' @param .data An object of class `ir`.
+#' @param data An object of class `ir`.
 #'
 #' @source [tidyr::pivot_longer()]
 #'
@@ -320,7 +283,7 @@ distinct.ir <- function(.data, ..., .keep_all = FALSE) {
 #'     cols = dplyr::any_of(c("holocellulose", "klason_lignin"))
 #'   )
 #'
-#' @export
+#'
 pivot_longer.ir <- function(
   data,
   cols,
@@ -344,7 +307,7 @@ pivot_longer.ir <- function(
 #'
 #' @inheritParams tidyr::pivot_wider
 #'
-#' @param .data An object of class `ir`.
+#' @param data An object of class `ir`.
 #'
 #' @source [tidyr::pivot_wider()]
 #'
@@ -354,19 +317,19 @@ pivot_longer.ir <- function(
 #'   tidyr::pivot_longer(
 #'     cols = dplyr::any_of(c("holocellulose", "klason_lignin"))
 #'   ) %>%
-#'   tidyr::pivot_wider(names_from = name, values_from = value)
+#'   tidyr::pivot_wider(names_from = "name", values_from = "value")
 #'
-#' @export
+#'
 pivot_wider.ir <- function(
   data,
   id_cols = NULL,
-  names_from = name,
+  names_from = "name",
   names_prefix = "",
   names_sep = "_",
   names_glue = NULL,
   names_sort = FALSE,
   names_repair = "check_unique",
-  values_from = value,
+  values_from = "value",
   values_fill = NULL,
   values_fn = NULL,
   ...)
@@ -383,6 +346,17 @@ pivot_wider.ir <- function(
 #'
 #' @param .data An object of class `ir`.
 #'
+#' @param names_sep,.names_sep If `NULL`, the default, the names will be left
+#'   as is. In `nest()`, inner names will come from the former outer names;
+#'   in `unnest()`, the new outer names will come from the inner names.
+#'
+#'   If a string, the inner and outer names will be used together. In
+#'   `unnest()`, the names of the new outer columns will be formed by pasting
+#'   together the outer and the inner column names, separated by `names_sep`. In
+#'   `nest()`, the new inner names will have the outer names + `names_sep`
+#'   automatically stripped. This makes `names_sep` roughly symmetric between
+#'   nesting and unnesting.
+#'
 #' @source [tidyr::nest()]
 #'
 #' @examples
@@ -392,7 +366,7 @@ pivot_wider.ir <- function(
 #'     contents = c(holocellulose, klason_lignin)
 #'   )
 #'
-#' @export
+#'
 nest.ir <- function(.data, ..., .names_sep = NULL, .key = deprecated()) {
   ir_reclass_ir(NextMethod())
 }
@@ -408,7 +382,7 @@ nest.ir <- function(.data, ..., .names_sep = NULL, .key = deprecated()) {
 #'   ) %>%
 #'   tidyr::unnest("contents")
 #'
-#' @export
+#'
 unnest.ir <- function(
   data,
   cols,
@@ -438,10 +412,10 @@ unnest.ir <- function(
 #' ## separate
 #' ir_sample_data %>%
 #'   tidyr::separate(
-#'     id_sample,  c("a", "b", "c")
+#'     col = "id_sample",  c("a", "b", "c")
 #'   )
 #'
-#' @export
+#'
 separate.ir <- function(
   data,
   col,
@@ -469,11 +443,11 @@ separate.ir <- function(
 #' ## unite
 #' ir_sample_data %>%
 #'   tidyr::separate(
-#'     id_sample,  c("a", "b", "c")
+#'     "id_sample",  c("a", "b", "c")
 #'   ) %>%
-#'   tidyr::unite(col = id_sample, a, b, c)
+#'   tidyr::unite(id_sample, a, b, c)
 #'
-#' @export
+#'
 unite.ir <- function(data, col, ..., sep = "_", remove = TRUE, na.rm = FALSE) {
   ir_reclass_ir(NextMethod())
 }
@@ -494,7 +468,7 @@ unite.ir <- function(data, col, ..., sep = "_", remove = TRUE, na.rm = FALSE) {
 #'     id_sample,  "a"
 #'   )
 #'
-#' @export
+#'
 extract.ir <- function(
   data,
   col,
@@ -520,23 +494,14 @@ extract.ir <- function(
 #' ## separate_rows
 #' ir_sample_data %>%
 #'   tidyr::unite(
-#'     content, holocellulose, klason_lignin
+#'     col = content, holocellulose, klason_lignin
 #'   ) %>%
 #'   tidyr::separate_rows(
-#'     content
+#'     col
 #'   )
 #'
-#' @export
-separate_rows.ir <- function(
-  data,
-  col,
-  into,
-  sep = "[^[:alnum:]]+",
-  remove = TRUE,
-  convert = FALSE,
-  extra = "warn",
-  fill = "warn",
-  ...)
+#'
+separate_rows.ir <- function(data, ..., sep = "[^[:alnum:].]+", convert = FALSE)
 {
   ir_reclass_ir(NextMethod())
 }
@@ -549,6 +514,8 @@ separate_rows.ir <- function(
 #' @name mutate-joins
 #'
 #' @param x An object of class `ir`.
+#'
+#' @param y A data frame.
 #'
 #' @inheritParams dplyr::left_join
 #'
@@ -570,7 +537,7 @@ NULL
 #'   by = "id_measurement"
 #' )
 #'
-#' @export
+#'
 inner_join.ir <- function(
   x,
   y,
@@ -599,7 +566,7 @@ inner_join.ir <- function(
 #'   by = "id_measurement"
 #' )
 #'
-#' @export
+#'
 left_join.ir <- function(
   x,
   y,
@@ -628,7 +595,7 @@ left_join.ir <- function(
 #'   by = "id_measurement"
 #' )
 #'
-#' @export
+#'
 right_join.ir <- function(
   x,
   y,
@@ -657,7 +624,7 @@ right_join.ir <- function(
 #'   by = "id_measurement"
 #' )
 #'
-#' @export
+#'
 full_join.ir <- function(
   x,
   y,
@@ -677,6 +644,7 @@ full_join.ir <- function(
 #' @name filter-joins
 #'
 #' @param x An object of class `ir`.
+#' @param y A data frame.
 #'
 #' @inheritParams dplyr::semi_join
 #'
@@ -698,7 +666,7 @@ NULL
 #'   by = "id_measurement"
 #' )
 #'
-#' @export
+#'
 semi_join.ir <- function(x, y, by = NULL, copy = FALSE, ..., na_matches = c("na", "never")) {
   ir_reclass_ir(NextMethod())
 }
@@ -718,7 +686,7 @@ semi_join.ir <- function(x, y, by = NULL, copy = FALSE, ..., na_matches = c("na"
 #'   by = "id_measurement"
 #' )
 #'
-#' @export
+#'
 anti_join.ir <- function(x, y, by = NULL, copy = FALSE, ..., na_matches = c("na", "never")) {
   ir_reclass_ir(NextMethod())
 }

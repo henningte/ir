@@ -27,6 +27,13 @@ Group input \code{ir} objects by rows
 \examples{
 ## rowwise
 dplyr::rowwise(ir_sample_data) \%>\%
-  dplyr::mutate(hkl = mean(klason_lignin, holocellulose))
+  dplyr::mutate(
+    hkl =
+      mean(
+        units::drop_units(klason_lignin),
+        units::drop_units(holocellulose)
+      )
+  )
+
 
 }

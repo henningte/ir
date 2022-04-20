@@ -25,4 +25,5 @@ Subset columns in \code{ir} objects using column names and types
 dplyr::select(ir_sample_data, spectra)
 dplyr::select(ir_sample_data, holocellulose) # drops ir class
 
+
 }

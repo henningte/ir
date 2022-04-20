@@ -40,10 +40,10 @@ ir_subtract <- function(x, y) {
     }
     y_is_ir <- TRUE
 
-    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
       rlang::abort("`y` must either have only one row or as many rows as `x`.")
     }
-    if(nrow(y == 1)) {
+    if(nrow(y) == 1) {
       y <- rep(y, nrow(x))
     }
 
@@ -100,10 +100,10 @@ ir_add <- function(x, y) {
     }
     y_is_ir <- TRUE
 
-    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
       rlang::abort("`y` must either have only one row or as many rows as `x`.")
     }
-    if(nrow(y == 1)) {
+    if(nrow(y) == 1) {
       y <- rep(y, nrow(x))
     }
 
@@ -168,10 +168,10 @@ ir_multiply <- function(x, y) {
     }
     y_is_ir <- TRUE
 
-    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
       rlang::abort("`y` must either have only one row or as many rows as `x`.")
     }
-    if(nrow(y == 1)) {
+    if(nrow(y) == 1) {
       y <- rep(y, nrow(x))
     }
 
@@ -237,10 +237,10 @@ ir_divide <- function(x, y) {
     }
     y_is_ir <- TRUE
 
-    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
       rlang::abort("`y` must either have only one row or as many rows as `x`.")
     }
-    if(nrow(y == 1)) {
+    if(nrow(y) == 1) {
       y <- rep(y, nrow(x))
     }
 

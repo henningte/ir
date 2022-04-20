@@ -61,7 +61,9 @@ Mutate an \code{ir} object by adding new or replacing existing columns
 ## mutate
 dplyr::mutate(ir_sample_data, hkl = klason_lignin + holocellulose)
 
+
 ## transmute
 dplyr::transmute(ir_sample_data, hkl = klason_lignin + holocellulose)
+
 
 }

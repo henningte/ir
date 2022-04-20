@@ -26,7 +26,7 @@ separate.ir(
 \code{\link[tidyselect:vars_pull]{tidyselect::vars_pull()}}.
 
 This argument is passed by expression and supports
-\link[rlang:quasiquotation]{quasiquotation} (you can unquote column
+\link[rlang:nse-force]{quasiquotation} (you can unquote column
 names or column positions).}
 
 \item{into}{Names of new variables to create as character vector.
@@ -76,7 +76,8 @@ Separate a character column in an \code{ir} object into multiple columns with a 
 ## separate
 ir_sample_data \%>\%
   tidyr::separate(
-    id_sample,  c("a", "b", "c")
+    col = "id_sample",  c("a", "b", "c")
   )
+
 
 }

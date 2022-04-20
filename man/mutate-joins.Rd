@@ -58,6 +58,8 @@ full_join.ir(
 \arguments{
 \item{x}{An object of class \code{ir}.}
 
+\item{y}{A data frame.}
+
 \item{by}{A character vector of variables to join by.
 
 If \code{NULL}, the default, \verb{*_join()} will perform a natural join, using all
@@ -113,6 +115,7 @@ dplyr::inner_join(
   by = "id_measurement"
 )
 
+
 ## left_join
 set.seed(234)
 dplyr::left_join(
@@ -123,6 +126,7 @@ dplyr::left_join(
   ),
   by = "id_measurement"
 )
+
 
 ## right_join
 set.seed(234)
@@ -135,6 +139,7 @@ dplyr::right_join(
   by = "id_measurement"
 )
 
+
 ## full_join
 set.seed(234)
 dplyr::full_join(
@@ -145,5 +150,6 @@ dplyr::full_join(
   ),
   by = "id_measurement"
 )
+
 
 }

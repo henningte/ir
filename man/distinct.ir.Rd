@@ -28,4 +28,5 @@ Subset distinct/unique rows in \code{ir} objects
 ## distinct
 dplyr::distinct(rep(ir_sample_data, 2))
 
+
 }

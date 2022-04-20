@@ -10,20 +10,20 @@
 pivot_wider.ir(
   data,
   id_cols = NULL,
-  names_from = name,
+  names_from = "name",
   names_prefix = "",
   names_sep = "_",
   names_glue = NULL,
   names_sort = FALSE,
   names_repair = "check_unique",
-  values_from = value,
+  values_from = "value",
   values_fill = NULL,
   values_fn = NULL,
   ...
 )
 }
 \arguments{
-\item{data}{A data frame to pivot.}
+\item{data}{An object of class \code{ir}.}
 
 \item{id_cols}{<\code{\link[tidyr:tidyr_tidy_select]{tidy-select}}> A set of columns that
 uniquely identifies each observation. Defaults to all columns in \code{data}
@@ -63,19 +63,18 @@ for more options.}
 \item{values_fill}{Optionally, a (scalar) value that specifies what each
 \code{value} should be filled in with when missing.
 
-This can be a named list if you want to apply different aggregations
-to different value columns.}
+This can be a named list if you want to apply different fill values to
+different value columns.}
 
-\item{values_fn}{Optionally, a function applied to the \code{value} in each cell
+\item{values_fn}{Optionally, a function applied to the value in each cell
 in the output. You will typically use this when the combination of
-\code{id_cols} and \code{value} column does not uniquely identify an observation.
+\code{id_cols} and \code{names_from} columns does not uniquely identify an
+observation.
 
 This can be a named list if you want to apply different aggregations
-to different value columns.}
+to different \code{values_from} columns.}
 
 \item{...}{Additional arguments passed on to methods.}
-
-\item{.data}{An object of class \code{ir}.}
 }
 \description{
 Pivot an \code{sf} object from wide to long
@@ -86,6 +85,7 @@ ir_sample_data \%>\%
   tidyr::pivot_longer(
     cols = dplyr::any_of(c("holocellulose", "klason_lignin"))
   ) \%>\%
-  tidyr::pivot_wider(names_from = name, values_from = value)
+  tidyr::pivot_wider(names_from = "name", values_from = "value")
+
 
 }

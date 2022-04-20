@@ -23,18 +23,18 @@
 \method{median}{ir}(x, na.rm = FALSE, ..., .dimension = "y", .col_name = "y_median")
 }
 \arguments{
-\item{x}{An object of class \code{\link{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{...}{Further arguments, ignored.}
 
-\item{na.rm}{A logical value. See \code{\link{max}}.}
+\item{na.rm}{A logical value. See \code{\link[=max]{max()}}.}
 
 \item{.dimension}{A character value. Must be one of the following:
 \describe{
-  \item{"x"}{In this case, the minimum/maximum/range/median of x axis values
-  of the spectra in \code{x} are extracted.}
-  \item{"y"}{In this case, the minimum/maximum/range/median of intensity
-  values of the spectra in \code{x} are extracted.}
+\item{"x"}{In this case, the minimum/maximum/range/median of x axis values
+of the spectra in \code{x} are extracted.}
+\item{"y"}{In this case, the minimum/maximum/range/median of intensity
+values of the spectra in \code{x} are extracted.}
 }}
 
 \item{.col_names}{A character vector of length 2 representing the names of the

@@ -18,7 +18,7 @@ ir_as_ir(x, ...)
 \item{...}{Further arguments passed to individual methods.
 \itemize{
 \item If \code{x} is a data frame or an object of class \code{ir}, these are
-  ignored.
+ignored.
 }}
 }
 \value{
@@ -26,7 +26,7 @@ An object of class \code{ir}.
 }
 \description{
 \code{ir_as_ir} ir the generic to convert an object to an object of class
-\code{\link{ir}}.
+\code{\link[=ir_new_ir]{ir}}.
 }
 \examples{
 # conversion from an ir object
@@ -43,5 +43,12 @@ x_df <-
     spectra = x_ir$spectra
   ) \%>\%
   ir_as_ir()
+
+# check that ir_as_ir preserves the input class
+ir_sample_data \%>\%
+  structure(class = setdiff(class(.), "ir")) \%>\%
+  dplyr::group_by(sample_type) \%>\%
+  ir_as_ir()
+
 
 }

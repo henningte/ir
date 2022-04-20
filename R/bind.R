@@ -1,14 +1,14 @@
-#' Bind rows of \code{ir} objects
+#' Bind rows of `ir` objects
 #'
 #' @name bind
 #'
-#' @param ... Objects to bind together. For \code{cbind}, only the first of the
-#' objects is allowed to be of class \code{ir}.
+#' @param ... Objects to bind together. For `cbind`, only the first of the
+#' objects is allowed to be of class `ir`.
 #'
-#' @param deparse.level An integer value; see \code{\link{rbind}}.
+#' @param deparse.level An integer value; see [rbind()].
 #'
-#' @return An object of class \code{ir}. \code{rbind} returns all input
-#' \code{ir} objects combined row-wise. \code{cbind} returns the input \code{ir}
+#' @return An object of class `ir`. `rbind` returns all input
+#' `ir` objects combined row-wise. `cbind` returns the input `ir`
 #' object and the other objects combined column-wise.
 #'
 #' @examples

@@ -11,35 +11,35 @@ ir_import_spc(filenames)
 the .spc files to import.}
 }
 \value{
-An object of class \code{\link[ir:ir_new_ir]{ir}} containing the
+An object of class \code{\link[=ir_new_ir]{ir}} containing the
 infrared spectra extracted from the .spc file(s) and the metadata as
-extracted by \code{\link[hyperSpec:read.spc]{read.spc}}. Metadata variables
+extracted by \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}. Metadata variables
 are:
 \describe{
-  \item{scan_number}{An integer value representing the number of scans.}
-  \item{detection_gain_factor}{The detection gain factor.}
-  \item{scan_speed}{The scan speed [kHz].}
-  \item{laser_wavenumber}{The wavenumber of the laser.}
-  \item{detector_name}{The name of the detector.}
-  \item{source_name}{The name of the infrared radiation source.}
-  \item{purge_delay}{The duration of purge delay before a measurement [s].}
-  \item{zero_filling_factor}{A numeric value representing the zero filling
-  factor.}
-  \item{apodisation_function}{The name of the apodisation function.}
-  \item{exponentiation factor}{The exponentiation factor used for file
-  compression.}
-  \item{data_point_number}{The number of data points in the spectrum}
-  \item{x_variable_type}{The type of the x variable.}
-  \item{y_variable_type}{The type of the y variable.}
-  \item{measurement_date}{A POSIXct representing the measurement date and
-  time.}
-  \item{measurement_device}{The name of the measurement device.}
+\item{scan_number}{An integer value representing the number of scans.}
+\item{detection_gain_factor}{The detection gain factor.}
+\item{scan_speed}{The scan speed [kHz].}
+\item{laser_wavenumber}{The wavenumber of the laser.}
+\item{detector_name}{The name of the detector.}
+\item{source_name}{The name of the infrared radiation source.}
+\item{purge_delay}{The duration of purge delay before a measurement [s].}
+\item{zero_filling_factor}{A numeric value representing the zero filling
+factor.}
+\item{apodisation_function}{The name of the apodisation function.}
+\item{exponentiation factor}{The exponentiation factor used for file
+compression.}
+\item{data_point_number}{The number of data points in the spectrum}
+\item{x_variable_type}{The type of the x variable.}
+\item{y_variable_type}{The type of the y variable.}
+\item{measurement_date}{A POSIXct representing the measurement date and
+time.}
+\item{measurement_device}{The name of the measurement device.}
 }
 }
 \description{
 \code{ir_import_spc} imports raw infrared spectra from a Thermo Galactic's
 .spc file or several of such files. \code{ir_import_spc} is a wrapper
-function to \code{\link[hyperSpec:read.spc]{read.spc}}.
+function to \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}.
 }
 \examples{
 # import a sample .spc file

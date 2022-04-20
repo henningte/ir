@@ -7,9 +7,9 @@
 ir_multiply(x, y)
 }
 \arguments{
-\item{x}{An object of class \code{\link{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{y}{An object of class \code{\link{ir}} or a numeic value. If \code{y}
+\item{y}{An object of class \code{\link[=ir_new_ir]{ir}} or a numeic value. If \code{y}
 is an object of class \code{ir}, it must have the same number of rows as
 \code{x} and the same x axis values (e.g. wavenumber values) in each matching
 spectrum as in \code{x}.}

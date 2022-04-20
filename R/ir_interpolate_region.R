@@ -1,10 +1,10 @@
 #' Interpolates selected regions in infrared spectra
 #'
-#' \code{ir_interpolate_region} linearly interpolates a user-defined region in
+#' `ir_interpolate_region` linearly interpolates a user-defined region in
 #' infrared spectra.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
-#' @param range A \code{data.frame} with a row for each region to interpolate
+#' @param x An object of class [`ir`][ir_new_ir()].
+#' @param range A `data.frame` with a row for each region to interpolate
 #' linearly and two columns:
 #' \describe{
 #'   \item{start}{A numeric vector with start values for regions to interpolate
@@ -12,9 +12,9 @@
 #'   \item{end}{A numeric vector with end values for regions to interpolate
 #'   linearly (x axis values).}
 #' }
-#' For each row in \code{range}, the values in \code{range$start} have to be
-#' smaller than the values in \code{range$end}.
-#' @return \code{x} with the defined wavenumber region(s) interpolated linearly.
+#' For each row in `range`, the values in `range$start` have to be
+#' smaller than the values in `range$end`.
+#' @return `x` with the defined wavenumber region(s) interpolated linearly.
 #' @examples
 #' # interpolation range
 #' range <- data.frame(start = 1000, end = 1500)

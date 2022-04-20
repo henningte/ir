@@ -1,39 +1,39 @@
 #' Computes the variance of a spectrum in a given region
 #'
-#' \code{ir_variance_region} takes a spectrum \code{x} and, depending on the
+#' `ir_variance_region` takes a spectrum `x` and, depending on the
 #' arguments computes the following summary:
 #' \describe{
-#'   \item{if \code{subtract_smoothed = FALSE}}{it computes the variance of the
-#'   intensity values for each spectrum in \code{x}. If in addition \code{range}
-#'   is not \code{NULL}, it computes the variance only for the region(s)
-#'   represented by \code{range}.}
-#'   \item{if \code{subtract_smoothed = TRUE}}{it smoothes \code{x}, subtracts
-#'   the smoothed \code{x} from the unsmoothed \code{x} and computes the
-#'   variance of the difference intensity values. If in addition \code{range} is
-#'   not \code{NULL}, it computes the variance only for the region(s)
-#'   represented by \code{range}.}
+#'   \item{if `subtract_smoothed = FALSE`}{it computes the variance of the
+#'   intensity values for each spectrum in `x`. If in addition `range`
+#'   is not `NULL`, it computes the variance only for the region(s)
+#'   represented by `range`.}
+#'   \item{if `subtract_smoothed = TRUE`}{it smoothes `x`, subtracts
+#'   the smoothed `x` from the unsmoothed `x` and computes the
+#'   variance of the difference intensity values. If in addition `range` is
+#'   not `NULL`, it computes the variance only for the region(s)
+#'   represented by `range`.}
 #' }
 #'
-#' @param x An object of class \code{\link{ir}}. These are the spectra for which
+#' @param x An object of class [`ir`][ir_new_ir()]. These are the spectra for which
 #' to compute the variance.
-#' @param subtract_smoothed A logical value. If \code{subtract_smoothed = TRUE},
-#' \code{x} is copied, the copy smoothed using \code{ir_smooth} with
-#' \code{method = "sg"} and subtracted from \code{x} before the variance of the
-#' intensity values from \code{x} is computed. This allows e.g. to estimate the
+#' @param subtract_smoothed A logical value. If `subtract_smoothed = TRUE`,
+#' `x` is copied, the copy smoothed using `ir_smooth` with
+#' `method = "sg"` and subtracted from `x` before the variance of the
+#' intensity values from `x` is computed. This allows e.g. to estimate the
 #' noise level in a specific region of spectra. If
-#' \code{subtract_smoothed = FALSE} (the default), nothing is subtracted from
-#' \code{x} before computing the variance of the intensity values.
-#' @param do_normalize A logical value. If set to \code{TRUE}, the spectra in
-#' \code{x} are normalized after subtraction of a smoothed version, else no
+#' `subtract_smoothed = FALSE` (the default), nothing is subtracted from
+#' `x` before computing the variance of the intensity values.
+#' @param do_normalize A logical value. If set to `TRUE`, the spectra in
+#' `x` are normalized after subtraction of a smoothed version, else no
 #' normalization is performed.
-#' @param normalize_method See \code{\link{ir_normalize}}.
-#' @param ... Arguments passed to \code{\link{ir_smooth}} (except for
-#' \code{method} which is always set to \code{"sg"} if \code{subtract_smoothed} is
-#' \code{TRUE}). If \code{subtract_smoothed = FALSE}, these arguments will be
+#' @param normalize_method See [ir_normalize()].
+#' @param ... Arguments passed to [ir_smooth()] (except for
+#' `method` which is always set to `"sg"` if `subtract_smoothed` is
+#' `TRUE`). If `subtract_smoothed = FALSE`, these arguments will be
 #' ignored.
-#' @param range See \code{\link{ir_clip}}. This is the range for which the
+#' @param range See [ir_clip()]. This is the range for which the
 #' variance of the intensity values will be computed.
-#' @return \code{x} with two additional columns:
+#' @return `x` with two additional columns:
 #' \describe{
 #'   \item{variance}{A numeric vector with the computed variances of the
 #'   intensity values for the respective spectra.}

@@ -7,13 +7,13 @@
 ir_clip(x, range)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{range}{A \code{data.frame} with two columns and a row for each
 wavenumber range to keep. The columns are:
 \describe{
-  \item{start}{A numeric vector with start values for wavenumber ranges.}
-  \item{end}{A numeric vector with end values for wavenumber ranges.}
+\item{start}{A numeric vector with start values for wavenumber ranges.}
+\item{end}{A numeric vector with end values for wavenumber ranges.}
 }
 If \code{range} has more than one row, multiple ranges are clipped from
 \code{x} and merged together. Overlapping ranges are not allowed.}

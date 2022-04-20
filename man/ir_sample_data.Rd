@@ -7,17 +7,17 @@
 \format{
 A data frame with 58 rows and 7 variables:
 \describe{
-  \item{id_measurement}{See \code{\link{ir_new_ir}}.}
-  \item{id_sample}{See \code{\link{ir_new_ir}}.}
-  \item{sample_type}{A character vector containing class labels
-  for the types of reference materials.}
-  \item{sample_comment}{A character vector containing comments to
-  each sample.}
-  \item{klason_lignin}{A numeric vector with the mass fractions of
-  Klason lignin in each sample.}
-  \item{holocellulose}{A numeric vector with the mass fractions of
-  holocellulose in each sample.}
-  \item{spectra}{See \code{\link{ir_new_ir}}.}
+\item{id_measurement}{See \code{\link[=ir_new_ir]{ir_new_ir()}}.}
+\item{id_sample}{See \code{\link[=ir_new_ir]{ir_new_ir()}}.}
+\item{sample_type}{A character vector containing class labels
+for the types of reference materials.}
+\item{sample_comment}{A character vector containing comments to
+each sample.}
+\item{klason_lignin}{A numeric vector with the mass fractions of
+Klason lignin in each sample.}
+\item{holocellulose}{A numeric vector with the mass fractions of
+holocellulose in each sample.}
+\item{spectra}{See \code{\link[=ir_new_ir]{ir_new_ir()}}.}
 }
 }
 \source{
@@ -30,7 +30,7 @@ and published by \insertCite{Hodgkins.2018;textual}{ir} under the CC BY 4.0 lice
 ir_sample_data
 }
 \description{
-A sample object of class \code{\link[ir:ir_new_ir]{ir}}. The data set
+A sample object of class \code{\link[=ir_new_ir]{ir}}. The data set
 contains ATR-MIR spectra for a set of organic reference materials
 along with their metadata (types of samples and a description) and
 accessory data (Klason lignin mass fraction and holocellulose mass fraction).

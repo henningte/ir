@@ -7,7 +7,7 @@
 ir_average(x, ...)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{...}{Variables in \code{x} to use as groups.}
 }

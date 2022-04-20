@@ -7,7 +7,7 @@
 ir_flat_clean(x, return_empty = FALSE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir_flat]{ir_flat()}}.}
 
 \item{return_empty}{A logical value indicating if the empty spectra should be
 returned (\code{return_empty = TRUE}) or the non-empty spectra

@@ -1,16 +1,16 @@
-#' Removes empty data values in objects of class \code{ir}
+#' Removes empty data values in objects of class `ir`
 #'
-#' \code{ir_remove_missing} takes and object of class \code{ir} and removes all
-#' rows in the \code{data.frame}s of the list column \code{spectra} that have
-#' \code{NA} intensity values (column \code{y}). Additionally, one can specify
-#' to remove rows in the \code{ir} object to discard if they contain empty
+#' `ir_remove_missing` takes and object of class `ir` and removes all
+#' rows in the `data.frame`s of the list column `spectra` that have
+#' `NA` intensity values (column `y`). Additionally, one can specify
+#' to remove rows in the `ir` object to discard if they contain empty
 #' spectra.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
-#' @param remove_rows A logical value indicating if rows in \code{x} with empty
-#' spectra should be discarded (\code{remove_rows = TRUE}) or not
-#' (\code{remove_rows = FALSE}).
-#' @return \code{x} with cleaned spectra.
+#' @param x An object of class [`ir`][ir_new_ir()].
+#' @param remove_rows A logical value indicating if rows in `x` with empty
+#' spectra should be discarded (`remove_rows = TRUE`) or not
+#' (`remove_rows = FALSE`).
+#' @return `x` with cleaned spectra.
 #' @examples
 #' # create sample data with some missing rows and one entire missing spectra
 #' x <-

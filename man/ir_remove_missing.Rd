@@ -7,7 +7,7 @@
 ir_remove_missing(x, remove_rows = FALSE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{remove_rows}{A logical value indicating if rows in \code{x} with empty
 spectra should be discarded (\code{remove_rows = TRUE}) or not

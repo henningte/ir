@@ -7,7 +7,7 @@
 ir_get_spectrum(x, what)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{what}{A numeric vector with each element representing a row in \code{x}
 for which to extract the spectrum.}

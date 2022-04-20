@@ -7,7 +7,7 @@
 ir_drop_spectra(x)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 }
 \value{
 \code{x} without column \code{spectra} and without \code{"ir"} class

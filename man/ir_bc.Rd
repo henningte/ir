@@ -7,7 +7,7 @@
 ir_bc(x, method = "rubberband", ..., return_bl = FALSE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{method}{A character value indicating which method should be used
 for baseline correction. If \code{method = "polynomial"}, a polynomial
@@ -16,8 +16,8 @@ rubberband function is used for baseline correction. If \code{method = "sg"},
 a Savitzky-Golay smoothed version of the input spectra is used for baseline
 correction.}
 
-\item{...}{Further arguments passed to \code{\link{ir_bc_polynomial}} or
-\code{\link{ir_bc_sg}}.}
+\item{...}{Further arguments passed to \code{\link[=ir_bc_polynomial]{ir_bc_polynomial()}} or
+\code{\link[=ir_bc_sg]{ir_bc_sg()}}.}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
 should be returned in addition to the corrected intensity values
@@ -33,11 +33,11 @@ corrected spectra and if \code{returnbl = TRUE} a new list column
 spectra. Baseline correction
 is either performed by using a polynomial with user defined
 degree fitted to each spectrum (see
-\code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}), or by using a
+\code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}), or by using a
 rubberband function that is fitted to each spectrum
-(see \code{\link[hyperSpec]{spc.rubberband}}), or using a
+(see \code{\link[hyperSpec:spc-rubberband]{hyperSpec::spc.rubberband()}}), or using a
 Savitzky-Golay smoothed version of the input spectra (see
-\code{\link{ir_bc_sg}}).
+\code{\link[=ir_bc_sg]{ir_bc_sg()}}).
 }
 \examples{
 # rubberband baseline correction

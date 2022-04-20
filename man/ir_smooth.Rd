@@ -16,15 +16,15 @@ ir_smooth(
 )
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{method}{A character value specifying which smoothing method to apply.
 If \code{method = "sg"}, a Savitzky-Golay filter will be applied on the
 spectra. The Savitzky-Golay smoothing will be performed using the function
-\code{\link[signal:sgolayfilt]{sgolayfilt}}. If \code{method = "fourier"},
+\code{\link[signal:sgolayfilt]{signal::sgolayfilt()}}. If \code{method = "fourier"},
 Fourier smoothing will be performed. Fourier transformation of the spectra is
 performed using the fast discrete Fourier transformation (FFT) as implemented
-in \code{\link[fda:smooth.basis]{smooth.basis}}. A smoothing function can be
+in \code{\link[fda:smooth.basis]{fda::smooth.basis()}}. A smoothing function can be
 defined by the argment \code{f}.}
 
 \item{p}{An integer value representing the filter order (i.e. the degree of
@@ -35,11 +35,11 @@ wavenumber values used to construct the polynom) of the Savitzky-Golay filter
 if \code{method = "sg"}.}
 
 \item{ts}{time scaling factor. See
-\code{\link[signal:sgolayfilt]{sgolayfilt}}.}
+\code{\link[signal:sgolayfilt]{signal::sgolayfilt()}}.}
 
 \item{m}{An integer value representing the mth derivative to compute. This
 option can be used to compute derivatives of spectra. See
-\code{\link[signal:sgolayfilt]{sgolayfilt}}.}
+\code{\link[signal:sgolayfilt]{signal::sgolayfilt()}}.}
 
 \item{k}{A positive odd integer representing the number of Fourier basis
 functions to use as smoothed representation of the spectra if
@@ -54,8 +54,8 @@ spectra.
 \description{
 \code{ir_smooth} applies smoothing functions to infrared spectra.
 \code{ir_smooth} either performs Savitzky-Golay smoothing, using on
-\code{\link[signal:sgolayfilt]{sgolayfilt}}, or Fourier smoothing using
-\code{\link[fda:smooth.basis]{smooth.basis}}. Savitzky-Golay smoothing can
+\code{\link[signal:sgolayfilt]{signal::sgolayfilt()}}, or Fourier smoothing using
+\code{\link[fda:smooth.basis]{fda::smooth.basis()}}. Savitzky-Golay smoothing can
 also be used to compute derivatives of spectra.
 }
 \details{

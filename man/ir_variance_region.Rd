@@ -14,7 +14,7 @@ ir_variance_region(
 )
 }
 \arguments{
-\item{x}{An object of class \code{\link{ir}}. These are the spectra for which
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}. These are the spectra for which
 to compute the variance.}
 
 \item{subtract_smoothed}{A logical value. If \code{subtract_smoothed = TRUE},
@@ -29,38 +29,38 @@ noise level in a specific region of spectra. If
 \code{x} are normalized after subtraction of a smoothed version, else no
 normalization is performed.}
 
-\item{normalize_method}{See \code{\link{ir_normalize}}.}
+\item{normalize_method}{See \code{\link[=ir_normalize]{ir_normalize()}}.}
 
-\item{...}{Arguments passed to \code{\link{ir_smooth}} (except for
+\item{...}{Arguments passed to \code{\link[=ir_smooth]{ir_smooth()}} (except for
 \code{method} which is always set to \code{"sg"} if \code{subtract_smoothed} is
 \code{TRUE}). If \code{subtract_smoothed = FALSE}, these arguments will be
 ignored.}
 
-\item{range}{See \code{\link{ir_clip}}. This is the range for which the
+\item{range}{See \code{\link[=ir_clip]{ir_clip()}}. This is the range for which the
 variance of the intensity values will be computed.}
 }
 \value{
 \code{x} with two additional columns:
 \describe{
-  \item{variance}{A numeric vector with the computed variances of the
-  intensity values for the respective spectra.}
-  \item{n_variance}{An integer vector with the number of intensity values
-  used during computing the variance.}
+\item{variance}{A numeric vector with the computed variances of the
+intensity values for the respective spectra.}
+\item{n_variance}{An integer vector with the number of intensity values
+used during computing the variance.}
 }
 }
 \description{
 \code{ir_variance_region} takes a spectrum \code{x} and, depending on the
 arguments computes the following summary:
 \describe{
-  \item{if \code{subtract_smoothed = FALSE}}{it computes the variance of the
-  intensity values for each spectrum in \code{x}. If in addition \code{range}
-  is not \code{NULL}, it computes the variance only for the region(s)
-  represented by \code{range}.}
-  \item{if \code{subtract_smoothed = TRUE}}{it smoothes \code{x}, subtracts
-  the smoothed \code{x} from the unsmoothed \code{x} and computes the
-  variance of the difference intensity values. If in addition \code{range} is
-  not \code{NULL}, it computes the variance only for the region(s)
-  represented by \code{range}.}
+\item{if \code{subtract_smoothed = FALSE}}{it computes the variance of the
+intensity values for each spectrum in \code{x}. If in addition \code{range}
+is not \code{NULL}, it computes the variance only for the region(s)
+represented by \code{range}.}
+\item{if \code{subtract_smoothed = TRUE}}{it smoothes \code{x}, subtracts
+the smoothed \code{x} from the unsmoothed \code{x} and computes the
+variance of the difference intensity values. If in addition \code{range} is
+not \code{NULL}, it computes the variance only for the region(s)
+represented by \code{range}.}
 }
 }
 \examples{

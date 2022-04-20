@@ -1,11 +1,11 @@
 #' Averages infrared spectra within groups
 #'
-#' \code{ir_average} averages infrared spectra within
-#' a user-defined group. \code{NA} values are omitted by default
+#' `ir_average` averages infrared spectra within
+#' a user-defined group. `NA` values are omitted by default
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
-#' @param ... Variables in \code{x} to use as groups.
-#' @return An object of class \code{ir}.
+#' @param x An object of class [`ir`][ir_new_ir()].
+#' @param ... Variables in `x` to use as groups.
+#' @return An object of class `ir`.
 #' @examples
 #' # average the sample data specta across sample types
 #' x <-

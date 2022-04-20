@@ -7,15 +7,15 @@
 ir_interpolate_region(x, range)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{range}{A \code{data.frame} with a row for each region to interpolate
 linearly and two columns:
 \describe{
-  \item{start}{A numeric vector with start values for regions to interpolate
-  linearly (x axis values).}
-  \item{end}{A numeric vector with end values for regions to interpolate
-  linearly (x axis values).}
+\item{start}{A numeric vector with start values for regions to interpolate
+linearly (x axis values).}
+\item{end}{A numeric vector with end values for regions to interpolate
+linearly (x axis values).}
 }
 For each row in \code{range}, the values in \code{range$start} have to be
 smaller than the values in \code{range$end}.}

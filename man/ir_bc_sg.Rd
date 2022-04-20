@@ -7,9 +7,9 @@
 ir_bc_sg(x, ..., return_bl = FALSE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{...}{Arguments passed to \code{\link{ir_smooth}} (except for
+\item{...}{Arguments passed to \code{\link[=ir_smooth]{ir_smooth()}} (except for
 \code{method} which is always set to \code{"sg"}).}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
@@ -18,7 +18,7 @@ should be returned in addition to the corrected intensity values
 }
 \description{
 \code{ir_bc_sg} computes a smoothed version of spectra using
-\code{\link{ir_smooth}} with \code{method = "sg"} and uses this as baseline
+\code{\link[=ir_smooth]{ir_smooth()}} with \code{method = "sg"} and uses this as baseline
 which is subtracted from the spectra to perform a baseline correction
 \insertCite{Lasch.2012}{ir}.
 }

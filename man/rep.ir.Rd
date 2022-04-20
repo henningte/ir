@@ -7,15 +7,15 @@
 \method{rep}{ir}(x, ...)
 }
 \arguments{
-\item{x}{An object of class \code{\link{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{...}{See \code{\link{rep}}.}
+\item{...}{See \code{\link[=rep]{rep()}}.}
 }
 \value{
 An object of class \code{ir} with replicated spectra.
 }
 \description{
-\code{rep.ir} is the replicate method for \code{\link{ir}} objects.
+\code{rep.ir} is the replicate method for \code{\link[=ir_new_ir]{ir}} objects.
 Replicating and \code{ir} object means to replicate its rows and bind these
 together to a larger \code{ir} object.
 }

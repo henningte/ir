@@ -7,7 +7,7 @@
 ir_get_intensity(x, wavenumber, warn = TRUE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{wavenumber}{A numeric vector with x axis values (e.g. wavenumber
 values) for which to extract intensities.}
@@ -21,10 +21,10 @@ values) for which to extract intensities.}
 \code{data.frame} with a row for each element in \code{wavenumber} and two
 columns:
 \describe{
-  \item{x}{The x axis values extracted with
-  \code{\link{ir_get_wavenumberindex}} applied on \code{wavenumber} and the
-  corresponding spectrum in \code{x}.}
-  \item{y}{The extracted intensity values}.
+\item{x}{The x axis values extracted with
+\code{\link[=ir_get_wavenumberindex]{ir_get_wavenumberindex()}} applied on \code{wavenumber} and the
+corresponding spectrum in \code{x}.}
+\item{y}{The extracted intensity values}.
 }
 }
 \description{

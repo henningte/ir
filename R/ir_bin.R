@@ -1,6 +1,6 @@
 #' Bins infrared spectra
 #'
-#' \code{ir_bin} bins intensity values of infrared spectra into bins of a
+#' `ir_bin` bins intensity values of infrared spectra into bins of a
 #' defined width or into a defined number of bins.
 #'
 #' If the last bin contains fewer input values than the remaining bins, it
@@ -8,12 +8,12 @@
 #' matches the boundary of a bin window, the respective intensity value will be
 #' assigned to both neighboring bins.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}} with integer
+#' @param x An object of class [`ir`][ir_new_ir()] with integer
 #' wavenumber values increasing by 1.
 #' @param width An integer value indicating the wavenumber width of each
-#' resulting bin. Must be set to \code{NULL} if \code{n} is specified.
-#' @return An object of class \code{ir} representing a binned version of
-#' \code{x}.
+#' resulting bin. Must be set to `NULL` if `n` is specified.
+#' @return An object of class `ir` representing a binned version of
+#' `x`.
 #' @examples
 #' x <-
 #'    ir::ir_sample_data %>%

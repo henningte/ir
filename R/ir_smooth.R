@@ -1,40 +1,40 @@
 #' Smooths infrared spectra
 #'
-#' \code{ir_smooth} applies smoothing functions to infrared spectra.
-#' \code{ir_smooth} either performs Savitzky-Golay smoothing, using on
-#' \code{\link[signal:sgolayfilt]{sgolayfilt}}, or Fourier smoothing using
-#' \code{\link[fda:smooth.basis]{smooth.basis}}. Savitzky-Golay smoothing can
+#' `ir_smooth` applies smoothing functions to infrared spectra.
+#' `ir_smooth` either performs Savitzky-Golay smoothing, using on
+#' [signal::sgolayfilt()], or Fourier smoothing using
+#' [fda::smooth.basis()]. Savitzky-Golay smoothing can
 #' also be used to compute derivatives of spectra.
 #'
-#' @details When \code{x} contains spectra with different wavenumber values, the
+#' @details When `x` contains spectra with different wavenumber values, the
 #' filters are applied for each spectra only on existing wavenumber values. This
-#' means that the filter window (if \code{method == "sg"}) will be different for
+#' means that the filter window (if `method == "sg"`) will be different for
 #' these different spectra.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
+#' @param x An object of class [`ir`][ir_new_ir()].
 #' @param method A character value specifying which smoothing method to apply.
-#' If \code{method = "sg"}, a Savitzky-Golay filter will be applied on the
+#' If `method = "sg"`, a Savitzky-Golay filter will be applied on the
 #' spectra. The Savitzky-Golay smoothing will be performed using the function
-#' \code{\link[signal:sgolayfilt]{sgolayfilt}}. If \code{method = "fourier"},
+#' [signal::sgolayfilt()]. If `method = "fourier"`,
 #' Fourier smoothing will be performed. Fourier transformation of the spectra is
 #' performed using the fast discrete Fourier transformation (FFT) as implemented
-#' in \code{\link[fda:smooth.basis]{smooth.basis}}. A smoothing function can be
-#' defined by the argment \code{f}.
+#' in [fda::smooth.basis()]. A smoothing function can be
+#' defined by the argment `f`.
 #' @param k A positive odd integer representing the number of Fourier basis
 #' functions to use as smoothed representation of the spectra if
-#' \code{method = "fourier"}.
+#' `method = "fourier"`.
 #' @param p An integer value representing the filter order (i.e. the degree of
-#' the polynom) of the Savitzky-Golay filter if \code{method = "sg"}.
+#' the polynom) of the Savitzky-Golay filter if `method = "sg"`.
 #' @param n An odd integer value representing the length (i.e. the number of
 #' wavenumber values used to construct the polynom) of the Savitzky-Golay filter
-#' if \code{method = "sg"}.
+#' if `method = "sg"`.
 #' @param ts time scaling factor. See
-#' \code{\link[signal:sgolayfilt]{sgolayfilt}}.
+#' [signal::sgolayfilt()].
 #' @param m An integer value representing the mth derivative to compute. This
 #' option can be used to compute derivatives of spectra. See
-#' \code{\link[signal:sgolayfilt]{sgolayfilt}}.
+#' [signal::sgolayfilt()].
 #' @param ... additional arguments (ignored).
-#' @return An object of class \code{ir} containing the smoothed
+#' @return An object of class `ir` containing the smoothed
 #' spectra.
 #' @examples
 #' \dontrun{

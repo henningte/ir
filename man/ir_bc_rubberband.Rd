@@ -7,7 +7,7 @@
 ir_bc_rubberband(x, return_bl = FALSE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
 should be returned in addition to the corrected intensity values
@@ -20,7 +20,7 @@ if \code{returnbl = TRUE},  the baselines.
 \description{
 \code{ir_bc_rubberband} performs baseline correction for infrared spectra
 using a rubberband algorithm. \code{ir_bc_rubberband} is an extended wrapper
-function for \code{\link[hyperSpec]{spc.rubberband}}.
+function for \code{\link[hyperSpec:spc-rubberband]{hyperSpec::spc.rubberband()}}.
 }
 \examples{
 x1 <-
@@ -28,5 +28,5 @@ x1 <-
    ir::ir_bc_rubberband(return_bl = FALSE)
 }
 \seealso{
-\code{\link{ir_bc}}
+\code{\link[=ir_bc]{ir_bc()}}
 }

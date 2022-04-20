@@ -7,7 +7,7 @@
 ir_bin(x, width = 10)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}} with integer
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}} with integer
 wavenumber values increasing by 1.}
 
 \item{width}{An integer value indicating the wavenumber width of each

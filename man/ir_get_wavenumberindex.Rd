@@ -9,7 +9,7 @@ ir_get_wavenumberindex(x, wavenumber, warn = TRUE)
 \arguments{
 \item{x}{A data.frame with a column x representing the x units of a spectrum
 or several spectra (e.g. in the form of an object of class
-\code{\link[ir:ir_new_ir_flat]{ir_flat}}).}
+\code{\link[=ir_new_ir_flat]{ir_flat()}}).}
 
 \item{wavenumber}{A numeric vector with wavenumber values for which to get
 indices.}
@@ -25,7 +25,7 @@ row indices of \code{x} corresponding to the wavenumber values in
 \description{
 \code{ir_get_wavenumberindex} gets for a defined wavenumber value or set of
 wavenumber values the corresponding indices (row number) in an object of
-class \code{ir} that has been flattened with \code{\link{ir_flatten}}. If the
+class \code{ir} that has been flattened with \code{\link[=ir_flatten]{ir_flatten()}}. If the
 specified wavenumber values do not match exactly the wavenumber values in the
 \code{ir} object, the indices for the next wavenumber values will be
 returned, along with a warning.

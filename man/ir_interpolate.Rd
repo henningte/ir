@@ -7,7 +7,7 @@
 ir_interpolate(x, start = NULL, dw = 1)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{start}{A numerical value indicating the start wavenumber value relative
 to which new wavenumber values will be interpolated. The value is not allowed

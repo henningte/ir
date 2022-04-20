@@ -1,26 +1,26 @@
 #' Subtract infrared spectra
 #'
-#' \code{ir_subtract} takes two objects of class \code{ir}, \code{x} and
-#' \code{y}, and subtracts the intensity values of spectra in matching rows from
-#' \code{y} from that of \code{x}. Alternatively, takes an object of class
-#' \code{ir}, \code{x}, and a numeric value, \code{y}, and subtracts \code{y}
-#' from all intensity values in \code{x}.
+#' `ir_subtract` takes two objects of class `ir`, `x` and
+#' `y`, and subtracts the intensity values of spectra in matching rows from
+#' `y` from that of `x`. Alternatively, takes an object of class
+#' `ir`, `x`, and a numeric value, `y`, and subtracts `y`
+#' from all intensity values in `x`.
 #'
-#' @param x An object of class \code{\link{ir}}.
-#' @param y An object of class \code{\link{ir}} or a numeic value. If \code{y}
-#' is an object of class \code{ir}, it must have the same number of rows as
-#' \code{x} and the same x axis values (e.g. wavenumber values) in each matching
-#' spectrum as in \code{x}.
-#' @return \code{x} where for each spectrum the respective intensity values in
-#' \code{y} are subtracted (if \code{y} is an object of class \code{ir}), or
-#' where for each spectrum \code{y} has been subtracted from the intensity
+#' @param x An object of class [`ir`][ir_new_ir()].
+#' @param y An object of class [`ir`][ir_new_ir()] or a numeic value. If `y`
+#' is an object of class `ir`, it must have the same number of rows as
+#' `x` and the same x axis values (e.g. wavenumber values) in each matching
+#' spectrum as in `x`.
+#' @return `x` where for each spectrum the respective intensity values in
+#' `y` are subtracted (if `y` is an object of class `ir`), or
+#' where for each spectrum `y` has been subtracted from the intensity
 #' values.
 #' @examples
 #' # subtracting two objects of class ir
 #' x1 <-
 #'   ir::ir_subtract(ir::ir_sample_data, ir::ir_sample_data)
 #'
-#' # subtracting a numeric value from an object of class \code{ir}.
+#' # subtracting a numeric value from an object of class `ir`.
 #' x2 <-
 #'   ir::ir_subtract(ir::ir_sample_data, 20)
 #' @export
@@ -39,6 +39,14 @@ ir_subtract <- function(x, y) {
       rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
     }
     y_is_ir <- TRUE
+
+    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+      rlang::abort("`y` must either have only one row or as many rows as `x`.")
+    }
+    if(nrow(y == 1)) {
+      y <- rep(y, nrow(x))
+    }
+
   } else {
     y_is_ir <- FALSE
   }
@@ -65,13 +73,13 @@ ir_subtract <- function(x, y) {
 
 #' Add infrared spectra
 #'
-#' \code{ir_add} takes two objects of class \code{ir}, \code{x} and
-#' \code{y}, and adds the intensity values of spectra in matching rows from
-#' \code{y} to that of \code{x}.
+#' `ir_add` takes two objects of class `ir`, `x` and
+#' `y`, and adds the intensity values of spectra in matching rows from
+#' `y` to that of `x`.
 #'
 #' @inheritParams ir_subtract
-#' @return \code{x} where for each spectrum the respective intensity values in
-#' \code{y} are added.
+#' @return `x` where for each spectrum the respective intensity values in
+#' `y` are added.
 #' @examples
 #' x1 <-
 #'   ir::ir_add(ir::ir_sample_data, ir::ir_sample_data)
@@ -91,6 +99,14 @@ ir_add <- function(x, y) {
       rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
     }
     y_is_ir <- TRUE
+
+    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+      rlang::abort("`y` must either have only one row or as many rows as `x`.")
+    }
+    if(nrow(y == 1)) {
+      y <- rep(y, nrow(x))
+    }
+
   } else {
     y_is_ir <- FALSE
   }
@@ -117,16 +133,16 @@ ir_add <- function(x, y) {
 
 #' Multiply infrared spectra or multiply infrared spectra with a numeric value
 #'
-#' \code{ir_multiply} takes two objects of class \code{ir}, \code{x} and
-#' \code{y}, and multiplies their intensity values, or it takes one object of
-#' class \code{ir}, \code{x}, and one numeric value, \code{y}, and multiplies
-#' all intensity values in \code{x} with \code{y}.
+#' `ir_multiply` takes two objects of class `ir`, `x` and
+#' `y`, and multiplies their intensity values, or it takes one object of
+#' class `ir`, `x`, and one numeric value, `y`, and multiplies
+#' all intensity values in `x` with `y`.
 #'
 #' @inheritParams ir_subtract
-#' @return \code{x} where for each spectrum intensity values are multiplied with
-#' the respective intensity values in \code{y} (if \code{y} is an object of
-#' class \code{ir}), or where all intensity values are multiplied with \code{y}
-#' if \code{y} is a numeric value.
+#' @return `x` where for each spectrum intensity values are multiplied with
+#' the respective intensity values in `y` (if `y` is an object of
+#' class `ir`), or where all intensity values are multiplied with `y`
+#' if `y` is a numeric value.
 #' @examples
 #' # multiplication with y as ir object
 #' x1 <-
@@ -151,6 +167,14 @@ ir_multiply <- function(x, y) {
       rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
     }
     y_is_ir <- TRUE
+
+    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+      rlang::abort("`y` must either have only one row or as many rows as `x`.")
+    }
+    if(nrow(y == 1)) {
+      y <- rep(y, nrow(x))
+    }
+
   } else {
     y_is_ir <- FALSE
   }
@@ -178,16 +202,16 @@ ir_multiply <- function(x, y) {
 
 #' Divide infrared spectra or divide infrared spectra by a numeric value
 #'
-#' \code{ir_divide} takes two objects of class \code{ir}, \code{x} and
-#' \code{y}, and divides their intensity values, or it takes one object of
-#' class \code{ir}, \code{x}, and one numeric value, \code{y}, and divides
-#' all intensity values in \code{x} by \code{y}.
+#' `ir_divide` takes two objects of class `ir`, `x` and
+#' `y`, and divides their intensity values, or it takes one object of
+#' class `ir`, `x`, and one numeric value, `y`, and divides
+#' all intensity values in `x` by `y`.
 #'
 #' @inheritParams ir_subtract
-#' @return \code{x} where for each spectrum intensity values are divided by
-#' the respective intensity values in \code{y} (if \code{y} is an object of
-#' class \code{ir}), or where all intensity values are divided by \code{y} if
-#' \code{y} is a numeric value.
+#' @return `x` where for each spectrum intensity values are divided by
+#' the respective intensity values in `y` (if `y` is an object of
+#' class `ir`), or where all intensity values are divided by `y` if
+#' `y` is a numeric value.
 #' @examples
 #' # division with y as ir object
 #' x1 <-
@@ -212,6 +236,14 @@ ir_divide <- function(x, y) {
       rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
     }
     y_is_ir <- TRUE
+
+    if(nrow(y) != 1 || nrow(y) != nrow(x)) {
+      rlang::abort("`y` must either have only one row or as many rows as `x`.")
+    }
+    if(nrow(y == 1)) {
+      y <- rep(y, nrow(x))
+    }
+
   } else {
     y_is_ir <- FALSE
   }
@@ -237,10 +269,10 @@ ir_divide <- function(x, y) {
 }
 
 
-#' Arithmetic operations for \code{ir} objects
+#' Arithmetic operations for `ir` objects
 #'
-#' @param e1 An object of class \code{ir}.
-#' @param e2 An object of class \code{ir} or a numeric value.
+#' @param e1 An object of class `ir`.
+#' @param e2 An object of class `ir` or a numeric value.
 #'
 #' @examples
 #' ## addition

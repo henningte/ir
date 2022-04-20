@@ -13,7 +13,7 @@ ir_to_transmittance(x)
 ir_to_absorbance(x)
 }
 \arguments{
-\item{x}{An object of class \code{\link{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 }
 \value{
 \code{x} with y values fore each spectrum as transmittance values

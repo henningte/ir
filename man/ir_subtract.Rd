@@ -7,9 +7,9 @@
 ir_subtract(x, y)
 }
 \arguments{
-\item{x}{An object of class \code{\link{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{y}{An object of class \code{\link{ir}} or a numeic value. If \code{y}
+\item{y}{An object of class \code{\link[=ir_new_ir]{ir}} or a numeic value. If \code{y}
 is an object of class \code{ir}, it must have the same number of rows as
 \code{x} and the same x axis values (e.g. wavenumber values) in each matching
 spectrum as in \code{x}.}
@@ -32,7 +32,7 @@ from all intensity values in \code{x}.
 x1 <-
   ir::ir_subtract(ir::ir_sample_data, ir::ir_sample_data)
 
-# subtracting a numeric value from an object of class \code{ir}.
+# subtracting a numeric value from an object of class `ir`.
 x2 <-
   ir::ir_subtract(ir::ir_sample_data, 20)
 }

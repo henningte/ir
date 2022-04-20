@@ -14,7 +14,7 @@
 \item{...}{Objects to bind together. For \code{cbind}, only the first of the
 objects is allowed to be of class \code{ir}.}
 
-\item{deparse.level}{An integer value; see \code{\link{rbind}}.}
+\item{deparse.level}{An integer value; see \code{\link[=rbind]{rbind()}}.}
 }
 \value{
 An object of class \code{ir}. \code{rbind} returns all input

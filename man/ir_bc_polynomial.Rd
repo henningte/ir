@@ -7,7 +7,7 @@
 ir_bc_polynomial(x, degree = 2, return_bl = FALSE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{degree}{An integer value representing the degree of the polynomial
 used for baseline correction.}
@@ -24,7 +24,7 @@ An object of class \code{ir} with the baseline corrected spectra if
 \code{ir_bc_polynomial} performs baseline correction for infrared
 spectra using a polynomial.
 \code{ir_bc_polynomial} is an extended wrapper function
-for \code{\link[ChemoSpec:baselineSpectra]{baselineSpectra}}.
+for \code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}.
 }
 \examples{
 x2 <-
@@ -32,5 +32,5 @@ x2 <-
    ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
 }
 \seealso{
-\code{\link{ir_bc}}
+\code{\link[=ir_bc]{ir_bc()}}
 }

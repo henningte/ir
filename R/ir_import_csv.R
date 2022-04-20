@@ -1,6 +1,6 @@
 #' Imports infrared spectra from various files
 #'
-#' \code{ir_import_csv} imports raw infrared spectra from one or more .csv file
+#' `ir_import_csv` imports raw infrared spectra from one or more .csv file
 #' that contains at least one spectrum, with x axis values (e.g. wavenumbers) in
 #' the first column and intensity values of spectra in remaining columns. Note
 #' that the function does not perform any checks for the validity of the content
@@ -11,19 +11,19 @@
 #'
 #' @param sample_id Either:
 #' \itemize{
-#'   \item \code{NULL}: Nothing additional happens.
-#'   \item A character vector with the same length as \code{filenames}: This
-#'     vector will be added as column \code{sample_id} to the \code{ir} object.
-#'   \item \code{"from_filenames"}: The file name(s) will be used as values for
-#'     a new column \code{sample_id} to add (the default).
-#'   \item \code{"from_colnames"}: The header in the csv file will be used as
-#'     values for a new column \code{sample_id} to add.
+#'   \item `NULL`: Nothing additional happens.
+#'   \item A character vector with the same length as `filenames`: This
+#'     vector will be added as column `sample_id` to the `ir` object.
+#'   \item `"from_filenames"`: The file name(s) will be used as values for
+#'     a new column `sample_id` to add (the default).
+#'   \item `"from_colnames"`: The header in the csv file will be used as
+#'     values for a new column `sample_id` to add.
 #' }
 #'
 #' @param ... Further arguments passed to
-#' \code{\link[utils:read.table]{read.csv}}.
+#' [`read.csv()`][utils::read.table].
 #'
-#' @return An object of class \code{\link[ir:ir_new_ir]{ir}} containing the
+#' @return An object of class [`ir`][ir_new_ir()] containing the
 #' infrared spectra extracted from the .csv file(s).
 #'
 #' @examples

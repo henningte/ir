@@ -1,14 +1,14 @@
 #' Converts absorbance spectra to transmittance spectra or vice versa
 #'
-#' \code{ir_to_transmittance} converts absorbance spectra to transmittance
-#' spectra. \code{ir_to_absorbance} converts transmittance spectra to absorbance
+#' `ir_to_transmittance` converts absorbance spectra to transmittance
+#' spectra. `ir_to_absorbance` converts transmittance spectra to absorbance
 #' spectra. Note that neither function checks whether the input spectra are
 #' absorbance or transmittance spectra.
 #'
-#' @param x An object of class \code{\link{ir}}.
-#' @return \code{x} with y values fore each spectrum as transmittance values
-#' (in case of \code{ir_to_transmittance}) or absorbance values (in case of
-#' \code{ir_to_absorbance}).
+#' @param x An object of class [`ir`][ir_new_ir()].
+#' @return `x` with y values fore each spectrum as transmittance values
+#' (in case of `ir_to_transmittance`) or absorbance values (in case of
+#' `ir_to_absorbance`).
 #' @source \insertCite{Stuart.2004}{ir}.
 #' @references
 #' \insertAllCited{}

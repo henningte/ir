@@ -25,9 +25,7 @@
 \arguments{
 \item{x}{An object of class \code{ir}.}
 
-\item{i}{Row and column indices. If \code{j} is omitted, \code{i} is used as column index.}
-
-\item{j}{Row and column indices. If \code{j} is omitted, \code{i} is used as column index.}
+\item{i, j}{Row and column indices. If \code{j} is omitted, \code{i} is used as column index.}
 
 \item{...}{Ignored.}
 
@@ -38,8 +36,8 @@ Tibbles are stricter than data frames in what is accepted here.}
 }
 \value{
 If the subsetting operation preserves a valid \code{spectra} column
-(see \code{\link[=ir_new_ir]{ir}}), an object of class \code{ir} with
-accordingly subsetted rows or columns. Else a \code{\link[tibble]{tbl_df}} or
+(see \code{\link[=ir_new_ir]{ir()}}), an object of class \code{ir} with
+accordingly subsetted rows or columns. Else a \code{\link[tibble:tbl_df-class]{tibble::tbl_df()}} or
 vector.
 }
 \description{

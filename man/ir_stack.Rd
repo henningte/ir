@@ -12,7 +12,7 @@ axis values of the spectra (e.g. wavenumbers) and all remaining columns
 containing intensity values of spectra. Column names are assumed to represent}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the stacked spectra in
+A \code{\link[tibble:tibble]{tibble::tibble()}} with the stacked spectra in
 column \code{spectra}.
 }
 \description{

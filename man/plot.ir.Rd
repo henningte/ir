@@ -7,12 +7,12 @@
 \method{plot}{ir}(x, ...)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{...}{Further arguments, will be ignored.}
 }
 \value{
-An object of class \code{\link[ggplot2:ggplot]{ggplot2}}.
+An object of class \code{\link[ggplot2:ggplot]{ggplot2()}}.
 }
 \description{
 \code{plot.ir} is the plot method for objects of class \code{ir}.

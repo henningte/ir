@@ -12,20 +12,20 @@ the .csv files to import.}
 
 \item{sample_id}{Either:
 \itemize{
-  \item \code{NULL}: Nothing additional happens.
-  \item A character vector with the same length as \code{filenames}: This
-    vector will be added as column \code{sample_id} to the \code{ir} object.
-  \item \code{"from_filenames"}: The file name(s) will be used as values for
-    a new column \code{sample_id} to add (the default).
-  \item \code{"from_colnames"}: The header in the csv file will be used as
-    values for a new column \code{sample_id} to add.
+\item \code{NULL}: Nothing additional happens.
+\item A character vector with the same length as \code{filenames}: This
+vector will be added as column \code{sample_id} to the \code{ir} object.
+\item \code{"from_filenames"}: The file name(s) will be used as values for
+a new column \code{sample_id} to add (the default).
+\item \code{"from_colnames"}: The header in the csv file will be used as
+values for a new column \code{sample_id} to add.
 }}
 
 \item{...}{Further arguments passed to
-\code{\link[utils:read.table]{read.csv}}.}
+\code{\link[utils:read.table]{read.csv()}}.}
 }
 \value{
-An object of class \code{\link[ir:ir_new_ir]{ir}} containing the
+An object of class \code{\link[=ir_new_ir]{ir}} containing the
 infrared spectra extracted from the .csv file(s).
 }
 \description{

@@ -1,13 +1,13 @@
-#' Converts objects of class \code{ir} to wide matrices
+#' Converts objects of class `ir` to wide matrices
 #'
-#' \code{ir_flatten} takes and object of class \code{ir}, extracts the
-#' \code{spectra} column and combines the spectra into one matrix. Metadata are
+#' `ir_flatten` takes and object of class `ir`, extracts the
+#' `spectra` column and combines the spectra into one matrix. Metadata are
 #' not retained during flattening.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
-#' @param measurement_id A character vector an element for each row in \code{x}
+#' @param x An object of class [`ir`][ir_new_ir()].
+#' @param measurement_id A character vector an element for each row in `x`
 #' that contains the names to use as column names for the spectra in the matrix.
-#' @return An object of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.
+#' @return An object of class [`ir_flat()`][ir::ir_new_ir_flat].
 #' @examples
 #' x_flat <-
 #'    ir::ir_sample_data %>%
@@ -34,19 +34,19 @@ ir_flatten <- function(x,
 }
 
 
-#' Cleans objects of class \code{ir_flat}
+#' Cleans objects of class `ir_flat`
 #'
-#' \code{ir_flatten_clean} takes an object of class \code{ir_flat} and either
+#' `ir_flatten_clean` takes an object of class `ir_flat` and either
 #' returns all non-empty spectra or all empty spectra as object of class
-#' \code{ir_flat}.
+#' `ir_flat`.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.
+#' @param x An object of class [`ir_flat()`][ir::ir_new_ir_flat].
 #' @param return_empty A logical value indicating if the empty spectra should be
-#' returned (\code{return_empty = TRUE}) or the non-empty spectra
-#' (\code{return_empty = FALSE}).
-#' @return A matrix where the first column (\code{"x"}) contains the unique x
-#' axis values (e.g. wavenumbers) in \code{ir} and all remaining columns
-#' represent intensity values from the spectra in \code{x}.
+#' returned (`return_empty = TRUE`) or the non-empty spectra
+#' (`return_empty = FALSE`).
+#' @return A matrix where the first column (`"x"`) contains the unique x
+#' axis values (e.g. wavenumbers) in `ir` and all remaining columns
+#' represent intensity values from the spectra in `x`.
 #' @export
 ir_flat_clean <- function(x,
                           return_empty = FALSE) {

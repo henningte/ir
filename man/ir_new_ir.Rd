@@ -20,13 +20,20 @@ empty \code{data.frame} can be defined if no metadata are available.}
 \value{
 An object of class \code{ir} with the following columns:
 \describe{
-  \item{spectra}{A list column identical to \code{spectra}.}
-  \item{...}{Additional columns contained in \code{metadata}.}
+\item{spectra}{A list column identical to \code{spectra}.}
+\item{...}{Additional columns contained in \code{metadata}.}
 }
 }
 \description{
 \code{ir_new_ir} is the constructor function for objects of class
 \code{ir}.
-An object of class \code{ir} is a \code{\link[tibble]{tbl_df}} with a
+An object of class \code{ir} is a \code{\link[tibble:tbl_df-class]{tibble::tbl_df()}} with a
 sample in each row and a list column containing spectra for each sample.
+}
+\examples{
+ir_new_ir(
+  spectra = ir_sample_data$spectra,
+  metadata = ir_sample_data \%>\% dplyr::select(-spectra)
+)
+
 }

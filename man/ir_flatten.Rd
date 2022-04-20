@@ -7,13 +7,13 @@
 ir_flatten(x, measurement_id = as.character(seq_len(nrow(x))))
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{measurement_id}{A character vector an element for each row in \code{x}
 that contains the names to use as column names for the spectra in the matrix.}
 }
 \value{
-An object of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.
+An object of class \code{\link[=ir_new_ir_flat]{ir_flat()}}.
 }
 \description{
 \code{ir_flatten} takes and object of class \code{ir}, extracts the

@@ -1,18 +1,18 @@
 #' Clips infrared spectra to new wavenumber ranges
 #'
-#' \code{ir_clip} clips infrared spectra to a new, specified, wavenumber range
+#' `ir_clip` clips infrared spectra to a new, specified, wavenumber range
 #' or multiple new specified wavenumber ranges.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
-#' @param range A \code{data.frame} with two columns and a row for each
+#' @param x An object of class [`ir`][ir_new_ir()].
+#' @param range A `data.frame` with two columns and a row for each
 #' wavenumber range to keep. The columns are:
 #' \describe{
 #'   \item{start}{A numeric vector with start values for wavenumber ranges.}
 #'   \item{end}{A numeric vector with end values for wavenumber ranges.}
 #' }
-#' If \code{range} has more than one row, multiple ranges are clipped from
-#' \code{x} and merged together. Overlapping ranges are not allowed.
-#' @return An object of class \code{ir}.
+#' If `range` has more than one row, multiple ranges are clipped from
+#' `x` and merged together. Overlapping ranges are not allowed.
+#' @return An object of class `ir`.
 #' @examples
 #' ## clipping with one range
 #'

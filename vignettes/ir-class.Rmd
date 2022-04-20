@@ -1,0 +1,287 @@
+---
+title: "Introduction to the `ir`class"
+output: rmarkdown::html_vignette
+author: Henning Teickner
+vignette: >
+  %\VignetteIndexEntry{Introduction to the `ir`class}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: "../inst/REFERENCES.bib" 
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.align = "center",
+  fig.width = 6.5,
+  fig.height = 3.5
+)
+```
+
+# Introduction
+
+## Purpose
+
+The purpose of this vignette is to describe the structure and methods of objects of class `ir`. `ir` objects are used by the ir package to store spectra and their metadata. This vignette could be helpful if you want to understand better how the ir package works, how to handle metadata, how to manipulate `ir` objects, or if you want to construct a subclass based on the `ir`class.
+
+This vignette does not give an overview on how to use the ir package, on functions for spectral preprocessing, and on how to plot `ir` objects. For this, see vignette [`r rmarkdown::yaml_front_matter("ir-introduction.Rmd")$title`](ir-introduction.html). 
+
+## Structure
+
+This vignette has three parts:
+
+1. The `ir` class
+2. Subsetting and modifying `ir` objects
+3. Special functions to manipulate `ir objects`
+
+In part [The `ir class`], I will describe the structure of `ir` objects and list available methods for it.
+
+In part [Subsetting and modifying `ir` objects], I will show how `ir` objects can be subsetted and modified (including tidyverse functions).
+
+In part [Special functions to manipulate `ir objects`], I will present some more specialized functions to manipulate the data in `ir` objects (including the spectra).
+
+## Preparation
+
+To follow this vignette, you have to install the ir package as described in the Readme file and you have to load it:
+
+```{r load-package-ir}
+library(ir)
+```
+
+
+
+# The `ir` class
+
+Objects of class `ir` are in principle data frames (or `tibble`s):
+
+```{r, results='hide'}
+ir_sample_data
+```
+
+```{r, echo=FALSE}
+rmarkdown::paged_table(ir_sample_data)
+```
+
+
+
+Each row represents one measurement for a spectrum. The `ir` object must a column `spectra` which is a list of data frames, each element representing a spectrum.
+
+Besides this, `ir` objects may have additional columns with metadata. This is useful to analyze spectra of samples in an integrated way with other data, for example nitrogen content (see part [Subsetting and modifying `ir` objects]).
+
+The `spectra` column is a list of data frames, each element representing a spectrum. The data frames have a row for each intensity values measured for a spectral channel ("x axis value", e.g. wavenumber) and a column `x` storing the wavenumber values and a column `y` storing the respective intensity values. No additional columns are allowed:
+
+```{r}
+head(ir_sample_data$spectra[[1]])
+```
+
+
+If there is no spectrum available for a sample, an empty data frame is a placeholder:
+
+```{r, results='hide'}
+d <- ir_sample_data
+d$spectra[[1]] <- d$spectra[[1]][0, ]
+d$spectra[[1]]
+
+ir_normalize(d, method = "area")
+```
+
+```{r, echo=FALSE}
+d <- ir_sample_data
+d$spectra[[1]] <- d$spectra[[1]][0, ]
+d$spectra[[1]]
+
+rmarkdown::paged_table(ir_normalize(d, method = "area"))
+```
+
+
+
+
+Currently, the following methods are available for `ir` objects:
+
+```{r}
+methods(class = "ir")
+```
+
+
+# Subsetting and modifying `ir` objects
+
+## Subsetting works as for data frames
+
+Since `ir` objects are data frames, subsetting and modifying works the same way as for data frames. For example, specific rows (= measurements) can be filtered:
+
+```{r, results='hide'}
+ir_sample_data[5:10, ]
+```
+
+```{r, echo=FALSE}
+rmarkdown::paged_table(ir_sample_data[5:10, ])
+```
+
+
+The advantage of storing spectra as list columns is that filtering spectral data and metadata and other data can be performed simultaneously.
+
+One exception is that while subsetting, one must not remove the `spectra` column. If it is removed, the `ir` class attribute is dropped:
+
+```{r}
+d1 <- ir_sample_data
+
+class(d1[, setdiff(colnames(d), "id_sample")])
+
+d1$spectra <- NULL
+class(d1)
+```
+
+Another exception is that when the `spectra` column contains unsupported elements (e.g. wrong column names, additional columns, duplicated "x axis values"), the object also loses its `ir` class:
+
+```{r}
+d2 <- ir_sample_data
+d2$spectra[[1]] <- rep(d2$spectra[[1]], 2)
+class(d2)
+
+d3 <- ir_sample_data
+colnames(d3$spectra[[1]]) <- c("a", "b")
+class(d3)
+```
+
+
+
+## Tidyverse methods are supported
+
+Tidyverse methods for manipulating ir objects are also supported. For example, we can use `mutate` to add new variables and we can use pipes (`%>%`) to make coding and reading code easier:
+
+```{r, results='hide'}
+library(dplyr)
+
+d <- ir_sample_data
+
+d <- 
+  d %>%
+  mutate(a = rnorm(n = nrow(.)))
+  
+head(ir_sample_data)
+```
+
+
+```{r, echo=FALSE}
+library(dplyr)
+
+d <- ir_sample_data
+
+d1 <- 
+  d %>%
+  mutate(a = rnorm(n = nrow(.)))
+  
+rmarkdown::paged_table(head(ir_sample_data))
+```
+
+
+Or, a another example, we can summarize spectra for some defined groups (here the maximum intensity value for each "x axis value" and unique `sample_type` value):
+
+```{r}
+library(purrr)
+library(ggplot2)
+
+d2 <- 
+  d %>%
+  group_by(sample_type) %>%
+  summarize(
+    spectra = {
+      res <- map_dfc(spectra, function(.x) .x[, 2, drop = TRUE])
+      spectra[[1]] %>%
+        dplyr::mutate(
+          y =
+            res %>%
+            rowwise() %>%
+            mutate(y = max(c_across(everything()))) %>%
+            pull(y)
+        ) %>%
+        list()
+    },
+    .groups = "drop"
+  )
+
+plot(d2) + 
+  facet_wrap(~ sample_type)
+```
+
+
+
+# Special functions to manipulate `ir objects`
+
+There are some more special functions to manipulate `ir` objects which are not described in vignette [`r rmarkdown::yaml_front_matter("ir-introduction.Rmd")$title`](ir-introduction.html). These will be described here.
+
+## Replicating data
+
+Sometimes, it is useful to replicate one or multiple measurements. This can be done with the `rep()` method for `ir` objects. For example, we can replicate the second spectrum in `ir_sample_data`:
+
+```{r, results='hide'}
+ir_sample_data %>%
+  slice(2) %>%
+  rep(20)
+```
+
+```{r, echo=FALSE}
+ir_sample_data %>%
+  slice(2) %>%
+  rep(20) %>%
+  rmarkdown::paged_table()
+```
+
+
+
+## Calculating with spectra
+
+The `ir` packages supports arithmetic operations with spectra, i.e. addition, subtraction, multiplication, and division of intensity values with the same "x axis values". For example, we can subtract the third spectrum in `ir_sample_data` from the second:
+
+```{r}
+ir_sample_data %>%
+  slice(2) %>%
+  ir_subtract(y = ir_sample_data[3, ]) %>%
+  dplyr::mutate(id_sample = "subtraction_result") %>%
+  rbind(ir_sample_data[2:3, ]) %>%
+  plot() + facet_wrap(~ id_sample)
+```
+
+Note that all metadata of the first argument (`x`) will be retained, but not of the second (`y`). This is why we had to manually change `id_sample` before `rbind`ing the other spectra above. Note also that `x` can contain multiple spectra, `y` must either only contain one spectrum or the same number of spectra as `x` in which case spectra of matching rows are subtracted (added, multiplied, divided):
+
+```{r, error=TRUE}
+# This will not work
+ir_sample_data %>%
+  slice(6) %>%
+  ir_add(y = ir_sample_data[3:4, ])
+
+# but this will
+ir_sample_data %>%
+  slice(2:6) %>%
+  ir_add(y = ir_sample_data[3, ]) 
+```
+
+Note that arithmetic operations are also available as infix operators, i.e. it is possible to compute:
+
+```{r}
+ir_sample_data[2, ] + ir_sample_data[3, ]
+ir_sample_data[2, ] - ir_sample_data[3, ]
+ir_sample_data[2, ] * ir_sample_data[3, ]
+ir_sample_data[2, ] / ir_sample_data[3, ]
+```
+
+
+# Further information
+
+Many more functions and options to handle and process spectra are available in the ir package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.  
+To learn more about how `ir` objects can be useful can be plotted, and the spectral preprocessing functions, see the vignette [`r rmarkdown::yaml_front_matter("ir-introduction.Rmd")$title`](ir-introduction.html).
+
+
+# Sources
+
+The data contained in the `csv` file used in this vignette are derived from @Hodgkins.2018
+
+# Session info
+
+```{r, echo=FALSE}
+sessionInfo()
+```
+
+# References
+

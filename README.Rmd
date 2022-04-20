@@ -72,6 +72,11 @@ library(ir)
 library(ggplot2)
 ```
 
+For brief introductions, see below and the two vignettes:
+
+1. [`r rmarkdown::yaml_front_matter("vignettes/ir-introduction.Rmd")$title`](vignettes/ir-introduction.Rmd)
+2. [`r rmarkdown::yaml_front_matter("vignettes/ir-class.Rmd")$title`](vignettes/ir-class.Rmd)
+
 #### Sample workflow
 
 A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalize them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected spectra for each sample and sample type. Here's the ir code using the built-in sample data `ir_sample_data`.

@@ -9,3 +9,7 @@
 ^README-sample_data_workflow-1.png$
 ^doc$
 ^Meta$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

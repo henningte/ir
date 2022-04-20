@@ -8,6 +8,13 @@
 \description{
 Functions to import and handle infrared spectra (import from .csv and Thermo Galactic's .spc, baseline correction, binning, clipping, interpolating, smoothing, averaging, adding, subtracting, dividing, multiplying, plotting).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://henningte.github.io/ir/}
+}
+
+}
 \author{
 \strong{Maintainer}: Henning Teickner \email{h_teic01@uni-muenster.de} (\href{https://orcid.org/0000-0002-3993-1182}{ORCID})
 

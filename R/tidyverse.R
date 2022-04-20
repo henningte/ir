@@ -2,6 +2,8 @@
 
 #' Subset rows in `ir` objects using column values
 #'
+#' @family tidyverse
+#'
 #' @inheritParams dplyr::filter
 #'
 #' @param .data An object of class `ir`.
@@ -21,6 +23,8 @@ filter.ir <- function(.data, ..., .preserve = FALSE) {
 
 #' Arrange rows in `ir` objects by column values
 #'
+#' @family tidyverse
+#'
 #' @inheritParams dplyr::arrange
 #'
 #' @param .data An object of class `ir`.
@@ -38,6 +42,8 @@ arrange.ir <- function(.data, ..., .by_group = FALSE) {
 
 
 #' Group rows in `ir` objects by one or more variables
+#'
+#' @family tidyverse
 #'
 #' @name group_by
 #'
@@ -96,6 +102,8 @@ rowwise.ir <- function(.data, ...) {
 
 #' Mutate an `ir` object by adding new or replacing existing columns
 #'
+#' @family tidyverse
+#'
 #' @name mutate
 #'
 #' @inheritParams dplyr::mutate
@@ -133,6 +141,8 @@ transmute.ir <- function(.data, ...) {
 
 #' Subset columns in `ir` objects using column names and types
 #'
+#' @family tidyverse
+#'
 #' @inheritParams dplyr::select
 #'
 #' @param .data An object of class `ir`.
@@ -151,6 +161,8 @@ select.ir <- function(.data, ...) {
 
 
 #' Rename columns in `ir` objects
+#'
+#' @family tidyverse
 #'
 #' @inheritParams dplyr::rename
 #'
@@ -185,6 +197,8 @@ rename_with.ir <- function(.data, .fn, .cols = dplyr::everything(), ...) {
 
 
 #' Subset rows in `ir` objects using their positions
+#'
+#' @family tidyverse
 #'
 #' @name slice
 #'
@@ -222,6 +236,8 @@ slice_sample.ir <- function(.data, ..., n, prop, weight_by = NULL, replace = FAL
 
 #' Summarize each group in a `ir` object to fewer rows
 #'
+#' @family tidyverse
+#'
 #' @name summarize
 #' @aliases summarise
 #'
@@ -252,6 +268,8 @@ summarise.ir <- summarize.ir
 
 #' Subset distinct/unique rows in `ir` objects
 #'
+#' @family tidyverse
+#'
 #' @inheritParams dplyr::distinct
 #'
 #' @param .data An object of class `ir`.
@@ -269,6 +287,8 @@ distinct.ir <- function(.data, ..., .keep_all = FALSE) {
 
 
 #' Pivot an `sf` object from wide to long
+#'
+#' @family tidyverse
 #'
 #' @inheritParams tidyr::pivot_longer
 #'
@@ -305,6 +325,8 @@ pivot_longer.ir <- function(
 
 #' Pivot an `sf` object from wide to long
 #'
+#' @family tidyverse
+#'
 #' @inheritParams tidyr::pivot_wider
 #'
 #' @param data An object of class `ir`.
@@ -339,6 +361,8 @@ pivot_wider.ir <- function(
 
 
 #' Nest and unnest an `sf` object
+#'
+#' @family tidyverse
 #'
 #' @name nest
 #'
@@ -402,6 +426,8 @@ unnest.ir <- function(
 
 #' Separate a character column in an `ir` object into multiple columns with a regular expression or numeric locations
 #'
+#' @family tidyverse
+#'
 #' @inheritParams tidyr::separate
 #'
 #' @param data An object of class `ir`.
@@ -433,6 +459,8 @@ separate.ir <- function(
 
 #' Unite multiple columns in an `ir` object into one by pasting strings together
 #'
+#' @family tidyverse
+#'
 #' @inheritParams tidyr::unite
 #'
 #' @param data An object of class `ir`.
@@ -454,6 +482,8 @@ unite.ir <- function(data, col, ..., sep = "_", remove = TRUE, na.rm = FALSE) {
 
 
 #' Extract a character column in an `ir` object into multiple columns using regular expression groups
+#'
+#' @family tidyverse
 #'
 #' @inheritParams tidyr::extract
 #'
@@ -484,6 +514,8 @@ extract.ir <- function(
 
 #' Separate a collapsed column in an `ir` object into multiple rows
 #'
+#' @family tidyverse
+#'
 #' @inheritParams tidyr::separate_rows
 #'
 #' @param data An object of class `ir`.
@@ -510,6 +542,8 @@ separate_rows.ir <- function(data, ..., sep = "[^[:alnum:].]+", convert = FALSE)
 #### joins ####
 
 #' Mutating joins for an `ir` object
+#'
+#' @family tidyverse
 #'
 #' @name mutate-joins
 #'

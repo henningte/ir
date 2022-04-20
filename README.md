@@ -47,6 +47,7 @@ samples.
 12. computing maxima, minima, median, and ranges of intensity values of
     spectra.
 13. plotting.
+14. [tidyverse](https://www.tidyverse.org/) methods.
 
 ### How to install
 

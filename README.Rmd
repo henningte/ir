@@ -51,6 +51,7 @@ ir is an R package that contains simple functions to import, handle and preproce
 11. computing the variance of intensity values (optionally after subtracting reference spectra).
 12. computing maxima, minima, median, and ranges of intensity values of spectra.
 13. plotting.
+14. [tidyverse](https://www.tidyverse.org/) methods.
 
 ### How to install
 

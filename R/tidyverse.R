@@ -77,6 +77,8 @@ ungroup.ir <- function(.data, ...) {
 
 #' Group input `ir` objects by rows
 #'
+#' @family tidyverse
+#'
 #' @inheritParams dplyr::rowwise
 #'
 #' @param data An object of class `ir`.
@@ -674,6 +676,8 @@ full_join.ir <- function(
 
 
 #' Filtering joins for an `ir` object
+#'
+#' @family tidyverse
 #'
 #' @name filter-joins
 #'

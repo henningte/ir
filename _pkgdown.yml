@@ -93,5 +93,14 @@ reference:
       Sample dataset
     contents:
       - ir_sample_data
+  - title: internal
+    contents:
+      - ir_bc_polynomial
+      - ir_bc_rubberband
+      - ir_bc_sg
+      - ir_flat_clean
+      - ir_new_ir_flat
+      - ir_stack
+
 
 

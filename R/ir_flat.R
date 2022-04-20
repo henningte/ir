@@ -52,8 +52,11 @@ ir_new_ir_flat <- function(x) {
 #' `ir_flat_check` checks if an object is of class [`ir_flat()`][ir::ir_new_ir_flat].
 #'
 #' @param x An object.
+#'
+#' @noRd
+#' @keywords Internal
+#'
 #' @return An object of class [`ir_flat()`][ir::ir_new_ir_flat].
-#' @export
 ir_flat_check <- function(x) {
   x_sym <- as.character(rlang::get_expr(rlang::enquo(x)))
   if(!inherits(x, "ir_flat"))

@@ -34,6 +34,7 @@ dplyr::distinct(rep(ir_sample_data, 2))
 Other tidyverse: 
 \code{\link{arrange.ir}()},
 \code{\link{extract.ir}()},
+\code{\link{filter-joins}},
 \code{\link{filter.ir}()},
 \code{\link{group_by}},
 \code{\link{mutate-joins}},
@@ -42,6 +43,7 @@ Other tidyverse:
 \code{\link{pivot_longer.ir}()},
 \code{\link{pivot_wider.ir}()},
 \code{\link{rename}},
+\code{\link{rowwise.ir}()},
 \code{\link{select.ir}()},
 \code{\link{separate.ir}()},
 \code{\link{separate_rows.ir}()},

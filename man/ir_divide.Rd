@@ -30,6 +30,8 @@ all intensity values in \code{x} by \code{y}.
 # division with y as ir object
 x1 <-
   ir::ir_divide(ir::ir_sample_data, ir::ir_sample_data)
+x1 <-
+  ir::ir_divide(ir::ir_sample_data, ir::ir_sample_data[1, ])
 
 # division with y being a numeric value
 x2 <-

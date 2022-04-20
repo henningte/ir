@@ -30,6 +30,8 @@ all intensity values in \code{x} with \code{y}.
 # multiplication with y as ir object
 x1 <-
   ir::ir_multiply(ir::ir_sample_data, ir::ir_sample_data)
+x1 <-
+  ir::ir_multiply(ir::ir_sample_data, ir::ir_sample_data[1, ])
 
 # multiplication with y being a numeric value
 x2 <-

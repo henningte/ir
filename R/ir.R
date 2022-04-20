@@ -29,7 +29,7 @@ ir_new_ir <- function(spectra,
   ir_check_spectra(spectra)
   stopifnot(is.data.frame(metadata))
   stopifnot(nrow(metadata) == length(spectra))
-  stopifnot(any(colnames(metadata) != "spectra"))
+  stopifnot(any(colnames(metadata) != "spectra") || ncol(metadata) == 0L)
 
   # combine data
   x <-
@@ -350,6 +350,13 @@ ir_check_spectra <- function(x) {
   if(!all(x_ncol == 2)) {
     rlang::abort(paste0("Each element of `x` must have two columns.\n
                         Elements ", which(x_ncol != 2), " have not two columns."))
+  }
+  x_colnames_match <- vapply(x,
+                    FUN = function(.x) {all(colnames(.x) %in% c("x", "y")) || is.null(.x)},
+                    FUN.VALUE = logical(1))
+  if(!all(x_colnames_match)) {
+    rlang::abort(paste0('Each element of `x` must have two columns named "x" and "y".\n
+                        Elements ', which(!x_colnames_match), ' have different column names.'))
   }
   columns_are_numeric <- do.call(rbind, lapply(x, function(x) vapply(x, is.numeric, FUN.VALUE = rlang::na_lgl)))
   if(!all(columns_are_numeric[, 1, drop = TRUE])) {

@@ -35,7 +35,7 @@ This vignette has three parts:
 2. Subsetting and modifying `ir` objects
 3. Special functions to manipulate `ir objects`
 
-In part [The `ir class`], I will describe the structure of `ir` objects and list available methods for it.
+In part [The `ir` class], I will describe the structure of `ir` objects and list available methods for it.
 
 In part [Subsetting and modifying `ir` objects], I will show how `ir` objects can be subsetted and modified (including tidyverse functions).
 

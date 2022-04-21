@@ -1,3 +1,7 @@
+#' @importFrom baseline baseline
+NULL
+# This is required for `ChemoSpec::baselineSpectra()`
+
 #' Performs baseline correction on infrared spectra
 #'
 #' `ir_bc` performs baseline correction for infrared spectra. Baseline

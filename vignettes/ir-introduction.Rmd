@@ -218,7 +218,7 @@ d_spc %>%
   geom_vline(xintercept = 1090, linetype = 2)
 ```
 
-The warning just says that the spectrum's wavenumber values did not exactly match the desired value and therefore the nearest value available was selected. To disable this warning, you can interpolate the spectrum appropriately (see [below](Interpolating)).
+The warning just says that the spectrum's wavenumber values did not exactly match the desired value and therefore the nearest value available was selected. To disable this warning, you can interpolate the spectrum appropriately (see below, section [Interpolating]).
 
 ## Smoothing
 
@@ -263,7 +263,7 @@ d_spc %>%
 ```
 
 
-This is not easy to see from the plot, but the warning shown [above](Normalization) during normalization now does not appear:
+This is not easy to see from the plot, but the warning shown above (section [Normalization]) during normalization now does not appear:
 
 ```{r}
 d_spc %>%

@@ -28,7 +28,6 @@ Imports:
     ChemoSpec (>= 5.2.12),
     hyperSpec (>= 0.99.20200527),
     signal,
-    baseline,
     grDevices,
     rlang,
     methods,
@@ -36,7 +35,8 @@ Imports:
     Rdpack,
     magrittr,
     stats,
-    lifecycle
+    lifecycle,
+    baseline
 Suggests:
     kableExtra,
     fda,

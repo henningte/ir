@@ -36,24 +36,30 @@ using a rubberband function that is fitted to each spectrum (see
 the input spectra (see \code{\link[=ir_bc_sg]{ir_bc_sg()}}).
 }
 \examples{
+library(dplyr)
+
 # rubberband baseline correction
 x1 <-
    ir::ir_sample_data \%>\%
+   dplyr::slice(1:10) \%>\%
    ir::ir_bc(method = "rubberband")
 
 # polynomial baseline correction
 x2 <-
    ir::ir_sample_data \%>\%
+   dplyr::slice(1:10) \%>\%
    ir::ir_bc(method = "polynomial", degree = 2)
 
 # Savitzky-Golay baseline correction
 x3 <-
    ir::ir_sample_data \%>\%
+   dplyr::slice(1:10) \%>\%
    ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
 
 # return the baseline instead of the baseline corrected spectra
 x1_bl <-
    ir::ir_sample_data \%>\%
+   dplyr::slice(1:10) \%>\%
    ir::ir_bc(method = "rubberband", return_bl = TRUE)
 
 }

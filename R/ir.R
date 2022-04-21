@@ -326,7 +326,7 @@ ir_reclass_ir <- function(x) {
 
   if(! "spectra" %in% colnames(x)) { # spectra column not present
     structure(x, class = setdiff(class(x), "ir"))
-  } else if(class(try(ir_check_spectra(x$spectra), silent = TRUE)) == "try-error") { # spectra column present, but wrong format
+  } else if(inherits(try(ir_check_spectra(x$spectra), silent = TRUE), "try-error")) { # spectra column present, but wrong format
     structure(x, class = setdiff(class(x), "ir"))
   } else { # spectra column with correct format present
     structure(x, class = c("ir", setdiff(class(x), "ir")))

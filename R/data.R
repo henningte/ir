@@ -24,7 +24,7 @@
 #' @source The data set was derived from <https://www.nature.com/articles/s41467-018-06050-2>
 #' and published by \insertCite{Hodgkins.2018;textual}{ir} under the CC BY 4.0 license <https://creativecommons.org/licenses/by/4.0/>.
 #' \insertCite{Hodgkins.2018;textual}{ir} originally derived the data on Klason Lignin and Holocellulose content from
-#' \insertCite{LaCruz.2016;textual}{ir} <https://doi.org/10.1089/ees.2014.0402>.
+#' \insertCite{LaCruz.2016;textual}{ir}.
 #'
 #' @references
 #'   \insertAllCited{}

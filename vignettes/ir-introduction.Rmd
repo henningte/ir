@@ -154,7 +154,7 @@ plot(d_csv)
 
 This will plot the intensity values ("y axis values", e.g. absorbances) of each spectrum versus the spectral channel values ("x axis values", e.g. wavenumbers), connected by a line. All spectra in an `ir` object are plotted on top of each other.
 
-ir relies on [ggplot](https://cran.r-project.org/web/packages/ggplot2/index.html). This makes it possible to modify the plot with the functions from ggplot2. For example, we could color spectra according to the sample class:
+ir relies on [ggplot](https://cran.r-project.org/package=ggplot2). This makes it possible to modify the plot with the functions from ggplot2. For example, we could color spectra according to the sample class:
 
 ```{r}
 library(ggplot2)
@@ -189,7 +189,7 @@ plot(d_spc)
 
 ## Baseline correction
 
-Baseline correction with a rubberband algorithm (see the `spc.rubberband` function in the [hyperspec](https://cran.r-project.org/web/packages/hyperSpec/index.html) package):
+Baseline correction with a rubberband algorithm (see the `spc.rubberband` function in the [hyperspec](https://cran.r-project.org/package=hyperSpec) package):
 
 ```{r preprocessing-bc-1}
 d_spc %>%
@@ -222,7 +222,7 @@ The warning just says that the spectrum's wavenumber values did not exactly matc
 
 ## Smoothing
 
-Smoothing of spectra with the Savitzky-Golay algorithm (see the `sgolayfilt()` function from the [signal](https://cran.r-project.org/web/packages/signal/index.html) package for details):
+Smoothing of spectra with the Savitzky-Golay algorithm (see the `sgolayfilt()` function from the [signal](https://cran.r-project.org/package=signal) package for details):
 
 ```{r}
 d_spc %>%
@@ -298,7 +298,7 @@ d_spc %>%
 
 ## Building preprocessing pipelines
 
-With ir, it is very easy to build complex reprocessing workflows by "piping" (using [magrittr's](https://cran.r-project.org/web/packages/magrittr/index.html) pipe (`%>%`) operator) together different preprocessing steps:
+With ir, it is very easy to build complex reprocessing workflows by "piping" (using [magrittr's](https://cran.r-project.org/package=magrittr) pipe (`%>%`) operator) together different preprocessing steps:
 
 ```{r}
 d_spc %>%

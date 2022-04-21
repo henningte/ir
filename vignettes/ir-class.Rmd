@@ -23,9 +23,9 @@ knitr::opts_chunk$set(
 
 ## Purpose
 
-The purpose of this vignette is to describe the structure and methods of objects of class `ir`. `ir` objects are used by the ir package to store spectra and their metadata. This vignette could be helpful if you want to understand better how the ir package works, how to handle metadata, how to manipulate `ir` objects, or if you want to construct a subclass based on the `ir`class.
+The purpose of this vignette is to describe the structure and methods of objects of class `ir`. `ir` objects are used by the 'ir' package to store spectra and their metadata. This vignette could be helpful if you want to understand better how the 'ir' package works, how to handle metadata, how to manipulate `ir` objects, or if you want to construct a subclass based on the `ir`class.
 
-This vignette does not give an overview on how to use the ir package, on functions for spectral preprocessing, and on how to plot `ir` objects. For this, see vignette [`r rmarkdown::yaml_front_matter("ir-introduction.Rmd")$title`](ir-introduction.html). 
+This vignette does not give an overview on how to use the 'ir' package, on functions for spectral preprocessing, and on how to plot `ir` objects. For this, see vignette [`r rmarkdown::yaml_front_matter("ir-introduction.Rmd")$title`](ir-introduction.html). 
 
 ## Structure
 
@@ -43,7 +43,7 @@ In part [Special functions to manipulate `ir objects`], I will present some more
 
 ## Preparation
 
-To follow this vignette, you have to install the ir package as described in the Readme file and you have to load it:
+To follow this vignette, you have to install the 'ir' package as described in the Readme file and you have to load it:
 
 ```{r load-package-ir}
 library(ir)
@@ -269,7 +269,7 @@ ir_sample_data[2, ] / ir_sample_data[3, ]
 
 # Further information
 
-Many more functions and options to handle and process spectra are available in the ir package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.  
+Many more functions and options to handle and process spectra are available in the 'ir' package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.  
 To learn more about how `ir` objects can be useful can be plotted, and the spectral preprocessing functions, see the vignette [`r rmarkdown::yaml_front_matter("ir-introduction.Rmd")$title`](ir-introduction.html).
 
 

@@ -1,20 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ir
+# ir <img src='man/figures/logo-hex.png' align="right" height="139" alt="logo" style="float:right; height:200px;" />
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![DOI](https://zenodo.org/badge/234117897.svg)](https://zenodo.org/badge/latestdoi/234117897)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
-ir is an R package that contains simple functions to import, handle and
-preprocess infrared spectra. Infrared spectra are stored as list columns
-in data frames to enable efficient storage of metadata along with the
-spectra and support further analyses containing other data for the same
-samples.
+## Overview
+
+‘ir’ is an R package that contains simple functions to import, handle
+and preprocess infrared spectra. Infrared spectra are stored as list
+columns in data frames to enable efficient storage of metadata along
+with the spectra and support further analyses containing other data for
+the same samples.
 
 **Supported file formats for import are:**
 
@@ -51,7 +53,13 @@ samples.
 
 ### How to install
 
-You can install ir from GitHub using R via:
+You can install ‘ir’ from CRAB using R via:
+
+``` r
+install.packages("ir")
+```
+
+You can install ‘ir’ from GitHub using R via:
 
 ``` r
 remotes::install_github(repo = "henningte/ir")
@@ -59,7 +67,7 @@ remotes::install_github(repo = "henningte/ir")
 
 ### How to use
 
-You can load ir in R with:
+You can load ‘ir’ in R with:
 
 ``` r
 # load ir package
@@ -72,7 +80,7 @@ library(ggplot2)
 
 For brief introductions, see below and the two vignettes:
 
-1.  [Introduction to the ir package](vignettes/ir-introduction.Rmd)
+1.  [Introduction to the ‘ir’ package](vignettes/ir-introduction.Rmd)
 2.  [Introduction to the `ir`class](vignettes/ir-class.Rmd)
 
 #### Sample workflow
@@ -81,7 +89,7 @@ A simple workflow would be, for example, to baseline correct the
 spectra, then bin them to bins with a width of 10 wavenumber units, then
 normalize them so that the maximum intensity value is 1 and the minimum
 intensity value is 0 and then plot the baseline corrected spectra for
-each sample and sample type. Here’s the ir code using the built-in
+each sample and sample type. Here’s the ‘ir’ code using the built-in
 sample data `ir_sample_data`.
 
 ``` r
@@ -156,13 +164,19 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra’*. DOI: 10.5281/zenodo.5747170. Accessed 20 Apr 2022.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 21 Apr 2022.
 > Online at <https://zenodo.org/record/5747170>.
+
+### Companion packages
+
+[irpeat](https://github.com/henningte/irpeat/) builds on ‘ir’. irpeat
+provides functions to analyze infrared spectra of peat (humification
+indices, prediction models).
 
 ### Licenses
 
 **Text and figures :** [CC
-BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 **Code :** See the [DESCRIPTION](DESCRIPTION) file
 
@@ -180,11 +194,11 @@ participating in this project you agree to abide by its terms.
 ### Sources
 
 The complete data in this package is derived from Hodgkins et al. (2018)
-and was restructured to match the requirements of ir. The original
+and was restructured to match the requirements of ‘ir’. The original
 article containing the data can be downloaded from
 <https://www.nature.com/articles/s41467-018-06050-2> and is distributed
 under the Creative Commons Attribution 4.0 International License
-(<http://creativecommons.org/licenses/by/4.0/>). The data on Klason
+(<https://creativecommons.org/licenses/by/4.0/>). The data on Klason
 lignin and holocellulose content was originally derived from De La Cruz,
 Florentino B., Osborne, and Barlaz (2016).
 

@@ -1,9 +1,9 @@
 ---
-title: "Introduction to the ir package"
+title: "Introduction to the 'ir' package"
 output: rmarkdown::html_vignette
 author: Henning Teickner
 vignette: >
-  %\VignetteIndexEntry{Introduction to the ir package}
+  %\VignetteIndexEntry{Introduction to the 'ir' package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: "../inst/REFERENCES.bib"  
@@ -28,7 +28,7 @@ library(kableExtra)
 
 ## Purpose
 
-This vignette shows you the main functionalities of the ir package. This includes data import,  functions for spectral preprocessing, and plotting.  
+This vignette shows you the main functionalities of the 'ir' package. This includes data import,  functions for spectral preprocessing, and plotting.  
 This vignette does not explain the data structure of `ir` objects (the objects the package ir uses to store spectra) in detail and it does not describe general data manipulation functions (e.g. subsetting rows or columns, modifying variables) (for this, see vignette [`r rmarkdown::yaml_front_matter("ir-class.Rmd")$title`](ir-class.html)). Moreover, this vignette does not explain the purpose of the spectral preprocessing functions.
 
 ## Structure
@@ -39,13 +39,13 @@ The vignette has three parts:
 2. Plotting spectra
 3. Spectral preprocessing
 
-In part [Data import and export], I will show how spetra can be imported from `csv` files and from Thermo Galactic's spectral files (file extension `.spc`). I will also show how `ir` objects can be exported as `csv` files. To this end, I will use sample data which comes along with the ir package. 
+In part [Data import and export], I will show how spetra can be imported from `csv` files and from Thermo Galactic's spectral files (file extension `.spc`). I will also show how `ir` objects can be exported as `csv` files. To this end, I will use sample data which comes along with the 'ir' package. 
 In part [Plotting spectra], I will show how spectra can be plotted and how these plots can be modified.  
-In part [Spectral preprocessing] I will demonstrate the main preprocessing functions included in the ir package and how these can be combined to execute complex preprocessing pipelines.
+In part [Spectral preprocessing] I will demonstrate the main preprocessing functions included in the 'ir' package and how these can be combined to execute complex preprocessing pipelines.
 
 ## Preparation
 
-To follow this vignette, you have to install the ir package as described in the Readme file and you have to load it:
+To follow this vignette, you have to install the 'ir' package as described in the Readme file and you have to load it:
 
 ```{r load-package-ir}
 library(ir)
@@ -57,7 +57,7 @@ library(ir)
 
 ## Data import
 
-To test importing spectra from files, I'll use sample data which is contained in the ir package (in folder `inst/extdata`). First, I'll show how to import spectra from csv files and then how to import  Thermo Galactic's spectral files (file extension `.spc`).
+To test importing spectra from files, I'll use sample data which is contained in the 'ir' package (in folder `inst/extdata`). First, I'll show how to import spectra from csv files and then how to import  Thermo Galactic's spectral files (file extension `.spc`).
 
 ### `csv` files
 
@@ -124,10 +124,29 @@ d_spc <- ir_import_spc("../inst/extdata/1.spc")
 In this case, names for the spectra and other metadata are extracted from the `spc` file(s) and added to the `ir` object. You can inspect `d_spc` to see these additional variables.
 
 
+## Data export
+
+Data in `ir` objects can in principle be exported in many ways. Here, I show hot to export to a `csv` file with the same format as the sample data we imported in subsection [`csv` files].  
+
+To this end, we first have to "flatten" the `spectra` column in `ir_sample_data` (using `ir_flatten()`) and export this as `csv` file using `write.csv()`. Second, to export the metadata, we have to drop the spectra from `ir_sample_data` (using `ir_drop_spectra()`), and then write the remaining data to a separate `csv` file using `write.csv()`:   
+
+```{r export-csv-1}
+# export only the spectra
+ir_sample_data %>%
+  ir_flatten() %>%
+  write.csv(tempfile("ir_sample_data_spectra", fileext = "csv"), row.names = FALSE)
+
+# export only the metadata
+ir_sample_data %>%
+  ir_drop_spectra() %>%
+  write.csv(tempfile("ir_sample_data_metadata", fileext = "csv"), row.names = FALSE)
+```
+
+
 
 # Plotting spectra
 
-The ir package provides a function to create simple plots of spectra out-of-the box:
+The 'ir' package provides a function to create simple plots of spectra out-of-the box:
 
 ```{r plot-1}
 plot(d_csv)
@@ -295,7 +314,7 @@ Now, we have a baseline corrected spectrum, `"area"` normalized, clipped to [650
 
 # Further information
 
-Many more functions and options to handle and process spectra are available in the ir package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.  
+Many more functions and options to handle and process spectra are available in the 'ir' package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.  
 To learn more about the structure and general functions to handle `ir` objects, see the vignette [`r rmarkdown::yaml_front_matter("ir-class.Rmd")$title`](ir-class.html).
 
 

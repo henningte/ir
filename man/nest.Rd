@@ -4,7 +4,7 @@
 \alias{nest}
 \alias{nest.ir}
 \alias{unnest.ir}
-\title{Nest and unnest an \code{ir} object}
+\title{Nest and un-nest an \code{ir} object}
 \source{
 \code{\link[tidyr:nest]{tidyr::nest()}}
 }
@@ -106,7 +106,7 @@ dropped or invalidated (see \code{\link[=ir_new_ir]{ir_new_ir()}}), the \code{ir
 the object is of class \code{ir}.
 }
 \description{
-Nest and unnest an \code{ir} object
+Nest and un-nest an \code{ir} object
 }
 \examples{
 ## nest

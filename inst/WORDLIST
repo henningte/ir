@@ -31,7 +31,6 @@ Preprocess
 Readme
 René
 Savitzky
-Spectra’
 Thermo
 Tibbles
 Tidyverse
@@ -55,12 +54,12 @@ et
 ggplot
 github
 holocellulose
-http
 https
 humification
 hyperspec
 ing
 irpeat
+ir’
 magrittr
 magrittr's
 mth
@@ -85,9 +84,11 @@ summarise
 tibble
 tidyr
 tidyverse
+un
 unchopping
 ungrouped
 unnest
+unnested
 unnesting
 unsmoothed
 usethis

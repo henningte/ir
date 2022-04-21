@@ -12,7 +12,7 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: Introduction to the ir package
+      - text: Introduction to the 'ir' package
         href: articles/ir-introduction.html
       - text: Introduction to the `ir`class
         href: articles/ir-class.html

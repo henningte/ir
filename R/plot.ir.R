@@ -28,10 +28,9 @@ plot.ir <- function(x, ...) {
     x_unnested,
     mapping = ggplot2::aes(
       x = .data$x,
-      y = .data$y,
-      group = .data$measurement_id
+      y = .data$y
     )
   ) +
-    ggplot2::geom_path()
+    ggplot2::geom_path(mapping = ggplot2::aes(group = .data$measurement_id))
 
 }

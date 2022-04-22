@@ -1,3 +1,12 @@
+# ir (development version)
+
+## Bug fixes
+* In `ir_average()`, the returned `ir` object was still a `grouped_df`. This is now corrected (by adding the `.groups` argument for `dplyr::summarize()` which is internally used by `ir_average()`).
+* In `ir_import_spc()`, the returned `ir` object was a subclass of `data.frame` and not `tbl_df`.
+
+## New functions
+* `ir_export_prepare()` to support exporting `ir` objects to `csv`.
+
 # ir 0.2.0
 
 * First CRAN release (#1).

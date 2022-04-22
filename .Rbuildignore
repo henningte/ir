@@ -16,3 +16,4 @@
 ^cran-comments\.md$
 ^man/figures/logo-hex\.svg$
 ^man/figures/logo-hex\.png$
+^CRAN-SUBMISSION$

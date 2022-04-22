@@ -16,6 +16,10 @@ ir_bc_sg(x, ..., return_bl = FALSE)
 should be returned instead of the corrected intensity values
 (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).}
 }
+\value{
+An object of class \code{ir} with the baseline corrected spectra and,
+if \code{returnbl = TRUE},  the baselines.
+}
 \description{
 \code{ir_bc_sg} computes a smoothed version of spectra using
 \code{\link[=ir_smooth]{ir_smooth()}} with \code{method = "sg"} and uses this as baseline

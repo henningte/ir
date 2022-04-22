@@ -300,6 +300,16 @@ ir_divide <- function(x, y) {
 #'
 #' @param e2 An object of class `ir` or a numeric value.
 #'
+#' @return `e1` with intensity values of the spectra added to/subtracted
+#' with/multiplied with/divided by those in `e2`:
+#' + If `e2` is a numeric value, all intensity values in the spectra of `e1` are
+#'   added/subtracted/multiplied/divided by `e2`.
+#' + If `e2` is an `ir` object with one row, it is replicated (see [rep.ir]) so
+#'   that the row numbers match to those of `e1` and intensity values are
+#'   added/subtracted/multiplied/divided row-wise.
+#' + If `e2` is an `ir` object with the same number of rows as `e1`, intensity
+#'   values are added/subtracted/multiplied/divided row-wise.
+#'
 #' @examples
 #' ## addition
 #' ir::ir_sample_data + ir::ir_sample_data

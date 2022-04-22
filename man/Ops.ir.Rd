@@ -11,6 +11,19 @@
 
 \item{e2}{An object of class \code{ir} or a numeric value.}
 }
+\value{
+\code{e1} with intensity values of the spectra added to/subtracted
+with/multiplied with/divided by those in \code{e2}:
+\itemize{
+\item If \code{e2} is a numeric value, all intensity values in the spectra of \code{e1} are
+added/subtracted/multiplied/divided by \code{e2}.
+\item If \code{e2} is an \code{ir} object with one row, it is replicated (see \link{rep.ir}) so
+that the row numbers match to those of \code{e1} and intensity values are
+added/subtracted/multiplied/divided row-wise.
+\item If \code{e2} is an \code{ir} object with the same number of rows as \code{e1}, intensity
+values are added/subtracted/multiplied/divided row-wise.
+}
+}
 \description{
 Arithmetic operations for \code{ir} objects
 }

@@ -265,6 +265,9 @@ ir_bc_rubberband <- function(x,
 #' @references
 #' \insertAllCited{}
 #'
+#' @return An object of class `ir` with the baseline corrected spectra and,
+#' if `returnbl = TRUE`,  the baselines.
+#'
 #' @examples
 #' x <-
 #'    ir::ir_sample_data %>%

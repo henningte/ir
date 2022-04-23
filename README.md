@@ -26,21 +26,21 @@ the same samples.
 **Provided functions for preprocessing and general handling are:**
 
 1.  baseline correction with:
-      - a polynomial baseline
-      - a convex hull baseline
-      - a Savitzky-Golay baseline (Lasch 2012).
+    -   a polynomial baseline
+    -   a convex hull baseline
+    -   a Savitzky-Golay baseline (Lasch 2012).
 2.  binning.
 3.  clipping.
 4.  interpolating (resampling, linearly).
 5.  replacing selected parts of a spectrum by a straight line.
 6.  averaging spectra within specified groups.
 7.  normalizing spectra:
-      - to the maximum intensity
-      - to the intensity at a specific x value
-      - so that all intensity values sum to 1.
+    -   to the maximum intensity
+    -   to the intensity at a specific x value
+    -   so that all intensity values sum to 1.
 8.  smoothing:
-      - Savitzky-Golay smoothing
-      - Fourier smoothing.
+    -   Savitzky-Golay smoothing
+    -   Fourier smoothing.
 9.  computing derivatives of spectra using Savitzky-Golay smoothing.
 10. mathematical transformations (addition, subtraction, multiplication,
     division).
@@ -53,7 +53,7 @@ the same samples.
 
 ### How to install
 
-You can install ‘ir’ from CRAB using R via:
+You can install ‘ir’ from CRAN using R via:
 
 ``` r
 install.packages("ir")
@@ -164,7 +164,7 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 21 Apr 2022.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 23 Apr 2022.
 > Online at <https://zenodo.org/record/5747170>.
 
 ### Companion packages
@@ -175,8 +175,8 @@ indices, prediction models).
 
 ### Licenses
 
-**Text and figures :** [CC
-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+**Text and figures :** [CC BY
+4.0](https://creativecommons.org/licenses/by/4.0/)
 
 **Code :** See the [DESCRIPTION](DESCRIPTION) file
 
@@ -209,72 +209,75 @@ roxygen2 (Wickham et al. 2019).
 
 ### References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-LaCruz.2016">
+<div id="ref-LaCruz.2016" class="csl-entry">
 
 De La Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016.
-“Determination of Sources of Organic Matter in Solid Waste by Analysis
-of Phenolic Copper Oxide Oxidation Products of Lignin.” *Journal of
-Environmental Engineering* 142 (2): 04015076.
-<https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038>.
+“<span class="nocase">Determination of Sources of Organic Matter in
+Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of
+Lignin</span>.” *Journal of Environmental Engineering* 142 (2):
+04015076. <https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038>.
 
 </div>
 
-<div id="ref-Hodgkins.2018">
+<div id="ref-Hodgkins.2018" class="csl-entry">
 
 Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
-Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
-“Tropical peatland carbon storage linked to global latitudinal trends
-in peat recalcitrance.” *Nature communications* 9 (1): 3640.
+Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “<span
+class="nocase">Tropical peatland carbon storage linked to global
+latitudinal trends in peat recalcitrance</span>.” *Nature
+Communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.
 
 </div>
 
-<div id="ref-Lasch.2012">
+<div id="ref-Lasch.2012" class="csl-entry">
 
-Lasch, Peter. 2012. “Spectral Pre-Processing for Biomedical Vibrational
-Spectroscopy and Microspectroscopic Imaging.” *Chemometrics and
-Intelligent Laboratory Systems* 117 (August): 100–114.
-<https://doi.org/10.1016/j.chemolab.2012.03.011>.
-
-</div>
-
-<div id="ref-Marwick.2019">
-
-Marwick, Ben. 2019. “rrtools: Creates a Reproducible Research
-Compendium.” <https://github.com/benmarwick/rrtools>.
+Lasch, Peter. 2012. “<span class="nocase">Spectral Pre-Processing for
+Biomedical Vibrational Spectroscopy and Microspectroscopic
+Imaging</span>.” *Chemometrics and Intelligent Laboratory Systems* 117
+(August): 100–114. <https://doi.org/10.1016/j.chemolab.2012.03.011>.
 
 </div>
 
-<div id="ref-RCoreTeam.2019">
+<div id="ref-Marwick.2019" class="csl-entry">
 
-R Core Team. 2019. “R: A Language and Environment for Statistical
-Computing.” Vienna, Austria: R Foundation for Statistical Computing.
-<https://www.R-project.org/>.
-
-</div>
-
-<div id="ref-Wickham.2019b">
-
-Wickham, Hadley, and Jennifer Bryan. 2019. “usethis: Automate Package
-and Project Setup.” <https://CRAN.R-project.org/package=usethis>.
+Marwick, Ben. 2019. “<span class="nocase">rrtools: Creates a
+Reproducible Research Compendium</span>.”
+<https://github.com/benmarwick/rrtools>.
 
 </div>
 
-<div id="ref-Wickham.2019c">
+<div id="ref-RCoreTeam.2019" class="csl-entry">
+
+R Core Team. 2019. “<span class="nocase">R: A Language and Environment
+for Statistical Computing</span>.” Vienna, Austria: R Foundation for
+Statistical Computing. <https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-Wickham.2019b" class="csl-entry">
+
+Wickham, Hadley, and Jennifer Bryan. 2019. “<span
+class="nocase">usethis: Automate Package and Project Setup</span>.”
+<https://CRAN.R-project.org/package=usethis>.
+
+</div>
+
+<div id="ref-Wickham.2019c" class="csl-entry">
 
 Wickham, Hadley, Peter Danenberg, Gábor Csárdi, and Manuel Eugster.
-2019. “roxygen2: In-Line Documentation for R.”
-<https://CRAN.R-project.org/package=roxygen2>.
+2019. “<span class="nocase">roxygen2: In-Line Documentation for
+R</span>.” <https://CRAN.R-project.org/package=roxygen2>.
 
 </div>
 
-<div id="ref-Wickham.2019">
+<div id="ref-Wickham.2019" class="csl-entry">
 
-Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “devtools: Tools
-to Make Developing R Packages Easier.”
-<https://CRAN.R-project.org/package=devtools>.
+Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “<span
+class="nocase">devtools: Tools to Make Developing R Packages
+Easier</span>.” <https://CRAN.R-project.org/package=devtools>.
 
 </div>
 

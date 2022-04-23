@@ -15,6 +15,7 @@
 #' # advanced functions
 #' plot(ir::ir_sample_data) +
 #'    ggplot2::facet_wrap(~ sample_type)
+#'
 #' @export
 plot.ir <- function(x, ...) {
 
@@ -28,9 +29,10 @@ plot.ir <- function(x, ...) {
     x_unnested,
     mapping = ggplot2::aes(
       x = .data$x,
-      y = .data$y
+      y = .data$y,
+      group = .data$measurement_id
     )
   ) +
-    ggplot2::geom_path(mapping = ggplot2::aes(group = .data$measurement_id))
+    ggplot2::geom_path()
 
 }

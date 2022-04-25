@@ -395,7 +395,7 @@ GN.11.411
 <div class="section level3">
 <h3 id="derivative-spectra">Derivative spectra<a class="anchor" aria-label="anchor" href="#derivative-spectra"></a>
 </h3>
-<p>Savitzky-Golay smoothing can also be used to compute derivative spectra (here the first derivative is computed by setting the argument <code>m</code> to <code>1</code>. See <code><a href="../reference/ir_smooth.html">?ir_smooth</a></code> for more information):</p>
+<p>Savitzky-Golay smoothing can also be used to compute derivative spectra (here the first derivative is computed by setting the argument <code>m</code> to <code>1</code>. See ?ir_smooth for more information):</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d_spc</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="../reference/ir_smooth.html">ir_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"sg"</span>, p <span class="op">=</span> <span class="fl">3</span>, n <span class="op">=</span> <span class="fl">9</span>, m <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>

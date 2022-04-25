@@ -59,7 +59,7 @@ knitr::opts_chunk$set(
 
 ### How to install
 
-You can install 'ir' from CRAB using R via:
+You can install 'ir' from CRAN using R via:
 
 ```{r installation-cran, eval = FALSE}
 install.packages("ir")

@@ -15,6 +15,7 @@
 #' # advanced functions
 #' plot(ir::ir_sample_data) +
 #'    ggplot2::facet_wrap(~ sample_type)
+#'
 #' @export
 plot.ir <- function(x, ...) {
 

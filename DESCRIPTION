@@ -1,6 +1,6 @@
 Package: ir
 Title: Functions to Handle and Preprocess Infrared Spectra
-Version: 0.2.0
+Version: 0.2.0.9000
 Authors@R: 
     person(given = "Henning",
            family = "Teickner",
@@ -36,7 +36,9 @@ Imports:
     magrittr,
     stats,
     lifecycle,
-    baseline
+    baseline,
+    quantities,
+    errors
 Suggests:
     kableExtra,
     fda,

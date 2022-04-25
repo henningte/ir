@@ -52,7 +52,7 @@ ir_import_spc <- function(filenames) {
   # reformat metadata
   metadata <-
     purrr::map_df(d, function(x){
-      data.frame(
+      tibble::tibble(
         sample_id = stringr::str_remove_all(x@data$NAME, '"'),
         scan_number = as.integer(x@data$SCANS),
         detector_gain_factor = as.numeric(x@data$GAIN),
@@ -68,8 +68,7 @@ ir_import_spc <- function(filenames) {
         x_variable_type = x@data$fxtype,
         y_variable_type = x@data$fytype,
         measurement_date = as.POSIXct(x@data$fdate),
-        measurement_device = x@data$fsource,
-        stringsAsFactors = FALSE
+        measurement_device = x@data$fsource
       )
     })
   spectra <-

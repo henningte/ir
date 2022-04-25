@@ -4,7 +4,7 @@
 \alias{ir_average}
 \title{Averages infrared spectra within groups}
 \usage{
-ir_average(x, ..., na.rm = TRUE)
+ir_average(x, ..., na.rm = TRUE, .groups = "drop")
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
@@ -13,6 +13,26 @@ ir_average(x, ..., na.rm = TRUE)
 
 \item{na.rm}{A logical value indicating if \code{NA} values should be dropped
 (\code{TRUE}) or not (\code{FALSE}).}
+
+\item{.groups}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} Grouping structure of the result.
+\itemize{
+\item "drop_last": dropping the last level of grouping. This was the
+only supported option before version 1.0.0.
+\item "drop": All levels of grouping are dropped.
+\item "keep": Same grouping structure as \code{.data}.
+\item "rowwise": Each row is its own group.
+}
+
+When \code{.groups} is not specified, it is chosen
+based on the number of rows of the results:
+\itemize{
+\item If all the results have 1 row, you get "drop_last".
+\item If the number of rows varies, you get "keep".
+}
+
+In addition, a message informs you of that choice, unless the result is ungrouped,
+the option "dplyr.summarise.inform" is set to \code{FALSE},
+or when \code{summarise()} is called from a function in a package.}
 }
 \value{
 An object of class \code{ir} where spectra have been averaged within
@@ -25,6 +45,6 @@ values are omitted by default.
 \examples{
 # average the sample data spectra across sample types
 x <-
-  ir::ir_sample_data \%>\%
-  ir::ir_average(sample_type)
+  ir_sample_data \%>\%
+  ir_average(sample_type)
 }

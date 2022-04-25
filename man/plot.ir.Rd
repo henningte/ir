@@ -24,4 +24,5 @@ plot(ir::ir_sample_data[1:2, ])
 # advanced functions
 plot(ir::ir_sample_data) +
    ggplot2::facet_wrap(~ sample_type)
+
 }

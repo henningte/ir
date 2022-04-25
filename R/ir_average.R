@@ -3,6 +3,8 @@
 #' `ir_average` averages infrared spectra within a user-defined group. `NA`
 #' values are omitted by default.
 #'
+#' @inheritParams dplyr::summarize
+#'
 #' @param x An object of class [`ir`][ir_new_ir()].
 #'
 #' @param ... Variables in `x` to use as groups.
@@ -16,10 +18,10 @@
 #' @examples
 #' # average the sample data spectra across sample types
 #' x <-
-#'   ir::ir_sample_data %>%
-#'   ir::ir_average(sample_type)
+#'   ir_sample_data %>%
+#'   ir_average(sample_type)
 #' @export
-ir_average <- function(x, ..., na.rm = TRUE) {
+ir_average <- function(x, ..., na.rm = TRUE, .groups = "drop") {
 
   spectra <- NULL
 
@@ -36,7 +38,9 @@ ir_average <- function(x, ..., na.rm = TRUE) {
         x_flat <- purrr::reduce(x_flat, dplyr::full_join, by = "x")
         list(data.frame(x = x_flat$x,
                         y = apply(x_flat[, -1, drop = FALSE], 1, mean, na.rm = na.rm)))
-      }) %>%
+      },
+      .groups = .groups) %>%
     ir_as_ir()
+
 
 }

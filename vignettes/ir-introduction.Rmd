@@ -232,7 +232,7 @@ d_spc %>%
 
 ## Derivative spectra
 
-Savitzky-Golay smoothing can also be used to compute derivative spectra (here the first derivative is computed by setting the argument `m` to `1`. See `?ir_smooth` for more information):
+Savitzky-Golay smoothing can also be used to compute derivative spectra (here the first derivative is computed by setting the argument `m` to `1`. See `?ir_smooth()` for more information):
 
 ```{r}
 d_spc %>%

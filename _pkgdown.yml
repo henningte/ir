@@ -59,6 +59,11 @@ reference:
       Import of spectra
     contents:
       - starts_with("ir_import")
+  - title: "Export"
+    desc: >
+      Export of spectra
+    contents:
+      - ir_export_prepare
   - title: "Spectral processing"
     desc: >
       Spectral preprocessing

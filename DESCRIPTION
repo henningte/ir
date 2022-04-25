@@ -44,7 +44,9 @@ Suggests:
     fda,
     knitr,
     rmarkdown,
-    spelling
+    spelling,
+    vctrs,
+    tidyselect
 VignetteBuilder: 
   knitr
 RdMacros: 

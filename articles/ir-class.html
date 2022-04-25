@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/ir-introduction.html">Introduction to the ir package</a>
+    <a class="dropdown-item" href="../articles/ir-introduction.html">Introduction to the 'ir' package</a>
     <a class="dropdown-item" href="../articles/ir-class.html">Introduction to the `ir`class</a>
   </div>
 </li>
@@ -91,8 +91,8 @@
 <div class="section level3">
 <h3 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
 </h3>
-<p>The purpose of this vignette is to describe the structure and methods of objects of class <code>ir</code>. <code>ir</code> objects are used by the ir package to store spectra and their metadata. This vignette could be helpful if you want to understand better how the ir package works, how to handle metadata, how to manipulate <code>ir</code> objects, or if you want to construct a subclass based on the <code>ir</code>class.</p>
-<p>This vignette does not give an overview on how to use the ir package, on functions for spectral preprocessing, and on how to plot <code>ir</code> objects. For this, see vignette <a href="ir-introduction.html">Introduction to the ir package</a>.</p>
+<p>The purpose of this vignette is to describe the structure and methods of objects of class <code>ir</code>. <code>ir</code> objects are used by the ‘ir’ package to store spectra and their metadata. This vignette could be helpful if you want to understand better how the ‘ir’ package works, how to handle metadata, how to manipulate <code>ir</code> objects, or if you want to construct a subclass based on the <code>ir</code>class.</p>
+<p>This vignette does not give an overview on how to use the ‘ir’ package, on functions for spectral preprocessing, and on how to plot <code>ir</code> objects. For this, see vignette <a href="ir-introduction.html">Introduction to the ‘ir’ package</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="structure">Structure<a class="anchor" aria-label="anchor" href="#structure"></a>
@@ -104,14 +104,14 @@
 <li>Special functions to manipulate <code>ir objects</code>
 </li>
 </ol>
-<p>In part [The <code>ir class</code>], I will describe the structure of <code>ir</code> objects and list available methods for it.</p>
+<p>In part <a href="#the-ir-class">The <code>ir</code> class</a>, I will describe the structure of <code>ir</code> objects and list available methods for it.</p>
 <p>In part <a href="#subsetting-and-modifying-ir-objects">Subsetting and modifying <code>ir</code> objects</a>, I will show how <code>ir</code> objects can be subsetted and modified (including tidyverse functions).</p>
 <p>In part <a href="#special-functions-to-manipulate-ir-objects">Special functions to manipulate <code>ir objects</code></a>, I will present some more specialized functions to manipulate the data in <code>ir</code> objects (including the spectra).</p>
 </div>
 <div class="section level3">
 <h3 id="preparation">Preparation<a class="anchor" aria-label="anchor" href="#preparation"></a>
 </h3>
-<p>To follow this vignette, you have to install the ir package as described in the Readme file and you have to load it:</p>
+<p>To follow this vignette, you have to install the ‘ir’ package as described in the Readme file and you have to load it:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://henningte.github.io/ir/">ir</a></span><span class="op">)</span></code></pre></div>
 </div>
@@ -182,7 +182,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d1</span> <span class="op">&lt;-</span> <span class="va">ir_sample_data</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">d1</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>, <span class="st">"id_sample"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">d1</span><span class="op">[</span>, <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>, <span class="st">"id_sample"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "ir"         "tbl_df"     "tbl"        "data.frame"</span>
 
 <span class="va">d1</span><span class="op">$</span><span class="va">spectra</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>
@@ -259,7 +259,7 @@
 <div class="section level2">
 <h2 id="special-functions-to-manipulate-ir-objects">Special functions to manipulate <code>ir objects</code><a class="anchor" aria-label="anchor" href="#special-functions-to-manipulate-ir-objects"></a>
 </h2>
-<p>There are some more special functions to manipulate <code>ir</code> objects which are not described in vignette <a href="ir-introduction.html">Introduction to the ir package</a>. These will be described here.</p>
+<p>There are some more special functions to manipulate <code>ir</code> objects which are not described in vignette <a href="ir-introduction.html">Introduction to the ‘ir’ package</a>. These will be described here.</p>
 <div class="section level3">
 <h3 id="replicating-data">Replicating data<a class="anchor" aria-label="anchor" href="#replicating-data"></a>
 </h3>
@@ -339,8 +339,8 @@
 <div class="section level2">
 <h2 id="further-information">Further information<a class="anchor" aria-label="anchor" href="#further-information"></a>
 </h2>
-<p>Many more functions and options to handle and process spectra are available in the ir package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.<br>
-To learn more about how <code>ir</code> objects can be useful can be plotted, and the spectral preprocessing functions, see the vignette <a href="ir-introduction.html">Introduction to the ir package</a>.</p>
+<p>Many more functions and options to handle and process spectra are available in the ‘ir’ package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.<br>
+To learn more about how <code>ir</code> objects can be useful can be plotted, and the spectral preprocessing functions, see the vignette <a href="ir-introduction.html">Introduction to the ‘ir’ package</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="sources">Sources<a class="anchor" aria-label="anchor" href="#sources"></a>
@@ -350,7 +350,7 @@ To learn more about how <code>ir</code> objects can be useful can be plotted, an
 <div class="section level2">
 <h2 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<pre><code><span class="co">#&gt; R version 4.1.3 (2022-03-10)</span>
+<pre><code><span class="co">#&gt; R version 4.2.0 (2022-04-22)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 20.04.4 LTS</span>
 <span class="co">#&gt; </span>
@@ -368,30 +368,32 @@ To learn more about how <code>ir</code> objects can be useful can be plotted, an
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] ggplot2_3.3.5 purrr_0.3.4   dplyr_1.0.8   ir_0.1.0.9999</span>
+<span class="co">#&gt; [1] ggplot2_3.3.5 purrr_0.3.4   dplyr_1.0.8   ir_0.2.0     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] tidyselect_1.1.2    xfun_0.30           bslib_0.3.1        </span>
-<span class="co">#&gt;  [4] lattice_0.20-45     colorspace_2.0-3    hyperSpec_0.100.0  </span>
-<span class="co">#&gt;  [7] vctrs_0.4.1         generics_0.1.2      testthat_3.1.3     </span>
-<span class="co">#&gt; [10] htmltools_0.5.2     yaml_2.3.5          utf8_1.2.2         </span>
-<span class="co">#&gt; [13] rlang_1.0.2         pkgdown_2.0.2       jquerylib_0.1.4    </span>
-<span class="co">#&gt; [16] pillar_1.7.0        withr_2.5.0         glue_1.6.2         </span>
-<span class="co">#&gt; [19] RColorBrewer_1.1-3  jpeg_0.1-9          lifecycle_1.0.1    </span>
-<span class="co">#&gt; [22] stringr_1.4.0       munsell_0.5.0       gtable_0.3.0       </span>
-<span class="co">#&gt; [25] ragg_1.2.2          memoise_2.0.1       evaluate_0.15      </span>
-<span class="co">#&gt; [28] labeling_0.4.2      latticeExtra_0.6-29 knitr_1.38         </span>
-<span class="co">#&gt; [31] fastmap_1.1.0       fansi_1.0.3         highr_0.9          </span>
-<span class="co">#&gt; [34] scales_1.2.0        cachem_1.0.6        desc_1.4.1         </span>
-<span class="co">#&gt; [37] jsonlite_1.8.0      farver_2.1.0        systemfonts_1.0.4  </span>
-<span class="co">#&gt; [40] fs_1.5.2            brio_1.1.3          textshaping_0.3.6  </span>
-<span class="co">#&gt; [43] png_0.1-7           digest_0.6.29       stringi_1.7.6      </span>
-<span class="co">#&gt; [46] rbibutils_2.2.8     grid_4.1.3          rprojroot_2.0.3    </span>
-<span class="co">#&gt; [49] Rdpack_2.3          cli_3.2.0           tools_4.1.3        </span>
-<span class="co">#&gt; [52] magrittr_2.0.3      sass_0.4.1          lazyeval_0.2.2     </span>
-<span class="co">#&gt; [55] tibble_3.1.6        tidyr_1.2.0         crayon_1.5.1       </span>
-<span class="co">#&gt; [58] pkgconfig_2.0.3     ellipsis_0.3.2      xml2_1.3.3         </span>
-<span class="co">#&gt; [61] rmarkdown_2.13      R6_2.5.1            compiler_4.1.3</span></code></pre>
+<span class="co">#&gt;  [1] lattice_0.20-45     tidyr_1.2.0         png_0.1-7          </span>
+<span class="co">#&gt;  [4] hyperSpec_0.100.0   rprojroot_2.0.3     digest_0.6.29      </span>
+<span class="co">#&gt;  [7] utf8_1.2.2          R6_2.5.1            evaluate_0.15      </span>
+<span class="co">#&gt; [10] highr_0.9           pillar_1.7.0        Rdpack_2.3         </span>
+<span class="co">#&gt; [13] rlang_1.0.2         lazyeval_0.2.2      SparseM_1.81       </span>
+<span class="co">#&gt; [16] limSolve_1.5.6      jquerylib_0.1.4     rmarkdown_2.13     </span>
+<span class="co">#&gt; [19] pkgdown_2.0.3       labeling_0.4.2      textshaping_0.3.6  </span>
+<span class="co">#&gt; [22] desc_1.4.1          stringr_1.4.0       munsell_0.5.0      </span>
+<span class="co">#&gt; [25] compiler_4.2.0      xfun_0.30           pkgconfig_2.0.3    </span>
+<span class="co">#&gt; [28] systemfonts_1.0.4   baseline_1.3-1      htmltools_0.5.2    </span>
+<span class="co">#&gt; [31] tidyselect_1.1.2    tibble_3.1.6        lpSolve_5.6.15     </span>
+<span class="co">#&gt; [34] quadprog_1.5-8      fansi_1.0.3         crayon_1.5.1       </span>
+<span class="co">#&gt; [37] withr_2.5.0         MASS_7.3-57         rbibutils_2.2.8    </span>
+<span class="co">#&gt; [40] brio_1.1.3          grid_4.2.0          jsonlite_1.8.0     </span>
+<span class="co">#&gt; [43] gtable_0.3.0        lifecycle_1.0.1     magrittr_2.0.3     </span>
+<span class="co">#&gt; [46] scales_1.2.0        cli_3.3.0           stringi_1.7.6      </span>
+<span class="co">#&gt; [49] cachem_1.0.6        farver_2.1.0        fs_1.5.2           </span>
+<span class="co">#&gt; [52] testthat_3.1.3      latticeExtra_0.6-29 xml2_1.3.3         </span>
+<span class="co">#&gt; [55] bslib_0.3.1         ellipsis_0.3.2      ragg_1.2.2         </span>
+<span class="co">#&gt; [58] generics_0.1.2      vctrs_0.4.1         RColorBrewer_1.1-3 </span>
+<span class="co">#&gt; [61] tools_4.2.0         glue_1.6.2          jpeg_0.1-9         </span>
+<span class="co">#&gt; [64] fastmap_1.1.0       yaml_2.3.5          colorspace_2.0-3   </span>
+<span class="co">#&gt; [67] memoise_2.0.1       knitr_1.38          sass_0.4.1</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -415,7 +417,7 @@ To learn more about how <code>ir</code> objects can be useful can be plotted, an
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>

@@ -3,7 +3,7 @@
 ir_smooth either performs Savitzky-Golay smoothing, using on
 signal::sgolayfilt(), or Fourier smoothing using
 fda::smooth.basis(). Savitzky-Golay smoothing can
-also be used to compute derivatives of spectra."><title>Smooths infrared spectra — ir_smooth • ir</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Smooths infrared spectra — ir_smooth"><meta property="og:description" content="ir_smooth applies smoothing functions to infrared spectra.
+also be used to compute derivatives of spectra."><title>Smooths infrared spectra in an ir object — ir_smooth • ir</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Smooths infrared spectra in an ir object — ir_smooth"><meta property="og:description" content="ir_smooth applies smoothing functions to infrared spectra.
 ir_smooth either performs Savitzky-Golay smoothing, using on
 signal::sgolayfilt(), or Fourier smoothing using
 fda::smooth.basis(). Savitzky-Golay smoothing can
@@ -18,7 +18,7 @@ also be used to compute derivatives of spectra."><!-- mathjax --><script src="ht
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@ also be used to compute derivatives of spectra."><!-- mathjax --><script src="ht
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/ir-introduction.html">Introduction to the ir package</a>
+    <a class="dropdown-item" href="../articles/ir-introduction.html">Introduction to the 'ir' package</a>
     <a class="dropdown-item" href="../articles/ir-class.html">Introduction to the `ir`class</a>
   </div>
 </li>
@@ -58,7 +58,7 @@ also be used to compute derivatives of spectra."><!-- mathjax --><script src="ht
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Smooths infrared spectra</h1>
+      <img src="" class="logo" alt=""><h1>Smooths infrared spectra in an <code>ir</code> object</h1>
       
       <div class="d-none name"><code>ir_smooth.Rd</code></div>
     </div>
@@ -106,8 +106,7 @@ the polynom) of the Savitzky-Golay filter if <code>method = "sg"</code>.</p></dd
 wavenumber values used to construct the polynom) of the Savitzky-Golay filter
 if <code>method = "sg"</code>.</p></dd>
 <dt>ts</dt>
-<dd><p>time scaling factor. See
-<code><a href="https://rdrr.io/pkg/signal/man/sgolayfilt.html" class="external-link">signal::sgolayfilt()</a></code>.</p></dd>
+<dd><p>time scaling factor. See <code><a href="https://rdrr.io/pkg/signal/man/sgolayfilt.html" class="external-link">signal::sgolayfilt()</a></code>.</p></dd>
 <dt>m</dt>
 <dd><p>An integer value representing the mth derivative to compute. This
 option can be used to compute derivatives of spectra. See
@@ -121,8 +120,7 @@ functions to use as smoothed representation of the spectra if
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>ir</code> containing the smoothed
-spectra.</p>
+    <p><code>x</code> with smoothed spectra.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -134,8 +132,7 @@ these different spectra.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co">#' # Savitzky-Golay smoothing</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#' # Savitzky-Golay smoothing</span></span>
 <span class="r-in"><span class="va">x1</span> <span class="op">&lt;-</span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="fu">ir_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"sg"</span>, p <span class="op">=</span> <span class="fl">3</span>, n <span class="op">=</span> <span class="fl">51</span>, ts <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -150,7 +147,7 @@ these different spectra.</p>
 <span class="r-in"><span class="va">x3</span> <span class="op">&lt;-</span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="fu">ir_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"sg"</span>, p <span class="op">=</span> <span class="fl">3</span>, n <span class="op">=</span> <span class="fl">51</span>, ts <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+<span class="r-in"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -162,7 +159,7 @@ these different spectra.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

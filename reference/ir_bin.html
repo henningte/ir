@@ -12,7 +12,7 @@ defined width or into a defined number of bins."><!-- mathjax --><script src="ht
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@ defined width or into a defined number of bins."><!-- mathjax --><script src="ht
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/ir-introduction.html">Introduction to the ir package</a>
+    <a class="dropdown-item" href="../articles/ir-introduction.html">Introduction to the 'ir' package</a>
     <a class="dropdown-item" href="../articles/ir-class.html">Introduction to the `ir`class</a>
   </div>
 </li>
@@ -70,16 +70,15 @@ defined width or into a defined number of bins.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>An object of class <code><a href="ir_new_ir.html">ir</a></code> with integer
-wavenumber values increasing by 1.</p></dd>
+<dd><p>An object of class <code><a href="ir_new_ir.html">ir</a></code> with integer wavenumber
+values increasing by 1.</p></dd>
 <dt>width</dt>
 <dd><p>An integer value indicating the wavenumber width of each
 resulting bin. Must be set to <code>NULL</code> if <code>n</code> is specified.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>ir</code> representing a binned version of
-<code>x</code>.</p>
+    <p>An object of class <code>ir</code> where spectra have been binned.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -94,6 +93,7 @@ assigned to both neighboring bins.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">   <span class="fu">ir_bin</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span class="r-in"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -105,7 +105,7 @@ assigned to both neighboring bins.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

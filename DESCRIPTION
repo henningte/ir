@@ -37,8 +37,7 @@ Imports:
     stats,
     lifecycle,
     baseline,
-    quantities,
-    errors
+    quantities
 Suggests:
     kableExtra,
     fda,

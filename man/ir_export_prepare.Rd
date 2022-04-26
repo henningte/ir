@@ -16,7 +16,7 @@ ir_export_prepare(
 \item{what}{A character value defining what to prepare for export.
 If \code{"metadata"}, the metadata will be prepared for export and column
 \code{spectra} will be dropped. If \code{"spectra"}, \code{x} is converted to an object of
-class \href{ir::ir_flatten}{\code{ir_flat}}.}
+class \code{\link[=ir_new_ir_flat]{ir_flat}}.}
 
 \item{measurement_id}{A character vector an element for each row in \code{x}
 that contains the names to use as column names for the spectra in the
@@ -35,7 +35,8 @@ separating measurement units and measurement errors in columns of class
 examples).
 }
 \note{
-This function superseded \code{\link[irpeat:irp_export_prepare]{irpeat::irp_export_prepare()}}.
+This function superseded \code{irp_export_prepare()} from the
+\href{https://github.com/henningte/irpeat/}{'irpeat'} package.
 }
 \examples{
 x_spectra <- ir_export_prepare(ir_sample_data[1:5, ], what = "spectra")

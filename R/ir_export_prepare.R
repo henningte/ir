@@ -13,9 +13,10 @@
 #' @param what A character value defining what to prepare for export.
 #' If `"metadata"`, the metadata will be prepared for export and column
 #' `spectra` will be dropped. If `"spectra"`, `x` is converted to an object of
-#' class [`ir_flat`](ir::ir_flatten).
+#' class [`ir_flat`][ir::ir_new_ir_flat].
 #'
-#' @note This function superseded [irpeat::irp_export_prepare()].
+#' @note This function superseded `irp_export_prepare()` from the
+#' ['irpeat'](https://github.com/henningte/irpeat/) package.
 #'
 #' @return A data frame.
 #'

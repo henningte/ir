@@ -1,7 +1,7 @@
 title <- paste0(meta$Package, ": ", meta$Title)
 year <- sub("-.*", "", meta$Date)
 note <- sprintf("version %s", meta$Version)
-doi <- "10.5281/zenodo.5747170"
+doi <- "10.5281/zenodo.5747169"
 
 # from base: toupper
 .simpleCap <- function(x) {
@@ -16,7 +16,7 @@ citEntry(
   entry    =       "misc",
   title    =       paste0("{", title, "}"),
   note     =       paste0("{", note, "}"),
-  author   =       "{Teickner, Henning}",
+  author   =       "{Henning Teickner}",
   year     =       paste0("{", year, "}"),
   doi      =       paste0("{", doi, "}"),
   copyright =      "{GNU General Public License v3.0 or later, Open Access}",

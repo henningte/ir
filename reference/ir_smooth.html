@@ -18,7 +18,7 @@ also be used to compute derivatives of spectra."><!-- mathjax --><script src="ht
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,18 +134,18 @@ these different spectra.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#' # Savitzky-Golay smoothing</span></span>
 <span class="r-in"><span class="va">x1</span> <span class="op">&lt;-</span></span>
-<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="fu">ir_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"sg"</span>, p <span class="op">=</span> <span class="fl">3</span>, n <span class="op">=</span> <span class="fl">51</span>, ts <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Fourier smoothing</span></span>
 <span class="r-in"><span class="va">x2</span> <span class="op">&lt;-</span></span>
-<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="fu">ir_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"fourier"</span>, k <span class="op">=</span> <span class="fl">21</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># computing derivative spectra with Savitzky-Golay smoothing (here: first</span></span>
 <span class="r-in"><span class="co"># derivative)</span></span>
 <span class="r-in"><span class="va">x3</span> <span class="op">&lt;-</span></span>
-<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="op">]</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="fu">ir_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"sg"</span>, p <span class="op">=</span> <span class="fl">3</span>, n <span class="op">=</span> <span class="fl">51</span>, ts <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in"></span>
 </code></pre></div>

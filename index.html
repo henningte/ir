@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,7 +126,7 @@
 <div class="section level3">
 <h3 id="how-to-install">How to install<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h3>
-<p>You can install ‘ir’ from CRAB using R via:</p>
+<p>You can install ‘ir’ from CRAN using R via:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ir"</span><span class="op">)</span></code></pre></div>
 <p>You can install ‘ir’ from GitHub using R via:</p>
@@ -142,8 +142,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://henningte.github.io/ir/">ir</a></span><span class="op">)</span>
 
 <span class="co"># load additional packages needed for this tutorial</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.0.5</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></code></pre></div>
 <p>For brief introductions, see below and the two vignettes:</p>
 <ol style="list-style-type: decimal">
 <li><a href="vignettes/ir-introduction.Rmd">Introduction to the ‘ir’ package</a></li>
@@ -167,20 +166,20 @@
 <p>You can load the sample data with:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="reference/ir_sample_data.html">ir_sample_data</a></span>
-<span class="co">#&gt; # A tibble: 58 x 7</span>
+<span class="co">#&gt; # A tibble: 58 × 7</span>
 <span class="co">#&gt;    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
 <span class="co">#&gt;             &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;                      &lt;units&gt;      </span>
 <span class="co">#&gt;  1              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     </span>
-<span class="co">#&gt;  2              2 GN 11-400 needles     Cupressocyparis leylandii~ 0.339405     </span>
-<span class="co">#&gt;  3              3 GN 11-407 needles     Juniperus chinensis Chine~ 0.267552     </span>
-<span class="co">#&gt;  4              4 GN 11-411 needles     Metasequoia glyptostroboi~ 0.350016     </span>
+<span class="co">#&gt;  2              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     </span>
+<span class="co">#&gt;  3              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     </span>
+<span class="co">#&gt;  4              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     </span>
 <span class="co">#&gt;  5              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     </span>
-<span class="co">#&gt;  6              6 GN 11-419 needles     Pseudolarix amabili Golde~ 0.279360     </span>
-<span class="co">#&gt;  7              7 GN 11-422 needles     Sequoia sempervirens Cali~ 0.329672     </span>
-<span class="co">#&gt;  8              8 GN 11-423 needles     Taxodium distichum Cascad~ 0.356950     </span>
-<span class="co">#&gt;  9              9 GN 11-428 needles     Thuja occidentalis Easter~ 0.369360     </span>
-<span class="co">#&gt; 10             10 GN 11-434 needles     Tsuga caroliniana Carolin~ 0.289050     </span>
-<span class="co">#&gt; # ... with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span>
+<span class="co">#&gt;  6              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     </span>
+<span class="co">#&gt;  7              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     </span>
+<span class="co">#&gt;  8              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     </span>
+<span class="co">#&gt;  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     </span>
+<span class="co">#&gt; 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
+<span class="co">#&gt; # … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span>
 <span class="co">#&gt; #   spectra &lt;named list&gt;</span></code></pre></div>
 <p><code>ir_sample_data</code> is an object of class <code>ir</code>. An Object of class <code>ir</code> is basically a data frame where each row represents one infrared measurement and column <code>spectra</code> contains the infrared spectra (one per row). This allows effectively storing repeated measurements for the same sample in the same table, as well as any metadata and accessory data (e.g. nitrogen content of the sample).</p>
 <p>The column <code>spectra</code> is a list column of data frames, meaning that each cell in <code>sample_data</code> contains for column <code>spectra</code> a data frame. For example, the first element of <code>ir_sample_data$spectra</code> represents the first spectrum as a data frame:</p>
@@ -188,7 +187,7 @@
 <code class="sourceCode R"><span class="co"># View the first ten rows of the first spectrum in ir_sample_data</span>
 <span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_get_spectrum.html">ir_get_spectrum</a></span><span class="op">(</span><span class="va">ir_sample_data</span>, what <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 x 2</span>
+<span class="co">#&gt; # A tibble: 10 × 2</span>
 <span class="co">#&gt;        x        y</span>
 <span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt;</span>
 <span class="co">#&gt;  1  4000 0.000361</span>
@@ -208,7 +207,7 @@
 <h3 id="how-to-cite">How to cite<a class="anchor" aria-label="anchor" href="#how-to-cite"></a>
 </h3>
 <p>Please cite this R package as:</p>
-<blockquote><p>Henning Teickner (2022). <em>ir: Functions to Handle and Preprocess Infrared Spectra</em>. DOI: 10.5281/zenodo.5747170. Accessed 21 Apr 2022. Online at <a href="https://zenodo.org/record/5747170" class="external-link uri">https://zenodo.org/record/5747170</a>.</p></blockquote>
+<blockquote><p>Henning Teickner (2022). <em>ir: Functions to Handle and Preprocess Infrared Spectra</em>. DOI: 10.5281/zenodo.5747170. Accessed 02 Mai 2022. Online at <a href="https://zenodo.org/record/5747170" class="external-link uri">https://zenodo.org/record/5747170</a>.</p></blockquote>
 </div>
 <div class="section level3">
 <h3 id="companion-packages">Companion packages<a class="anchor" aria-label="anchor" href="#companion-packages"></a>
@@ -231,20 +230,20 @@
 <h3 id="sources">Sources<a class="anchor" aria-label="anchor" href="#sources"></a>
 </h3>
 <p>The complete data in this package is derived from Hodgkins et al. (2018) and was restructured to match the requirements of ‘ir’. The original article containing the data can be downloaded from <a href="https://www.nature.com/articles/s41467-018-06050-2" class="external-link uri">https://www.nature.com/articles/s41467-018-06050-2</a> and is distributed under the Creative Commons Attribution 4.0 International License (<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link uri">https://creativecommons.org/licenses/by/4.0/</a>). The data on Klason lignin and holocellulose content was originally derived from De La Cruz, Florentino B., Osborne, and Barlaz (2016).</p>
-<p>This packages was developed in R (R version 4.0.1 (2020-06-06)) (R Core Team 2019) using functions from devtools (Wickham, Hester, and Chang 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and roxygen2 (Wickham et al. 2019).</p>
+<p>This packages was developed in R (R version 4.2.0 (2022-04-22 ucrt)) (R Core Team 2019) using functions from devtools (Wickham, Hester, and Chang 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and roxygen2 (Wickham et al. 2019).</p>
 </div>
 <div class="section level3">
 <h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h3>
-<div id="refs" class="references hanging-indent">
-<div id="ref-LaCruz.2016"><p>De La Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016. “Determination of Sources of Organic Matter in Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of Lignin.” <em>Journal of Environmental Engineering</em> 142 (2): 04015076. <a href="https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038" class="external-link uri">https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038</a>.</p></div>
-<div id="ref-Hodgkins.2018"><p>Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang, Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “Tropical peatland carbon storage linked to global latitudinal trends in peat recalcitrance.” <em>Nature communications</em> 9 (1): 3640. <a href="https://doi.org/10.1038/s41467-018-06050-2" class="external-link uri">https://doi.org/10.1038/s41467-018-06050-2</a>.</p></div>
-<div id="ref-Lasch.2012"><p>Lasch, Peter. 2012. “Spectral Pre-Processing for Biomedical Vibrational Spectroscopy and Microspectroscopic Imaging.” <em>Chemometrics and Intelligent Laboratory Systems</em> 117 (August): 100–114. <a href="https://doi.org/10.1016/j.chemolab.2012.03.011" class="external-link uri">https://doi.org/10.1016/j.chemolab.2012.03.011</a>.</p></div>
-<div id="ref-Marwick.2019"><p>Marwick, Ben. 2019. “rrtools: Creates a Reproducible Research Compendium.” <a href="https://github.com/benmarwick/rrtools" class="external-link uri">https://github.com/benmarwick/rrtools</a>.</p></div>
-<div id="ref-RCoreTeam.2019"><p>R Core Team. 2019. “R: A Language and Environment for Statistical Computing.” Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="external-link uri">https://www.R-project.org/</a>.</p></div>
-<div id="ref-Wickham.2019b"><p>Wickham, Hadley, and Jennifer Bryan. 2019. “usethis: Automate Package and Project Setup.” <a href="https://CRAN.R-project.org/package=usethis" class="external-link uri">https://CRAN.R-project.org/package=usethis</a>.</p></div>
-<div id="ref-Wickham.2019c"><p>Wickham, Hadley, Peter Danenberg, Gábor Csárdi, and Manuel Eugster. 2019. “roxygen2: In-Line Documentation for R.” <a href="https://CRAN.R-project.org/package=roxygen2" class="external-link uri">https://CRAN.R-project.org/package=roxygen2</a>.</p></div>
-<div id="ref-Wickham.2019"><p>Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “devtools: Tools to Make Developing R Packages Easier.” <a href="https://CRAN.R-project.org/package=devtools" class="external-link uri">https://CRAN.R-project.org/package=devtools</a>.</p></div>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-LaCruz.2016" class="csl-entry"><p>De La Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016. “<span class="nocase">Determination of Sources of Organic Matter in Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of Lignin</span>.” <em>Journal of Environmental Engineering</em> 142 (2): 04015076. <a href="https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038" class="external-link uri">https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038</a>.</p></div>
+<div id="ref-Hodgkins.2018" class="csl-entry"><p>Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang, Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “<span class="nocase">Tropical peatland carbon storage linked to global latitudinal trends in peat recalcitrance</span>.” <em>Nature Communications</em> 9 (1): 3640. <a href="https://doi.org/10.1038/s41467-018-06050-2" class="external-link uri">https://doi.org/10.1038/s41467-018-06050-2</a>.</p></div>
+<div id="ref-Lasch.2012" class="csl-entry"><p>Lasch, Peter. 2012. “<span class="nocase">Spectral Pre-Processing for Biomedical Vibrational Spectroscopy and Microspectroscopic Imaging</span>.” <em>Chemometrics and Intelligent Laboratory Systems</em> 117 (August): 100–114. <a href="https://doi.org/10.1016/j.chemolab.2012.03.011" class="external-link uri">https://doi.org/10.1016/j.chemolab.2012.03.011</a>.</p></div>
+<div id="ref-Marwick.2019" class="csl-entry"><p>Marwick, Ben. 2019. “<span class="nocase">rrtools: Creates a Reproducible Research Compendium</span>.” <a href="https://github.com/benmarwick/rrtools" class="external-link uri">https://github.com/benmarwick/rrtools</a>.</p></div>
+<div id="ref-RCoreTeam.2019" class="csl-entry"><p>R Core Team. 2019. “<span class="nocase">R: A Language and Environment for Statistical Computing</span>.” Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="external-link uri">https://www.R-project.org/</a>.</p></div>
+<div id="ref-Wickham.2019b" class="csl-entry"><p>Wickham, Hadley, and Jennifer Bryan. 2019. “<span class="nocase">usethis: Automate Package and Project Setup</span>.” <a href="https://CRAN.R-project.org/package=usethis" class="external-link uri">https://CRAN.R-project.org/package=usethis</a>.</p></div>
+<div id="ref-Wickham.2019c" class="csl-entry"><p>Wickham, Hadley, Peter Danenberg, Gábor Csárdi, and Manuel Eugster. 2019. “<span class="nocase">roxygen2: In-Line Documentation for R</span>.” <a href="https://CRAN.R-project.org/package=roxygen2" class="external-link uri">https://CRAN.R-project.org/package=roxygen2</a>.</p></div>
+<div id="ref-Wickham.2019" class="csl-entry"><p>Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “<span class="nocase">devtools: Tools to Make Developing R Packages Easier</span>.” <a href="https://CRAN.R-project.org/package=devtools" class="external-link uri">https://CRAN.R-project.org/package=devtools</a>.</p></div>
 </div>
 </div>
 </div>

@@ -75,7 +75,6 @@ library(ir)
 
 # load additional packages needed for this tutorial
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.0.5
 ```
 
 For brief introductions, see below and the two vignettes:
@@ -108,20 +107,20 @@ You can load the sample data with:
 
 ``` r
 ir::ir_sample_data
-#> # A tibble: 58 x 7
+#> # A tibble: 58 × 7
 #>    id_measurement id_sample sample_type sample_comment             klason_lignin
 #>             <int> <chr>     <chr>       <chr>                      <units>      
 #>  1              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     
-#>  2              2 GN 11-400 needles     Cupressocyparis leylandii~ 0.339405     
-#>  3              3 GN 11-407 needles     Juniperus chinensis Chine~ 0.267552     
-#>  4              4 GN 11-411 needles     Metasequoia glyptostroboi~ 0.350016     
+#>  2              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     
+#>  3              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     
+#>  4              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     
 #>  5              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     
-#>  6              6 GN 11-419 needles     Pseudolarix amabili Golde~ 0.279360     
-#>  7              7 GN 11-422 needles     Sequoia sempervirens Cali~ 0.329672     
-#>  8              8 GN 11-423 needles     Taxodium distichum Cascad~ 0.356950     
-#>  9              9 GN 11-428 needles     Thuja occidentalis Easter~ 0.369360     
-#> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin~ 0.289050     
-#> # ... with 48 more rows, and 2 more variables: holocellulose <units>,
+#>  6              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     
+#>  7              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     
+#>  8              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     
+#>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
+#> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
+#> # … with 48 more rows, and 2 more variables: holocellulose <units>,
 #> #   spectra <named list>
 ```
 
@@ -141,7 +140,7 @@ first spectrum as a data frame:
 # View the first ten rows of the first spectrum in ir_sample_data
 ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>% 
   head(10)
-#> # A tibble: 10 x 2
+#> # A tibble: 10 × 2
 #>        x        y
 #>    <int>    <dbl>
 #>  1  4000 0.000361
@@ -164,7 +163,7 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 25 Apr 2022.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 02 Mai 2022.
 > Online at <https://zenodo.org/record/5747170>.
 
 ### Companion packages
@@ -202,10 +201,10 @@ under the Creative Commons Attribution 4.0 International License
 lignin and holocellulose content was originally derived from De La Cruz,
 Florentino B., Osborne, and Barlaz (2016).
 
-This packages was developed in R (R version 4.0.1 (2020-06-06)) (R Core
-Team 2019) using functions from devtools (Wickham, Hester, and Chang
-2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and
-roxygen2 (Wickham et al. 2019).
+This packages was developed in R (R version 4.2.0 (2022-04-22 ucrt)) (R
+Core Team 2019) using functions from devtools (Wickham, Hester, and
+Chang 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019)
+and roxygen2 (Wickham et al. 2019).
 
 ### References
 

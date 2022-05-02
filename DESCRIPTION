@@ -1,6 +1,6 @@
 Package: ir
 Title: Functions to Handle and Preprocess Infrared Spectra
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person(given = "Henning",
            family = "Teickner",
@@ -42,12 +42,14 @@ Suggests:
     fda,
     knitr,
     rmarkdown,
-    spelling
+    spelling,
+    vctrs,
+    tidyselect
 VignetteBuilder: 
   knitr
 RdMacros: 
   Rdpack
-Date: 2022-04-20
+Date: 2022-05-02
 Roxygen: list(markdown = TRUE)
 URL: https://henningte.github.io/ir/
 Language: en-US

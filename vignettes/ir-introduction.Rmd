@@ -118,7 +118,7 @@ Now, `d_csv` has addition columns with the added metadata.
 Spectra from `spc` files can be imported with `ir_import_spc()`. This function can import spectra from one or more `spc` files:
 
 ```{r import-spc-1}
-d_spc <- ir_import_spc("../inst/extdata/1.spc")
+d_spc <- ir_import_spc("../inst/extdata/1.spc", log.txt = FALSE)
 ```
 
 In this case, names for the spectra and other metadata are extracted from the `spc` file(s) and added to the `ir` object. You can inspect `d_spc` to see these additional variables.

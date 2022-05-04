@@ -7,6 +7,12 @@
 ## New functions
 * `ir_export_prepare()` to support exporting `ir` objects to `csv`.
 
+
+# ir 0.2.1
+
+* Circumventing a bug in `ir_import_spc()` by allowing to not export spectra metadata. This bug is caused by `hyperSpec::read.spc()` and will be fixed in the upcoming weeks. See https://github.com/r-hyperspec/hyperSpec/issues/80
+
+
 # ir 0.2.0
 
 * First CRAN release (#1).

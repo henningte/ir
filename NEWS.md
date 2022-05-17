@@ -1,6 +1,7 @@
 # ir (development version)
 
 ## Bug fixes
+* In `unnest.ir()`, the `ir` class was not restored and therefore the result was always unclassed.
 * In `ir_average()`, the returned `ir` object was still a `grouped_df`. This is now corrected (by adding the `.groups` argument for `dplyr::summarize()` which is internally used by `ir_average()`).
 * In `ir_import_spc()`, the returned `ir` object was a subclass of `data.frame` and not `tbl_df`.
 

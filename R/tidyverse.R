@@ -462,7 +462,7 @@ unnest.ir <- function(
   .sep = deprecated(),
   .preserve = deprecated())
 {
-  NextMethod()
+  ir_reclass_ir(NextMethod())
 }
 
 

@@ -81,8 +81,10 @@ library(ggplot2)
 
 For brief introductions, see below and the two vignettes:
 
-1.  [Introduction to the ‘ir’ package](vignettes/ir-introduction.Rmd)
-2.  [Introduction to the `ir`class](vignettes/ir-class.Rmd)
+1.  [Introduction to the ‘ir’
+    package](https://henningte.github.io/ir/articles/ir-introduction.html)
+2.  [Introduction to the
+    `ir`class](https://henningte.github.io/ir/articles/ir-class.html)
 
 #### Sample workflow
 
@@ -165,7 +167,7 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 02 Mai 2022.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 20 Mai 2022.
 > Online at <https://zenodo.org/record/5747170>.
 
 ### Companion packages

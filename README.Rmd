@@ -87,8 +87,8 @@ library(ggplot2)
 
 For brief introductions, see below and the two vignettes:
 
-1. [`r rmarkdown::yaml_front_matter("vignettes/ir-introduction.Rmd")$title`](vignettes/ir-introduction.Rmd)
-2. [`r rmarkdown::yaml_front_matter("vignettes/ir-class.Rmd")$title`](vignettes/ir-class.Rmd)
+1. [`r rmarkdown::yaml_front_matter("vignettes/ir-introduction.Rmd")$title`](https://henningte.github.io/ir/articles/ir-introduction.html)
+2. [`r rmarkdown::yaml_front_matter("vignettes/ir-class.Rmd")$title`](https://henningte.github.io/ir/articles/ir-class.html)
 
 #### Sample workflow
 

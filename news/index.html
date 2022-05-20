@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,20 @@
       
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="ir-development-version">ir (development version)<a class="anchor" aria-label="anchor" href="#ir-development-version"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li>In <code><a href="../reference/ir_import_spc.html">ir_import_spc()</a></code>, the returned <code>ir</code> object was not a <code>tbl_df</code>, but a data frame. This is now corrected.</li>
+<li>In <code><a href="../reference/nest.html">unnest.ir()</a></code>, the <code>ir</code> class was not restored and therefore the result was always unclassed.</li>
+<li>In <code><a href="../reference/ir_average.html">ir_average()</a></code>, the returned <code>ir</code> object was still a <code>grouped_df</code>. This is now corrected (by adding the <code>.groups</code> argument for <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">dplyr::summarize()</a></code> which is internally used by <code><a href="../reference/ir_average.html">ir_average()</a></code>).</li>
+<li>In <code><a href="../reference/ir_import_spc.html">ir_import_spc()</a></code>, the returned <code>ir</code> object was a subclass of <code>data.frame</code> and not <code>tbl_df</code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-functions-development-version">New functions<a class="anchor" aria-label="anchor" href="#new-functions-development-version"></a></h3>
+<ul><li>
+<code><a href="../reference/ir_export_prepare.html">ir_export_prepare()</a></code> to support exporting <code>ir</code> objects to <code>csv</code>.</li></ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="ir-021">ir 0.2.1<a class="anchor" aria-label="anchor" href="#ir-021"></a></h2><p class="text-muted">CRAN release: 2022-05-02</p>
 <ul><li>Circumventing a bug in <code><a href="../reference/ir_import_spc.html">ir_import_spc()</a></code> by allowing to not export spectra metadata. This bug is caused by <code><a href="https://r-hyperspec.github.io/hyperSpec/reference/read-spc.html" class="external-link">hyperSpec::read.spc()</a></code> and will be fixed in the upcoming weeks. See <a href="https://github.com/r-hyperspec/hyperSpec/issues/80" class="external-link uri">https://github.com/r-hyperspec/hyperSpec/issues/80</a>

@@ -67,7 +67,7 @@ ir_import_spc <- function(filenames, log.txt = TRUE) {
   metadata <-
     purrr::map_df(d, function(x){
       if(log.txt) {
-        data.frame(
+        tibble::tibble(
           sample_id = stringr::str_remove_all(x@data$NAME, '"'),
           scan_number = as.integer(x@data$SCANS),
           detector_gain_factor = as.numeric(x@data$GAIN),
@@ -87,7 +87,7 @@ ir_import_spc <- function(filenames, log.txt = TRUE) {
           stringsAsFactors = FALSE
         )
       } else {
-        data.frame(
+        tibble::tibble(
           exponentiation_factor = as.numeric(x@data$fexp),
           data_point_number = as.numeric(x@data$fnpts),
           x_variable_type = x@data$fxtype,

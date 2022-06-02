@@ -114,9 +114,12 @@ ir_bin <- function(x, width = 10, new_x_type = "start") {
 
   # perform binning
   x_binned <-
-    x_flat %>%
-    dplyr::group_by(.data$index_bin) %>%
-    dplyr::summarise_all(mean) %>%
+    purrr::map_dfr(unique(bins_index$index_bin), function(i) {
+
+      tibble::as_tibble(t(apply(x_flat[x_flat$index_bin == i, ], 2, mean))) %>%
+        stats::setNames(nm = names(x_flat))
+
+    }) %>%
     dplyr::select(!dplyr::any_of("index_bin"))
 
   x$spectra <- ir_stack(x_binned)$spectra

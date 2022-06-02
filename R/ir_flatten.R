@@ -28,12 +28,21 @@ ir_flatten <- function(x, measurement_id = as.character(seq_len(nrow(x)))) {
   }
 
   ir_check_ir(x)
-  x$spectra <- purrr::map2(x$spectra, measurement_id, function(x, y) {
-    colnames(x)[[2]] <- y
-    x
-  })
-  x <- purrr::reduce(x$spectra, dplyr::full_join, by = "x")
-  ir_new_ir_flat(x[order(x$x), ])
+
+  # collect common wavenumbers
+  x_wavenumbers <-
+    tibble::tibble(x = sort(unique(unlist(purrr::map(x$spectra, function(.x) .x$x)))))
+
+  # combine
+  res <-
+    dplyr::bind_cols(
+      x_wavenumbers,
+      purrr::map2(x$spectra, measurement_id, function(.x, .y) {
+        stats::setNames(.x[match(x_wavenumbers$x, .x$x), 2, drop = FALSE], nm = .y)
+      })
+    )
+
+  ir_new_ir_flat(res)
 
 }
 

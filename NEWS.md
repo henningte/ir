@@ -10,6 +10,9 @@
 ## New functions
 * `ir_export_prepare()` to support exporting `ir` objects to `csv`.
 
+## Improvements
+
+* Making `ir_flatten()` faster by improving spectra combining.
 
 # ir 0.2.1
 

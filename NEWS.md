@@ -13,6 +13,7 @@
 ## Improvements
 
 * Making `ir_flatten()` faster by improving spectra combining.
+* Making `ir_bin()` faster by improving spectra summarizing per bin. Allowing to specify how wavenumber values should be defined after binning. 
 
 # ir 0.2.1
 

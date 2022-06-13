@@ -12,7 +12,7 @@ ir_correct_atmosphere(
   ref,
   wn1,
   wn2,
-  interpolate = FALSE,
+  do_interpolate = FALSE,
   start = NULL,
   dw = 1,
   warn = TRUE
@@ -20,13 +20,13 @@ ir_correct_atmosphere(
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}} containing the spectra to
-correct.}
+correct (with intensities representing absorbances).}
 
 \item{ref}{An object of class \code{\link[=ir_new_ir]{ir}} containing the reference
-spectra to use for correction. \code{ref} must have the same number of rows as \code{x},
-the contained spectra must cover the wavenumber range of all spectra in \code{x},
-and if \code{interpolate = FALSE}, all spectra must have identical wavenumber
-values.}
+spectra to use for correction  (with intensities representing absorbances).
+\code{ref} must have the same number of rows as \code{x}, the contained spectra must
+cover the wavenumber range of all spectra in \code{x}, and if
+\code{do_interpolate = FALSE}, all spectra must have identical wavenumber values.}
 
 \item{wn1}{A numeric value representing the first wavenumber value to use as
 reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
@@ -44,7 +44,7 @@ reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
 \item{CO\eqn{_2}}{2349 cm\eqn{^{-1}}.}
 }}
 
-\item{interpolate}{A logical value indicating if \code{x} and \code{ref} should be
+\item{do_interpolate}{A logical value indicating if \code{x} and \code{ref} should be
 interpolated prior correction (\code{TRUE}) or not (\code{FALSE}).}
 
 \item{start}{See \code{\link[=ir_interpolate]{ir_interpolate()}}.}

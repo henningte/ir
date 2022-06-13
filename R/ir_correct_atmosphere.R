@@ -8,13 +8,13 @@
 #' @note The function was not tested yet.
 #'
 #' @param x An object of class [`ir`][ir_new_ir()] containing the spectra to
-#' correct.
+#' correct (with intensities representing absorbances).
 #'
 #' @param ref An object of class [`ir`][ir_new_ir()] containing the reference
-#' spectra to use for correction. `ref` must have the same number of rows as `x`,
-#' the contained spectra must cover the wavenumber range of all spectra in `x`,
-#' and if `interpolate = FALSE`, all spectra must have identical wavenumber
-#' values.
+#' spectra to use for correction  (with intensities representing absorbances).
+#' `ref` must have the same number of rows as `x`, the contained spectra must
+#' cover the wavenumber range of all spectra in `x`, and if
+#' `do_interpolate = FALSE`, all spectra must have identical wavenumber values.
 #'
 #' @param wn1 A numeric value representing the first wavenumber value to use as
 #' reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
@@ -32,7 +32,7 @@
 #'   \item{CO\eqn{_2}}{2349 cm\eqn{^{-1}}.}
 #' }
 #'
-#' @param interpolate A logical value indicating if `x` and `ref` should be
+#' @param do_interpolate A logical value indicating if `x` and `ref` should be
 #' interpolated prior correction (`TRUE`) or not (`FALSE`).
 #'
 #' @param start See [ir_interpolate()].
@@ -58,7 +58,7 @@ ir_correct_atmosphere <- function(x,
                                   ref,
                                   wn1,
                                   wn2,
-                                  interpolate = FALSE,
+                                  do_interpolate = FALSE,
                                   start = NULL,
                                   dw = 1,
                                   warn = TRUE) {
@@ -73,10 +73,10 @@ ir_correct_atmosphere <- function(x,
   if(nrow(x) != nrow(ref)) {
     rlang::abort('`ref` must have the same number of rows as `x`.')
   }
-  if(!is.logical(interpolate) | length(interpolate) != 1) {
-    rlang::abort('`interpolate` must be a logical value.')
+  if(!is.logical(do_interpolate) | length(do_interpolate) != 1) {
+    rlang::abort('`do_interpolate` must be a logical value.')
   }
-  if(interpolate) {
+  if(do_interpolate) {
     x <- ir_interpolate(x = x, start = start, dw = dw)
     ref <- ir_interpolate(x = ref, start = start, dw = dw)
   }
@@ -88,7 +88,7 @@ ir_correct_atmosphere <- function(x,
     rlang::abort('`ref` must cover the complete wavenumber range of `x`, but covers only a smaller range.')
   }
   if(!identical(x_flat$x, ref_flat$x)) {
-    rlang::abort('`x` and `ref` must have identical wavenumber values. If `interpolate` was set to `FALSE`, you could try to interpolate both spectra to achieve this.')
+    rlang::abort('`x` and `ref` must have identical wavenumber values. If `do_interpolate` was set to `FALSE`, you could try to interpolate both spectra to achieve this.')
   }
   if(!is.numeric(wn1) || length(wn1) != 1) {
     rlang::abort('`wn1` must be a numeric value.')
@@ -118,10 +118,10 @@ ir_correct_atmosphere <- function(x,
   ref <- ref - ra_ref$wn2
 
   # correction
-  x <- x - (ref * ra_x$f)
+  x_corr <- x - (ref * ra_x$f)
 
   # revert baseline correction
-  x <- x + ra_x$wn2
-  x
+  intensity_corr_wn2 <- tidyr::unnest(ir::ir_get_intensity(x_corr, wavenumber = wn2, warn = warn), cols = "intensity") %>% dplyr::pull(.data$y)
+  x_corr + intensity_corr_wn2
 
 }

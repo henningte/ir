@@ -22,19 +22,26 @@
 #' # subtracting two objects of class ir
 #' x1 <-
 #'   ir::ir_subtract(ir::ir_sample_data, ir::ir_sample_data)
-#' x1 <-
+#' x2 <-
 #'   ir::ir_subtract(ir::ir_sample_data, ir::ir_sample_data[1, ])
 #'
 #' # subtracting a numeric value from an object of class `ir`.
-#' x2 <-
+#' x3 <-
 #'   ir::ir_subtract(ir::ir_sample_data, 20)
+#'
+#' # subtracting a numeric vector from an object of class `ir`.
+#' x4 <-
+#'   ir::ir_subtract(
+#'      ir::ir_sample_data,
+#'      seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
+#'   )
 #'
 #' @export
 ir_subtract <- function(x, y) {
 
   # checks
   ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && length(y) == 1))
+  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
   if(inherits(y, "ir")) {
     ir_check_ir(y)
 
@@ -55,6 +62,9 @@ ir_subtract <- function(x, y) {
     y_is_ir <- TRUE
 
   } else {
+    if(length(y) == 1) {
+      y <- rep(y, nrow(x))
+    }
     y_is_ir <- FALSE
   }
 
@@ -70,7 +80,7 @@ ir_subtract <- function(x, y) {
         } else {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
-            z$y <- z$y - y
+            z$y <- z$y - y[[i]]
             z
           })
         }
@@ -92,15 +102,26 @@ ir_subtract <- function(x, y) {
 #' @examples
 #' x1 <-
 #'   ir::ir_add(ir::ir_sample_data, ir::ir_sample_data)
-#' x1 <-
+#' x2 <-
 #'   ir::ir_add(ir::ir_sample_data, ir::ir_sample_data[1, ])
+#'
+#' # adding a numeric value to an object of class `ir`.
+#' x3 <-
+#'   ir::ir_add(ir::ir_sample_data, 1)
+#'
+#' # adding a numeric vector from an object of class `ir`.
+#' x4 <-
+#'   ir::ir_add(
+#'      ir::ir_sample_data,
+#'      seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
+#'   )
 #'
 #' @export
 ir_add <- function(x, y) {
 
   # checks
   ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && length(y) == 1))
+  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
   if(inherits(y, "ir")) {
     ir_check_ir(y)
 
@@ -121,6 +142,9 @@ ir_add <- function(x, y) {
     y_is_ir <- TRUE
 
   } else {
+    if(length(y) == 1) {
+      y <- rep(y, nrow(x))
+    }
     y_is_ir <- FALSE
   }
 
@@ -136,7 +160,7 @@ ir_add <- function(x, y) {
         } else {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
-            z$y <- z$y + y
+            z$y <- z$y + y[[i]]
             z
           })
         }
@@ -162,19 +186,26 @@ ir_add <- function(x, y) {
 #' # multiplication with y as ir object
 #' x1 <-
 #'   ir::ir_multiply(ir::ir_sample_data, ir::ir_sample_data)
-#' x1 <-
+#' x2 <-
 #'   ir::ir_multiply(ir::ir_sample_data, ir::ir_sample_data[1, ])
 #'
 #' # multiplication with y being a numeric value
-#' x2 <-
+#' x3 <-
 #'   ir::ir_multiply(ir::ir_sample_data, y = -1)
+#'
+#' # multiplication with y being a numeric vector
+#' x4 <-
+#'   ir::ir_multiply(
+#'      ir::ir_sample_data,
+#'      seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
+#'   )
 #'
 #' @export
 ir_multiply <- function(x, y) {
 
   # checks
   ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && length(y) == 1))
+  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
   if(inherits(y, "ir")) {
     ir_check_ir(y)
 
@@ -195,6 +226,9 @@ ir_multiply <- function(x, y) {
     y_is_ir <- TRUE
 
   } else {
+    if(length(y) == 1) {
+      y <- rep(y, nrow(x))
+    }
     y_is_ir <- FALSE
   }
 
@@ -210,7 +244,7 @@ ir_multiply <- function(x, y) {
         } else {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
-            z$y <- z$y * y
+            z$y <- z$y * y[[i]]
             z
           })
         }
@@ -237,19 +271,26 @@ ir_multiply <- function(x, y) {
 #' # division with y as ir object
 #' x1 <-
 #'   ir::ir_divide(ir::ir_sample_data, ir::ir_sample_data)
-#' x1 <-
+#' x2 <-
 #'   ir::ir_divide(ir::ir_sample_data, ir::ir_sample_data[1, ])
 #'
 #' # division with y being a numeric value
-#' x2 <-
+#' x3 <-
 #'   ir::ir_divide(ir::ir_sample_data, y = 20)
+#'
+#' # division with y being a numeric vector
+#' x4 <-
+#'   ir::ir_divide(
+#'      ir::ir_sample_data,
+#'      seq(from = 0.1, to = 2, length.out = nrow(ir::ir_sample_data))
+#'   )
 #'
 #' @export
 ir_divide <- function(x, y) {
 
   # checks
   ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && length(y) == 1))
+  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
   if(inherits(y, "ir")) {
     ir_check_ir(y)
 
@@ -270,6 +311,9 @@ ir_divide <- function(x, y) {
     y_is_ir <- TRUE
 
   } else {
+    if(length(y) == 1) {
+      y <- rep(y, nrow(x))
+    }
     y_is_ir <- FALSE
   }
 
@@ -285,7 +329,7 @@ ir_divide <- function(x, y) {
         } else {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
-            z$y <- z$y / y
+            z$y <- z$y / y[[i]]
             z
           })
         }
@@ -314,18 +358,26 @@ ir_divide <- function(x, y) {
 #' ## addition
 #' ir::ir_sample_data + ir::ir_sample_data
 #' ir::ir_sample_data + 2
+#' ir::ir_sample_data +
+#'    seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 #'
 #' ## subtraction
 #' ir::ir_sample_data - ir::ir_sample_data
 #' ir::ir_sample_data - 2
+#' ir::ir_sample_data -
+#'    seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 #'
 #' ## multiplication
 #' ir::ir_sample_data * ir::ir_sample_data
 #' ir::ir_sample_data * 2
+#' ir::ir_sample_data *
+#'    seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 #'
 #' ## division
 #' ir::ir_sample_data / ir::ir_sample_data
 #' ir::ir_sample_data / 2
+#' ir::ir_sample_data /
+#'    seq(from = 0.1, to = 2, length.out = nrow(ir::ir_sample_data))
 #'
 #' @export
 Ops.ir <- function(e1, e2) {

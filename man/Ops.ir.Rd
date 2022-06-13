@@ -31,17 +31,25 @@ Arithmetic operations for \code{ir} objects
 ## addition
 ir::ir_sample_data + ir::ir_sample_data
 ir::ir_sample_data + 2
+ir::ir_sample_data +
+   seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 
 ## subtraction
 ir::ir_sample_data - ir::ir_sample_data
 ir::ir_sample_data - 2
+ir::ir_sample_data -
+   seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 
 ## multiplication
 ir::ir_sample_data * ir::ir_sample_data
 ir::ir_sample_data * 2
+ir::ir_sample_data *
+   seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 
 ## division
 ir::ir_sample_data / ir::ir_sample_data
 ir::ir_sample_data / 2
+ir::ir_sample_data /
+   seq(from = 0.1, to = 2, length.out = nrow(ir::ir_sample_data))
 
 }

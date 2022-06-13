@@ -26,7 +26,18 @@ spectrum as in \code{x}.}
 \examples{
 x1 <-
   ir::ir_add(ir::ir_sample_data, ir::ir_sample_data)
-x1 <-
+x2 <-
   ir::ir_add(ir::ir_sample_data, ir::ir_sample_data[1, ])
+
+# adding a numeric value to an object of class `ir`.
+x3 <-
+  ir::ir_add(ir::ir_sample_data, 1)
+
+# adding a numeric vector from an object of class `ir`.
+x4 <-
+  ir::ir_add(
+     ir::ir_sample_data,
+     seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
+  )
 
 }

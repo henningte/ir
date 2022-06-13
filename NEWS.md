@@ -8,12 +8,15 @@
 * In `ir_import_spc()`, the returned `ir` object was a subclass of `data.frame` and not `tbl_df`.
 
 ## New functions
+
 * `ir_export_prepare()` to support exporting `ir` objects to `csv`.
+* `ir_correct_atmosphere()` enables correcting for atmospheric artifacts (e.g. H$_2$O and CO$_2$ peaks) following Perez-Guaita et al. (2013) (DOI: 10.1366/13-07159).  
 
 ## Improvements
 
 * Making `ir_flatten()` faster by improving spectra combining.
 * Making `ir_bin()` faster by improving spectra summarizing per bin. Allowing to specify how wavenumber values should be defined after binning. 
+* Arithmetic operations now also accept numeric vectors (`ir_subtract()`, `ir_add()`, `ir_multiply()`, `ir_divide()`).
 
 # ir 0.2.1
 

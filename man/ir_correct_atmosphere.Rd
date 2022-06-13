@@ -2,7 +2,7 @@
 % Please edit documentation in R/ir_correct_atmosphere.R
 \name{ir_correct_atmosphere}
 \alias{ir_correct_atmosphere}
-\title{Corrects artifacts in a spectrum based on reference spectra of the artifact compound.}
+\title{Corrects artifacts in a spectrum based on reference spectra of the artifact compound}
 \source{
 \insertAllCited{}
 }
@@ -19,14 +19,14 @@ ir_correct_atmosphere(
 )
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}} containing the
-spectra to correct.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}} containing the spectra to
+correct.}
 
-\item{ref}{An object of class \code{\link[ir:ir_new_ir]{ir}} containing the
-reference spectra to use for correction. \code{ref} must have the same number
-of rows as \code{x}, the contained spectra must cover the wavenumber range of
-all spectra in \code{x}, and if \code{interpolate = FALSE}, all spectra must have
-identical wavenumber values.}
+\item{ref}{An object of class \code{\link[=ir_new_ir]{ir}} containing the reference
+spectra to use for correction. \code{ref} must have the same number of rows as \code{x},
+the contained spectra must cover the wavenumber range of all spectra in \code{x},
+and if \code{interpolate = FALSE}, all spectra must have identical wavenumber
+values.}
 
 \item{wn1}{A numeric value representing the first wavenumber value to use as
 reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
@@ -47,26 +47,29 @@ reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
 \item{interpolate}{A logical value indicating if \code{x} and \code{ref} should be
 interpolated prior correction (\code{TRUE}) or not (\code{FALSE}).}
 
-\item{start}{See \code{\link[ir:ir_interpolate]{ir_interpolate}}.}
+\item{start}{See \code{\link[=ir_interpolate]{ir_interpolate()}}.}
 
-\item{dw}{See \code{\link[ir:ir_interpolate]{ir_interpolate}}.}
+\item{dw}{See \code{\link[=ir_interpolate]{ir_interpolate()}}.}
 
-\item{warn}{A logical value indicating if warnings about mismatching
-wavenumber values should be displayed (\code{TRUE}) or not (\code{FALSE}).
-If set to \code{TRUE} and \code{wn1} or \code{wn2} do not exactly match the
-wavenumber values in \code{x} and \code{ref}, a warning will be printed to
-inform about the wavenumber difference between the selected and targeted
-wavenumber value.}
+\item{warn}{A logical value indicating whether warnings about mismatching
+wavenumber values should be displayed (\code{TRUE}) or not (\code{FALSE}). If set to
+\code{TRUE} and \code{wn1} or \code{wn2} do not exactly match the wavenumber values in \code{x}
+and \code{ref}, a warning will be printed to inform about the wavenumber
+difference between the selected and targeted wavenumber value.}
 }
 \value{
 \code{x} corrected with the reference spectra in \code{ref}.
 }
 \description{
-\code{ir_correct_atmosphere} takes two objects of class \code{ir} with the same
-number of spectra in each and corrects the spectra of the first object with the
+\code{ir_correct_atmosphere} takes two objects of class \code{ir} with the same number
+of spectra in each and corrects the spectra of the first object with the
 spectra of the second object according to the procedure presented by
 \insertCite{PerezGuaita.2013}{ir}.
 }
 \note{
 The function was not tested yet.
+}
+\examples{
+ir_correct_atmosphere(ir_sample_data, ir_sample_data, wn1 = 2361, wn2 = 2349)
+
 }

@@ -31,11 +31,18 @@ from all intensity values in \code{x}.
 # subtracting two objects of class ir
 x1 <-
   ir::ir_subtract(ir::ir_sample_data, ir::ir_sample_data)
-x1 <-
+x2 <-
   ir::ir_subtract(ir::ir_sample_data, ir::ir_sample_data[1, ])
 
 # subtracting a numeric value from an object of class `ir`.
-x2 <-
+x3 <-
   ir::ir_subtract(ir::ir_sample_data, 20)
+
+# subtracting a numeric vector from an object of class `ir`.
+x4 <-
+  ir::ir_subtract(
+     ir::ir_sample_data,
+     seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
+  )
 
 }

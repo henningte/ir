@@ -2,20 +2,35 @@
 % Please edit documentation in R/ir_stack.R
 \name{ir_stack}
 \alias{ir_stack}
-\title{Stacks a matrix with spectra into an object of class \code{ir}.}
+\title{Stacks a matrix or data frame with spectra into a list column}
 \usage{
 ir_stack(x)
 }
 \arguments{
-\item{x}{A matrix or data.frame with a first column (\code{x}) containing x axis values
-of the spectra (e.g. wavenumbers) and all remaining columns containing
-intensity values of spectra. Column names are assumed to represent}
+\item{x}{A matrix or data frame with a first column (\code{x}) containing "x
+axis values" of the spectra (e.g. wavenumbers) and all remaining columns
+containing intensity values of spectra.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble}} with the stacked spectra.
+A \code{\link[tibble:tibble]{tibble::tibble()}} with the stacked spectra in column \code{spectra}.
 }
 \description{
-\code{ir_stack} takes a matrix with infrared spectra and converts it
-into a list column corresponding to the column \code{spectra} in objects
-of class \code{ir}.
+\code{ir_stack} takes a matrix or data frame with infrared spectra and
+converts it into a  list column corresponding to the column \code{spectra} in
+objects of class \code{ir}.
+}
+\examples{
+# from data frame
+x1 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_flatten() \%>\%
+   ir::ir_stack()
+
+# from matrix
+x2 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_flatten() \%>\%
+   as.matrix() \%>\%
+   ir::ir_stack()
+
 }

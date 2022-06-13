@@ -1,0 +1,111 @@
+url: https://henningte.github.io/ir/
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    right: github
+  components:
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/henningte/ir/
+    articles:
+      text: Articles
+      menu:
+      - text: Introduction to the 'ir' package
+        href: articles/ir-introduction.html
+      - text: Introduction to the `ir`class
+        href: articles/ir-class.html
+    news:
+      text: News
+      menu:
+      - text: News
+        href: news/index.html
+
+reference:
+  - title: "Overview"
+    desc: >
+      Pacakge overview
+    contents:
+      - ir-package
+  - title: "ir-class"
+    desc: >
+      Create `ir`-objects, subset `ir` objects
+    contents:
+      - ir_new_ir
+      - ir_as_ir
+      - ir_as_ir.data.frame
+      - ir_drop_spectra
+      - ir_get_intensity
+      - ir_get_wavenumberindex
+      - ir_get_spectrum
+      - ir_remove_missing
+      - ir_flatten
+      - rep.ir
+      - bind
+      - '[.ir'
+      - '$.ir'
+      - '[[.ir'
+      - '$<-.ir'
+      - '[<-.ir'
+      - '[[<-.ir'
+  - title: "Plotting spectra"
+    desc: >
+      Plotting spectra
+    contents:
+      - plot.ir
+  - title: "Import"
+    desc: >
+      Import of spectra
+    contents:
+      - starts_with("ir_import")
+  - title: "Export"
+    desc: >
+      Export of spectra
+    contents:
+      - ir_export_prepare
+  - title: "Spectral processing"
+    desc: >
+      Spectral preprocessing
+    contents:
+      - ir_average
+      - ir_bc
+      - ir_bin
+      - ir_clip
+      - ir_interpolate
+      - ir_interpolate_region
+      - ir_normalize
+      - ir_smooth
+      - starts_with("ir_to_")
+  - title: "Spectral analysis"
+    desc: >
+      Spectral analysis
+    contents:
+      - Ops.ir
+      - ir_add
+      - ir_subtract
+      - ir_multiply
+      - ir_divide
+      - ir_variance_region
+      - range
+  - title: "tidyverse methods"
+    desc: >
+      tidyverse methods for `ir` objects
+    contents:
+      - has_concept("tidyverse")
+  - title: "Sample data"
+    desc: >
+      Sample dataset
+    contents:
+      - ir_sample_data
+  - title: internal
+    contents:
+      - ir_bc_polynomial
+      - ir_bc_rubberband
+      - ir_bc_sg
+      - ir_flat_clean
+      - ir_new_ir_flat
+      - ir_stack
+
+
+

@@ -2,19 +2,27 @@
 % Please edit documentation in R/plot.ir.R
 \name{plot.ir}
 \alias{plot.ir}
-\title{Plots an object of class ir.}
+\title{Plots an object of class \code{ir}}
 \usage{
 \method{plot}{ir}(x, ...)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{...}{Further arguments, will be ignored}
+\item{...}{Further arguments, will be ignored.}
 }
 \value{
-An object of class \code{\link[ggplot2:ggplot]{ggplot2}}
+An object of class \code{\link[ggplot2:ggplot]{ggplot2}}.
 }
 \description{
-\code{plot.ir} is the plot method for objects of class
-\code{ir}.
+\code{plot.ir} is the plot method for objects of class \code{ir}.
+}
+\examples{
+# simple plotting
+plot(ir::ir_sample_data[1:2, ])
+
+# advanced functions
+plot(ir::ir_sample_data) +
+   ggplot2::facet_wrap(~ sample_type)
+
 }

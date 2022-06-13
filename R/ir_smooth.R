@@ -1,35 +1,65 @@
-#' Smoothes infrared spectra.
+#' Smooths infrared spectra in an `ir` object
 #'
-#' \code{ir_smooth} applies smoothing functions to infrared spectra.
-#' \code{ir_smooth} either performs
-#' Savitzky-Golay smoothing, based on \code{\link[signal:sgolayfilt]{sgolayfilt}},
-#' or Fourier smoothing using \code{\link[fda:smooth.basis]{smooth.basis}}.
-#' Savitzky-Golay smoothing can also be used to compute derivatives of spectra.
+#' `ir_smooth` applies smoothing functions to infrared spectra.
+#' `ir_smooth` either performs Savitzky-Golay smoothing, using on
+#' [signal::sgolayfilt()], or Fourier smoothing using
+#' [fda::smooth.basis()]. Savitzky-Golay smoothing can
+#' also be used to compute derivatives of spectra.
 #'
-#' @param x An object of class \code{\link[ir:ir_new_ir]{ir}}.
+#' @details When `x` contains spectra with different wavenumber values, the
+#' filters are applied for each spectra only on existing wavenumber values. This
+#' means that the filter window (if `method == "sg"`) will be different for
+#' these different spectra.
+#'
+#' @param x An object of class [`ir`][ir_new_ir()].
+#'
 #' @param method A character value specifying which smoothing method to apply.
-#' If \code{method = "sg"}, a Savitzky-Golay filter will be applied on the
+#' If `method = "sg"`, a Savitzky-Golay filter will be applied on the
 #' spectra. The Savitzky-Golay smoothing will be performed using the function
-#' \code{\link[signal:sgolayfilt]{sgolayfilt}}.
-#' If \code{method = "fourier"}, Fourier smoothing will be performed.
-#' Fourier transformation of the spectra is performed using the fast
-#' discrete Fourier transformation (FFT) as implemented in
-#' \code{\link[fda:smooth.basis]{smooth.basis}}. A smoothing function can be defined by the
-#' argment \code{f}.
-#' @param k A positive odd integer representing the number of Fourier
-#' basis functions to use as smoothed representation of the spectra
-#' if \code{method = "fourier"}.
-#' @param p An integer value representing the filter order (i.e. the degree of the
-#' polynom) of the Savitzky-Golay filter if \code{method = "sg"}.
-#' @param n An odd integer value representing the length (i.e. the
-#' number of wavenumber values used to construct the polynom) of the
-#' Savitzky-Golay filter if \code{method = "sg"}.
-#' @param ts time scaling factor. See \code{\link[signal:sgolayfilt]{sgolayfilt}}.
-#' @param m An integer value representing the mth derivative to compute. This option
-#' can be used to compute derivatives of spectra. See \code{\link[signal:sgolayfilt]{sgolayfilt}}.
+#' [signal::sgolayfilt()]. If `method = "fourier"`,
+#' Fourier smoothing will be performed. Fourier transformation of the spectra is
+#' performed using the fast discrete Fourier transformation (FFT) as implemented
+#' in [fda::smooth.basis()]. A smoothing function can be
+#' defined by the argment `f`.
+#'
+#' @param k A positive odd integer representing the number of Fourier basis
+#' functions to use as smoothed representation of the spectra if
+#' `method = "fourier"`.
+#'
+#' @param p An integer value representing the filter order (i.e. the degree of
+#' the polynom) of the Savitzky-Golay filter if `method = "sg"`.
+#'
+#' @param n An odd integer value representing the length (i.e. the number of
+#' wavenumber values used to construct the polynom) of the Savitzky-Golay filter
+#' if `method = "sg"`.
+#'
+#' @param ts time scaling factor. See [signal::sgolayfilt()].
+#'
+#' @param m An integer value representing the mth derivative to compute. This
+#' option can be used to compute derivatives of spectra. See
+#' [signal::sgolayfilt()].
+#'
 #' @param ... additional arguments (ignored).
-#' @return An object of class \code{ir} containing the smoothed
-#' spectra.
+#'
+#' @return `x` with smoothed spectra.
+#'
+#' @examples
+#' #' # Savitzky-Golay smoothing
+#' x1 <-
+#'    ir::ir_sample_data[1:5, ] %>%
+#'    ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 0)
+#'
+#' # Fourier smoothing
+#' x2 <-
+#'    ir::ir_sample_data[1:5, ] %>%
+#'    ir::ir_smooth(method = "fourier", k = 21)
+#'
+#' # computing derivative spectra with Savitzky-Golay smoothing (here: first
+#' # derivative)
+#' x3 <-
+#'    ir::ir_sample_data[1:5, ] %>%
+#'    ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 1)
+#'
 #' @export
 ir_smooth <- function(x,
                       method = "sg",
@@ -45,32 +75,47 @@ ir_smooth <- function(x,
     rlang::abort(paste0("`x` must be of class ir, not ", class(x)[[1]],"."))
   }
   if(!(is.character(method) & method %in% c("sg", "fourier"))){
-    stop("`method` must be one of 'sg' or 'fourier'.")
+    rlang::abort("`method` must be one of 'sg' or 'fourier'.")
   }
 
-  x_flat <- ir_flatten(x)
-
   # smooth the spectra
-  switch(method,
-         sg = {
-           x_flat[, -1] <- apply(x_flat[, -1, drop = FALSE], 2, function(x){signal::sgolayfilt(x = x, p = p, n = n, ts = ts, m = m)})
-           },
-         fourier = {
+  switch(
+    method,
+    sg = {
+      x$spectra <-
+        purrr::map(x$spectra, function(y) {
+          index <- !is.na(y$y)
+          y$y[index] <-
+            signal::sgolayfilt(x = y$y[index], p = p, n = n, ts = ts, m = m)
+          y
+        })
+    },
+    fourier = {
+      x$spectra <-
+        purrr::map(x$spectra, function(y) {
 
-           # define Fourier basis object
-           fourier_basis <- fda::create.fourier.basis(rangeval = range(x_flat$x), nbasis = k)
+          index <- !is.na(y$y)
 
-           # functional data object
-           fd <- fda::smooth.basis(argvals = x_flat$x,
-                                   y = as.matrix(x_flat[, -1, drop = FALSE]),
-                                   fdParobj = fourier_basis)$fd
+          # define Fourier basis object
+          fourier_basis <- fda::create.fourier.basis(rangeval = range(y$x), nbasis = k)
 
-           # smoothing
-           x_flat[, -1] <- fda::eval.fd(x_flat$x, fd)
-         })
+          # functional data object
+          fd <-
+            fda::smooth.basis(
+              argvals = y$x[index],
+              y = as.matrix(y$y[index], ncol = 1),
+              fdParobj = fourier_basis
+            )$fd
 
-  # return the smoothed x
-  x$spectra <- ir_stack(x_flat)$spectra
+          # smoothing
+          y$y[index] <- fda::eval.fd(y$x[index], fd)
+          y
+
+        })
+    },
+    {rlang::abort("Unknown method!")}
+  )
+
   x
 
 }

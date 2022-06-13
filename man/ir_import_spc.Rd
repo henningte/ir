@@ -2,38 +2,61 @@
 % Please edit documentation in R/ir_import_spc.R
 \name{ir_import_spc}
 \alias{ir_import_spc}
-\title{Imports infrared spectra from various files.}
+\title{Imports infrared spectra from Thermo Galactic's files}
 \usage{
-ir_import_spc(filenames)
+ir_import_spc(filenames, log.txt = TRUE)
 }
 \arguments{
 \item{filenames}{A character vector representing the complete paths to
-the .spc files to import.}
+the \code{.spc} files to import.}
+
+\item{log.txt}{A logical value indicating whether to import metadata (\code{TRUE})
+or not (\code{FALSE}). See the details section. If set to \code{FALSE}, only the
+metadata variables \code{exponentiation_factor} to \code{measurement_device} listed in
+the Value section below are included in the \code{ir} object.}
 }
 \value{
-An object of class \code{\link[ir:ir_new_ir]{ir}} containing the infrared spectra
-extracted from the .spc file(s) and the metadata as extracted by
-\code{\link[hyperSpec:read.spc]{read.spc}}. Metadata variables are:
+An object of class \code{\link[=ir_new_ir]{ir}} containing the
+infrared spectra extracted from the \code{.spc} file(s) and the metadata as
+extracted by \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}. Metadata variables are:
 \describe{
-  \item{scan_number}{An integer value representing the number of scans.}
-  \item{detection_gain_factor}{The detection gain factor.}
-  \item{scan_speed}{The scan speed [kHz].}
-  \item{laser_wavenumber}{The wavenumber of the laser.}
-  \item{detector_name}{The name of the detector.}
-  \item{source_name}{The name of the infrared radiation source.}
-  \item{purge_delay}{The duration of purge delay before a measurement [s].}
-  \item{zero_filling_factor}{A numeric value representing the zero filling factor.}
-  \item{apodisation_function}{The name of the apodisation function.}
-  \item{exponentiation factor}{The exponentiation factor used for file compression.}
-  \item{data_point_number}{The number of data points in the spectrum}
-  \item{x_variable_type}{The type of the x variable.}
-  \item{y_variable_type}{The type of the y variable.}
-  \item{measurement_date}{A POSIXct representing the measurement date and time.}
-  \item{measurement_device}{The name of the measurement device.}
+\item{scan_number}{An integer value representing the number of scans.}
+\item{detection_gain_factor}{The detection gain factor.}
+\item{scan_speed}{The scan speed [kHz].}
+\item{laser_wavenumber}{The wavenumber of the laser.}
+\item{detector_name}{The name of the detector.}
+\item{source_name}{The name of the infrared radiation source.}
+\item{purge_delay}{The duration of purge delay before a measurement [s].}
+\item{zero_filling_factor}{A numeric value representing the zero filling
+factor.}
+\item{apodisation_function}{The name of the apodisation function.}
+\item{exponentiation_factor}{The exponentiation factor used for file
+compression.}
+\item{data_point_number}{The number of data points in the spectrum}
+\item{x_variable_type}{The type of the x variable.}
+\item{y_variable_type}{The type of the y variable.}
+\item{measurement_date}{A POSIXct representing the measurement date and
+time.}
+\item{measurement_device}{The name of the measurement device.}
 }
 }
 \description{
 \code{ir_import_spc} imports raw infrared spectra from a Thermo Galactic's
-.spc file or several of such files. \code{ir_import_spc} is a wrapper function
-to \code{\link[hyperSpec:read.spc]{read.spc}}.
+\code{.spc} file or several of such files. \code{ir_import_spc} is a wrapper
+function to \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}.
+}
+\details{
+Currently, \code{log.txt} must be set to \code{FALSE} due to a bug in
+\code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}. This bug fill be fixed in the upcoming weeks and
+currently can be circumvented by using the development version of 'hyperSpec'.
+See https://github.com/r-hyperspec/hyperSpec/issues/80.
+}
+\examples{
+# import a sample .spc file
+x <-
+  ir::ir_import_spc(
+    system.file("extdata/1.spc", package = "ir"),
+    log.txt = FALSE
+  )
+
 }

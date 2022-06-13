@@ -2,22 +2,28 @@
 % Please edit documentation in R/ir_flatten.R
 \name{ir_flatten}
 \alias{ir_flatten}
-\title{Converts objects of class \code{ir} to wide matrices.}
+\title{Converts objects of class \code{ir} to objects of class \code{ir_flat}}
 \usage{
-ir_flatten(x, measurement_id = as.character(x$measurement_id))
+ir_flatten(x, measurement_id = as.character(seq_len(nrow(x))))
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{measurement_id}{A character vector an element for each row in
-\code{x} that contains the names to use as column names for the spectra
-in the matrix.}
+\item{measurement_id}{A character vector an element for each row in \code{x}
+that contains the names to use as column names for the spectra in the
+\code{ir_flat} object to create.}
 }
 \value{
-An object of class \code{\link[ir:ir_new_ir_flat]{ir_flat}}.
+An object of class \code{\link[=ir_new_ir_flat]{ir_flat}}.
 }
 \description{
-\code{ir_flatten} takes and object of class \code{ir}, extracts
-the \code{spectra} column and combines the spectra into one matrix.
-Metadata are not retained during flattening.
+\code{ir_flatten} takes and object of class \code{ir}, extracts the
+\code{spectra} column and combines the spectra into an object of class
+\code{\link[=ir_new_ir_flat]{ir_flat}}. Metadata are not retained during flattening.
+}
+\examples{
+x_flat <-
+   ir::ir_sample_data \%>\%
+   ir::ir_flatten()
+
 }

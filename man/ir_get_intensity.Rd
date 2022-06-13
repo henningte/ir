@@ -2,31 +2,38 @@
 % Please edit documentation in R/ir_get_intensity.R
 \name{ir_get_intensity}
 \alias{ir_get_intensity}
-\title{Extracts intensities from spectra for specific x axis values.}
+\title{Extracts intensities from spectra in an \code{ir} object for specific spectral channels}
 \usage{
 ir_get_intensity(x, wavenumber, warn = TRUE)
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}}.}
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
-\item{wavenumber}{A numeric vector with x axis values
-(e.g. wavenumber values) for which to extract intensities.}
+\item{wavenumber}{A numeric vector with spectral channels ("x axis values",
+e.g. wavenumber values) for which to extract intensities.}
 
-\item{warn}{A logical value indicating if warnings should be
-displayed (\code{TRUE}) or not (\code{FALSE}).}
+\item{warn}{logical value indicating if warnings should be displayed
+(\code{TRUE}) or not (\code{FALSE}).}
 }
 \value{
 \code{x} with an additional column \code{intensity}.
-\code{x$intensity} is a list column with each element representing
-a \code{data.frame} with a row for each element in \code{wavenumber}
-and two columns:
+\code{x$intensity} is a list column with each element representing a
+\code{data.frame} with a row for each element in \code{wavenumber} and two
+columns:
 \describe{
-  \item{x}{The x axis values extracted with \code{\link{ir_get_wavenumberindex}}
-  applied on \code{wavenumber} and the corresponding spectrum in \code{x}.}
-  \item{y}{The extracted intensity values}.
+\item{x}{The "x axis values" extracted with
+\code{\link[=ir_get_wavenumberindex]{ir_get_wavenumberindex()}} applied on \code{wavenumber} and the
+corresponding spectrum in \code{x}.}
+\item{y}{The extracted intensity values}.
 }
 }
 \description{
-\code{ir_get_intensity} extracts intensity values of spectra for
-specific user-defined x axis values (e.g. wavenumber values).
+\code{ir_get_intensity} extracts intensity values of spectra for specific
+user-defined spectral channels ("x axis values", e.g. wavenumber values).
+}
+\examples{
+x <-
+   ir::ir_sample_data \%>\%
+   ir::ir_get_intensity(wavenumber = 1090)
+
 }

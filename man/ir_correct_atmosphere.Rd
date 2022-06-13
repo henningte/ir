@@ -32,16 +32,16 @@ identical wavenumber values.}
 reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
 \insertCite{PerezGuaita.2013;textual}{ir} are:
 \describe{
-  \item{H\eqn{_2}O}{3902 cm\eqn{^{-1}}.}
-  \item{CO\eqn{_2}}{2361 cm\eqn{^{-1}}.}
+\item{H\eqn{_2}O}{3902 cm\eqn{^{-1}}.}
+\item{CO\eqn{_2}}{2361 cm\eqn{^{-1}}.}
 }}
 
 \item{wn2}{A numeric value representing the second wavenumber value to use as
 reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
 \insertCite{PerezGuaita.2013;textual}{ir} are:
 \describe{
-  \item{H\eqn{_2}O}{3912 cm\eqn{^{-1}}.}
-  \item{CO\eqn{_2}}{2349 cm\eqn{^{-1}}.}
+\item{H\eqn{_2}O}{3912 cm\eqn{^{-1}}.}
+\item{CO\eqn{_2}}{2349 cm\eqn{^{-1}}.}
 }}
 
 \item{interpolate}{A logical value indicating if \code{x} and \code{ref} should be

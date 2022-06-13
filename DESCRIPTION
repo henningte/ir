@@ -1,47 +1,56 @@
 Package: ir
-Title: A Simple Package to Handle and Preprocess Infrared Spectra
-Version: 0.0.0.9000
+Title: Functions to Handle and Preprocess Infrared Spectra
+Version: 0.2.1.9000
 Authors@R: 
     person(given = "Henning",
            family = "Teickner",
-           role = c("aut", "cre"),
-           email = "h_teic01@wwu.de")
+           role = c("aut", "cre", "cph"),
+           email = "henning.teickner@uni-muenster.de",
+           comment = c(ORCID = "0000-0002-3993-1182"))
 Description: 
-  Basic functions to import
-  and handle infrared spectra (import from .csv and
-  Thermo Galactic's .spc, baseline correction, binning, clipping,
-  interpolating, smoothing, averaging, plotting).
+  Functions to import and handle infrared spectra (import from '.csv' and
+  Thermo Galactic's '.spc', baseline correction, binning, clipping,
+  interpolating, smoothing, averaging, adding, subtracting, dividing, 
+  multiplying, plotting).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2.9000
 Depends:
-  R (>= 3.5.0)
+  R (>= 4.0.0)
 Imports:
-  tidyr,
-  dplyr,
-  purrr,
-  plyr,
-  tibble,
-  ggplot2,
-  stringr,
-  ChemoSpec,
-  hyperSpec,
-  signal,
-  baseline,
-  grDevices,
-  rlang,
-  methods,
-  units,
-  data.table,
-  devtools,
-  Rdpack
+    tidyr,
+    dplyr,
+    purrr,
+    tibble,
+    ggplot2,
+    stringr,
+    ChemoSpec (>= 5.2.12),
+    hyperSpec (>= 0.99.20200527),
+    signal,
+    grDevices,
+    rlang,
+    methods,
+    units,
+    Rdpack,
+    magrittr,
+    stats,
+    lifecycle,
+    baseline,
+    quantities
 Suggests:
-  fda,
-  knitr,
-  rmarkdown
+    kableExtra,
+    fda,
+    knitr,
+    rmarkdown,
+    spelling,
+    vctrs,
+    tidyselect
 VignetteBuilder: 
   knitr
 RdMacros: 
   Rdpack
-Date: 2020-01-30
+Date: 2022-05-02
+Roxygen: list(markdown = TRUE)
+URL: https://henningte.github.io/ir/
+Language: en-US

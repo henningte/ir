@@ -2,28 +2,60 @@
 % Please edit documentation in R/ir_bin.R
 \name{ir_bin}
 \alias{ir_bin}
-\title{Bins infrared spectra.}
+\title{Bins infrared spectra}
 \usage{
-ir_bin(x, width = 10)
+ir_bin(x, width = 10, new_x_type = "start")
 }
 \arguments{
-\item{x}{An object of class \code{\link[ir:ir_new_ir]{ir}} with integer wavenumber
+\item{x}{An object of class \code{\link[=ir_new_ir]{ir}} with integer wavenumber
 values increasing by 1.}
 
-\item{width}{An integer value indicating the wavenumber width of
-each resulting bin. Must be set to \code{NULL} if \code{n} is
-specified.}
+\item{width}{An integer value indicating the wavenumber width of each
+resulting bin.}
+
+\item{new_x_type}{A character value denoting how new wavenumber values for
+the computed bins should be stored in the spectra of \code{x} after binning. Must
+be one of:
+\describe{
+\item{\code{"start"}}{New wavenumbers for binned intensities are the start
+wavenumber value which defines the start of each bin. The default
+(for historical reasons).}
+\item{\code{"mean"}}{New wavenumbers for binned intensities are the average
+of the start and end wavenumber values which define the start and end of
+each bin.}
+\item{\code{"end"}}{New wavenumbers for binned intensities are the end
+wavenumber value which defines the end of each bin.}
+}}
 }
 \value{
-An object of class \code{ir} representing a binned version of \code{x}.
+An object of class \code{ir} where spectra have been binned.
 }
 \description{
 \code{ir_bin} bins intensity values of infrared spectra into bins of a
 defined width or into a defined number of bins.
 }
 \details{
-If the last bin contains fewer input values than the remaining bins, it
-will be dropped and a warning will be printed. If a wavenumber value exactly
-matches the boundary of a bin window, the respective intensity value will be
-assigned to both neighbouring bins.
+If a wavenumber value exactly matches the boundary of a bin window, the
+respective intensity value will be assigned to both neighboring bins.
+}
+\examples{
+# new wavenumber values are the first wavenumber value for each bin
+x1 <-
+   ir::ir_sample_data \%>\%
+   ir_bin(width = 50, new_x_type = "start")
+
+# new wavenumber values are the last wavenumber value for each bin
+x2 <-
+   ir::ir_sample_data \%>\%
+   ir_bin(width = 50, new_x_type = "mean")
+
+# new wavenumber values are the average of the wavenumber values assigned to
+# each bin
+x3 <-
+   ir::ir_sample_data \%>\%
+   ir_bin(width = 50, new_x_type = "end")
+
+# compare wavenumber values for first spectra.
+cbind(x1$spectra[[1]]$x, x2$spectra[[1]]$x, x3$spectra[[1]]$x)
+
 }

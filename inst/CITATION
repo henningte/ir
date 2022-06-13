@@ -1,0 +1,28 @@
+title <- paste0(meta$Package, ": ", meta$Title)
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("version %s", meta$Version)
+doi <- "10.5281/zenodo.5747169"
+
+# from base: toupper
+.simpleCap <- function(x) {
+    s <- strsplit(x, " ")[[1]]
+    paste(toupper(substring(s, 1, 1)), substring(s, 2),
+          sep = "", collapse = " ")
+}
+
+citHeader("To cite ir in publications use:")
+
+citEntry(
+  entry    =       "misc",
+  title    =       paste0("{", title, "}"),
+  note     =       paste0("{", note, "}"),
+  author   =       "{Henning Teickner}",
+  year     =       paste0("{", year, "}"),
+  doi      =       paste0("{", doi, "}"),
+  copyright =      "{GNU General Public License v3.0 or later, Open Access}",
+  howpublished =   "{Zenodo}",
+  langid =         paste0("{", meta$Language, "}"),
+  textVersion = paste0(
+    "Henning Teickner (", year, "): ", title, ". ", .simpleCap(note), ". DOI: ", doi, "."
+  )
+)

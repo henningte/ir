@@ -1,4 +1,4 @@
-# ir (development version)
+# ir 0.3.0
 
 ## Bug fixes
 

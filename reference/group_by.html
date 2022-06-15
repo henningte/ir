@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Group rows in <code>ir</code> objects by one or more variables</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/tidyverse.R" class="external-link"><code>R/tidyverse.R</code></a></small>
       <div class="d-none name"><code>group_by.Rd</code></div>
     </div>
 
@@ -79,6 +79,8 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>.data</dt>
 <dd><p>An object of class <code>ir</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>In <code>group_by()</code>, variables or computations to group by.
 Computations are always done on the ungrouped data frame.
@@ -86,6 +88,8 @@ To perform computations on the grouped data, you need to use
 a separate <code><a href="mutate.html">mutate()</a></code> step before the <code>group_by()</code>.
 Computations are not allowed in <code>nest_by()</code>.
 In <code>ungroup()</code>, variables to remove from the grouping.</p></dd>
+
+
 <dt>.add</dt>
 <dd><p>When <code>FALSE</code>, the default, <code>group_by()</code> will
 override existing groups. To add to the existing groups, use
@@ -93,14 +97,19 @@ override existing groups. To add to the existing groups, use
 <p>This argument was previously called <code>add</code>, but that prevented
 creating a new grouping variable called <code>add</code>, and conflicts with
 our naming conventions.</p></dd>
+
+
 <dt>.drop</dt>
 <dd><p>Drop groups formed by factor levels that don't appear in the
 data? The default is <code>TRUE</code> except when <code>.data</code> has been previously
 grouped with <code>.drop = FALSE</code>. See <code><a href="https://dplyr.tidyverse.org/reference/group_by_drop_default.html" class="external-link">group_by_drop_default()</a></code> for details.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>.data</code> with grouped rows (<code>group_by.ir()</code>) or ungrouped rows
+    
+
+<p><code>.data</code> with grouped rows (<code>group_by.ir()</code>) or ungrouped rows
 (<code>ungroup.ir()</code>).</p>
     </div>
     <div class="section level2">
@@ -178,7 +187,7 @@ grouped with <code>.drop = FALSE</code>. See <code><a href="https://dplyr.tidyve
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

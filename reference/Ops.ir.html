@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Arithmetic operations for <code>ir</code> objects</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/Ops.R" class="external-link"><code>R/Ops.R</code></a></small>
       <div class="d-none name"><code>Ops.ir.Rd</code></div>
     </div>
 
@@ -69,12 +69,17 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>e1</dt>
 <dd><p>An object of class <code>ir</code>.</p></dd>
+
+
 <dt>e2</dt>
 <dd><p>An object of class <code>ir</code> or a numeric value.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>e1</code> with intensity values of the spectra added to/subtracted
+    
+
+<p><code>e1</code> with intensity values of the spectra added to/subtracted
 with/multiplied with/divided by those in <code>e2</code>:</p><ul><li><p>If <code>e2</code> is a numeric value, all intensity values in the spectra of <code>e1</code> are
 added/subtracted/multiplied/divided by <code>e2</code>.</p></li>
 <li><p>If <code>e2</code> is an <code>ir</code> object with one row, it is replicated (see <a href="rep.ir.html">rep.ir</a>) so
@@ -104,6 +109,23 @@ values are added/subtracted/multiplied/divided row-wise.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
 <span class="r-in"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op">+</span> <span class="fl">2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;units&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
+<span class="r-in"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op">+</span></span>
+<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">2</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;units&gt;</span>      </span>
@@ -153,6 +175,23 @@ values are added/subtracted/multiplied/divided row-wise.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
+<span class="r-in"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op">-</span></span>
+<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">2</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;units&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## multiplication</span></span>
 <span class="r-in"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op">*</span> <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span></span>
@@ -172,6 +211,23 @@ values are added/subtracted/multiplied/divided row-wise.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
 <span class="r-in"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op">*</span> <span class="fl">2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;units&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
+<span class="r-in"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op">*</span></span>
+<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">2</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;units&gt;</span>      </span>
@@ -221,6 +277,23 @@ values are added/subtracted/multiplied/divided row-wise.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
+<span class="r-in"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op">/</span></span>
+<span class="r-in">   <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0.1</span>, to <span class="op">=</span> <span class="fl">2</span>, length.out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 58 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;units&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   spectra &lt;list&gt;</span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -233,7 +306,7 @@ values are added/subtracted/multiplied/divided row-wise.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

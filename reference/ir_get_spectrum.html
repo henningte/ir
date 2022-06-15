@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Extracts selected spectra from an object of class <code>ir</code></h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/ir_get_spectrum.R" class="external-link"><code>R/ir_get_spectrum.R</code></a></small>
       <div class="d-none name"><code>ir_get_spectrum.Rd</code></div>
     </div>
 
@@ -68,13 +68,18 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>An object of class <code><a href="ir_new_ir.html">ir</a></code>.</p></dd>
+
+
 <dt>what</dt>
 <dd><p>A numeric vector with each element representing a row in <code>x</code>
 for which to extract the spectrum.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An integer vector with the same length as <code>wavenumber</code> with the
+    
+
+<p>An integer vector with the same length as <code>wavenumber</code> with the
 row indices of <code>x</code> corresponding to the wavenumber values in <code>wavenumber</code>.</p>
     </div>
 
@@ -95,7 +100,7 @@ row indices of <code>x</code> corresponding to the wavenumber values in <code>wa
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

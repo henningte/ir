@@ -22,7 +22,7 @@ examples)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@ examples)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Prepares <code>ir</code> objects for export to <code>csv</code></h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/ir_export_prepare.R" class="external-link"><code>R/ir_export_prepare.R</code></a></small>
       <div class="d-none name"><code>ir_export_prepare.Rd</code></div>
     </div>
 
@@ -90,19 +90,26 @@ examples).</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>An object of class <code><a href="ir_new_ir.html">ir</a></code>.</p></dd>
+
+
 <dt>what</dt>
 <dd><p>A character value defining what to prepare for export.
 If <code>"metadata"</code>, the metadata will be prepared for export and column
 <code>spectra</code> will be dropped. If <code>"spectra"</code>, <code>x</code> is converted to an object of
 class <code><a href="ir_new_ir_flat.html">ir_flat</a></code>.</p></dd>
+
+
 <dt>measurement_id</dt>
 <dd><p>A character vector an element for each row in <code>x</code>
 that contains the names to use as column names for the spectra in the
 <code>ir_flat</code> object to create.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame.</p>
+    
+
+<p>A data frame.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -126,7 +133,7 @@ that contains the names to use as column names for the spectra in the
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

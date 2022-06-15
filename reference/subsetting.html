@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Subsetting <code>ir</code> objects</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/ir.R" class="external-link"><code>R/ir.R</code></a></small>
       <div class="d-none name"><code>subsetting.Rd</code></div>
     </div>
 
@@ -84,19 +84,30 @@ $(x, i, j, ...) &lt;- value
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>An object of class <code>ir</code>.</p></dd>
+
+
 <dt>i, j</dt>
 <dd><p>Row and column indices. If <code>j</code> is omitted, <code>i</code> is used as column index.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Ignored.</p></dd>
+
+
 <dt>exact</dt>
 <dd><p>Ignored, with a warning.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>A value to store in a row, column, range or cell.
 Tibbles are stricter than data frames in what is accepted here.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If the subsetting operation preserves a valid <code>spectra</code> column
+    
+
+<p>If the subsetting operation preserves a valid <code>spectra</code> column
 (see <code><a href="ir_new_ir.html">ir()</a></code>), an object of class <code>ir</code> with
 accordingly subsetted rows or columns. Else a <code><a href="https://tibble.tidyverse.org/reference/tbl_df-class.html" class="external-link">tibble::tbl_df()</a></code> or
 vector.</p>
@@ -2114,7 +2125,7 @@ vector.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

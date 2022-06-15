@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Pivot an <code>ir</code> object from wide to long</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/tidyverse.R" class="external-link"><code>R/tidyverse.R</code></a></small>
       <div class="d-none name"><code>pivot_wider.ir.Rd</code></div>
     </div>
 
@@ -85,12 +85,16 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
 <dd><p>An object of class <code>ir</code>.</p></dd>
+
+
 <dt>id_cols</dt>
 <dd><p>&lt;<code><a href="https://tidyr.tidyverse.org/reference/tidyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; A set of columns that
 uniquely identifies each observation. Defaults to all columns in <code>data</code>
 except for the columns specified in <code>names_from</code> and <code>values_from</code>.
 Typically used when you have redundant variables, i.e. variables whose
 values are perfectly correlated with existing variables.</p></dd>
+
+
 <dt>names_from, values_from</dt>
 <dd><p>&lt;<code><a href="https://tidyr.tidyverse.org/reference/tidyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; A pair of
 arguments describing which column (or columns) to get the name of the
@@ -98,32 +102,46 @@ output column (<code>names_from</code>), and which column (or columns) to get th
 cell values from (<code>values_from</code>).</p>
 <p>If <code>values_from</code> contains multiple values, the value will be added to the
 front of the output column.</p></dd>
+
+
 <dt>names_prefix</dt>
 <dd><p>String added to the start of every variable name. This is
 particularly useful if <code>names_from</code> is a numeric vector and you want to
 create syntactic variable names.</p></dd>
+
+
 <dt>names_sep</dt>
 <dd><p>If <code>names_from</code> or <code>values_from</code> contains multiple
 variables, this will be used to join their values together into a single
 string to use as a column name.</p></dd>
+
+
 <dt>names_glue</dt>
 <dd><p>Instead of <code>names_sep</code> and <code>names_prefix</code>, you can supply
 a glue specification that uses the <code>names_from</code> columns (and special
 <code>.value</code>) to create custom column names.</p></dd>
+
+
 <dt>names_sort</dt>
 <dd><p>Should the column names be sorted? If <code>FALSE</code>, the default,
 column names are ordered by first appearance.</p></dd>
+
+
 <dt>names_repair</dt>
 <dd><p>What happens if the output has invalid column names?
 The default, <code>"check_unique"</code> is to error if the columns are duplicated.
 Use <code>"minimal"</code> to allow duplicates in the output, or <code>"unique"</code> to
 de-duplicated by adding numeric suffixes. See <code><a href="https://vctrs.r-lib.org/reference/vec_as_names.html" class="external-link">vctrs::vec_as_names()</a></code>
 for more options.</p></dd>
+
+
 <dt>values_fill</dt>
 <dd><p>Optionally, a (scalar) value that specifies what each
 <code>value</code> should be filled in with when missing.</p>
 <p>This can be a named list if you want to apply different fill values to
 different value columns.</p></dd>
+
+
 <dt>values_fn</dt>
 <dd><p>Optionally, a function applied to the value in each cell
 in the output. You will typically use this when the combination of
@@ -131,12 +149,17 @@ in the output. You will typically use this when the combination of
 observation.</p>
 <p>This can be a named list if you want to apply different aggregations
 to different <code>values_from</code> columns.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments passed on to methods.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>data</code> in a wide format. If the <code>spectra</code> column is dropped
+    
+
+<p><code>data</code> in a wide format. If the <code>spectra</code> column is dropped
 or invalidated (see <code><a href="ir_new_ir.html">ir_new_ir()</a></code>), the <code>ir</code> class is dropped, else the
 object is of class <code>ir</code>.</p>
     </div>
@@ -198,7 +221,7 @@ object is of class <code>ir</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Nest and un-nest an <code>ir</code> object</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/tidyverse.R" class="external-link"><code>R/tidyverse.R</code></a></small>
       <div class="d-none name"><code>nest.Rd</code></div>
     </div>
 
@@ -86,6 +86,8 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>.data</dt>
 <dd><p>An object of class <code>ir</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>&lt;<code><a href="https://tidyr.tidyverse.org/reference/tidyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; Columns to nest, specified
 using name-variable pairs of the form <code>new_col = c(col1, col2, col3)</code>.
@@ -96,16 +98,24 @@ and <code>df %&gt;% unnest(c(x, y, z))</code>.</p>
 <p>If you previously created new variable in <code>unnest()</code> you'll now need to
 do it explicitly with <code><a href="mutate.html">mutate()</a></code>. Convert <code>df %&gt;% unnest(y = fun(x, y, z))</code>
 to <code>df %&gt;% mutate(y = fun(x, y, z)) %&gt;% unnest(y)</code>.</p></dd>
+
+
 <dt>.key</dt>
 <dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>:
 No longer needed because of the new <code>new_col = c(col1, col2, col3)</code> syntax.</p></dd>
+
+
 <dt>data</dt>
 <dd><p>A data frame.</p></dd>
+
+
 <dt>cols</dt>
 <dd><p>&lt;<code><a href="https://tidyr.tidyverse.org/reference/tidyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; Columns to unnest.</p>
 <p>If you <code>unnest()</code> multiple columns, parallel entries must be of
 compatible sizes, i.e. they're either equal or length 1 (following the
 standard tidyverse recycling rules).</p></dd>
+
+
 <dt>keep_empty</dt>
 <dd><p>By default, you get one row of output for each element
 of the list your unchopping/unnesting. This means that if there's a
@@ -113,11 +123,15 @@ size-0 element (like <code>NULL</code> or an empty data frame), that entire row
 will be dropped from the output. If you want to preserve all rows,
 use <code>keep_empty = TRUE</code> to replace size-0 elements with a single row
 of missing values.</p></dd>
+
+
 <dt>ptype</dt>
 <dd><p>Optionally, a named list of column name-prototype pairs to
 coerce <code>cols</code> to, overriding the default that will be guessed from
 combining the individual values. Alternatively, a single empty ptype
 can be supplied, which will be applied to all <code>cols</code>.</p></dd>
+
+
 <dt>names_sep, .names_sep</dt>
 <dd><p>If <code>NULL</code>, the default, the names will be left
 as is. In <code>nest()</code>, inner names will come from the former outer names;
@@ -128,6 +142,8 @@ together the outer and the inner column names, separated by <code>names_sep</cod
 <code>nest()</code>, the new inner names will have the outer names + <code>names_sep</code>
 automatically stripped. This makes <code>names_sep</code> roughly symmetric between
 nesting and unnesting.</p></dd>
+
+
 <dt>names_repair</dt>
 <dd><p>Used to check that output data frame has valid
 names. Must be one of the following options:</p><ul><li><p>"minimal": no name repair or checks, beyond basic existence,</p></li>
@@ -139,21 +155,30 @@ names. Must be one of the following options:</p><ul><li><p>"minimal": no name re
 <li><p>a formula: a purrr-style anonymous function (see <code><a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">rlang::as_function()</a></code>)</p></li>
 </ul><p>See <code><a href="https://vctrs.r-lib.org/reference/vec_as_names.html" class="external-link">vctrs::vec_as_names()</a></code> for more details on these terms and the
 strategies used to enforce them.</p></dd>
+
+
 <dt>.drop, .preserve</dt>
 <dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>:
 all list-columns are now preserved; If there are any that you
 don't want in the output use <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> to remove them prior to
 unnesting.</p></dd>
+
+
 <dt>.id</dt>
 <dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>:
 convert <code>df %&gt;% unnest(x, .id = "id")</code> to <code>df %&gt;% mutate(id = names(x)) %&gt;% unnest(x))</code>.</p></dd>
+
+
 <dt>.sep</dt>
 <dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>:
 use <code>names_sep</code> instead.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>.data</code> with nested or unnested columns. If the <code>spectra</code> column is
+    
+
+<p><code>.data</code> with nested or unnested columns. If the <code>spectra</code> column is
 dropped or invalidated (see <code><a href="ir_new_ir.html">ir_new_ir()</a></code>), the <code>ir</code> class is dropped, else
 the object is of class <code>ir</code>.</p>
     </div>
@@ -236,7 +261,7 @@ the object is of class <code>ir</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

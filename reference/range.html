@@ -24,7 +24,7 @@ intensity value of infrared spectra."><!-- mathjax --><script src="https://cdnjs
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@ intensity value of infrared spectra."><!-- mathjax --><script src="https://cdnjs
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Get the minima/maxima/range/median of x axis values or intensity values of infrared spectra</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/range.R" class="external-link"><code>R/range.R</code></a></small>
       <div class="d-none name"><code>range.Rd</code></div>
     </div>
 
@@ -105,10 +105,16 @@ intensity value of infrared spectra.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>An object of class <code><a href="ir_new_ir.html">ir</a></code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments, ignored.</p></dd>
+
+
 <dt>na.rm</dt>
 <dd><p>A logical value. See <code><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max()</a></code>.</p></dd>
+
+
 <dt>.dimension</dt>
 <dd><p>A character value. Must be one of the following:</p><dl><dt>"x"</dt>
 <dd><p>In this case, the minimum/maximum/range/median of x axis values
@@ -120,18 +126,25 @@ values of the spectra in <code>x</code> are extracted.</p></dd>
 
 
 </dl></dd>
+
+
 <dt>.col_names</dt>
 <dd><p>A character vector of length 2 representing the names of the
 columns in which to store the extracted values. The first element is the name
 for the column with minima values, the second the name for the column with
 maxima values.</p></dd>
+
+
 <dt>.col_name</dt>
 <dd><p>A character value representing the name of the column in
 which to store the extracted values.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>x</code> with the extracted values.</p>
+    
+
+<p><code>x</code> with the extracted values.</p>
     </div>
 
     <div class="section level2">
@@ -167,7 +180,7 @@ which to store the extracted values.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

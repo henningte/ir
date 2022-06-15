@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,22 +51,30 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Changelog</h1>
-      
+      <small>Source: <a href="https://github.com/henningte/ir/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="ir-development-version">ir (development version)<a class="anchor" aria-label="anchor" href="#ir-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.3.0" id="ir-030">ir 0.3.0<a class="anchor" aria-label="anchor" href="#ir-030"></a></h2>
 <div class="section level3">
-<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<h3 id="bug-fixes-0-3-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-0"></a></h3>
 <ul><li>In <code><a href="../reference/ir_import_spc.html">ir_import_spc()</a></code>, the returned <code>ir</code> object was not a <code>tbl_df</code>, but a data frame. This is now corrected.</li>
 <li>In <code><a href="../reference/nest.html">unnest.ir()</a></code>, the <code>ir</code> class was not restored and therefore the result was always unclassed.</li>
 <li>In <code><a href="../reference/ir_average.html">ir_average()</a></code>, the returned <code>ir</code> object was still a <code>grouped_df</code>. This is now corrected (by adding the <code>.groups</code> argument for <code><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">dplyr::summarize()</a></code> which is internally used by <code><a href="../reference/ir_average.html">ir_average()</a></code>).</li>
-<li>In <code><a href="../reference/ir_import_spc.html">ir_import_spc()</a></code>, the returned <code>ir</code> object was a subclass of <code>data.frame</code> and not <code>tbl_df</code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-functions-development-version">New functions<a class="anchor" aria-label="anchor" href="#new-functions-development-version"></a></h3>
+<h3 id="new-functions-0-3-0">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-3-0"></a></h3>
 <ul><li>
-<code><a href="../reference/ir_export_prepare.html">ir_export_prepare()</a></code> to support exporting <code>ir</code> objects to <code>csv</code>.</li></ul></div>
+<code><a href="../reference/ir_export_prepare.html">ir_export_prepare()</a></code> to support exporting <code>ir</code> objects to <code>csv</code>.</li>
+<li>
+<code><a href="../reference/ir_correct_atmosphere.html">ir_correct_atmosphere()</a></code> enables correcting for atmospheric artifacts (e.g. H<span class="math inline"><em></em><sub>2</sub></span>O and CO<span class="math inline"><em></em><sub>2</sub></span> peaks) following Perez-Guaita et al. (2013) (DOI: 10.1366/13-07159).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-0-3-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-3-0"></a></h3>
+<ul><li>Making <code><a href="../reference/ir_flatten.html">ir_flatten()</a></code> faster by improving spectra combining.</li>
+<li>Making <code><a href="../reference/ir_bin.html">ir_bin()</a></code> faster by improving spectra summarizing per bin. Allowing to specify how wavenumber values should be defined after binning.</li>
+<li>Arithmetic operations now also accept numeric vectors (<code><a href="../reference/ir_subtract.html">ir_subtract()</a></code>, <code><a href="../reference/ir_add.html">ir_add()</a></code>, <code><a href="../reference/ir_multiply.html">ir_multiply()</a></code>, <code><a href="../reference/ir_divide.html">ir_divide()</a></code>).</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.1" id="ir-021">ir 0.2.1<a class="anchor" aria-label="anchor" href="#ir-021"></a></h2><p class="text-muted">CRAN release: 2022-05-02</p>
@@ -74,7 +82,7 @@
 </li></ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="ir-020">ir 0.2.0<a class="anchor" aria-label="anchor" href="#ir-020"></a></h2><p class="text-muted">CRAN release: 2022-04-25</p>
-<ul><li>First CRAN release (#1).</li>
+<ul><li>First CRAN release (<a href="https://github.com/henningte/ir/issues/1" class="external-link">#1</a>).</li>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
 <li>Added tidyverse methods for <code>ir</code> objects.</li>
 <li>
@@ -91,7 +99,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

@@ -12,7 +12,7 @@ defined width or into a defined number of bins."><!-- mathjax --><script src="ht
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@ defined width or into a defined number of bins."><!-- mathjax --><script src="ht
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Bins infrared spectra</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/ir_bin.R" class="external-link"><code>R/ir_bin.R</code></a></small>
       <div class="d-none name"><code>ir_bin.Rd</code></div>
     </div>
 
@@ -64,7 +64,7 @@ defined width or into a defined number of bins.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ir_bin</span><span class="op">(</span><span class="va">x</span>, width <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ir_bin</span><span class="op">(</span><span class="va">x</span>, width <span class="op">=</span> <span class="fl">10</span>, new_x_type <span class="op">=</span> <span class="st">"start"</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -72,27 +72,135 @@ defined width or into a defined number of bins.</p>
     <dl><dt>x</dt>
 <dd><p>An object of class <code><a href="ir_new_ir.html">ir</a></code> with integer wavenumber
 values increasing by 1.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>An integer value indicating the wavenumber width of each
-resulting bin. Must be set to <code>NULL</code> if <code>n</code> is specified.</p></dd>
+resulting bin.</p></dd>
+
+
+<dt>new_x_type</dt>
+<dd><p>A character value denoting how new wavenumber values for
+the computed bins should be stored in the spectra of <code>x</code> after binning. Must
+be one of:</p><dl><dt><code>"start"</code></dt>
+<dd><p>New wavenumbers for binned intensities are the start
+wavenumber value which defines the start of each bin. The default
+(for historical reasons).</p></dd>
+
+<dt><code>"mean"</code></dt>
+<dd><p>New wavenumbers for binned intensities are the average
+of the start and end wavenumber values which define the start and end of
+each bin.</p></dd>
+
+<dt><code>"end"</code></dt>
+<dd><p>New wavenumbers for binned intensities are the end
+wavenumber value which defines the end of each bin.</p></dd>
+
+
+</dl></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code>ir</code> where spectra have been binned.</p>
+    
+
+<p>An object of class <code>ir</code> where spectra have been binned.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>If the last bin contains fewer input values than the remaining bins, it
-will be dropped and a warning will be printed. If a wavenumber value exactly
-matches the boundary of a bin window, the respective intensity value will be
-assigned to both neighboring bins.</p>
+    <p>If a wavenumber value exactly matches the boundary of a bin window, the
+respective intensity value will be assigned to both neighboring bins.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># new wavenumber values are the first wavenumber value for each bin</span></span>
+<span class="r-in"><span class="va">x1</span> <span class="op">&lt;-</span></span>
 <span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu">ir_bin</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span class="r-in">   <span class="fu">ir_bin</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">50</span>, new_x_type <span class="op">=</span> <span class="st">"start"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># new wavenumber values are the last wavenumber value for each bin</span></span>
+<span class="r-in"><span class="va">x2</span> <span class="op">&lt;-</span></span>
+<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in">   <span class="fu">ir_bin</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">50</span>, new_x_type <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># new wavenumber values are the average of the wavenumber values assigned to</span></span>
+<span class="r-in"><span class="co"># each bin</span></span>
+<span class="r-in"><span class="va">x3</span> <span class="op">&lt;-</span></span>
+<span class="r-in">   <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in">   <span class="fu">ir_bin</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">50</span>, new_x_type <span class="op">=</span> <span class="st">"end"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># compare wavenumber values for first spectra.</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x1</span><span class="op">$</span><span class="va">spectra</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">x</span>, <span class="va">x2</span><span class="op">$</span><span class="va">spectra</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">x</span>, <span class="va">x3</span><span class="op">$</span><span class="va">spectra</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       [,1] [,2] [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  650  675  700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  700  725  750</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  750  775  800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  800  825  850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  850  875  900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  900  925  950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  950  975 1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] 1000 1025 1050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] 1050 1075 1100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] 1100 1125 1150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11,] 1150 1175 1200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12,] 1200 1225 1250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13,] 1250 1275 1300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] 1300 1325 1350</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15,] 1350 1375 1400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16,] 1400 1425 1450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17,] 1450 1475 1500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] 1500 1525 1550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19,] 1550 1575 1600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20,] 1600 1625 1650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21,] 1650 1675 1700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22,] 1700 1725 1750</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23,] 1750 1775 1800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24,] 1800 1825 1850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25,] 1850 1875 1900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26,] 1900 1925 1950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27,] 1950 1975 2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28,] 2000 2025 2050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29,] 2050 2075 2100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30,] 2100 2125 2150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31,] 2150 2175 2200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32,] 2200 2225 2250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33,] 2250 2275 2300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34,] 2300 2325 2350</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35,] 2350 2375 2400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36,] 2400 2425 2450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37,] 2450 2475 2500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [38,] 2500 2525 2550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [39,] 2550 2575 2600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [40,] 2600 2625 2650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41,] 2650 2675 2700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [42,] 2700 2725 2750</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43,] 2750 2775 2800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [44,] 2800 2825 2850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [45,] 2850 2875 2900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [46,] 2900 2925 2950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [47,] 2950 2975 3000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [48,] 3000 3025 3050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49,] 3050 3075 3100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [50,] 3100 3125 3150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [51,] 3150 3175 3200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [52,] 3200 3225 3250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [53,] 3250 3275 3300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [54,] 3300 3325 3350</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [55,] 3350 3375 3400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [56,] 3400 3425 3450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [57,] 3450 3475 3500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [58,] 3500 3525 3550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [59,] 3550 3575 3600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [60,] 3600 3625 3650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [61,] 3650 3675 3700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [62,] 3700 3725 3750</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [63,] 3750 3775 3800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [64,] 3800 3825 3850</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [65,] 3850 3875 3900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [66,] 3900 3925 3950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [67,] 3950 3975 4000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [68,] 4000 4025 4050</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -105,7 +213,7 @@ assigned to both neighboring bins.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

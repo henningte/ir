@@ -18,7 +18,7 @@ read from the .csv file."><!-- mathjax --><script src="https://cdnjs.cloudflare.
     
     <a class="navbar-brand me-2" href="../index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@ read from the .csv file."><!-- mathjax --><script src="https://cdnjs.cloudflare.
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Imports infrared spectra from various files</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/henningte/ir/blob/HEAD/R/ir_import_csv.R" class="external-link"><code>R/ir_import_csv.R</code></a></small>
       <div class="d-none name"><code>ir_import_csv.Rd</code></div>
     </div>
 
@@ -81,6 +81,8 @@ read from the .csv file.</p>
     <dl><dt>filenames</dt>
 <dd><p>A character vector representing the complete paths to
 the <code>.csv</code> files to import.</p></dd>
+
+
 <dt>sample_id</dt>
 <dd><p>Either:</p><ul><li><p><code>NULL</code>: Nothing additional happens.</p></li>
 <li><p>A character vector with the same length as <code>filenames</code>: This
@@ -90,13 +92,18 @@ a new column <code>sample_id</code> to add (the default).</p></li>
 <li><p><code>"from_colnames"</code>: The header in the csv file will be used as
 values for a new column <code>sample_id</code> to add.</p></li>
 </ul></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments passed to
 <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv()</a></code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An object of class <code><a href="ir_new_ir.html">ir</a></code> containing the
+    
+
+<p>An object of class <code><a href="ir_new_ir.html">ir</a></code> containing the
 infrared spectra extracted from the <code>.csv</code> file(s).</p>
     </div>
 
@@ -119,7 +126,7 @@ infrared spectra extracted from the <code>.csv</code> file(s).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

@@ -167,7 +167,7 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 20 Mai 2022.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 15 Jun 2022.
 > Online at <https://zenodo.org/record/5747170>.
 
 ### Companion packages

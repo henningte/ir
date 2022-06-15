@@ -76,6 +76,7 @@ reference:
       - ir_interpolate_region
       - ir_normalize
       - ir_smooth
+      - ir_correct_atmosphere
       - starts_with("ir_to_")
   - title: "Spectral analysis"
     desc: >

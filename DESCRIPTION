@@ -50,7 +50,8 @@ VignetteBuilder:
   knitr
 RdMacros: 
   Rdpack
-Date: 2022-05-02
+Date: 2022-06-15
 Roxygen: list(markdown = TRUE)
-URL: https://henningte.github.io/ir/
+URL: https://henningte.github.io/ir/, https://github.com/henningte/ir/
+BugReports: https://github.com/henningte/ir/issues/
 Language: en-US

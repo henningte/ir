@@ -12,6 +12,8 @@ Functions to import and handle infrared spectra (import from '.csv' and Thermo G
 Useful links:
 \itemize{
   \item \url{https://henningte.github.io/ir/}
+  \item \url{https://github.com/henningte/ir/}
+  \item Report bugs at \url{https://github.com/henningte/ir/issues/}
 }
 
 }

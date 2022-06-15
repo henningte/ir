@@ -93,7 +93,26 @@ reference:
     desc: >
       tidyverse methods for `ir` objects
     contents:
-      - has_concept("tidyverse")
+      - arrange.ir
+      - distinct.ir
+      - extract.ir
+      - filter-joins
+      - filter.ir
+      - group_by
+      - mutate-joins
+      - mutate
+      - nest
+      - pivot_longer.ir
+      - pivot_wider.ir
+      - rename
+      - rowwise.ir
+      - select.ir
+      - separate.ir
+      - separate_rows.ir
+      - slice
+      - summarize
+      - unite.ir
+      # - has_concept("tidyverse") # ---todo: use this again when https://github.com/r-lib/pkgdown/issues/2126 is fixed.
   - title: "Sample data"
     desc: >
       Sample dataset

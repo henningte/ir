@@ -83,8 +83,7 @@ ir_import_spc <- function(filenames, log.txt = TRUE) {
           x_variable_type = x@data$fxtype,
           y_variable_type = x@data$fytype,
           measurement_date = as.POSIXct(x@data$fdate),
-          measurement_device = x@data$fsource,
-          stringsAsFactors = FALSE
+          measurement_device = x@data$fsource
         )
       } else {
         tibble::tibble(
@@ -93,8 +92,7 @@ ir_import_spc <- function(filenames, log.txt = TRUE) {
           x_variable_type = x@data$fxtype,
           y_variable_type = x@data$fytype,
           measurement_date = as.POSIXct(x@data$fdate),
-          measurement_device = x@data$fsource,
-          stringsAsFactors = FALSE
+          measurement_device = x@data$fsource
         )
       }
     })

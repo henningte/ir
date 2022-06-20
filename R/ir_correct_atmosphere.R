@@ -32,6 +32,11 @@
 #'   \item{CO\eqn{_2}}{2349 cm\eqn{^{-1}}.}
 #' }
 #'
+#' @param return_contribution A logical value indicating whether in addition to
+#' the corrected spectra, the computed relative contribution of `ref` to each
+#' spectrum in `x` should be added to the returned object as new column
+#' `contribution` (`TRUE`) or not (`FALSE`).
+#'
 #' @param do_interpolate A logical value indicating if `x` and `ref` should be
 #' interpolated prior correction (`TRUE`) or not (`FALSE`).
 #'
@@ -51,13 +56,25 @@
 #' \insertAllCited{}
 #'
 #' @examples
-#' ir_correct_atmosphere(ir_sample_data, ir_sample_data, wn1 = 2361, wn2 = 2349)
+#' x1 <-
+#'   ir_correct_atmosphere(
+#'     ir_sample_data[1:5, ], ir_sample_data[1:5, ], wn1 = 2361, wn2 = 2349
+#'   )
+#'
+#' x2 <-
+#'   ir_correct_atmosphere(
+#'     ir_sample_data[1:5, ], ir_sample_data[1:5, ], wn1 = 2361, wn2 = 2349,
+#'     return_contribution = TRUE
+#'   )
+#'
+#' x2$contribution
 #'
 #' @export
 ir_correct_atmosphere <- function(x,
                                   ref,
                                   wn1,
                                   wn2,
+                                  return_contribution = FALSE,
                                   do_interpolate = FALSE,
                                   start = NULL,
                                   dw = 1,
@@ -72,6 +89,9 @@ ir_correct_atmosphere <- function(x,
   }
   if(nrow(x) != nrow(ref)) {
     rlang::abort('`ref` must have the same number of rows as `x`.')
+  }
+  if(!is.logical(return_contribution) | length(return_contribution) != 1) {
+    rlang::abort('`return_contribution` must be a logical value.')
   }
   if(!is.logical(do_interpolate) | length(do_interpolate) != 1) {
     rlang::abort('`do_interpolate` must be a logical value.')
@@ -112,6 +132,9 @@ ir_correct_atmosphere <- function(x,
   ra_x$ra <- ra_x$wn1 - ra_x$wn2
   ra_ref$ra <- ra_ref$wn1 - ra_ref$wn2
   ra_x$f <- ra_x$ra / ra_ref$ra
+  if(return_contribution) {
+    x$contribution <- ra_x$f
+  }
 
   # baseline subtraction
   x <- x - ra_x$wn2

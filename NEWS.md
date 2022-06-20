@@ -1,5 +1,13 @@
 # ir (development version)
 
+## Bug fixes
+
+## New functions
+
+## Improvements
+
+* `ir_correct_atmosphere()` has a new parameter `return_contribution` which allows to return the contribution of `ref` to each spectrum in `x`.
+
 # ir 0.3.0
 
 ## Bug fixes

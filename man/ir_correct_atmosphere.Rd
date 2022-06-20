@@ -12,6 +12,7 @@ ir_correct_atmosphere(
   ref,
   wn1,
   wn2,
+  return_contribution = FALSE,
   do_interpolate = FALSE,
   start = NULL,
   dw = 1,
@@ -44,6 +45,11 @@ reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
 \item{CO\eqn{_2}}{2349 cm\eqn{^{-1}}.}
 }}
 
+\item{return_contribution}{A logical value indicating whether in addition to
+the corrected spectra, the computed relative contribution of \code{ref} to each
+spectrum in \code{x} should be added to the returned object as new column
+\code{contribution} (\code{TRUE}) or not (\code{FALSE}).}
+
 \item{do_interpolate}{A logical value indicating if \code{x} and \code{ref} should be
 interpolated prior correction (\code{TRUE}) or not (\code{FALSE}).}
 
@@ -70,6 +76,17 @@ spectra of the second object according to the procedure presented by
 The function was not tested yet.
 }
 \examples{
-ir_correct_atmosphere(ir_sample_data, ir_sample_data, wn1 = 2361, wn2 = 2349)
+x1 <-
+  ir_correct_atmosphere(
+    ir_sample_data[1:5, ], ir_sample_data[1:5, ], wn1 = 2361, wn2 = 2349
+  )
+
+x2 <-
+  ir_correct_atmosphere(
+    ir_sample_data[1:5, ], ir_sample_data[1:5, ], wn1 = 2361, wn2 = 2349,
+    return_contribution = TRUE
+  )
+
+x2$contribution
 
 }

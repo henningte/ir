@@ -44,14 +44,15 @@ the same samples.
     -   Savitzky-Golay smoothing
     -   Fourier smoothing.
 9.  computing derivatives of spectra using Savitzky-Golay smoothing.
-10. mathematical transformations (addition, subtraction, multiplication,
+10. spectral arithmetic (addition, subtraction, multiplication,
     division).
 11. computing the variance of intensity values (optionally after
     subtracting reference spectra).
 12. computing maxima, minima, median, and ranges of intensity values of
     spectra.
-13. plotting.
-14. [tidyverse](https://www.tidyverse.org/) methods.
+13. Atmospheric background correction (Perez-Guaita et al. 2013).
+14. plotting.
+15. [tidyverse](https://www.tidyverse.org/) methods.
 
 ### How to install
 
@@ -167,8 +168,8 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747170. Accessed 15 Jun 2022.
-> Online at <https://zenodo.org/record/5747170>.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 20 Jun 2022.
+> Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages
 
@@ -249,6 +250,16 @@ Imaging</span>.” *Chemometrics and Intelligent Laboratory Systems* 117
 Marwick, Ben. 2019. “<span class="nocase">rrtools: Creates a
 Reproducible Research Compendium</span>.”
 <https://github.com/benmarwick/rrtools>.
+
+</div>
+
+<div id="ref-PerezGuaita.2013" class="csl-entry">
+
+Perez-Guaita, David, Julia Kuligowski, Guillermo Quintás, Salvador
+Garrigues, and Miguel de La Guardia. 2013. “<span
+class="nocase">Atmospheric compensation in Fourier transform infrared
+(FT-IR) spectra of clinical samples</span>.” *Applied Spectroscopy* 67
+(11): 1339–42. <https://doi.org/10.1366/13-07159>.
 
 </div>
 

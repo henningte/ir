@@ -52,11 +52,12 @@ knitr::opts_chunk$set(
     * Savitzky-Golay smoothing 
     * Fourier smoothing.
 9. computing derivatives of spectra using Savitzky-Golay smoothing.
-10. mathematical transformations (addition, subtraction, multiplication, division).
+10. spectral arithmetic (addition, subtraction, multiplication, division).
 11. computing the variance of intensity values (optionally after subtracting reference spectra).
 12. computing maxima, minima, median, and ranges of intensity values of spectra.
-13. plotting.
-14. [tidyverse](https://www.tidyverse.org/) methods.
+13. Atmospheric background correction [@PerezGuaita.2013].
+14. plotting.
+15. [tidyverse](https://www.tidyverse.org/) methods.
 
 ### How to install
 
@@ -127,7 +128,7 @@ Column `x` represents the x values (in this case wavenumbers [cm<sup>-1</sup>]) 
 
 Please cite this R package as:
 
-> Henning Teickner (`r format(Sys.Date(), "%Y")`). _ir: Functions to Handle and Preprocess Infrared Spectra_. DOI: 10.5281/zenodo.5747170. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://zenodo.org/record/5747170>.
+> Henning Teickner (`r format(Sys.Date(), "%Y")`). _ir: Functions to Handle and Preprocess Infrared Spectra_. DOI: 10.5281/zenodo.5747169. Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://zenodo.org/record/5747169>.
 
 
 ### Companion packages

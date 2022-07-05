@@ -1,5 +1,7 @@
 # ir (development version)
 
+# ir 0.4.0
+
 ## Bug fixes
 
 ## New functions
@@ -7,6 +9,7 @@
 ## Improvements
 
 * `ir_correct_atmosphere()` has a new parameter `return_contribution` which allows to return the contribution of `ref` to each spectrum in `x`.
+* `ir_normalize()` has a new `method` to normalize spectra: With `method = "area_absolute"`, all intensity values will be divided by the sum of the absolute intensity values at all wavenumber values of the spectrum.
 
 # ir 0.3.0
 

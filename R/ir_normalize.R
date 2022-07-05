@@ -10,6 +10,8 @@
 #'   \item{"area"}{Normalization so that the intensity values of each spectrum
 #'   sum to 1. Note that in the case of negative intensities values, these will
 #'   be count as negative values during summation.}
+#'   \item{"area_absolute"}{Normalization so that the absolute intensity values
+#'   of each spectrum sum to 1.}
 #'   \item{A numeric value}{Normalization so that the intensity at a specified
 #'   wavenumber value has value 1 and the minimum intensity value is 0.}
 #' }
@@ -19,12 +21,16 @@
 #' @param x An object of class [`ir`][ir_new_ir()].
 #'
 #' @param method A character value specifying which normalization method to
-#' apply. If `method = "zeroone"`, all intensity values will be normalized
-#' to \[0;1\]. If `method = "area"`, all intensity values will be divided by
-#' the sum of the intensity values at all wavenumber values of the spectrum. If
-#' `method` is convertible to a numeric value, e.g. `method = "980"`,
-#' the intensity of all spectra at a wavenumber value of 980 will be set to 1
-#' and the minimum intensity value of each spectrum will be set to 0, i.e. the
+#' apply.
+#' If `method = "zeroone"`, all intensity values will be normalized to \[0;1\].
+#' If `method = "area"`, all intensity values will be divided by the sum of the
+#' intensity values at all wavenumber values of the spectrum.
+#' If `method = "area_absolute"`, all intensity values will be divided by the
+#' sum of the absolute intensity values at all wavenumber values of the
+#' spectrum.
+#' If `method` is convertible to a numeric value, e.g. `method = "980"`, the
+#' intensity of all spectra at a wavenumber value of 980 will be set to 1 and
+#' the minimum intensity value of each spectrum will be set to 0, i.e. the
 #' spectra will be normalized referring to a specific wavenumber value.
 #'
 #' @return An object of class `ir` representing a normalized version of
@@ -32,12 +38,28 @@
 #'
 #' @examples
 #' # with method = "area"
-#' x <-
+#' x1 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_normalize(method = "area")
 #'
+#' # second derivative spectrum with method = "area" or method = "area_absolute"
+#' x2 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_smooth(method = "sg", n = 31, m = 2) %>%
+#'    ir::ir_normalize(method = "area")
+#'
+#' x3 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_smooth(method = "sg", n = 31, m = 2) %>%
+#'    ir::ir_normalize(method = "area_absolute")
+#'
+#' # with method = "zeroone"
+#' x4 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_normalize(method = "zeroone")
+#'
 #' # normalizing to a specific peak
-#' x <-
+#' x5 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_normalize(method = 1090)
 #'
@@ -53,8 +75,8 @@ ir_normalize <- function(x,
     rlang::abort("`method`` must be a character value or a numeric value.")
   }
   if(is.character(method)) {
-    if(!(method %in% c("zeroone", "area"))){
-      rlang::abort("If specified as character value, `method` must be one of 'zeroone' or 'area'.")
+    if(!(method %in% c("zeroone", "area", "area_absolute"))){
+      rlang::abort("If specified as character value, `method` must be one of 'zeroone', 'area', or 'area_absolute'.")
     }
   }
   if(is.numeric(method)) {
@@ -80,6 +102,14 @@ ir_normalize <- function(x,
       f <-
         function(y, ...) {
           y/sum(y, na.rm = TRUE)
+        }
+    },
+    # normalize to the absolute area
+    area_absolute = {
+      index <- NULL
+      f <-
+        function(y, ...) {
+          y/sum(abs(y), na.rm = TRUE)
         }
     },
     # normalize to a specific wavenumber

@@ -22,8 +22,8 @@ NULL
 #' a Savitzky-Golay smoothed version of the input spectra is used for baseline
 #' correction.
 #'
-#' @param ... Further arguments passed to [ir_bc_polynomial()] or
-#'  [ir_bc_sg()].
+#' @param ... Further arguments passed to [ir_bc_polynomial()],
+#' [ir_bc_rubberband()] or [ir_bc_sg()].
 #'
 #' @param return_bl A logical value indicating if for each spectrum the baseline
 #' should be returned instead of the corrected intensity values
@@ -193,6 +193,12 @@ ir_bc_polynomial <- function(x,
 #'
 #' @inheritParams ir_bc
 #'
+#' @param do_impute A logical value indicating whether the in baseline the first
+#' and last values should be imputed with the second first and second last
+#' values, respectively (`TRUE`) or not (`FALSE`). This can be useful in case
+#' baseline correction without imputation causes artifacts which sometimes
+#' happens with this method.
+#'
 #' @return An object of class `ir` with the baseline corrected spectra and,
 #' if `returnbl = TRUE`,  the baselines.
 #'
@@ -206,6 +212,7 @@ ir_bc_polynomial <- function(x,
 #'
 #' @export
 ir_bc_rubberband <- function(x,
+                             do_impute = FALSE,
                              return_bl = FALSE) {
 
   x_bl <-
@@ -231,15 +238,29 @@ ir_bc_rubberband <- function(x,
             )@data$spc
 
           # remove NAs at the beginning and end
-          z_bl[is.na(z_bl)] <- 0 # ___ remove if bug in hyperSpec is fixed
+          z_bl[is.na(z_bl)] <- 0 # ---todo: remove if bug in hyperSpec is fixe
 
-          z %>%
+          res <-
+            z %>%
             dplyr::mutate(
               y = z_bl[1, ]
             )
 
+          # impute first and last values
+          if(do_impute) {
+            res <-
+              res %>%
+              dplyr::mutate(
+                y = c(y[[2]], y[-c(1, length(y))], y[[length(y) - 1L]])
+              )
+          }
+
+          res
+
         })
     )
+
+
 
   if(return_bl) {
     x_bl

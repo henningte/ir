@@ -16,8 +16,8 @@ rubberband function is used for baseline correction. If \code{method = "sg"},
 a Savitzky-Golay smoothed version of the input spectra is used for baseline
 correction.}
 
-\item{...}{Further arguments passed to \code{\link[=ir_bc_polynomial]{ir_bc_polynomial()}} or
-\code{\link[=ir_bc_sg]{ir_bc_sg()}}.}
+\item{...}{Further arguments passed to \code{\link[=ir_bc_polynomial]{ir_bc_polynomial()}},
+\code{\link[=ir_bc_rubberband]{ir_bc_rubberband()}} or \code{\link[=ir_bc_sg]{ir_bc_sg()}}.}
 
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
 should be returned instead of the corrected intensity values

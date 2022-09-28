@@ -56,8 +56,9 @@ knitr::opts_chunk$set(
 11. computing the variance of intensity values (optionally after subtracting reference spectra).
 12. computing maxima, minima, median, and ranges of intensity values of spectra.
 13. Atmospheric background correction [@PerezGuaita.2013].
-14. plotting.
-15. [tidyverse](https://www.tidyverse.org/) methods.
+14. Scaling intensity values in spectra.
+15. plotting.
+16. [tidyverse](https://www.tidyverse.org/) methods.
 
 ### How to install
 

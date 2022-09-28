@@ -296,6 +296,17 @@ d_spc %>%
 ```
 
 
+## Scaling
+
+Scaling takes a set of spectra with the same x axis values and then applies `base::scale()` on the intensity values of all spectra for the same x axis value:
+
+```{r}
+d_csv %>%
+  ir_scale(center = TRUE, scale = FALSE) %>%
+  plot()
+```
+
+
 ## Building preprocessing pipelines
 
 With ir, it is very easy to build complex reprocessing workflows by "piping" (using [magrittr's](https://cran.r-project.org/package=magrittr) pipe (`%>%`) operator) together different preprocessing steps:

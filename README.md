@@ -51,8 +51,9 @@ the same samples.
 12. computing maxima, minima, median, and ranges of intensity values of
     spectra.
 13. Atmospheric background correction (Perez-Guaita et al. 2013).
-14. plotting.
-15. [tidyverse](https://www.tidyverse.org/) methods.
+14. Scaling intensity values in spectra.
+15. plotting.
+16. [tidyverse](https://www.tidyverse.org/) methods.
 
 ### How to install
 
@@ -168,7 +169,7 @@ Column `x` represents the x values (in this case wavenumbers
 Please cite this R package as:
 
 > Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 20 Jun 2022.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 28 Sep 2022.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages

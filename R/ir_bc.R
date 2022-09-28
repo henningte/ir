@@ -251,7 +251,7 @@ ir_bc_rubberband <- function(x,
             res <-
               res %>%
               dplyr::mutate(
-                y = c(y[[2]], y[-c(1, length(y))], y[[length(y) - 1L]])
+                y = c(.data$y[[2]], .data$y[-c(1, length(.data$y))], .data$y[[length(.data$y) - 1L]])
               )
           }
 
@@ -259,8 +259,6 @@ ir_bc_rubberband <- function(x,
 
         })
     )
-
-
 
   if(return_bl) {
     x_bl

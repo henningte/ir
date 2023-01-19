@@ -39,7 +39,7 @@ ir_get_wavenumberindex <- function(x, wavenumber, warn = TRUE) {
 
   # get matching wavenumber values
   if(nrow(x) == 0) {
-    res <- NA
+    return(NA_integer_)
   } else {
     res <-
       purrr::map_int(wavenumber, function(y){

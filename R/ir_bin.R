@@ -65,6 +65,10 @@ ir_bin <- function(x, width = 10, new_x_type = "start") {
   if(length(new_x_type) != 1 || !is.character(new_x_type)) {
     stop("`new_x_type` must be a character value and one of 'start', 'mean', 'end'.")
   }
+  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  if(all(spectrum_is_empty)) {
+    return(x)
+  }
 
   x_flat <- ir_flatten(x)
 

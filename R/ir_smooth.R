@@ -77,13 +77,22 @@ ir_smooth <- function(x,
   if(!(is.character(method) & method %in% c("sg", "fourier"))){
     rlang::abort("`method` must be one of 'sg' or 'fourier'.")
   }
+  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  if(all(spectrum_is_empty)) {
+    return(x)
+  }
 
   # smooth the spectra
   switch(
     method,
     sg = {
       x$spectra <-
-        purrr::map(x$spectra, function(y) {
+        purrr::map2(x$spectra, spectrum_is_empty, function(y, .z) {
+
+          if(.z) {
+            return(y)
+          }
+
           index <- !is.na(y$y)
           y$y[index] <-
             signal::sgolayfilt(x = y$y[index], p = p, n = n, ts = ts, m = m)
@@ -92,7 +101,11 @@ ir_smooth <- function(x,
     },
     fourier = {
       x$spectra <-
-        purrr::map(x$spectra, function(y) {
+        purrr::map2(x$spectra, spectrum_is_empty, function(y, .z) {
+
+          if(.z) {
+            return(y)
+          }
 
           index <- !is.na(y$y)
 

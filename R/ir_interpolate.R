@@ -28,9 +28,14 @@ ir_interpolate <- function(x, start = NULL, dw = 1) {
   # checks
   .start <- eval(match.call()$start, parent.frame()) # avoid confusion with function `start()`
   ir_check_ir(x)
+  empty_spectra <- ir_check_for_empty_spectra(x)
+  if(all(empty_spectra)) {
+    return(x)
+  }
   x_range_max <-
     x %>%
     ir_drop_unneccesary_cols() %>%
+    dplyr::filter(!empty_spectra) %>%
     range(.dimension = "x", .col_names = c("x_min", "x_max"), na.rm = TRUE) %>%
     dplyr::summarise(
       start = min(.data$x_min),

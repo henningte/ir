@@ -100,6 +100,10 @@ ir_correct_atmosphere <- function(x,
     x <- ir_interpolate(x = x, start = start, dw = dw)
     ref <- ir_interpolate(x = ref, start = start, dw = dw)
   }
+  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  if(all(spectrum_is_empty)) {
+    return(x)
+  }
   x$spectra <- purrr::map(x$spectra, dplyr::arrange, .data$x) # assure that x and ref have same wavenumber order
   x_flat <- ir_flatten(x)
   ref <- ir_clip(x = ref, range = data.frame(start = x_flat$x[[1]], end = x_flat$x[[nrow(x_flat)]], stringsAsFactors = FALSE))

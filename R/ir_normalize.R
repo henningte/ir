@@ -131,6 +131,9 @@ ir_normalize <- function(x,
   x %>%
     dplyr::mutate(
       spectra = purrr::map(.data$spectra, function(z) {
+        if(nrow(z) == 0) {
+          return(z)
+        }
         z %>%
           dplyr::mutate(
             y = f(.data$y, index)

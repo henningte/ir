@@ -51,6 +51,9 @@ ir_interpolate_region <- function(x, range) {
 
   x_ranges <-
     purrr::map(x$spectra, function(z) {
+      if(nrow(z) == 0) {
+        return(NA)
+      }
       z_range <- ir_get_wavenumberindex(z, wavenumber = as.matrix(range), warn = TRUE)
       z_range <- matrix(z_range, byrow = FALSE, nrow = range_nrow)
       purrr::map(seq_len(nrow(z_range)), function(x) z_range[x, ][[1]]:z_range[x, ][[2]])

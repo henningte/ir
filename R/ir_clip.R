@@ -43,6 +43,10 @@ ir_clip <- function(x, range) {
 
   # checks
   ir_check_ir(x)
+  empty_spectra <- ir_check_for_empty_spectra(x)
+  if(all(empty_spectra)) {
+    return(x)
+  }
   if(!inherits(range, "data.frame")) {
     rlang::abort("`range` must be a data.frame.")
   }
@@ -62,10 +66,14 @@ ir_clip <- function(x, range) {
   range_nrow <- nrow(range)
 
   indices <-
-    purrr::map(x$spectra, function(z) {
-      z_range <- ir_get_wavenumberindex(z, wavenumber = as.matrix(range), warn = TRUE)
-      z_range <- matrix(z_range, byrow = FALSE, nrow = range_nrow)
-      unlist(apply(z_range, 1, function(x) x[[1]]:x[[2]]))
+    purrr::map2(x$spectra, empty_spectra, function(z, .y) {
+      if(.y) {
+        NA
+      } else {
+        z_range <- ir_get_wavenumberindex(z, wavenumber = as.matrix(range), warn = TRUE)
+        z_range <- matrix(z_range, byrow = FALSE, nrow = range_nrow)
+        unlist(apply(z_range, 1, function(x) x[[1]]:x[[2]]))
+      }
     })
 
   # clip

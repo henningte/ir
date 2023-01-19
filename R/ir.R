@@ -416,3 +416,19 @@ ir_check_ir <- function(x) {
     rlang::abort(paste0("`", x_sym, "` must be of class `ir`, not ", class(x)[[1]], "."))
   x
 }
+
+#' Checks for emtpy spectra in an ir object
+#'
+#' `ir_check_for_empty_spectra()` checks if an object is of class
+#' [`ir`][ir_new_ir()] contains emtpy spectra.
+#'
+#' @param x An object of class `ir`.
+#'
+#' @return A logical vector indicating for each spectrum in `x` whether it is
+#' empty (`TRUE`) or not (`FALSE`).
+#'
+#' @keywords Internal
+#' @noRd
+ir_check_for_empty_spectra <- function(x) {
+  purrr::map_lgl(x$spectra, function(.x) nrow(.x) == 0)
+}

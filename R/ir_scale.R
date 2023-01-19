@@ -22,8 +22,21 @@
 ir_scale <- function(x, center = TRUE, scale = TRUE) {
 
   ir_check_ir(x)
+  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  if(any(spectrum_is_empty)) {
+    an_emtpy_spectrum <- x$spectra[spectrum_is_empty][[1]]
+    res <-
+      x %>%
+      dplyr::mutate(
+        spectra =
+          purrr::map(.data$spectra, function(.x) {
+          an_emtpy_spectrum
+        })
+      )
+    return(res)
+  }
   stopifnot(all(purrr::map_lgl(x$spectra, function(.x) {
-    identical(.x$x, x$spectra[[1]]$x)
+      identical(.x$x, x$spectra[!spectrum_is_empty][[1]]$x)
   })))
 
   x_flat <-

@@ -22,7 +22,17 @@ plot.ir <- function(x, ...) {
   x_unnested <-
     x %>%
     ir_check_ir() %>%
-    dplyr::mutate(measurement_id = seq_along(.data$spectra)) %>%
+    dplyr::mutate(
+      measurement_id = seq_along(.data$spectra),
+      spectra =
+        purrr::map(.data$spectra, function(.x) { # to avoid errors in geom_path() when there are spectra with one point
+          if(nrow(.x) == 1) {
+            rbind(.x, .x)
+          } else {
+            .x
+          }
+        })
+      ) %>%
     tidyr::unnest(cols = "spectra")
 
   ggplot2::ggplot(

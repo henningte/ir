@@ -128,6 +128,13 @@ ir_bc_polynomial <- function(x,
                              degree = 2,
                              return_bl = FALSE){
 
+  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  if(all(spectrum_is_empty)) {
+    return(x)
+  }
+  x_or <- x
+  x <- x[!spectrum_is_empty, ]
+
   # flatten x
   x_flat <- ir_flatten(x = x, measurement_id = as.character(seq_len(nrow(x))))
 
@@ -142,7 +149,7 @@ ir_bc_polynomial <- function(x,
   x_cs <- list() # dummy list
   x_cs$freq <- as.numeric(x_flat[,1, drop = TRUE]) # wavenumber vector
   x_cs$data <- as.matrix(t(x_flat[,-1])) # absorbance values as matrix
-  x_cs$names <- x$measurement_id # sample names
+  x_cs$names <- seq_len(nrow(x)) # sample names
   x_cs$groups <- as.factor(group_vector) # grouping vector
   x_cs$colors <- color_vector # colors used for groups in plots
   x_cs$sym <- as.numeric(group_vector) # symbols used for groups in plots
@@ -180,7 +187,9 @@ ir_bc_polynomial <- function(x,
     x$spectra <- ir_stack(x_bl1)$spectra
   }
 
-  x
+  x_or$spectra[!spectrum_is_empty] <- x$spectra
+
+  x_or
 
 }
 
@@ -215,11 +224,18 @@ ir_bc_rubberband <- function(x,
                              do_impute = FALSE,
                              return_bl = FALSE) {
 
+  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  if(all(spectrum_is_empty)) {
+    return(x)
+  }
   x_bl <-
     x %>%
     dplyr::mutate(
       spectra =
-        purrr::map(.data$spectra, function(z) {
+        purrr::map2(.data$spectra, spectrum_is_empty, function(z, .y) {
+          if(.y) {
+            return(z)
+          }
 
           # create a hyperSpec object
           z_hs <-

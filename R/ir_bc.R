@@ -85,6 +85,7 @@ ir_bc <- function(x,
     rubberband = {
       ir_bc_rubberband(
         x,
+        ...,
         return_bl = return_bl
       )
     },

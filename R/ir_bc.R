@@ -62,8 +62,8 @@ NULL
 #' @export
 ir_bc <- function(x,
                   method = "rubberband",
-                  ...,
-                  return_bl = FALSE) {
+                  return_bl = FALSE,
+                  ...) {
 
   # checks
   ir_check_ir(x)
@@ -85,8 +85,8 @@ ir_bc <- function(x,
     rubberband = {
       ir_bc_rubberband(
         x,
-        ...,
-        return_bl = return_bl
+        return_bl = return_bl,
+        ...
       )
     },
     sg = {
@@ -116,6 +116,8 @@ ir_bc <- function(x,
 #' @return An object of class `ir` with the baseline corrected spectra if
 #' `returnbl = FALSE` or the baselines if `returnbl = TRUE`.
 #'
+#' @param ... Ignored.
+#'
 #' @seealso
 #' [ir_bc()]
 #'
@@ -127,7 +129,8 @@ ir_bc <- function(x,
 #' @export
 ir_bc_polynomial <- function(x,
                              degree = 2,
-                             return_bl = FALSE){
+                             return_bl = FALSE,
+                             ...){
 
   spectrum_is_empty <- ir_check_for_empty_spectra(x)
   if(all(spectrum_is_empty)) {
@@ -212,6 +215,8 @@ ir_bc_polynomial <- function(x,
 #' @return An object of class `ir` with the baseline corrected spectra and,
 #' if `returnbl = TRUE`,  the baselines.
 #'
+#' @param ... Ignored.
+#'
 #' @seealso
 #' [ir_bc()]
 #'
@@ -223,7 +228,8 @@ ir_bc_polynomial <- function(x,
 #' @export
 ir_bc_rubberband <- function(x,
                              do_impute = FALSE,
-                             return_bl = FALSE) {
+                             return_bl = FALSE,
+                             ...) {
 
   spectrum_is_empty <- ir_check_for_empty_spectra(x)
   if(all(spectrum_is_empty)) {

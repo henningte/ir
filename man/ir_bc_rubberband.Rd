@@ -4,7 +4,7 @@
 \alias{ir_bc_rubberband}
 \title{Performs baseline correction on infrared spectra using a rubberband algorithm}
 \usage{
-ir_bc_rubberband(x, do_impute = FALSE, return_bl = FALSE)
+ir_bc_rubberband(x, do_impute = FALSE, return_bl = FALSE, ...)
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
@@ -18,6 +18,8 @@ happens with this method.}
 \item{return_bl}{A logical value indicating if for each spectrum the baseline
 should be returned instead of the corrected intensity values
 (\code{return_bl = TRUE}) or not (\code{return_bl = FALSE}).}
+
+\item{...}{Ignored.}
 }
 \value{
 An object of class \code{ir} with the baseline corrected spectra and,

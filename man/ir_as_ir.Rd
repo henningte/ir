@@ -4,6 +4,7 @@
 \alias{ir_as_ir}
 \alias{ir_as_ir.ir}
 \alias{ir_as_ir.data.frame}
+\alias{ir_as_ir.hyperSpec}
 \title{Generic to convert objects to class \code{ir}}
 \usage{
 ir_as_ir(x, ...)
@@ -11,6 +12,8 @@ ir_as_ir(x, ...)
 \method{ir_as_ir}{ir}(x, ...)
 
 \method{ir_as_ir}{data.frame}(x, ...)
+
+\method{ir_as_ir}{hyperSpec}(x, ...)
 }
 \arguments{
 \item{x}{An object.}
@@ -50,5 +53,11 @@ ir_sample_data \%>\%
   dplyr::group_by(sample_type) \%>\%
   ir_as_ir()
 
+
+# conversion from a hyperSpec object
+if(requireNamespace("hyperSpec")) {
+  x_hyperSpec <- hyperSpec::chondro
+  x_ir <- ir_as_ir(x_hyperSpec)
+}
 
 }

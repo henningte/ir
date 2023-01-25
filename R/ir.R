@@ -252,6 +252,35 @@ ir_as_ir.data.frame <- function(x, ...) {
   ir_new_ir(spectra = x$spectra, metadata = x[, -match("spectra", colnames(x))])
 }
 
+#' @rdname ir_as_ir
+#'
+#' @examples
+#' # conversion from a hyperSpec object
+#' if(requireNamespace("hyperSpec")) {
+#'   x_hyperSpec <- hyperSpec::chondro
+#'   x_ir <- ir_as_ir(x_hyperSpec)
+#' }
+#'
+#' @export
+ir_as_ir.hyperSpec <- function(x, ...) {
+
+  # spectra
+  x_spectra <-
+    purrr::map(seq_len(nrow(x@data$spc)), function(i) {
+      tibble::tibble(
+        x = x@wavelength,
+        y = unlist(!!x@data$spc[i, ])
+      )
+    })
+
+  # metadata
+  x_metadata <-
+    x@data
+  x_metadata <- x_metadata[, colnames(x_metadata) != "spc"]
+
+  ir_new_ir(spectra = x_spectra, metadata = x_metadata)
+}
+
 #### Casting: from ir ####
 
 #### Replicate ir objects ####

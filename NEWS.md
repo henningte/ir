@@ -6,6 +6,7 @@
 
 * `ir_scale()`: Function to scale intensity values in spectra, similar to `base::scale()`. Intensity values are scaled for the same x axis values.
 * `ir_as_ir.hyperSpec()`: Conversion of `hyperSpec::hyperSpec` objects to `ir` objects. 
+* `ir_as_ir.Spectra()`: Conversion of `ChemoSpec::Spectra` objects to `ir` objects.
 
 ## Improvements
 

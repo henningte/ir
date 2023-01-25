@@ -5,6 +5,7 @@
 \alias{ir_as_ir.ir}
 \alias{ir_as_ir.data.frame}
 \alias{ir_as_ir.hyperSpec}
+\alias{ir_as_ir.Spectra}
 \title{Generic to convert objects to class \code{ir}}
 \usage{
 ir_as_ir(x, ...)
@@ -14,6 +15,8 @@ ir_as_ir(x, ...)
 \method{ir_as_ir}{data.frame}(x, ...)
 
 \method{ir_as_ir}{hyperSpec}(x, ...)
+
+\method{ir_as_ir}{Spectra}(x, ...)
 }
 \arguments{
 \item{x}{An object.}
@@ -54,10 +57,38 @@ ir_sample_data \%>\%
   ir_as_ir()
 
 
-# conversion from a hyperSpec object
+# conversion from a hyperSpec object from package hyperSpec
 if(requireNamespace("hyperSpec")) {
   x_hyperSpec <- hyperSpec::chondro
   x_ir <- ir_as_ir(x_hyperSpec)
+}
+
+# conversion from a Spectra object from class ChemoSpec
+if(requireNamespace("ChemoSpec")) {
+
+  ## sample data
+  x <- ir_sample_data
+  x_flat <- ir_flatten(x)
+
+  ## creation of the object of class "Spectra" (the ChemoSpec package does
+  ## not contain a sample Spectra object)
+  n <- nrow(x)
+  group_vector <- seq(from = 1, to = n, by = 1)
+  color_vector <- rep("black", times = n)
+  x_Spectra <- list() # dummy list
+  x_Spectra$freq <- as.numeric(x_flat[,1, drop = TRUE]) # wavenumber vector
+  x_Spectra$data <- as.matrix(t(x_flat[,-1])) # absorbance values as matrix
+  x_Spectra$names <- as.character(seq_len(nrow(x))) # sample names
+  x_Spectra$groups <- as.factor(group_vector) # grouping vector
+  x_Spectra$colors <- color_vector # colors used for groups in plots
+  x_Spectra$sym <- as.numeric(group_vector) # symbols used for groups in plots
+  x_Spectra$alt.sym <- letters[as.numeric(group_vector)] # letters used for groups in plots
+  x_Spectra$unit <- c("wavenumbers", "intensity") # unit of x and y axes
+  x_Spectra$desc <- "NULL" # optional descriptions in plots
+  attr(x_Spectra, "class") <- "Spectra"
+
+  # conversion to ir
+  x_ir <- ir_as_ir(x_Spectra)
 }
 
 }

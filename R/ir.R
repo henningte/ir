@@ -255,7 +255,7 @@ ir_as_ir.data.frame <- function(x, ...) {
 #' @rdname ir_as_ir
 #'
 #' @examples
-#' # conversion from a hyperSpec object
+#' # conversion from a hyperSpec object from package hyperSpec
 #' if(requireNamespace("hyperSpec")) {
 #'   x_hyperSpec <- hyperSpec::chondro
 #'   x_ir <- ir_as_ir(x_hyperSpec)
@@ -277,6 +277,63 @@ ir_as_ir.hyperSpec <- function(x, ...) {
   x_metadata <-
     x@data
   x_metadata <- x_metadata[, colnames(x_metadata) != "spc"]
+
+  ir_new_ir(spectra = x_spectra, metadata = x_metadata)
+}
+
+#' @rdname ir_as_ir
+#'
+#' @examples
+#' # conversion from a Spectra object from class ChemoSpec
+#' if(requireNamespace("ChemoSpec")) {
+#'
+#'   ## sample data
+#'   x <- ir_sample_data
+#'   x_flat <- ir_flatten(x)
+#'
+#'   ## creation of the object of class "Spectra" (the ChemoSpec package does
+#'   ## not contain a sample Spectra object)
+#'   n <- nrow(x)
+#'   group_vector <- seq(from = 1, to = n, by = 1)
+#'   color_vector <- rep("black", times = n)
+#'   x_Spectra <- list() # dummy list
+#'   x_Spectra$freq <- as.numeric(x_flat[,1, drop = TRUE]) # wavenumber vector
+#'   x_Spectra$data <- as.matrix(t(x_flat[,-1])) # absorbance values as matrix
+#'   x_Spectra$names <- as.character(seq_len(nrow(x))) # sample names
+#'   x_Spectra$groups <- as.factor(group_vector) # grouping vector
+#'   x_Spectra$colors <- color_vector # colors used for groups in plots
+#'   x_Spectra$sym <- as.numeric(group_vector) # symbols used for groups in plots
+#'   x_Spectra$alt.sym <- letters[as.numeric(group_vector)] # letters used for groups in plots
+#'   x_Spectra$unit <- c("wavenumbers", "intensity") # unit of x and y axes
+#'   x_Spectra$desc <- "NULL" # optional descriptions in plots
+#'   attr(x_Spectra, "class") <- "Spectra"
+#'
+#'   # conversion to ir
+#'   x_ir <- ir_as_ir(x_Spectra)
+#' }
+#'
+#' @export
+ir_as_ir.Spectra <- function(x, ...) {
+
+  # spectra
+  x_spectra <-
+    purrr::map(seq_len(nrow(x$data)), function(i) {
+      tibble::tibble(
+        x = x$freq,
+        y = !!x$data[i, ]
+      )
+    })
+
+  # metadata
+  x_metadata <-
+    tibble::tibble(
+      names = x$names,
+      groups = x$groups,
+      colors = x$colors,
+      sym = x$sym,
+      alt.sym = x$alt.sym,
+      unit = rep(list(x$unit), length(x$names))
+    )
 
   ir_new_ir(spectra = x_spectra, metadata = x_metadata)
 }

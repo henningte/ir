@@ -6,7 +6,7 @@
 \alias{ir_as_ir.data.frame}
 \alias{ir_as_ir.hyperSpec}
 \alias{ir_as_ir.Spectra}
-\title{Generic to convert objects to class \code{ir}}
+\title{Converts an object to class \code{ir}}
 \usage{
 ir_as_ir(x, ...)
 
@@ -23,16 +23,17 @@ ir_as_ir(x, ...)
 
 \item{...}{Further arguments passed to individual methods.
 \itemize{
-\item If \code{x} is a data frame or an object of class \code{ir}, these are
-ignored.
+\item If \code{x} is a data frame, an object of class \code{ir}, an object of class
+\code{hyperSpec} (from package 'hyperSpec'), or an object of class \code{Spectra}
+(from package 'ChemoSpec'), these are ignored.
 }}
 }
 \value{
-An object of class \code{ir}.
+An object of class \code{ir} with available metadata from original
+objects.
 }
 \description{
-\code{ir_as_ir} ir the generic to convert an object to an object of class
-\code{\link[=ir_new_ir]{ir}}.
+\code{ir_as_ir} converts an object to an object of class \code{\link[=ir_new_ir]{ir}}.
 }
 \examples{
 # conversion from an ir object

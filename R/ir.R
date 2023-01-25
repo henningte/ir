@@ -195,19 +195,21 @@ ir_drop_spectra <- function(x) {
 
 #### Casting: to ir ####
 
-#' Generic to convert objects to class `ir`
+#' Converts an object to class `ir`
 #'
-#' `ir_as_ir` ir the generic to convert an object to an object of class
-#' [`ir`][ir_new_ir()].
+#' `ir_as_ir` converts an object to an object of class [`ir`][ir_new_ir()].
 #'
 #' @param x An object.
 #'
 #' @param ... Further arguments passed to individual methods.
 #' \itemize{
-#' \item If `x` is a data frame or an object of class `ir`, these are
-#'   ignored.
+#' \item If `x` is a data frame, an object of class `ir`, an object of class
+#'   `hyperSpec` (from package 'hyperSpec'), or an object of class `Spectra`
+#'   (from package 'ChemoSpec'), these are ignored.
 #' }
-#' @return An object of class `ir`.
+#'
+#' @return An object of class `ir` with available metadata from original
+#' objects.
 #'
 #' @export
 ir_as_ir <- function(x, ...) {

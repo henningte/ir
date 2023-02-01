@@ -7,8 +7,8 @@
 ir_scale(x, center = TRUE, scale = TRUE)
 }
 \arguments{
-\item{x}{An object of class \code{ir}, where all spectra have identical wavenumber
-values.}
+\item{x}{An object of class \code{ir}, where all non-empty spectra have identical
+wavenumber values.}
 
 \item{center}{either a logical value or numeric-alike vector of length
     equal to the number of columns of \code{x}, where
@@ -25,7 +25,7 @@ value), or the respective value in \code{center} is subtracted (when \code{cente
 numerical), and each intensity value is divided by the standard deviation of
 the intensity values at this wavenumber across all spectra (when \code{scale} is a
 logical value), or the respective value in \code{scale} (when \code{scale} is
-numerical).
+numerical). \code{NA}s are omitted during this process.
 }
 \description{
 Scales spectra in an \code{ir} object

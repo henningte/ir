@@ -1,7 +1,7 @@
 #' Scales spectra in an `ir` object
 #'
-#' @param x An object of class `ir`, where all spectra have identical wavenumber
-#' values.
+#' @param x An object of class `ir`, where all non-empty spectra have identical
+#' wavenumber values.
 #'
 #' @inheritParams base::scale
 #'
@@ -11,7 +11,7 @@
 #' numerical), and each intensity value is divided by the standard deviation of
 #' the intensity values at this wavenumber across all spectra (when `scale` is a
 #' logical value), or the respective value in `scale` (when `scale` is
-#' numerical).
+#' numerical). `NA`s are omitted during this process.
 #'
 #' @examples
 #' ir_sample_data %>%
@@ -23,20 +23,11 @@ ir_scale <- function(x, center = TRUE, scale = TRUE) {
 
   ir_check_ir(x)
   spectrum_is_empty <- ir_check_for_empty_spectra(x)
-  if(any(spectrum_is_empty)) {
-    an_emtpy_spectrum <- x$spectra[spectrum_is_empty][[1]]
-    res <-
-      x %>%
-      dplyr::mutate(
-        spectra =
-          purrr::map(.data$spectra, function(.x) {
-          an_emtpy_spectrum
-        })
-      )
-    return(res)
+  if(all(spectrum_is_empty)) {
+    return(spectrum_is_empty)
   }
   stopifnot(all(purrr::map_lgl(x$spectra, function(.x) {
-      identical(.x$x, x$spectra[!spectrum_is_empty][[1]]$x)
+      identical(.x$x, x$spectra[!spectrum_is_empty][[1]]$x) || nrow(.x) == 0
   })))
 
   x_flat <-

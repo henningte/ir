@@ -29,9 +29,11 @@ spectra using a polynomial.
 for \code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}.
 }
 \examples{
-x2 <-
-   ir::ir_sample_data \%>\%
-   ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
+if(! requireNamespace("ChemoSpec", quietly = TRUE)) {
+  x2 <-
+     ir::ir_sample_data \%>\%
+     ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
+}
 
 }
 \seealso{

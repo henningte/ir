@@ -45,16 +45,20 @@ x1 <-
    ir::ir_bc(method = "rubberband")
 
 # polynomial baseline correction
-x2 <-
-   ir::ir_sample_data \%>\%
-   dplyr::slice(1:10) \%>\%
-   ir::ir_bc(method = "polynomial", degree = 2)
+if(!requireNamespace("ChemoSpec", quietly = TRUE)) {
+  x2 <-
+    ir::ir_sample_data \%>\%
+    dplyr::slice(1:10) \%>\%
+    ir::ir_bc(method = "polynomial", degree = 2)
+}
 
 # Savitzky-Golay baseline correction
-x3 <-
-   ir::ir_sample_data \%>\%
-   dplyr::slice(1:10) \%>\%
-   ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
+if(!requireNamespace("signal", quietly = TRUE)) {
+  x3 <-
+     ir::ir_sample_data \%>\%
+     dplyr::slice(1:10) \%>\%
+     ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
+}
 
 # return the baseline instead of the baseline corrected spectra
 x1_bl <-

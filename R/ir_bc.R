@@ -1,7 +1,3 @@
-#' @importFrom baseline baseline
-NULL
-# This is required for `ChemoSpec::baselineSpectra()`
-
 #' Performs baseline correction on infrared spectra
 #'
 #' `ir_bc` performs baseline correction for infrared spectra. Baseline
@@ -42,16 +38,20 @@ NULL
 #'    ir::ir_bc(method = "rubberband")
 #'
 #' # polynomial baseline correction
-#' x2 <-
-#'    ir::ir_sample_data %>%
-#'    dplyr::slice(1:10) %>%
-#'    ir::ir_bc(method = "polynomial", degree = 2)
+#' if(!requireNamespace("ChemoSpec", quietly = TRUE)) {
+#'   x2 <-
+#'     ir::ir_sample_data %>%
+#'     dplyr::slice(1:10) %>%
+#'     ir::ir_bc(method = "polynomial", degree = 2)
+#' }
 #'
 #' # Savitzky-Golay baseline correction
-#' x3 <-
-#'    ir::ir_sample_data %>%
-#'    dplyr::slice(1:10) %>%
-#'    ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
+#' if(!requireNamespace("signal", quietly = TRUE)) {
+#'   x3 <-
+#'      ir::ir_sample_data %>%
+#'      dplyr::slice(1:10) %>%
+#'      ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
+#' }
 #'
 #' # return the baseline instead of the baseline corrected spectra
 #' x1_bl <-
@@ -122,9 +122,11 @@ ir_bc <- function(x,
 #' [ir_bc()]
 #'
 #' @examples
-#' x2 <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
+#' if(! requireNamespace("ChemoSpec", quietly = TRUE)) {
+#'   x2 <-
+#'      ir::ir_sample_data %>%
+#'      ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
+#' }
 #'
 #' @export
 ir_bc_polynomial <- function(x,
@@ -132,6 +134,12 @@ ir_bc_polynomial <- function(x,
                              return_bl = FALSE,
                              ...){
 
+  if(! requireNamespace(package = "ChemoSpec", quietly = TRUE)) {
+    rlang::abort("Package 'ChemoSpec' required. Please install that first.")
+  }
+  if(! requireNamespace(package = "baseline", quietly = TRUE)) {
+    rlang::abort("Package 'baseline' required. Please install that first.")
+  }
   spectrum_is_empty <- ir_check_for_empty_spectra(x)
   if(all(spectrum_is_empty)) {
     return(x)
@@ -311,9 +319,11 @@ ir_bc_rubberband <- function(x,
 #' if `returnbl = TRUE`,  the baselines.
 #'
 #' @examples
-#' x <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_bc_sg(p = 3, n = 199, ts = 1, m = 0, return_bl = FALSE)
+#' if(! requireNamespace("signal", quietly = TRUE)) {
+#'   x <-
+#'     ir::ir_sample_data %>%
+#'     ir::ir_bc_sg(p = 3, n = 199, ts = 1, m = 0, return_bl = FALSE)
+#' }
 #'
 #' @export
 ir_bc_sg <- function(x, ..., return_bl = FALSE) {

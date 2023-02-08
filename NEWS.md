@@ -14,6 +14,7 @@
 * `ir_normalize()` has a new `method` to normalize spectra: With `method = "area_absolute"`, all intensity values will be divided by the sum of the absolute intensity values at all wavenumber values of the spectrum.
 * `ir_bc_rubberband()` has an additional parameter to allow imputation of the first and last value in a spectra to avoid artifacts which may happen during baseline correction with the rubberband algorithm.
 * All functions now fully support empty spectra.
+* Several dependencies in `Imports` have been moved to `Suggests`. 
 
 # ir 0.3.0
 

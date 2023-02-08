@@ -47,7 +47,7 @@ ir_export_prepare <- function(x, what = "metadata", measurement_id = as.characte
 ir_export_prepare_metadata <- function(x) {
 
   if(! requireNamespace("quantities", quietly = TRUE)) {
-    rlang::abort("Package 'quantities' required, please install it first.")
+    rlang::abort("Package 'quantities' required, please install that first.")
   }
 
   d <- data.frame(errors = purrr::map_lgl(x, inherits, "errors"),

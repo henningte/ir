@@ -27,9 +27,11 @@ which is subtracted from the spectra to perform a baseline correction
 \insertCite{Lasch.2012}{ir}.
 }
 \examples{
-x <-
-   ir::ir_sample_data \%>\%
-   ir::ir_bc_sg(p = 3, n = 199, ts = 1, m = 0, return_bl = FALSE)
+if(! requireNamespace("signal", quietly = TRUE)) {
+  x <-
+    ir::ir_sample_data \%>\%
+    ir::ir_bc_sg(p = 3, n = 199, ts = 1, m = 0, return_bl = FALSE)
+}
 
 }
 \references{

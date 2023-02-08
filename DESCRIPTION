@@ -25,9 +25,7 @@ Imports:
     tibble,
     ggplot2,
     stringr,
-    ChemoSpec (>= 5.2.12),
     hyperSpec (>= 0.99.20200527),
-    signal,
     grDevices,
     rlang,
     methods,
@@ -35,14 +33,16 @@ Imports:
     Rdpack,
     magrittr,
     stats,
-    lifecycle,
-    baseline,
-    quantities
+    lifecycle
 Suggests:
+    baseline,
+    ChemoSpec (>= 5.2.12),
     kableExtra,
     fda,
     knitr,
+    quantities,
     rmarkdown,
+    signal,
     spelling,
     vctrs,
     tidyselect
@@ -50,7 +50,7 @@ VignetteBuilder:
   knitr
 RdMacros: 
   Rdpack
-Date: 2022-06-15
+Date: 2023-02-08
 Roxygen: list(markdown = TRUE)
 URL: https://henningte.github.io/ir/, https://github.com/henningte/ir/
 BugReports: https://github.com/henningte/ir/issues/

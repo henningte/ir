@@ -64,19 +64,25 @@ these different spectra.
 }
 \examples{
 #' # Savitzky-Golay smoothing
-x1 <-
-   ir::ir_sample_data[1:5, ] \%>\%
-   ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 0)
+if(! requireNamespace("signal", quietly = TRUE)) {
+  x1 <-
+     ir::ir_sample_data[1:5, ] \%>\%
+     ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 0)
+}
 
 # Fourier smoothing
-x2 <-
-   ir::ir_sample_data[1:5, ] \%>\%
-   ir::ir_smooth(method = "fourier", k = 21)
+if(! requireNamespace("fda", quietly = TRUE)) {
+  x2 <-
+     ir::ir_sample_data[1:5, ] \%>\%
+     ir::ir_smooth(method = "fourier", k = 21)
+}
 
 # computing derivative spectra with Savitzky-Golay smoothing (here: first
 # derivative)
-x3 <-
-   ir::ir_sample_data[1:5, ] \%>\%
-   ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 1)
+if(! requireNamespace("signal", quietly = TRUE)) {
+  x3 <-
+     ir::ir_sample_data[1:5, ] \%>\%
+     ir::ir_smooth(method = "sg", p = 3, n = 51, ts = 1, m = 1)
+}
 
 }

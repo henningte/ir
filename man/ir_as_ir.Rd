@@ -4,6 +4,7 @@
 \alias{ir_as_ir}
 \alias{ir_as_ir.ir}
 \alias{ir_as_ir.data.frame}
+\alias{ir_as_ir.ir_flat}
 \alias{ir_as_ir.hyperSpec}
 \alias{ir_as_ir.Spectra}
 \title{Converts an object to class \code{ir}}
@@ -13,6 +14,8 @@ ir_as_ir(x, ...)
 \method{ir_as_ir}{ir}(x, ...)
 
 \method{ir_as_ir}{data.frame}(x, ...)
+
+\method{ir_as_ir}{ir_flat}(x, ...)
 
 \method{ir_as_ir}{hyperSpec}(x, ...)
 
@@ -57,6 +60,12 @@ ir_sample_data \%>\%
   dplyr::group_by(sample_type) \%>\%
   ir_as_ir()
 
+
+# conversion from an ir_flat object
+x_ir <-
+  ir::ir_sample_data \%>\%
+  ir::ir_flatten() \%>\%
+  ir::ir_as_ir()
 
 # conversion from a hyperSpec object from package hyperSpec
 if(requireNamespace("hyperSpec")) {

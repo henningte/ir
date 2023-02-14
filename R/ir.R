@@ -257,6 +257,20 @@ ir_as_ir.data.frame <- function(x, ...) {
 #' @rdname ir_as_ir
 #'
 #' @examples
+#' # conversion from an ir_flat object
+#' x_ir <-
+#'   ir::ir_sample_data %>%
+#'   ir::ir_flatten() %>%
+#'   ir::ir_as_ir()
+#'
+#' @export
+ir_as_ir.ir_flat <- function(x, ...) {
+  ir_new_ir(spectra = ir_stack(x)$spectra, metadata = tibble::tibble(id_measurement = colnames(x)[-1]))
+}
+
+#' @rdname ir_as_ir
+#'
+#' @examples
 #' # conversion from a hyperSpec object from package hyperSpec
 #' if(requireNamespace("hyperSpec")) {
 #'   x_hyperSpec <- hyperSpec::chondro

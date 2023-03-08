@@ -28,8 +28,7 @@ library(kableExtra)
 
 ## Purpose
 
-This vignette shows you the main functionalities of the 'ir' package. This includes data import,  functions for spectral preprocessing, and plotting.  
-This vignette does not explain the data structure of `ir` objects (the objects the package ir uses to store spectra) in detail and it does not describe general data manipulation functions (e.g. subsetting rows or columns, modifying variables) (for this, see vignette [`r rmarkdown::yaml_front_matter("ir-class.Rmd")$title`](ir-class.html)). Moreover, this vignette does not explain the purpose of the spectral preprocessing functions.
+This vignette shows how to use main functions of the 'ir' package. This includes data import, data export, functions for spectral preprocessing, and functions for plotting. This vignette does not explain the data structure of `ir` objects (the objects 'ir' uses to store spectra) in detail and it does not describe general data manipulation functions (e.g. subsetting rows or columns, modifying variables) (for this, see vignette [`r rmarkdown::yaml_front_matter("ir-class.Rmd")$title`](ir-class.html)). This vignette also does not explain the purpose of the spectral preprocessing functions, it just shows how to use them.
 
 ## Structure
 
@@ -39,9 +38,7 @@ The vignette has three parts:
 2. Plotting spectra
 3. Spectral preprocessing
 
-In part [Data import and export], I will show how spetra can be imported from `csv` files and from Thermo Galactic's spectral files (file extension `.spc`). I will also show how `ir` objects can be exported as `csv` files. To this end, I will use sample data which comes along with the 'ir' package. 
-In part [Plotting spectra], I will show how spectra can be plotted and how these plots can be modified.  
-In part [Spectral preprocessing] I will demonstrate the main preprocessing functions included in the 'ir' package and how these can be combined to execute complex preprocessing pipelines.
+In part [Data import and export], I will show how to import spetra from `csv` files and how to import spetra from Thermo Galactic's spectral files (file extension `.spc`). I will also show how to export `ir` objects as `csv` files. To this end, I will use sample data which comes along with the 'ir' package. In part [Plotting spectra], I will show how to create simple plots of spectra and how these plots can be modified (for example to produce nice graphs for publications). In part [Spectral preprocessing] I will show the main preprocessing functions included in the 'ir' package and they can be combined to form preprocessing pipelines of increasing complexity.
 
 ## Preparation
 
@@ -57,11 +54,11 @@ library(ir)
 
 ## Data import
 
-To test importing spectra from files, I'll use sample data which is contained in the 'ir' package (in folder `inst/extdata`). First, I'll show how to import spectra from csv files and then how to import  Thermo Galactic's spectral files (file extension `.spc`).
+To test importing spectra from files, I'll use sample data provided in the 'ir' package (in folder `inst/extdata`). First, I'll show how to import spectra from `csv` files and then how to import  Thermo Galactic's spectral files (file extension `.spc`).
 
 ### `csv` files
 
-Spectra from `csv` files can be imported with `ir_import_csv()`. This function can import spectra from one or more `csv` files with the format shown here:
+Spectra from `csv` files can be imported with `ir_import_csv()`. This function can import spectra from one or more `csv` files with the following format:
 
 ```{r import-csv-table-format, echo=FALSE}
 read.csv("../inst/extdata/klh_hodgkins_mir.csv") %>%
@@ -70,9 +67,9 @@ read.csv("../inst/extdata/klh_hodgkins_mir.csv") %>%
   kableExtra::kable()
 ```
 
-This is a subset of the data we will import in a few moments. The first column must contain spectral channel values ("x axis values", e.g. wavenumbers for mid infrared spectra), and each additional column represents the intensity values ("y axis values", e.g. absorbances) of one spectrum. In the example above, there are four spectra in the csv file.
+This is a subset of the data we will import in a few moments. The first column must contain spectral channel values ("x axis values", e.g. wavenumbers for mid infrared spectra), and each additional column represents the intensity values ("y axis values", e.g. absorbances) of one spectrum. In the example above, there are four spectra in the `csv` file.
 
-Then, you can simply pass the path to the file to `ir_import_csv()` and this will import the spectra:
+To import the data, you can simply pass the path to the file to `ir_import_csv()`:
 
 ```{r import-csv-1}
 d_csv <- ir_import_csv("../inst/extdata/klh_hodgkins_mir.csv", sample_id = "from_colnames")
@@ -80,7 +77,7 @@ d_csv <- ir_import_csv("../inst/extdata/klh_hodgkins_mir.csv", sample_id = "from
 
 The argument `sample_id = "from_colnames"` tells `ir_import_csv()` to extract names for the spectra from the column names of the `csv` file.
 
-If you have additional metadata available, you can bind these to the `ir` object in a second step (note: here, I use functions from [dplyr] to reformat the metadata; you don't need to understand the details of this data cleanup):
+If you have additional metadata available, you can bind these to the `ir` object in a second step (note: here, I use functions from the ['dplyr'](https://dplyr.tidyverse.org/) package to reformat the metadata; you don't need to understand the details of this data cleanup to follow the rest of this vignette):
 
 ```{r}
 library(dplyr)
@@ -98,7 +95,7 @@ d_csv_metadata <-
     holocellulose = "X..Cellulose...Hemicellulose..measured.",
     klason_lignin = "X..Klason.lignin..measured." 
   ) %>%
-  # make the sample_id values fir to those in `d_csv$sample_id` to make combining easier
+  # make the sample_id values fit to those in `d_csv$sample_id` to make combining easier
   dplyr::mutate(
     sample_id =
       sample_id %>%
@@ -110,7 +107,7 @@ d_csv <-
   dplyr::full_join(d_csv_metadata, by = "sample_id")
 ```
 
-Now, `d_csv` has addition columns with the added metadata.
+Now, `d_csv` has addition columns with the metadata contained in the separate file.
 
 
 ### Thermo Galactic's `spc` files
@@ -126,35 +123,40 @@ In this case, names for the spectra and other metadata are extracted from the `s
 
 ## Data export
 
-Data in `ir` objects can in principle be exported in many ways. Here, I show hot to export to a `csv` file with the same format as the sample data we imported in subsection [`csv` files].  
+Data in `ir` objects can be exported in many ways. Here, I show how to export spectra to a `csv` file. The result has the same format as the sample data we imported in subsection [`csv` files].  
 
-To this end, we first have to "flatten" the `spectra` column in `ir_sample_data` (using `ir_flatten()`) and export this as `csv` file using `write.csv()`. Second, to export the metadata, we have to drop the spectra from `ir_sample_data` (using `ir_drop_spectra()`), and then write the remaining data to a separate `csv` file using `write.csv()`:   
+To export the spectra, type:
 
 ```{r export-csv-1}
 # export only the spectra
 ir_sample_data %>%
-  ir_flatten() %>%
+  ir_export_prepare(what = "spectra") %>%
   write.csv(tempfile("ir_sample_data_spectra", fileext = "csv"), row.names = FALSE)
+```
 
+To export the additional metadata contained in an `ir` object, type:
+
+```{r export-csv-2}
 # export only the metadata
 ir_sample_data %>%
   ir_drop_spectra() %>%
   write.csv(tempfile("ir_sample_data_metadata", fileext = "csv"), row.names = FALSE)
 ```
 
+This exports the metadata to a separate `csv` file with the same row and column format as in `ir_sample_data`.
 
 
 # Plotting spectra
 
-The 'ir' package provides a function to create simple plots of spectra out-of-the box:
+The 'ir' package provides a function to create simple plots of spectra:
 
 ```{r plot-1}
 plot(d_csv)
 ```
 
-This will plot the intensity values ("y axis values", e.g. absorbances) of each spectrum versus the spectral channel values ("x axis values", e.g. wavenumbers), connected by a line. All spectra in an `ir` object are plotted on top of each other.
+This will plot the intensity values ("y axis values", e.g. absorbances) of each spectrum versus the spectral channel values ("x axis values", e.g. wavenumbers), connected by a line. All spectra in an `ir` object are plotted in the same panel.
 
-ir relies on [ggplot](https://cran.r-project.org/package=ggplot2). This makes it possible to modify the plot with the functions from ggplot2. For example, we could color spectra according to the sample class:
+For plotting, 'ir' uses the ['ggplot'](https://cran.r-project.org/package=ggplot2) package. This means that you can modify plots of spectra with all functions from 'ggplot2'. For example, we could color spectra according to the sample class:
 
 ```{r}
 library(ggplot2)
@@ -163,13 +165,14 @@ plot(d_csv) +
   geom_path(aes(color = sample_type))
 ```
 
-An of course, we can change axis labels, layout, etc:
+And of course, we can change axis labels, layout, etc, to create plots nice enough for publications:
 
 ```{r}
 plot(d_csv) + 
   geom_path(aes(color = sample_type)) +
   labs(x = expression("Wavenumber ["*cm^{-1}*"]"), y = "Absorbance") +
   guides(color = guide_legend(title = "Sample type")) +
+  theme_classic() +
   theme(legend.position = "bottom")
 ```
 
@@ -178,8 +181,7 @@ plot(d_csv) +
 
 # Spectral preprocessing
 
-ir provides many functions for spectral preprocessing. Here, I'll show how to use a subset of them.
-To make it easier to compare the effect, I'll show here how the sample spectrum looks before any preprocessing:
+'ir' provides many functions for spectral preprocessing and I'll show how to use the most important ones. All other preprocessing functions can be used in a similar way. To make it easier to compare the effect each function has, we'll have a look at the sample spectrum before any preprocessing:
 
 ```{r preprocessing-before-1}
 plot(d_spc)
@@ -189,7 +191,7 @@ plot(d_spc)
 
 ## Baseline correction
 
-Baseline correction with a rubberband algorithm (see the `spc.rubberband` function in the [hyperspec](https://cran.r-project.org/package=hyperSpec) package):
+Baseline correction with a rubberband algorithm (see the `spc.rubberband` function in the ['hyperspec'](https://cran.r-project.org/package=hyperSpec) package):
 
 ```{r preprocessing-bc-1}
 d_spc %>%
@@ -200,7 +202,7 @@ d_spc %>%
  
 ## Normalization
 
-Normalization of intensity values by dividing each intensity value by the sum of all intensity values (note the different scale of the y axis in comparison to the spectrum before preprocessing):
+Normalization of intensity values by dividing each intensity value by the sum of all intensity values (note the different scale of the y axis in comparison to the spectrum before any preprocessing):
 
 ```{r preprocessing-normalization-1}
 d_spc %>%
@@ -218,11 +220,11 @@ d_spc %>%
   geom_vline(xintercept = 1090, linetype = 2)
 ```
 
-The warning just says that the spectrum's wavenumber values did not exactly match the desired value and therefore the nearest value available was selected. To disable this warning, you can interpolate the spectrum appropriately (see below, section [Interpolating]).
+The warning just says that the spectrum's wavenumber values did not exactly match the desired value and therefore the nearest value available was selected. To disable this warning, you can interpolate the spectrum to an appropriate resolution (see section [Interpolating] below).
 
 ## Smoothing
 
-Smoothing of spectra with the Savitzky-Golay algorithm (see the `sgolayfilt()` function from the [signal](https://cran.r-project.org/package=signal) package for details):
+Smoothing of spectra with the Savitzky-Golay algorithm (see the `sgolayfilt()` function from the ['signal'](https://cran.r-project.org/package=signal) package for details):
 
 ```{r}
 d_spc %>%
@@ -254,7 +256,7 @@ d_spc %>%
 
 ## Interpolating
 
-Spectral interpolation (interpolating intensity values for new wavenumber values) can be performed. Here, intensity values are interpolated for integer wavenumbers increasing by 1 (by setting `dw = 1`) within the range of the data:
+Spectral interpolation (interpolating intensity values for new wavenumber values) can be performed. Here, intensity values are interpolated to integer wavenumbers increasing by 1 (by setting `dw = 1`) within the range of the data:
 
 ```{r}
 d_spc %>%
@@ -309,7 +311,7 @@ d_csv %>%
 
 ## Building preprocessing pipelines
 
-With ir, it is very easy to build complex reprocessing workflows by "piping" (using [magrittr's](https://cran.r-project.org/package=magrittr) pipe (`%>%`) operator) together different preprocessing steps:
+With 'ir', it is very easy to build complex preprocessing workflows by "piping" together different preprocessing steps (using the pipe (`%>%`) operator in the ['magrittr'](https://cran.r-project.org/package=magrittr) package):
 
 ```{r}
 d_spc %>%
@@ -326,6 +328,7 @@ Now, we have a baseline corrected spectrum, `"area"` normalized, clipped to [650
 # Further information
 
 Many more functions and options to handle and process spectra are available in the 'ir' package. These are described in the documentation. In the documentation, you can also read more details about the functions and options presented here.  
+
 To learn more about the structure and general functions to handle `ir` objects, see the vignette [`r rmarkdown::yaml_front_matter("ir-class.Rmd")$title`](ir-class.html).
 
 

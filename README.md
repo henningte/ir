@@ -14,64 +14,63 @@ status](https://www.r-pkg.org/badges/version/ir)](https://CRAN.R-project.org/pac
 
 ## Overview
 
-‘ir’ is an R package that contains simple functions to import, handle
-and preprocess infrared spectra. Infrared spectra are stored as list
-columns in data frames to enable efficient storage of metadata along
-with the spectra and support further analyses containing other data for
-the same samples.
+‘ir’ is an R package to import, handle and preprocess infrared spectra.
+Infrared spectra are stored as list columns in data frames which enables
+efficient storage of metadata along with the spectra and using
+‘tidyverse’ functions for data operations.
 
-**Supported file formats for import are:**
+**Spectra in the following formats can be imported:**
 
-1.  .csv files with individual spectra.
-2.  Thermo Galactic’s .spc files with individual spectra.
+1.  `csv` files with individual spectra.
+2.  Thermo Galactic’s `spc` files with individual spectra.
 
-**Provided functions for preprocessing and general handling are:**
+**Functions for spectral preprocessing and data handling:**
 
 1.  baseline correction with:
-    -   a polynomial baseline
-    -   a convex hull baseline
-    -   a Savitzky-Golay baseline (Lasch 2012).
-2.  binning.
-3.  clipping.
-4.  interpolating (resampling, linearly).
-5.  replacing selected parts of a spectrum by a straight line.
-6.  averaging spectra within specified groups.
+    - a polynomial baseline
+    - a convex hull baseline
+    - a Savitzky-Golay baseline (Lasch 2012)
+2.  binning
+3.  clipping
+4.  interpolating (resampling, linearly)
+5.  replacing selected parts of a spectrum by a straight line
+6.  averaging spectra within specified groups
 7.  normalizing spectra:
-    -   to the maximum intensity
-    -   to the intensity at a specific x value
-    -   so that all intensity values sum to 1.
+    - to the maximum intensity
+    - to the intensity at a specific x value
+    - so that all intensity values sum to 1
 8.  smoothing:
-    -   Savitzky-Golay smoothing
-    -   Fourier smoothing.
-9.  computing derivatives of spectra using Savitzky-Golay smoothing.
+    - Savitzky-Golay smoothing
+    - Fourier smoothing
+9.  computing derivatives of spectra using Savitzky-Golay smoothing
 10. spectral arithmetic (addition, subtraction, multiplication,
-    division).
+    division)
 11. computing the variance of intensity values (optionally after
-    subtracting reference spectra).
+    subtracting reference spectra)
 12. computing maxima, minima, median, and ranges of intensity values of
-    spectra.
-13. Atmospheric background correction (Perez-Guaita et al. 2013).
-14. Scaling intensity values in spectra.
-15. plotting.
-16. [tidyverse](https://www.tidyverse.org/) methods.
+    spectra
+13. Atmospheric background correction (Perez-Guaita et al. 2013)
+14. Scaling intensity values in spectra
+15. plotting
+16. [tidyverse](https://www.tidyverse.org/) methods
 
 ### How to install
 
-You can install ‘ir’ from CRAN using R via:
+You can install ‘ir’ from CRAN:
 
 ``` r
 install.packages("ir")
 ```
 
-You can install ‘ir’ from GitHub using R via:
+You can install the development version of ‘ir’ from GitHub:
 
 ``` r
-remotes::install_github(repo = "henningte/ir")
+remotes::install_github(repo = "henningte/ir", ref = "dev")
 ```
 
 ### How to use
 
-You can load ‘ir’ in R with:
+Load ‘ir’:
 
 ``` r
 # load ir package
@@ -90,12 +89,11 @@ For brief introductions, see below and the two vignettes:
 
 #### Sample workflow
 
-A simple workflow would be, for example, to baseline correct the
-spectra, then bin them to bins with a width of 10 wavenumber units, then
-normalize them so that the maximum intensity value is 1 and the minimum
-intensity value is 0 and then plot the baseline corrected spectra for
-each sample and sample type. Here’s the ‘ir’ code using the built-in
-sample data `ir_sample_data`.
+Here is an example preprocessing pipeline for the sample data in the
+package (`ir_sample_data`) which does baseline correction, binning (bin
+width of 10), normalization (so that the maximum intensity value is 1
+and the minimum intensity value is 0), and finally plots the
+preprocessed spectra for each sample and sample type:
 
 ``` r
 ir_sample_data %>%                                      # data
@@ -131,52 +129,48 @@ ir::ir_sample_data
 ```
 
 `ir_sample_data` is an object of class `ir`. An Object of class `ir` is
-basically a data frame where each row represents one infrared
-measurement and column `spectra` contains the infrared spectra (one per
-row). This allows effectively storing repeated measurements for the same
-sample in the same table, as well as any metadata and accessory data
-(e.g. nitrogen content of the sample).
+a data frame where each row represents one infrared measurement and
+column `spectra` contains the infrared spectra (one per row) as list
+column. This allows to store metadata along each spectrum (for example
+the N content for each sample) and to manipulate `ir` objects with
+‘tidyverse’ functions.
 
 The column `spectra` is a list column of data frames, meaning that each
-cell in `sample_data` contains for column `spectra` a data frame. For
-example, the first element of `ir_sample_data$spectra` represents the
-first spectrum as a data frame:
+cell of `spectra` contains a data frame which contains the data for one
+spectrum. For example, here are the first rows of the first spectrum in
+`ir_smaple_data`:
 
 ``` r
 # View the first ten rows of the first spectrum in ir_sample_data
-ir::ir_get_spectrum(ir_sample_data, what = 1)[[1]] %>% 
-  head(10)
-#> # A tibble: 10 × 2
-#>        x        y
-#>    <int>    <dbl>
-#>  1  4000 0.000361
-#>  2  3999 0.000431
-#>  3  3998 0.000501
-#>  4  3997 0.000571
-#>  5  3996 0.000667
-#>  6  3995 0.000704
-#>  7  3994 0.000612
-#>  8  3993 0.000525
-#>  9  3992 0.000502
-#> 10  3991 0.000565
+head(ir_sample_data$spectra[[1]])
+#> # A tibble: 6 × 2
+#>       x        y
+#>   <int>    <dbl>
+#> 1  4000 0.000361
+#> 2  3999 0.000431
+#> 3  3998 0.000501
+#> 4  3997 0.000571
+#> 5  3996 0.000667
+#> 6  3995 0.000704
 ```
 
-Column `x` represents the x values (in this case wavenumbers
-\[cm<sup>-1</sup>\]) and column `y` the corresponding intensity values.
+Column `x` contains values for the spectral channel (in this case
+wavenumbers \[cm<sup>-1</sup>\]) and column `y` the corresponding
+intensity values.
 
 ### How to cite
 
 Please cite this R package as:
 
-> Henning Teickner (2022). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 28 Sep 2022.
+> Henning Teickner (2023). *ir: Functions to Handle and Preprocess
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 08 Mrz 2023.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages
 
-[irpeat](https://github.com/henningte/irpeat/) builds on ‘ir’. irpeat
-provides functions to analyze infrared spectra of peat (humification
-indices, prediction models).
+The [irpeat](https://github.com/henningte/irpeat/) package provides
+functions to analyze infrared spectra of peat (humification indices,
+prediction models) and uses the ‘ir’ package to handle spectral data.
 
 ### Licenses
 
@@ -198,19 +192,19 @@ participating in this project you agree to abide by its terms.
 
 ### Sources
 
-The complete data in this package is derived from Hodgkins et al. (2018)
-and was restructured to match the requirements of ‘ir’. The original
-article containing the data can be downloaded from
+`ir_sample_data` is derived from Hodgkins et al. (2018) and was
+reformatted to match the requirements of ‘ir’. The original article
+containing the data can be downloaded from
 <https://www.nature.com/articles/s41467-018-06050-2> and is distributed
 under the Creative Commons Attribution 4.0 International License
 (<https://creativecommons.org/licenses/by/4.0/>). The data on Klason
-lignin and holocellulose content was originally derived from De La Cruz,
+lignin and holocellulose content are originally from De La Cruz,
 Florentino B., Osborne, and Barlaz (2016).
 
 This packages was developed in R (R version 4.2.0 (2022-04-22 ucrt)) (R
-Core Team 2019) using functions from devtools (Wickham, Hester, and
-Chang 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019)
-and roxygen2 (Wickham et al. 2019).
+Core Team 2019) using functions from ‘devtools’ (Wickham, Hester, and
+Chang 2019), ‘usethis’ (Wickham and Bryan 2019), and ‘roxygen2’ (Wickham
+et al. 2019).
 
 ### References
 
@@ -243,14 +237,6 @@ Lasch, Peter. 2012. “<span class="nocase">Spectral Pre-Processing for
 Biomedical Vibrational Spectroscopy and Microspectroscopic
 Imaging</span>.” *Chemometrics and Intelligent Laboratory Systems* 117
 (August): 100–114. <https://doi.org/10.1016/j.chemolab.2012.03.011>.
-
-</div>
-
-<div id="ref-Marwick.2019" class="csl-entry">
-
-Marwick, Ben. 2019. “<span class="nocase">rrtools: Creates a
-Reproducible Research Compendium</span>.”
-<https://github.com/benmarwick/rrtools>.
 
 </div>
 

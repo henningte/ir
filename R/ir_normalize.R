@@ -112,7 +112,7 @@ ir_normalize <- function(x, method = "area") {
       index <- NULL
       f <-
         function(y, ...) {
-          y/sqrt(y %*% y)
+          y/sqrt(as.vector(y %*% y))
         }
     },
     # normalize to a specific wavenumber

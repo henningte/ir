@@ -39,6 +39,7 @@ efficient storage of metadata along with the spectra and using
     - to the maximum intensity
     - to the intensity at a specific x value
     - so that all intensity values sum to 1
+    - vector normalization
 8.  smoothing:
     - Savitzky-Golay smoothing
     - Fourier smoothing
@@ -163,7 +164,7 @@ intensity values.
 Please cite this R package as:
 
 > Henning Teickner (2023). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 08 Mrz 2023.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 18 Mrz 2023.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages

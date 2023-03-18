@@ -48,6 +48,7 @@ knitr::opts_chunk$set(
     * to the maximum intensity
     * to the intensity at a specific x value
     * so that all intensity values sum to 1
+    * vector normalization
 8. smoothing: 
     * Savitzky-Golay smoothing 
     * Fourier smoothing

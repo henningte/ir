@@ -13,38 +13,29 @@ ir_normalise(x, method = "area")
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
 
 \item{method}{A character value specifying which normalization method to
-apply.
-If \code{method = "zeroone"}, all intensity values will be normalized to [0;1].
-If \code{method = "area"}, all intensity values will be divided by the sum of the
-intensity values at all wavenumber values of the spectrum.
-If \code{method = "area_absolute"}, all intensity values will be divided by the
-sum of the absolute intensity values at all wavenumber values of the
-spectrum.
-If \code{method} is convertible to a numeric value, e.g. \code{method = "980"}, the
-intensity of all spectra at a wavenumber value of 980 will be set to 1 and
-the minimum intensity value of each spectrum will be set to 0, i.e. the
-spectra will be normalized referring to a specific wavenumber value.}
+apply:
+\describe{
+\item{\code{"zeroone"}}{All intensity values will be normalized to [0;1].}
+\item{\code{"area"}}{All intensity values will be divided by the sum of the
+intensity values at all wavenumber values of the spectrum.}
+\item{\code{"area_absolute"}}{All intensity values will be divided by the sum
+of the intensity values at all wavenumber values of the spectrum.}
+\item{\code{"vector"}}{All intensity values will be divided by the norm of
+the intensity vector (vector normalization).}
+\item{A numeric value}{If \code{method} is convertible to a numeric value, e.g.
+\code{method = "980"}, the intensity of all spectra at a wavenumber value of
+980 will be set to 1 and the minimum intensity value of each spectrum
+will be set to 0, i.e. the spectra will be normalized referring to a
+specific wavenumber value.}
+}}
 }
 \value{
 An object of class \code{ir} representing a normalized version of
 \code{x}.
 }
 \description{
-\code{ir_normalize} normalizes the intensity values of infrared spectra.
-Spectra can be normalized in three ways (value for argument \code{method}):
-\describe{
-\item{"zeroone"}{Normalization so that the intensity values range in [0;1].
-Note that for different spectra, for different wavenumber values the
-intensity may be 1 after normalization, depending on the location of the
-peak with the maximum height.}
-\item{"area"}{Normalization so that the intensity values of each spectrum
-sum to 1. Note that in the case of negative intensities values, these will
-be count as negative values during summation.}
-\item{"area_absolute"}{Normalization so that the absolute intensity values
-of each spectrum sum to 1.}
-\item{A numeric value}{Normalization so that the intensity at a specified
-wavenumber value has value 1 and the minimum intensity value is 0.}
-}
+\code{ir_normalize} normalizes the intensity values of infrared spectra. Different
+methods for normalization are available.
 }
 \examples{
 # with method = "area"
@@ -68,8 +59,13 @@ x4 <-
    ir::ir_sample_data \%>\%
    ir::ir_normalize(method = "zeroone")
 
-# normalizing to a specific peak
+# with method = "vector"
 x5 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_normalize(method = "vector")
+
+# normalizing to a specific peak
+x6 <-
    ir::ir_sample_data \%>\%
    ir::ir_normalize(method = 1090)
 

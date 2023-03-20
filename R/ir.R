@@ -532,5 +532,5 @@ ir_check_ir <- function(x) {
 #' @keywords Internal
 #' @noRd
 ir_check_for_empty_spectra <- function(x) {
-  purrr::map_lgl(x$spectra, function(.x) nrow(.x) == 0)
+  purrr::map_lgl(x$spectra, function(.x) nrow(.x) == 0 || all(is.na(.x$y)))
 }

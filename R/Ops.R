@@ -40,38 +40,14 @@
 ir_subtract <- function(x, y) {
 
   # checks
-  ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
-  if(inherits(y, "ir")) {
-    ir_check_ir(y)
-
-    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
-      rlang::abort("`y` must either have only one row or as many rows as `x`.")
-    }
-    if(nrow(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-
-    cond <-
-      purrr::map_lgl(seq_len(nrow(x)), function(i) {
-        !identical(x$spectra[[i]]$x, y$spectra[[i]]$x)
-      })
-    if(any(cond)) {
-      rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
-    }
-    y_is_ir <- TRUE
-
-  } else {
-    if(length(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-    y_is_ir <- FALSE
-  }
+  res <- ir_prepare_Ops(x, y)
+  x <- res$x
+  y <- res$y
 
   x %>%
     dplyr::mutate(
       spectra =
-        if(y_is_ir) {
+        if(inherits(y, "ir")) {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
             z$y <- z$y - y$spectra[[i]]$y
@@ -120,38 +96,14 @@ ir_subtract <- function(x, y) {
 ir_add <- function(x, y) {
 
   # checks
-  ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
-  if(inherits(y, "ir")) {
-    ir_check_ir(y)
-
-    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
-      rlang::abort("`y` must either have only one row or as many rows as `x`.")
-    }
-    if(nrow(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-
-    cond <-
-      purrr::map_lgl(seq_len(nrow(x)), function(i) {
-        !identical(x$spectra[[i]]$x, y$spectra[[i]]$x)
-      })
-    if(any(cond)) {
-      rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
-    }
-    y_is_ir <- TRUE
-
-  } else {
-    if(length(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-    y_is_ir <- FALSE
-  }
+  res <- ir_prepare_Ops(x, y)
+  x <- res$x
+  y <- res$y
 
   x %>%
     dplyr::mutate(
       spectra =
-        if(y_is_ir) {
+        if(inherits(y, "ir")) {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
             z$y <- z$y + y$spectra[[i]]$y
@@ -204,38 +156,14 @@ ir_add <- function(x, y) {
 ir_multiply <- function(x, y) {
 
   # checks
-  ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
-  if(inherits(y, "ir")) {
-    ir_check_ir(y)
-
-    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
-      rlang::abort("`y` must either have only one row or as many rows as `x`.")
-    }
-    if(nrow(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-
-    cond <-
-      purrr::map_lgl(seq_len(nrow(x)), function(i) {
-        !identical(x$spectra[[i]]$x, y$spectra[[i]]$x)
-      })
-    if(any(cond)) {
-      rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
-    }
-    y_is_ir <- TRUE
-
-  } else {
-    if(length(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-    y_is_ir <- FALSE
-  }
+  res <- ir_prepare_Ops(x, y)
+  x <- res$x
+  y <- res$y
 
   x %>%
     dplyr::mutate(
       spectra =
-        if(y_is_ir) {
+        if(inherits(y, "ir")) {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
             z$y <- z$y * y$spectra[[i]]$y
@@ -289,38 +217,14 @@ ir_multiply <- function(x, y) {
 ir_divide <- function(x, y) {
 
   # checks
-  ir_check_ir(x)
-  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
-  if(inherits(y, "ir")) {
-    ir_check_ir(y)
-
-    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
-      rlang::abort("`y` must either have only one row or as many rows as `x`.")
-    }
-    if(nrow(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-
-    cond <-
-      purrr::map_lgl(seq_len(nrow(x)), function(i) {
-        !identical(x$spectra[[i]]$x, y$spectra[[i]]$x)
-      })
-    if(any(cond)) {
-      rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
-    }
-    y_is_ir <- TRUE
-
-  } else {
-    if(length(y) == 1) {
-      y <- rep(y, nrow(x))
-    }
-    y_is_ir <- FALSE
-  }
+  res <- ir_prepare_Ops(x, y)
+  x <- res$x
+  y <- res$y
 
   x %>%
     dplyr::mutate(
       spectra =
-        if(y_is_ir) {
+        if(inherits(y, "ir")) {
           purrr::map(seq_along(.data$spectra), function(i) {
             z <- .data$spectra[[i]]
             z$y <- z$y / y$spectra[[i]]$y
@@ -400,6 +304,93 @@ Ops.ir <- function(e1, e2) {
     ">"=,
     "<="=,
     ">="= rlang::abort("This method is not implemented yet for `ir` objects.")
+  )
+
+}
+
+
+
+
+### Helpers ###
+
+#' Prepares objects for arithmetic operations with an `ir` object
+#'
+#' Internal helper function for Ops for objects of class `ir`.
+#'
+#' @inheritParams ir_subtract
+#'
+#' @return A list with three elements:
+#' \describe{
+#'   \item{`x`}{`x` (with empty spectra modified so that arithmetic operations
+#'   cause no errors).}
+#'   \item{`y`}{`y` (with empty spectra modified so that arithmetic operations
+#'   cause no errors).}
+#' }
+#'
+#' @keywords internal
+#' @noRd
+ir_prepare_Ops <- function(x, y) {
+
+  ir_check_ir(x)
+  stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
+  if(inherits(y, "ir")) {
+    ir_check_ir(y)
+
+    if(nrow(y) != 1 && nrow(y) != nrow(x)) {
+      rlang::abort("`y` must either have only one row or as many rows as `x`.")
+    }
+    if(nrow(y) == 1) {
+      y <- rep(y, nrow(x))
+    }
+
+    x_spectrum_is_empty <- ir_check_for_empty_spectra(x)
+    y_spectrum_is_empty <- ir_check_for_empty_spectra(y)
+    if(all(y_spectrum_is_empty) || all(x_spectrum_is_empty)) { # in case all spectra in x or y are empty, return NA (in analogy to 1 - NA)
+      x$spectra <- purrr::map(x$spectra, function(.x) {
+        .x %>%
+          dplyr::mutate(
+            y = NA_real_
+          )
+      })
+      return(x)
+    } else { # otherwise, impute gaps
+      if(any(y_spectrum_is_empty)) {
+        y$spectra[y_spectrum_is_empty] <-
+          purrr::map(seq_len(sum(y_spectrum_is_empty)), function(i) {
+            y$spectra[!y_spectrum_is_empty][[1]] %>%
+              dplyr::mutate(
+                y = NA_real_
+              )
+          })
+      }
+      if(any(x_spectrum_is_empty)) {
+        x$spectra[x_spectrum_is_empty] <-
+          purrr::map(seq_len(sum(x_spectrum_is_empty)), function(i) {
+            x$spectra[!x_spectrum_is_empty][[1]] %>%
+              dplyr::mutate(
+                y = NA_real_
+              )
+          })
+      }
+    }
+
+    cond <-
+      purrr::map_lgl(seq_len(nrow(x)), function(i) {
+        !identical(x$spectra[[i]]$x, y$spectra[[i]]$x)
+      })
+    if(any(cond)) {
+      rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
+    }
+
+  } else {
+    if(length(y) == 1) {
+      y <- rep(y, nrow(x))
+    }
+  }
+
+  list(
+    x = x,
+    y = y
   )
 
 }

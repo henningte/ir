@@ -343,8 +343,8 @@ ir_prepare_Ops <- function(x, y) {
       y <- rep(y, nrow(x))
     }
 
-    x_spectrum_is_empty <- ir_check_for_empty_spectra(x)
-    y_spectrum_is_empty <- ir_check_for_empty_spectra(y)
+    x_spectrum_is_empty <- ir_identify_empty_spectra(x)
+    y_spectrum_is_empty <- ir_identify_empty_spectra(y)
     if(all(y_spectrum_is_empty) || all(x_spectrum_is_empty)) { # in case all spectra in x or y are empty, return NA (in analogy to 1 - NA)
       x$spectra <- purrr::map(x$spectra, function(.x) {
         .x %>%

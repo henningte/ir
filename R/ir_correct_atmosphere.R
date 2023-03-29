@@ -100,7 +100,7 @@ ir_correct_atmosphere <- function(x,
     x <- ir_interpolate(x = x, start = start, dw = dw)
     ref <- ir_interpolate(x = ref, start = start, dw = dw)
   }
-  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  spectrum_is_empty <- ir_identify_empty_spectra(x)
   if(all(spectrum_is_empty)) {
     return(x)
   }

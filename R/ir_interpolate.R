@@ -28,7 +28,7 @@ ir_interpolate <- function(x, start = NULL, dw = 1) {
   # checks
   .start <- eval(match.call()$start, parent.frame()) # avoid confusion with function `start()`
   ir_check_ir(x)
-  empty_spectra <- ir_check_for_empty_spectra(x)
+  empty_spectra <- ir_identify_empty_spectra(x)
   if(all(empty_spectra)) {
     return(x)
   }

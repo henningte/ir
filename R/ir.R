@@ -519,18 +519,21 @@ ir_check_ir <- function(x) {
   x
 }
 
-#' Checks for emtpy spectra in an ir object
+#' Identifies empty spectra in an `ir` object
 #'
-#' `ir_check_for_empty_spectra()` checks if an object is of class
-#' [`ir`][ir_new_ir()] contains emtpy spectra.
+#' `ir_identify_empty_spectra()` identifies empty spectra in an object of class
+#' [`ir`][ir_new_ir()]. An empty spectrum is a spectrum which has no data values
+#' (no rows) or where all intensity values (column `y`) are `NA`.
 #'
 #' @param x An object of class `ir`.
 #'
 #' @return A logical vector indicating for each spectrum in `x` whether it is
 #' empty (`TRUE`) or not (`FALSE`).
 #'
-#' @keywords Internal
-#' @noRd
-ir_check_for_empty_spectra <- function(x) {
+#' @examples
+#' ir_identify_empty_spectra(ir::ir_sample_data)
+#'
+#' @export
+ir_identify_empty_spectra <- function(x) {
   purrr::map_lgl(x$spectra, function(.x) nrow(.x) == 0 || all(is.na(.x$y)))
 }

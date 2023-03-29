@@ -8,6 +8,7 @@
 * `ir_as_ir.ir_flat()`: Conversion of `ir_flat` objects to `ir` objects.
 * `ir_as_ir.hyperSpec()`: Conversion of `hyperSpec::hyperSpec` objects to `ir` objects. 
 * `ir_as_ir.Spectra()`: Conversion of `ChemoSpec::Spectra` objects to `ir` objects.
+* `ir_identify_empty_spectra()`: Identifies rows in an `ir` object with empty spectra (former internal function `ir_check_for_empty_spectra()`).
 
 ## Improvements
 

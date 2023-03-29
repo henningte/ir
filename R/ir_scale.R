@@ -22,7 +22,7 @@
 ir_scale <- function(x, center = TRUE, scale = TRUE) {
 
   ir_check_ir(x)
-  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  spectrum_is_empty <- ir_identify_empty_spectra(x)
   if(all(spectrum_is_empty)) {
     return(spectrum_is_empty)
   }

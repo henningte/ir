@@ -140,7 +140,7 @@ ir_bc_polynomial <- function(x,
   if(! requireNamespace(package = "baseline", quietly = TRUE)) {
     rlang::abort("Package 'baseline' required. Please install that first.")
   }
-  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  spectrum_is_empty <- ir_identify_empty_spectra(x)
   if(all(spectrum_is_empty)) {
     return(x)
   }
@@ -239,7 +239,7 @@ ir_bc_rubberband <- function(x,
                              return_bl = FALSE,
                              ...) {
 
-  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  spectrum_is_empty <- ir_identify_empty_spectra(x)
   if(all(spectrum_is_empty)) {
     return(x)
   }

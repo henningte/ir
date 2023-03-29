@@ -43,7 +43,7 @@ ir_clip <- function(x, range) {
 
   # checks
   ir_check_ir(x)
-  empty_spectra <- ir_check_for_empty_spectra(x)
+  empty_spectra <- ir_identify_empty_spectra(x)
   if(all(empty_spectra)) {
     return(x)
   }

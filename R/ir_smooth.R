@@ -86,7 +86,7 @@ ir_smooth <- function(x,
   if(!(is.character(method) & method %in% c("sg", "fourier"))){
     rlang::abort("`method` must be one of 'sg' or 'fourier'.")
   }
-  spectrum_is_empty <- ir_check_for_empty_spectra(x)
+  spectrum_is_empty <- ir_identify_empty_spectra(x)
   if(all(spectrum_is_empty)) {
     return(x)
   }

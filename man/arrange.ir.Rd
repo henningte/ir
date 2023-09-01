@@ -12,8 +12,9 @@ arrange.ir(.data, ..., .by_group = FALSE)
 \arguments{
 \item{.data}{An object of class \code{ir}.}
 
-\item{...}{<\code{\link[dplyr:dplyr_data_masking]{data-masking}}> Variables, or functions of
-variables. Use \code{\link[dplyr:desc]{desc()}} to sort a variable in descending order.}
+\item{...}{<\code{\link[rlang:args_data_masking]{data-masking}}> Variables, or
+functions of variables. Use \code{\link[dplyr:desc]{desc()}} to sort a variable in descending
+order.}
 
 \item{.by_group}{If \code{TRUE}, will sort first by grouping variable. Applies to
 grouped data frames only.}

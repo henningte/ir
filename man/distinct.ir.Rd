@@ -12,10 +12,10 @@ distinct.ir(.data, ..., .keep_all = FALSE)
 \arguments{
 \item{.data}{An object of class \code{ir}.}
 
-\item{...}{<\code{\link[dplyr:dplyr_data_masking]{data-masking}}> Optional variables to use
-when determining uniqueness. If there are multiple rows for a given
+\item{...}{<\code{\link[rlang:args_data_masking]{data-masking}}> Optional variables to
+use when determining uniqueness. If there are multiple rows for a given
 combination of inputs, only the first row will be preserved. If omitted,
-will use all variables.}
+will use all variables in the data frame.}
 
 \item{.keep_all}{If \code{TRUE}, keep all variables in \code{.data}.
 If a combination of \code{...} is not distinct, this keeps the

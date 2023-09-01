@@ -22,12 +22,7 @@ separate.ir(
 \arguments{
 \item{data}{An object of class \code{ir}.}
 
-\item{col}{Column name or position. This is passed to
-\code{\link[tidyselect:vars_pull]{tidyselect::vars_pull()}}.
-
-This argument is passed by expression and supports
-\link[rlang:nse-force]{quasiquotation} (you can unquote column
-names or column positions).}
+\item{col}{<\code{\link[tidyr:tidyr_tidy_select]{tidy-select}}> Column to expand.}
 
 \item{into}{Names of new variables to create as character vector.
 Use \code{NA} to omit the variable in the output.}
@@ -54,17 +49,17 @@ NB: this will cause string \code{"NA"}s to be converted to \code{NA}s.}
 \item{extra}{If \code{sep} is a character vector, this controls what
 happens when there are too many pieces. There are three valid options:
 \itemize{
-\item "warn" (the default): emit a warning and drop extra values.
-\item "drop": drop any extra values without a warning.
-\item "merge": only splits at most \code{length(into)} times
+\item \code{"warn"} (the default): emit a warning and drop extra values.
+\item \code{"drop"}: drop any extra values without a warning.
+\item \code{"merge"}: only splits at most \code{length(into)} times
 }}
 
 \item{fill}{If \code{sep} is a character vector, this controls what
 happens when there are not enough pieces. There are three valid options:
 \itemize{
-\item "warn" (the default): emit a warning and fill from the right
-\item "right": fill with missing values on the right
-\item "left": fill with missing values on the left
+\item \code{"warn"} (the default): emit a warning and fill from the right
+\item \code{"right"}: fill with missing values on the right
+\item \code{"left"}: fill with missing values on the left
 }}
 
 \item{...}{Additional arguments passed on to methods.}

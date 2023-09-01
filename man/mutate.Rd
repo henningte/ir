@@ -22,7 +22,7 @@ transmute.ir(.data, ...)
 \arguments{
 \item{.data}{An object of class \code{ir}.}
 
-\item{...}{<\code{\link[dplyr:dplyr_data_masking]{data-masking}}> Name-value pairs.
+\item{...}{<\code{\link[rlang:args_data_masking]{data-masking}}> Name-value pairs.
 The name gives the name of the column in the output.
 
 The value can be:
@@ -34,8 +34,7 @@ if ungrouped).
 \item A data frame or tibble, to create multiple columns in the output.
 }}
 
-\item{.keep}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-Control which columns from \code{.data} are retained in the output. Grouping
+\item{.keep}{Control which columns from \code{.data} are retained in the output. Grouping
 columns and columns created by \code{...} are always kept.
 \itemize{
 \item \code{"all"} retains all columns from \code{.data}. This is the default.
@@ -49,8 +48,7 @@ the columns used to generate them.
 variables and columns created by \code{...} are kept.
 }}
 
-\item{.before, .after}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Optionally, control where new columns
+\item{.before, .after}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Optionally, control where new columns
 should appear (the default is to add to the right hand side). See
 \code{\link[dplyr:relocate]{relocate()}} for more details.}
 }

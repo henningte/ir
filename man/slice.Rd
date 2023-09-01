@@ -16,14 +16,14 @@ slice_sample.ir(.data, ..., n, prop, weight_by = NULL, replace = FALSE)
 \arguments{
 \item{.data}{An object of class \code{ir}.}
 
-\item{...}{For \code{slice()}: <\code{\link[dplyr:dplyr_data_masking]{data-masking}}> Integer row
-values.
+\item{...}{For \code{slice()}: <\code{\link[rlang:args_data_masking]{data-masking}}>
+Integer row values.
 
 Provide either positive values to keep, or negative values to drop.
 The values provided must be either all positive or all negative.
 Indices beyond the number of rows in the input are silently ignored.
 
-For \code{slice_helpers()}, these arguments are passed on to methods.}
+For \verb{slice_*()}, these arguments are passed on to methods.}
 
 \item{.preserve}{Relevant when the \code{.data} input is grouped.
 If \code{.preserve = FALSE} (the default), the grouping structure
@@ -31,19 +31,18 @@ is recalculated based on the resulting data, otherwise the grouping is kept as i
 
 \item{n, prop}{Provide either \code{n}, the number of rows, or \code{prop}, the
 proportion of rows to select. If neither are supplied, \code{n = 1} will be
-used.
+used. If \code{n} is greater than the number of rows in the group
+(or \code{prop > 1}), the result will be silently truncated to the group size.
+\code{prop} will be rounded towards zero to generate an integer number of
+rows.
 
-If a negative value of \code{n} or \code{prop} is provided, the specified number or
-proportion of rows will be removed.
+A negative value of \code{n} or \code{prop} will be subtracted from the group
+size. For example, \code{n = -2} with a group of 5 rows will select 5 - 2 = 3
+rows; \code{prop = -0.25} with 8 rows will select 8 * (1 - 0.25) = 6 rows.}
 
-If \code{n} is greater than the number of rows in the group (or \code{prop > 1}),
-the result will be silently truncated to the group size. If the
-\code{prop}ortion of a group size does not yield an integer number of rows, the
-absolute value of \code{prop*nrow(.data)} is rounded down.}
-
-\item{weight_by}{Sampling weights. This must evaluate to a vector of
-non-negative numbers the same length as the input. Weights are
-automatically standardised to sum to 1.}
+\item{weight_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> Sampling
+weights. This must evaluate to a vector of non-negative numbers the same
+length as the input. Weights are automatically standardised to sum to 1.}
 
 \item{replace}{Should sampling be performed with (\code{TRUE}) or without
 (\code{FALSE}, the default) replacement.}

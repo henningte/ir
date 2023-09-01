@@ -440,6 +440,8 @@ nest.ir <- function(.data, ..., .names_sep = NULL, .key = deprecated()) {
 
 #' @rdname nest
 #'
+#' @inheritParams tidyr::unnest
+#'
 #' @examples
 #' ## unnest
 #' ir_sample_data %>%

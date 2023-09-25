@@ -30,7 +30,7 @@
 #'
 #' ## clipping with mutliple ranges
 #'
-# # define clipping range
+#' # define clipping range
 #' range <-
 #'   data.frame(start = c(900, 1900), end = c(1000, 2200))
 #'
@@ -72,7 +72,7 @@ ir_clip <- function(x, range) {
       } else {
         z_range <- ir_get_wavenumberindex(z, wavenumber = as.matrix(range), warn = TRUE)
         z_range <- matrix(z_range, byrow = FALSE, nrow = range_nrow)
-        unlist(apply(z_range, 1, function(x) x[[1]]:x[[2]]))
+        unlist(as.list(apply(z_range, 1, function(x) x[[1]]:x[[2]])))
       }
     })
 

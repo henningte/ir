@@ -39,6 +39,7 @@ x <-
 
 ## clipping with mutliple ranges
 
+# define clipping range
 range <-
   data.frame(start = c(900, 1900), end = c(1000, 2200))
 

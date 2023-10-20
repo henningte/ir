@@ -69,7 +69,7 @@ x_ir <-
 
 # conversion from a hyperSpec object from package hyperSpec
 if(requireNamespace("hyperSpec")) {
-  x_hyperSpec <- hyperSpec::chondro
+  x_hyperSpec <- hyperSpec::laser
   x_ir <- ir_as_ir(x_hyperSpec)
 }
 

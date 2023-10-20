@@ -18,7 +18,7 @@ the Value section below are included in the \code{ir} object.}
 \value{
 An object of class \code{\link[=ir_new_ir]{ir}} containing the
 infrared spectra extracted from the \code{.spc} file(s) and the metadata as
-extracted by \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}. Metadata variables are:
+extracted by \code{\link[hyperSpec:read.spc]{hyperSpec::read.spc()}}. Metadata variables are:
 \describe{
 \item{scan_number}{An integer value representing the number of scans.}
 \item{detection_gain_factor}{The detection gain factor.}
@@ -43,11 +43,11 @@ time.}
 \description{
 \code{ir_import_spc} imports raw infrared spectra from a Thermo Galactic's
 \code{.spc} file or several of such files. \code{ir_import_spc} is a wrapper
-function to \code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}.
+function to \code{\link[hyperSpec:read.spc]{hyperSpec::read.spc()}}.
 }
 \details{
 Currently, \code{log.txt} must be set to \code{FALSE} due to a bug in
-\code{\link[hyperSpec:read-spc]{hyperSpec::read.spc()}}. This bug fill be fixed in the upcoming weeks and
+\code{\link[hyperSpec:read.spc]{hyperSpec::read.spc()}}. This bug fill be fixed in the upcoming weeks and
 currently can be circumvented by using the development version of 'hyperSpec'.
 See https://github.com/r-hyperspec/hyperSpec/issues/80.
 }

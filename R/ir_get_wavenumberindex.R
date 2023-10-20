@@ -51,11 +51,13 @@ ir_get_wavenumberindex <- function(x, wavenumber, warn = TRUE) {
   d_wavenumber <- x$x[res]
 
   # check if the specified wavenumber equals the selected wavenumber value
-  match_wavenumber <-
-    purrr::map2_lgl(d_wavenumber, wavenumber, function(x, y) all.equal(x, y) == TRUE)
+  if(warn){
+    match_wavenumber <-
+      purrr::map2_lgl(d_wavenumber, wavenumber, function(x, y) all.equal(x, y) == TRUE)
 
-  if(any(!match_wavenumber) && warn){
-    rlang::warn(paste0(d_wavenumber[!match_wavenumber], " selected instead of ", wavenumber[!match_wavenumber],"."))
+    if(any(!match_wavenumber)) {
+      rlang::warn(paste0(d_wavenumber[!match_wavenumber], " selected instead of ", wavenumber[!match_wavenumber],"."))
+    }
   }
 
   res

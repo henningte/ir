@@ -32,7 +32,7 @@ An object of class \code{ir} with the baseline corrected spectra, or if
 correction is either performed by using a polynomial with user defined
 degree fitted to each spectrum (see \code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}), or by
 using a rubberband function that is fitted to each spectrum (see
-\code{\link[hyperSpec:spc-rubberband]{hyperSpec::spc.rubberband()}}), or using a Savitzky-Golay smoothed version of
+\code{\link[hyperSpec:spc.rubberband]{hyperSpec::spc.rubberband()}}), or using a Savitzky-Golay smoothed version of
 the input spectra (see \code{\link[=ir_bc_sg]{ir_bc_sg()}}).
 }
 \examples{

@@ -104,8 +104,8 @@ ir_correct_atmosphere <- function(x,
   if(all(spectrum_is_empty)) {
     return(x)
   }
-  x$spectra <- purrr::map(x$spectra, dplyr::arrange, .data$x) # assure that x and ref have same wavenumber order
   x_flat <- ir_flatten(x)
+  x_flat <- x_flat[order(x_flat$x), ] # assure that x and ref have same wavenumber order
   ref <- ir_clip(x = ref, range = data.frame(start = x_flat$x[[1]], end = x_flat$x[[nrow(x_flat)]], stringsAsFactors = FALSE))
   ref_flat <- ir_flatten(ref)
   if(x_flat$x[[1]] < ref_flat$x[[1]] | x_flat$x[[nrow(x_flat)]] > ref_flat$x[[nrow(ref_flat)]]) {

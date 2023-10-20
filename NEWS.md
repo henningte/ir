@@ -19,6 +19,7 @@
 * `ir_bc_rubberband()` has an additional parameter to allow imputation of the first and last value in a spectra to avoid artifacts which may happen during baseline correction with the rubberband algorithm.
 * All functions now fully support empty spectra.
 * Several dependencies in `Imports` have been moved to `Suggests`. 
+* Efficiency of several functions has been improved.
 
 # ir 0.3.0
 

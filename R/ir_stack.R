@@ -34,11 +34,18 @@ ir_stack <- function(x) {
     rlang::abort(paste0("`x` must be a matrix, not ", class(x)[[1]], "."))
   }
 
-  spectra <- lapply(x[,-1, drop = FALSE], function(y){
-    d <- tibble::tibble(x = x[, 1, drop = TRUE],
-                        y = y)
-    d[!is.na(d$y), ]
-  })
+  template <-
+    tibble::tibble(
+      x = x[, 1, drop = TRUE],
+      y = rep(NA_real_, length(x))
+    )
+
+  spectra <-
+    lapply(x[,-1, drop = FALSE], function(y) {
+      d <- template
+      d$y <- y
+      d[! is.na(d$y), ]
+    })
   tibble::tibble(spectra = spectra)
 
 }

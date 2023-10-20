@@ -239,63 +239,54 @@ ir_bc_rubberband <- function(x,
                              return_bl = FALSE,
                              ...) {
 
-  spectrum_is_empty <- ir_identify_empty_spectra(x)
-  if(all(spectrum_is_empty)) {
-    return(x)
-  }
-  x_bl <-
-    x %>%
-    dplyr::mutate(
-      spectra =
-        purrr::map2(.data$spectra, spectrum_is_empty, function(z, .y) {
-          if(.y) {
-            return(z)
-          }
+  x_flat <- ir::ir_flatten(x)
 
-          # create a hyperSpec object
-          z_hs <-
-            methods::new(
-              "hyperSpec",
-              spc = t(z$y),
-              wavelength = z$x
-            )
-
-          # calculate the baseline
-          z_bl <-
-            hyperSpec::spc.rubberband(
-              z_hs,
-              spline = FALSE,
-              df = 30
-            )@data$spc
-
-          # remove NAs at the beginning and end
-          z_bl[is.na(z_bl)] <- 0 # ---todo: remove if bug in hyperSpec is fixe
-
-          res <-
-            z %>%
-            dplyr::mutate(
-              y = z_bl[1, ]
-            )
-
-          # impute first and last values
-          if(do_impute) {
-            res <-
-              res %>%
-              dplyr::mutate(
-                y = c(.data$y[[2]], .data$y[-c(1, length(.data$y))], .data$y[[length(.data$y) - 1L]])
-              )
-          }
-
-          res
-
-        })
+  # create a hyperSpec object
+  z_hs <-
+    methods::new(
+      "hyperSpec",
+      spc = t(x_flat[, -1, drop = FALSE]),
+      wavelength = x_flat$x
     )
 
-  if(return_bl) {
-    x_bl
-  } else {
-    ir_subtract(x, x_bl)
+  # calculate the baseline
+  z_bl <-
+    hyperSpec::spc.rubberband(
+      z_hs,
+      spline = FALSE,
+      df = 30
+    )@data$spc
+
+  # remove NAs at the beginning and end
+  z_bl[is.na(z_bl)] <- 0 # ---todo: remove if bug in hyperSpec is fixed
+
+  # impute first and last values
+  if(do_impute) {
+    z_bl[, 1] <- z_bl[, 2]
+    z_bl[, ncol(z_bl)] <- z_bl[, ncol(z_bl) - 1L]
   }
+
+  z_bl <- as.data.frame(t(z_bl))
+
+  index_x_flat_is_na <- is.na(x_flat)
+
+  if(return_bl) {
+    x_flat[, -1] <- z_bl
+  } else {
+    x_flat[, -1] <- x_flat[, -1] - z_bl
+  }
+  x_flat[index_x_flat_is_na] <- NA_real_
+
+  x %>%
+    dplyr::mutate(
+      spectra =
+        purrr::map(seq_along(spectra), function(i) {
+          res <- spectra[[i]]
+          y <- x_flat[, i + 1L, drop = TRUE]
+          res$y <- y[! is.na(y)]
+          res
+        })
+    )
 
 }
 

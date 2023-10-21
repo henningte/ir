@@ -5,8 +5,6 @@
 #' spectra of the second object according to the procedure presented by
 #' \insertCite{PerezGuaita.2013}{ir}.
 #'
-#' @note The function was not tested yet.
-#'
 #' @param x An object of class [`ir`][ir_new_ir()] containing the spectra to
 #' correct (with intensities representing absorbances).
 #'
@@ -50,6 +48,9 @@
 #' and `ref`, a warning will be printed to inform about the wavenumber
 #' difference between the selected and targeted wavenumber value.
 #'
+#' @param return_ir_flat Logical value. If `TRUE`, the spectra are returned as
+#' [`ir_flat`][ir_new_ir_flat()] object.
+#'
 #' @return `x` corrected with the reference spectra in `ref`.
 #'
 #' @source
@@ -78,7 +79,8 @@ ir_correct_atmosphere <- function(x,
                                   do_interpolate = FALSE,
                                   start = NULL,
                                   dw = 1,
-                                  warn = TRUE) {
+                                  warn = TRUE,
+                                  return_ir_flat = FALSE) {
 
   # checks
   if(!inherits(x, "ir")) {
@@ -89,6 +91,9 @@ ir_correct_atmosphere <- function(x,
   }
   if(nrow(x) != nrow(ref)) {
     rlang::abort('`ref` must have the same number of rows as `x`.')
+  }
+  if(!is.logical(return_ir_flat) | length(return_ir_flat) != 1) {
+    rlang::abort('`return_ir_flat` must be a logical value.')
   }
   if(!is.logical(return_contribution) | length(return_contribution) != 1) {
     rlang::abort('`return_contribution` must be a logical value.')
@@ -104,10 +109,17 @@ ir_correct_atmosphere <- function(x,
   if(all(spectrum_is_empty)) {
     return(x)
   }
+
+  # new
   x_flat <- ir_flatten(x)
   x_flat <- x_flat[order(x_flat$x), ] # assure that x and ref have same wavenumber order
-  ref <- ir_clip(x = ref, range = data.frame(start = x_flat$x[[1]], end = x_flat$x[[nrow(x_flat)]], stringsAsFactors = FALSE))
-  ref_flat <- ir_flatten(ref)
+  ref_flat <-
+    ir_clip(
+      x = ref,
+      range = data.frame(start = x_flat$x[[1]], end = x_flat$x[[nrow(x_flat)]], stringsAsFactors = FALSE),
+      return_ir_flat = TRUE
+    )
+  ref_flat <- ref_flat[order(ref_flat$x), ]
   if(x_flat$x[[1]] < ref_flat$x[[1]] | x_flat$x[[nrow(x_flat)]] > ref_flat$x[[nrow(ref_flat)]]) {
     rlang::abort('`ref` must cover the complete wavenumber range of `x`, but covers only a smaller range.')
   }
@@ -120,17 +132,19 @@ ir_correct_atmosphere <- function(x,
   if(!is.numeric(wn2) || length(wn2) != 1 | wn2 == wn1) {
     rlang::abort('`wn2` must be a numeric value and not identical to `wn1`.')
   }
-  # ensure same dimensions of all spectra
-  x$spectra <- ir_stack(x_flat)$spectra
-  ref$spectra <- ir_stack(ref_flat)$spectra
 
   # get intensities
-  ra_x <- tidyr::pivot_wider(tidyr::unnest(tibble::tibble(x = ir_get_intensity(x, wavenumber = c(wn1, wn2), warn = warn)$intensity), cols = "x"), names_from = "x", values_from = "y", values_fn = list)
-  colnames(ra_x) <- c("wn1", "wn2")
-  ra_x <- tidyr::unnest(ra_x, cols = c("wn1", "wn2"))
-  ra_ref <- tidyr::pivot_wider(tidyr::unnest(tibble::tibble(x = ir_get_intensity(ref, wavenumber = c(wn1, wn2), warn = warn)$intensity), cols = "x"), names_from = "x", values_from = "y", values_fn = list)
-  colnames(ra_ref) <- c("wn1", "wn2")
-  ra_ref <- tidyr::unnest(ra_ref, cols = c("wn1", "wn2"))
+  index <- ir_get_wavenumberindex(x = x_flat, wavenumber = c(wn1, wn2), warn = warn)
+  ra_x <-
+    tibble::tibble(
+      wn1 = unlist(x_flat[index[[1]], -1]),
+      wn2 = unlist(x_flat[index[[2]], -1])
+    )
+  ra_ref <-
+    tibble::tibble(
+      wn1 = unlist(ref_flat[index[[1]], -1]),
+      wn2 = unlist(ref_flat[index[[2]], -1])
+    )
 
   # compute relative absorbance and contribution
   ra_x$ra <- ra_x$wn1 - ra_x$wn2
@@ -141,14 +155,26 @@ ir_correct_atmosphere <- function(x,
   }
 
   # baseline subtraction
-  x <- x - ra_x$wn2
-  ref <- ref - ra_ref$wn2
+  x_flat[, -1] <- x_flat[, -1, drop = FALSE] - matrix(ra_x$wn2, nrow = nrow(x_flat), ncol = ncol(x_flat) - 1L, byrow = TRUE)
+  ref_flat[, -1] <- ref_flat[, -1, drop = FALSE] - matrix(ra_ref$wn2, nrow = nrow(x_flat), ncol = ncol(x_flat) - 1L, byrow = TRUE)
 
   # correction
-  x_corr <- x - (ref * ra_x$f)
+  x_corr <- x_flat
+  x_corr[, -1] <- x_flat[, -1, drop = FALSE] - (ref_flat[, -1, drop = FALSE] * matrix(ra_x$f, nrow = nrow(x_flat), ncol = ncol(x_flat) - 1L, byrow = TRUE))
 
   # revert baseline correction
-  intensity_corr_wn2 <- tidyr::unnest(ir::ir_get_intensity(x_corr, wavenumber = wn2, warn = warn), cols = "intensity") %>% dplyr::pull(.data$y)
-  x_corr + intensity_corr_wn2
+  intensity_corr_wn2 <- unlist(x_flat[index[[2]], -1])
+  x_corr[, -1] <- x_corr[, -1, drop = FALSE] + matrix(intensity_corr_wn2, nrow = nrow(x_flat), ncol = ncol(x_flat) - 1L, byrow = TRUE)
+
+  res <-
+    if(return_ir_flat) {
+      x_corr
+    } else {
+      x$spectra <-
+        ir_stack(x_corr)$spectra
+      x
+    }
+
+  res
 
 }

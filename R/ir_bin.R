@@ -26,7 +26,11 @@
 #'     wavenumber value which defines the end of each bin.}
 #' }
 #'
-#' @return An object of class `ir` where spectra have been binned.
+#' @param return_ir_flat Logical value. If `TRUE`, the spectra are returned as
+#' [`ir_flat`][ir_new_ir_flat()] object.
+#'
+#' @return An object of class `ir` (or `ir_flat`, if `return_ir_flat = TRUE`),
+#' where spectra have been binned.
 #'
 #' @examples
 #' # new wavenumber values are the first wavenumber value for each bin
@@ -49,10 +53,13 @@
 #' cbind(x1$spectra[[1]]$x, x2$spectra[[1]]$x, x3$spectra[[1]]$x)
 #'
 #' @export
-ir_bin <- function(x, width = 10, new_x_type = "start") {
+ir_bin <- function(x, width = 10, new_x_type = "start", return_ir_flat = FALSE) {
 
   # checks
   ir_check_ir(x)
+  if(!is.logical(return_ir_flat) | length(return_ir_flat) != 1) {
+    rlang::abort('`return_ir_flat` must be a logical value.')
+  }
   if(!is.numeric(width)) {
     rlang::abort("`width` must be numeric.")
   }
@@ -126,7 +133,14 @@ ir_bin <- function(x, width = 10, new_x_type = "start") {
     }) %>%
     dplyr::select(!dplyr::any_of("index_bin"))
 
-  x$spectra <- ir_stack(x_binned)$spectra
-  x
+  res <-
+    if(return_ir_flat) {
+      x_binned
+    } else {
+      x$spectra <- ir_stack(x_binned)$spectra
+      x
+    }
+
+  res
 
 }

@@ -4,7 +4,7 @@
 \alias{ir_clip}
 \title{Clips infrared spectra to new wavenumber ranges}
 \usage{
-ir_clip(x, range)
+ir_clip(x, range, return_ir_flat = FALSE)
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
@@ -17,9 +17,13 @@ wavenumber range to keep. The columns are:
 }
 If \code{range} has more than one row, multiple ranges are clipped from
 \code{x} and merged together. Overlapping ranges are not allowed.}
+
+\item{return_ir_flat}{Logical value. If \code{TRUE}, the spectra are returned as
+\code{\link[=ir_new_ir_flat]{ir_flat}} object.}
 }
 \value{
-An object of class \code{ir} where spectra have been clipped.
+An object of class \code{ir} (or \code{ir_flat}, if \code{return_ir_flat = TRUE})
+where spectra have been clipped.
 }
 \description{
 \code{ir_clip} clips infrared spectra to a new, specified, wavenumber range

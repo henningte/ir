@@ -4,7 +4,7 @@
 \alias{ir_scale}
 \title{Scales spectra in an \code{ir} object}
 \usage{
-ir_scale(x, center = TRUE, scale = TRUE)
+ir_scale(x, center = TRUE, scale = TRUE, return_ir_flat = FALSE)
 }
 \arguments{
 \item{x}{An object of class \code{ir}, where all non-empty spectra have identical
@@ -17,6 +17,9 @@ wavenumber values.}
 
 \item{scale}{either a logical value or a numeric-alike vector of length
     equal to the number of columns of \code{x}.}
+
+\item{return_ir_flat}{Logical value. If \code{TRUE}, the spectra are returned as
+\code{\link[=ir_new_ir_flat]{ir_flat}} object.}
 }
 \value{
 \code{x} where spectra have been scaled, i.e. from each intensity value,

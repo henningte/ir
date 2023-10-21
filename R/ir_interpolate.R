@@ -14,8 +14,12 @@
 #' @param dw A numerical value representing the desired wavenumber value
 #' difference between adjacent values.
 #'
-#' @return An object of class `ir` containing the interpolated spectra. Any
-#' `NA` values resulting from interpolation will be automatically dropped.
+#' @param return_ir_flat Logical value. If `TRUE`, the spectra are returned as
+#' [`ir_flat`][ir_new_ir_flat()] object.
+#'
+#' @return An object of class `ir` (or `ir_flat`, if `return_ir_flat = TRUE`),
+#' containing the interpolated spectra. Any `NA` values resulting from
+#' interpolation will be automatically dropped.
 #'
 #' @examples
 #' x <-
@@ -23,9 +27,12 @@
 #'    ir::ir_interpolate(start = NULL, dw = 1)
 #'
 #' @export
-ir_interpolate <- function(x, start = NULL, dw = 1) {
+ir_interpolate <- function(x, start = NULL, dw = 1, return_ir_flat = FALSE) {
 
   # checks
+  if(!is.logical(return_ir_flat) | length(return_ir_flat) != 1) {
+    rlang::abort('`return_ir_flat` must be a logical value.')
+  }
   .start <- eval(match.call()$start, parent.frame()) # avoid confusion with function `start()`
   ir_check_ir(x)
   empty_spectra <- ir_identify_empty_spectra(x)
@@ -76,9 +83,15 @@ ir_interpolate <- function(x, start = NULL, dw = 1) {
       )$y
   }
 
-  x$spectra <-
-    ir::ir_stack(x_flat_new)$spectra
+  res <-
+    if(return_ir_flat) {
+      x_flat_new
+    } else {
+      x$spectra <-
+        ir::ir_stack(x_flat_new)$spectra
+      x
+    }
 
-  x
+  res
 
 }

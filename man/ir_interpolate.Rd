@@ -4,7 +4,7 @@
 \alias{ir_interpolate}
 \title{Interpolates intensity values of infrared spectra in an \code{ir} object for new wavenumber values}
 \usage{
-ir_interpolate(x, start = NULL, dw = 1)
+ir_interpolate(x, start = NULL, dw = 1, return_ir_flat = FALSE)
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}}.}
@@ -17,10 +17,14 @@ wavenumber value within \code{x}. If \code{start = NULL},
 
 \item{dw}{A numerical value representing the desired wavenumber value
 difference between adjacent values.}
+
+\item{return_ir_flat}{Logical value. If \code{TRUE}, the spectra are returned as
+\code{\link[=ir_new_ir_flat]{ir_flat}} object.}
 }
 \value{
-An object of class \code{ir} containing the interpolated spectra. Any
-\code{NA} values resulting from interpolation will be automatically dropped.
+An object of class \code{ir} (or \code{ir_flat}, if \code{return_ir_flat = TRUE}),
+containing the interpolated spectra. Any \code{NA} values resulting from
+interpolation will be automatically dropped.
 }
 \description{
 \code{ir_interpolate} interpolates intensity values for infrared spectra for

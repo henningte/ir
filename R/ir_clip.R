@@ -14,7 +14,11 @@
 #' If `range` has more than one row, multiple ranges are clipped from
 #' `x` and merged together. Overlapping ranges are not allowed.
 #'
-#' @return An object of class `ir` where spectra have been clipped.
+#' @param return_ir_flat Logical value. If `TRUE`, the spectra are returned as
+#' [`ir_flat`][ir_new_ir_flat()] object.
+#'
+#' @return An object of class `ir` (or `ir_flat`, if `return_ir_flat = TRUE`)
+#' where spectra have been clipped.
 #'
 #' @examples
 #' ## clipping with one range
@@ -39,13 +43,16 @@
 #'    ir::ir_sample_data %>%
 #'    ir::ir_clip(range = range)
 #' @export
-ir_clip <- function(x, range) {
+ir_clip <- function(x, range, return_ir_flat = FALSE) {
 
   # checks
   ir_check_ir(x)
   empty_spectra <- ir_identify_empty_spectra(x)
   if(all(empty_spectra)) {
     return(x)
+  }
+  if(!is.logical(return_ir_flat) | length(return_ir_flat) != 1) {
+    rlang::abort('`return_ir_flat` must be a logical value.')
   }
   if(!inherits(range, "data.frame")) {
     rlang::abort("`range` must be a data.frame.")
@@ -59,31 +66,28 @@ ir_clip <- function(x, range) {
   if(any(range_check)) {
     rlang::abort(paste0("For each row in `range`, `range$start` must be smaller than `range$end`. This is not the case for row(s) ", which(range_check), "."))
   }
-
   range <- range[order(range[, 1, drop = TRUE], decreasing = FALSE), ]
 
-  # detect the corresponding row indices
-  range_nrow <- nrow(range)
-
+  # get clipping indices
+  x_flat <- ir_flatten(x)
   indices <-
-    purrr::map2(x$spectra, empty_spectra, function(z, .y) {
-      if(.y) {
-        NA
-      } else {
-        z_range <- ir_get_wavenumberindex(z, wavenumber = as.matrix(range), warn = TRUE)
-        z_range <- matrix(z_range, byrow = FALSE, nrow = range_nrow)
-        unlist(as.list(apply(z_range, 1, function(x) x[[1]]:x[[2]])))
-      }
-    })
+    purrr::map(seq_len(nrow(range)), function(i) {
+      x_flat$x >= range$start[[i]] & x_flat$x <= range$end[[i]]
+    }) %>%
+    purrr::reduce(`+`)
 
   # clip
-  x %>%
-    dplyr::mutate(
-      spectra =
-        purrr::map2(.data$spectra, !!indices, function(z, i) {
-          z %>% dplyr::slice(i)
-        })
-    )
+  res <- x_flat[indices > 0, ]
+
+  res <-
+    if(return_ir_flat) {
+      res
+    } else {
+      x$spectra <- ir::ir_stack(res)$spectra
+      x
+    }
+
+  res
 
 }
 

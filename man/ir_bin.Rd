@@ -4,7 +4,7 @@
 \alias{ir_bin}
 \title{Bins infrared spectra}
 \usage{
-ir_bin(x, width = 10, new_x_type = "start")
+ir_bin(x, width = 10, new_x_type = "start", return_ir_flat = FALSE)
 }
 \arguments{
 \item{x}{An object of class \code{\link[=ir_new_ir]{ir}} with integer wavenumber
@@ -26,9 +26,13 @@ each bin.}
 \item{\code{"end"}}{New wavenumbers for binned intensities are the end
 wavenumber value which defines the end of each bin.}
 }}
+
+\item{return_ir_flat}{Logical value. If \code{TRUE}, the spectra are returned as
+\code{\link[=ir_new_ir_flat]{ir_flat}} object.}
 }
 \value{
-An object of class \code{ir} where spectra have been binned.
+An object of class \code{ir} (or \code{ir_flat}, if \code{return_ir_flat = TRUE}),
+where spectra have been binned.
 }
 \description{
 \code{ir_bin} bins intensity values of infrared spectra into bins of a

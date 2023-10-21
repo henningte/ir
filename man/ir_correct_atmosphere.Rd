@@ -16,7 +16,8 @@ ir_correct_atmosphere(
   do_interpolate = FALSE,
   start = NULL,
   dw = 1,
-  warn = TRUE
+  warn = TRUE,
+  return_ir_flat = FALSE
 )
 }
 \arguments{
@@ -62,6 +63,9 @@ wavenumber values should be displayed (\code{TRUE}) or not (\code{FALSE}). If se
 \code{TRUE} and \code{wn1} or \code{wn2} do not exactly match the wavenumber values in \code{x}
 and \code{ref}, a warning will be printed to inform about the wavenumber
 difference between the selected and targeted wavenumber value.}
+
+\item{return_ir_flat}{Logical value. If \code{TRUE}, the spectra are returned as
+\code{\link[=ir_new_ir_flat]{ir_flat}} object.}
 }
 \value{
 \code{x} corrected with the reference spectra in \code{ref}.
@@ -71,9 +75,6 @@ difference between the selected and targeted wavenumber value.}
 of spectra in each and corrects the spectra of the first object with the
 spectra of the second object according to the procedure presented by
 \insertCite{PerezGuaita.2013}{ir}.
-}
-\note{
-The function was not tested yet.
 }
 \examples{
 x1 <-

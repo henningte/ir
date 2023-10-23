@@ -5,7 +5,6 @@
 ## New functions
 
 * `ir_scale()`: Function to scale intensity values in spectra, similar to `base::scale()`. Intensity values are scaled for the same x axis values.
-* `ir_snv()`: Standard Normal Variate correction.
 * `ir_as_ir.ir_flat()`: Conversion of `ir_flat` objects to `ir` objects.
 * `ir_as_ir.hyperSpec()`: Conversion of `hyperSpec::hyperSpec` objects to `ir` objects. 
 * `ir_as_ir.Spectra()`: Conversion of `ChemoSpec::Spectra` objects to `ir` objects.
@@ -14,9 +13,10 @@
 ## Improvements
 
 * `ir_correct_atmosphere()` has a new parameter `return_contribution` which allows to return the contribution of `ref` to each spectrum in `x`.
-* `ir_normalize()` has two new methods to normalize spectra: 
+* `ir_normalize()` has three new methods to normalize spectra: 
     1. With `method = "area_absolute"`, all intensity values will be divided by the sum of the absolute intensity values at all wavenumber values of the spectrum.
     2. With `method = "vector"`, all intensity values will be divided by the norm of the intensity vector (vector normalization).
+    3. With `method = "snv`", a Standard Normal Variate correction will be performed.
 * `ir_bc_rubberband()` has an additional parameter to allow imputation of the first and last value in a spectra to avoid artifacts which may happen during baseline correction with the rubberband algorithm.
 * All functions now fully support empty spectra.
 * Several dependencies in `Imports` have been moved to `Suggests`. 

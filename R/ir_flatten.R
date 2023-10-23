@@ -35,7 +35,7 @@ ir_flatten <- function(x, measurement_id = as.character(seq_len(nrow(x)))) {
     res <-
       matrix(nrow = 0, ncol = nrow(x) + 1) %>%
       as.data.frame() %>%
-      setNames(nm = c("x", measurement_id))
+      stats::setNames(nm = c("x", measurement_id))
 
   } else {
 
@@ -58,7 +58,7 @@ ir_flatten <- function(x, measurement_id = as.character(seq_len(nrow(x)))) {
         names_from = "id_measurement",
         values_from = "y"
       ) %>%
-      setNames(nm = c("x", measurement_id))
+      stats::setNames(nm = c("x", measurement_id))
 
   }
 

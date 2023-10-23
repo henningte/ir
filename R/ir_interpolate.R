@@ -63,7 +63,7 @@ ir_interpolate <- function(x, start = NULL, dw = 1, return_ir_flat = FALSE) {
   x_flat_new <-
     matrix(NA, nrow = n_wavenumber_new, ncol = ncol(x_flat)) %>%
     as.data.frame() %>%
-    setNames(nm = colnames(x_flat)) %>%
+    stats::setNames(nm = colnames(x_flat)) %>%
     dplyr::mutate(
       x = wavenumber_new
     )

@@ -22,6 +22,9 @@ intensity values at all wavenumber values of the spectrum.}
 of the intensity values at all wavenumber values of the spectrum.}
 \item{\code{"vector"}}{All intensity values will be divided by the norm of
 the intensity vector (vector normalization).}
+\item{"snv"}{Standard Normal Variate correction: For each spectrum, the
+average intensity value is subtracted and then divided by the standard
+deviation.}
 \item{A numeric value}{If \code{method} is convertible to a numeric value, e.g.
 \code{method = "980"}, the intensity of all spectra at a wavenumber value of
 980 will be set to 1 and the minimum intensity value of each spectrum
@@ -64,8 +67,13 @@ x5 <-
    ir::ir_sample_data \%>\%
    ir::ir_normalize(method = "vector")
 
-# normalizing to a specific peak
+# with method = "snv"
 x6 <-
+   ir::ir_sample_data \%>\%
+   ir::ir_normalize(method = "snv")
+
+# normalizing to a specific peak
+x7 <-
    ir::ir_sample_data \%>\%
    ir::ir_normalize(method = 1090)
 

@@ -17,6 +17,9 @@
 #'      of the intensity values at all wavenumber values of the spectrum.}
 #'   \item{`"vector"`}{All intensity values will be divided by the norm of
 #'      the intensity vector (vector normalization).}
+#'   \item{"snv"}{Standard Normal Variate correction: For each spectrum, the
+#'      average intensity value is subtracted and then divided by the standard
+#'      deviation.}
 #'   \item{A numeric value}{If `method` is convertible to a numeric value, e.g.
 #'      `method = "980"`, the intensity of all spectra at a wavenumber value of
 #'      980 will be set to 1 and the minimum intensity value of each spectrum
@@ -54,8 +57,13 @@
 #'    ir::ir_sample_data %>%
 #'    ir::ir_normalize(method = "vector")
 #'
-#' # normalizing to a specific peak
+#' # with method = "snv"
 #' x6 <-
+#'    ir::ir_sample_data %>%
+#'    ir::ir_normalize(method = "snv")
+#'
+#' # normalizing to a specific peak
+#' x7 <-
 #'    ir::ir_sample_data %>%
 #'    ir::ir_normalize(method = 1090)
 #'
@@ -70,8 +78,8 @@ ir_normalize <- function(x, method = "area") {
     rlang::abort("`method`` must be a character value or a numeric value.")
   }
   if(is.character(method)) {
-    if(!(method %in% c("zeroone", "area", "area_absolute", "vector"))){
-      rlang::abort("If specified as character value, `method` must be one of 'zeroone', 'area', 'area_absolute', or 'vector'.")
+    if(!(method %in% c("zeroone", "area", "area_absolute", "vector", "snv"))){
+      rlang::abort("If specified as character value, `method` must be one of 'zeroone', 'area', 'area_absolute', 'vector', or 'snv'.")
     }
   }
   if(is.numeric(method)) {
@@ -113,6 +121,14 @@ ir_normalize <- function(x, method = "area") {
       f <-
         function(y, ...) {
           y/sqrt(as.vector(y %*% y))
+        }
+    },
+    # Standard Normal Variate correction
+    snv = {
+      index <- NULL
+      f <-
+        function(y, ...) {
+          (y - mean(y, na.rm = TRUE))/stats::sd(y, na.rm = TRUE)
         }
     },
     # normalize to a specific wavenumber

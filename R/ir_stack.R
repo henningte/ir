@@ -43,7 +43,7 @@ ir_stack <- function(x) {
   spectra <-
     lapply(x[,-1, drop = FALSE], function(y) {
       d <- template
-      d$y <- y
+      d$y <- as.numeric(y)
       d[! is.na(d$y), ]
     })
   tibble::tibble(spectra = spectra)

@@ -239,13 +239,14 @@ ir_bc_rubberband <- function(x,
                              return_bl = FALSE,
                              ...) {
 
-  x_flat <- ir::ir_flatten(x)
+  spectrum_is_empty <- ir_identify_empty_spectra(x)
+  x_flat <- ir_flatten(x)
 
   # create a hyperSpec object
   z_hs <-
     methods::new(
       "hyperSpec",
-      spc = t(x_flat[, -1, drop = FALSE]),
+      spc = t(x_flat[, -c(1, which(spectrum_is_empty) + 1L), drop = FALSE]),
       wavelength = x_flat$x
     )
 
@@ -273,7 +274,7 @@ ir_bc_rubberband <- function(x,
   if(return_bl) {
     x_flat[, -1] <- z_bl
   } else {
-    x_flat[, -1] <- x_flat[, -1] - z_bl
+    x_flat[, -c(1, which(spectrum_is_empty) + 1L)] <- x_flat[, -c(1, which(spectrum_is_empty) + 1L)] - z_bl
   }
   x_flat[index_x_flat_is_na] <- NA_real_
 

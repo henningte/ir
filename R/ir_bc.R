@@ -272,7 +272,7 @@ ir_bc_rubberband <- function(x,
   index_x_flat_is_na <- is.na(x_flat)
 
   if(return_bl) {
-    x_flat[, -1] <- z_bl
+    x_flat[, -c(1, which(spectrum_is_empty) + 1L)] <- z_bl
   } else {
     x_flat[, -c(1, which(spectrum_is_empty) + 1L)] <- x_flat[, -c(1, which(spectrum_is_empty) + 1L)] - z_bl
   }

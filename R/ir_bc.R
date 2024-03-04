@@ -283,8 +283,10 @@ ir_bc_rubberband <- function(x,
       spectra =
         purrr::map(seq_along(.data$spectra), function(i) {
           res <- .data$spectra[[i]]
-          y <- x_flat[, i + 1L, drop = TRUE]
-          res$y <- y[! is.na(y)]
+          if(! spectrum_is_empty[[i]]) {
+            y <- x_flat[, i + 1L, drop = TRUE]
+            res$y <- y[! is.na(y)]
+          }
           res
         })
     )

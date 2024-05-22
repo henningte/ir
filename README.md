@@ -40,6 +40,7 @@ efficient storage of metadata along with the spectra and using
     - to the intensity at a specific x value
     - so that all intensity values sum to 1
     - vector normalization
+    - Standard Normal Variate correction
 8.  smoothing:
     - Savitzky-Golay smoothing
     - Fourier smoothing
@@ -52,8 +53,10 @@ efficient storage of metadata along with the spectra and using
     spectra
 13. Atmospheric background correction (Perez-Guaita et al. 2013)
 14. Scaling intensity values in spectra
-15. plotting
-16. [tidyverse](https://www.tidyverse.org/) methods
+15. Wrapper to sampling algorithms implemented in the ‘prospectr’
+    package.
+16. plotting
+17. [tidyverse](https://www.tidyverse.org/) methods
 
 ### How to install
 
@@ -76,6 +79,48 @@ Load ‘ir’:
 ``` r
 # load ir package
 library(ir)
+#> Warning: replacing previous import 'lazyeval::is_lang' by 'rlang::is_lang' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::call_modify' by
+#> 'rlang::call_modify' when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::is_call' by 'rlang::is_call' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::is_formula' by
+#> 'rlang::is_formula' when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::as_name' by 'rlang::as_name' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_label' by 'rlang::f_label' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::is_atomic' by 'rlang::is_atomic'
+#> when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::is_pairlist' by
+#> 'rlang::is_pairlist' when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::call_standardise' by
+#> 'rlang::call_standardise' when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::expr_text' by 'rlang::expr_text'
+#> when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_env<-' by 'rlang::f_env<-' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_text' by 'rlang::f_text' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::missing_arg' by
+#> 'rlang::missing_arg' when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_rhs<-' by 'rlang::f_rhs<-' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_rhs' by 'rlang::f_rhs' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_env' by 'rlang::f_env' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_lhs<-' by 'rlang::f_lhs<-' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::expr_label' by
+#> 'rlang::expr_label' when loading 'hyperSpec'
+#> Warning: replacing previous import 'lazyeval::f_lhs' by 'rlang::f_lhs' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'rlang::as_list' by 'xml2::as_list' when
+#> loading 'hyperSpec'
+#> Warning: replacing previous import 'latticeExtra::layer' by 'ggplot2::layer'
+#> when loading 'hyperSpec'
 
 # load additional packages needed for this tutorial
 library(ggplot2)
@@ -102,6 +147,8 @@ ir_sample_data %>%                                      # data
   ir::ir_bin(width = 10) %>%                            # binning
   ir::ir_normalize(method = "zeroone") %>%              # normalization
   plot() + ggplot2::facet_wrap(~ sample_type)           # plot
+#> Warning: Function 'hyperSpec::spc.rubberband' is deprecated. 
+#> Use function 'spc_rubberband' instead.
 ```
 
 ![](man/figures/README-sample_data_workflow-1.png)<!-- -->
@@ -125,8 +172,8 @@ ir::ir_sample_data
 #>  8              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
-#> # … with 48 more rows, and 2 more variables: holocellulose <units>,
-#> #   spectra <named list>
+#> # ℹ 48 more rows
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ```
 
 `ir_sample_data` is an object of class `ir`. An Object of class `ir` is
@@ -163,8 +210,8 @@ intensity values.
 
 Please cite this R package as:
 
-> Henning Teickner (2023). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 18 Mrz 2023.
+> Henning Teickner (2024). *ir: Functions to Handle and Preprocess
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 22 Mai 2024.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages
@@ -202,14 +249,15 @@ under the Creative Commons Attribution 4.0 International License
 lignin and holocellulose content are originally from De La Cruz,
 Florentino B., Osborne, and Barlaz (2016).
 
-This packages was developed in R (R version 4.2.0 (2022-04-22 ucrt)) (R
+This packages was developed in R (R version 4.3.1 (2023-06-16 ucrt)) (R
 Core Team 2019) using functions from ‘devtools’ (Wickham, Hester, and
 Chang 2019), ‘usethis’ (Wickham and Bryan 2019), and ‘roxygen2’ (Wickham
 et al. 2019).
 
 ### References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-LaCruz.2016" class="csl-entry">
 
@@ -224,8 +272,8 @@ Lignin</span>.” *Journal of Environmental Engineering* 142 (2):
 <div id="ref-Hodgkins.2018" class="csl-entry">
 
 Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
-Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “<span
-class="nocase">Tropical peatland carbon storage linked to global
+Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
+“<span class="nocase">Tropical peatland carbon storage linked to global
 latitudinal trends in peat recalcitrance</span>.” *Nature
 Communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.
@@ -244,10 +292,10 @@ Imaging</span>.” *Chemometrics and Intelligent Laboratory Systems* 117
 <div id="ref-PerezGuaita.2013" class="csl-entry">
 
 Perez-Guaita, David, Julia Kuligowski, Guillermo Quintás, Salvador
-Garrigues, and Miguel de La Guardia. 2013. “<span
-class="nocase">Atmospheric compensation in Fourier transform infrared
-(FT-IR) spectra of clinical samples</span>.” *Applied Spectroscopy* 67
-(11): 1339–42. <https://doi.org/10.1366/13-07159>.
+Garrigues, and Miguel de La Guardia. 2013.
+“<span class="nocase">Atmospheric compensation in Fourier transform
+infrared (FT-IR) spectra of clinical samples</span>.” *Applied
+Spectroscopy* 67 (11): 1339–42. <https://doi.org/10.1366/13-07159>.
 
 </div>
 
@@ -261,9 +309,9 @@ Statistical Computing. <https://www.R-project.org/>.
 
 <div id="ref-Wickham.2019b" class="csl-entry">
 
-Wickham, Hadley, and Jennifer Bryan. 2019. “<span
-class="nocase">usethis: Automate Package and Project Setup</span>.”
-<https://CRAN.R-project.org/package=usethis>.
+Wickham, Hadley, and Jennifer Bryan. 2019.
+“<span class="nocase">usethis: Automate Package and Project
+Setup</span>.” <https://CRAN.R-project.org/package=usethis>.
 
 </div>
 
@@ -277,8 +325,8 @@ R</span>.” <https://CRAN.R-project.org/package=roxygen2>.
 
 <div id="ref-Wickham.2019" class="csl-entry">
 
-Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “<span
-class="nocase">devtools: Tools to Make Developing R Packages
+Wickham, Hadley, Jim Hester, and Winston Chang. 2019.
+“<span class="nocase">devtools: Tools to Make Developing R Packages
 Easier</span>.” <https://CRAN.R-project.org/package=devtools>.
 
 </div>

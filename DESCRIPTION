@@ -45,7 +45,8 @@ Suggests:
     signal,
     spelling,
     vctrs,
-    tidyselect
+    tidyselect,
+    prospectr
 VignetteBuilder: 
   knitr
 RdMacros: 

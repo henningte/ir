@@ -49,6 +49,7 @@ knitr::opts_chunk$set(
     * to the intensity at a specific x value
     * so that all intensity values sum to 1
     * vector normalization
+    * Standard Normal Variate correction
 8. smoothing: 
     * Savitzky-Golay smoothing 
     * Fourier smoothing
@@ -58,8 +59,9 @@ knitr::opts_chunk$set(
 12. computing maxima, minima, median, and ranges of intensity values of spectra
 13. Atmospheric background correction [@PerezGuaita.2013]
 14. Scaling intensity values in spectra
-15. plotting
-16. [tidyverse](https://www.tidyverse.org/) methods
+15. Wrapper to sampling algorithms implemented in the 'prospectr' package. 
+16. plotting
+17. [tidyverse](https://www.tidyverse.org/) methods
 
 ### How to install
 

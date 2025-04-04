@@ -105,8 +105,6 @@ ir_sample_data |>                                      # data
   ir::ir_bin(width = 10) |>                            # binning
   ir::ir_normalize(method = "zeroone") |>              # normalization
   plot() + ggplot2::facet_wrap(~ sample_type)          # plot
-#> Warning: Function 'hyperSpec::spc.rubberband' is deprecated. 
-#> Use function 'spc_rubberband' instead.
 ```
 
 ![](man/figures/README-sample_data_workflow-1.png)<!-- -->

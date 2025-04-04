@@ -5,76 +5,53 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="
-  Functions to import and handle infrared spectra (import from .csv and
-  Thermo Galactics .spc', baseline correction, binning, clipping,
-  interpolating, smoothing, averaging, adding, subtracting, dividing, 
-  multiplying, plotting).">
 <title>Functions to Handle and Preprocess Infrared Spectra • ir</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Functions to Handle and Preprocess Infrared Spectra">
-<meta property="og:description" content="
-  Functions to import and handle infrared spectra (import from .csv and
-  Thermo Galactics .spc', baseline correction, binning, clipping,
-  interpolating, smoothing, averaging, adding, subtracting, dividing, 
-  multiplying, plotting).">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Functions to Handle and Preprocess Infrared Spectra">
+<meta name="description" content="Functions to import and handle infrared spectra (import from .csv and Thermo Galactics .spc', baseline correction, binning, clipping, interpolating, smoothing, averaging, adding, subtracting, dividing, multiplying, plotting).">
+<meta property="og:description" content="Functions to import and handle infrared spectra (import from .csv and Thermo Galactics .spc', baseline correction, binning, clipping, interpolating, smoothing, averaging, adding, subtracting, dividing, multiplying, plotting).">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="index.html">ir</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="reference/index.html">Reference</a>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/ir-introduction.html">Introduction to the 'ir' package</a></li>
+    <li><a class="dropdown-item" href="articles/ir-class.html">Introduction to the `ir`class</a></li>
+  </ul>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/ir-introduction.html">Introduction to the 'ir' package</a>
-    <a class="dropdown-item" href="articles/ir-class.html">Introduction to the `ir`class</a>
-  </div>
-</li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-news">
-    <a class="dropdown-item" href="news/index.html">News</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-news">
+<li><a class="dropdown-item" href="news/index.html">News</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/henningte/ir/">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/henningte/ir/" aria-label="View on GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-home">
 <div class="row">
@@ -82,67 +59,77 @@
 <div class="page-header"><h1 id="ir-">ir <img src="reference/figures/logo-hex.png" align="right" height="139" alt="logo" style="float:right; height:200px;"><a class="anchor" aria-label="anchor" href="#ir-"></a>
 </h1></div>
 <!-- badges: start -->
+
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>‘ir’ is an R package that contains simple functions to import, handle and preprocess infrared spectra. Infrared spectra are stored as list columns in data frames to enable efficient storage of metadata along with the spectra and support further analyses containing other data for the same samples.</p>
-<p><strong>Supported file formats for import are:</strong></p>
+<p>‘ir’ is an R package to import, handle and preprocess infrared spectra. Infrared spectra are stored as list columns in data frames which enables efficient storage of metadata along with the spectra and using ‘tidyverse’ functions for data operations.</p>
+<p><strong>Spectra in the following formats can be imported:</strong></p>
 <ol style="list-style-type: decimal">
-<li>.csv files with individual spectra.</li>
-<li>Thermo Galactic’s .spc files with individual spectra.</li>
+<li>
+<code>csv</code> files with individual spectra.</li>
+<li>Thermo Galactic’s <code>spc</code> files with individual spectra.</li>
 </ol>
-<p><strong>Provided functions for preprocessing and general handling are:</strong></p>
+<p><strong>Functions for spectral preprocessing and data handling:</strong></p>
 <ol style="list-style-type: decimal">
-<li>baseline correction with:<ul>
+<li>baseline correction with:
+<ul>
 <li>a polynomial baseline</li>
 <li>a convex hull baseline</li>
-<li>a Savitzky-Golay baseline (Lasch 2012).</li>
+<li>a Savitzky-Golay baseline (Lasch 2012)</li>
 </ul>
 </li>
-<li>binning.</li>
-<li>clipping.</li>
-<li>interpolating (resampling, linearly).</li>
-<li>replacing selected parts of a spectrum by a straight line.</li>
-<li>averaging spectra within specified groups.</li>
-<li>normalizing spectra:<ul>
+<li>binning</li>
+<li>clipping</li>
+<li>interpolating (resampling, linearly)</li>
+<li>replacing selected parts of a spectrum by a straight line</li>
+<li>averaging spectra within specified groups</li>
+<li>normalizing spectra:
+<ul>
 <li>to the maximum intensity</li>
 <li>to the intensity at a specific x value</li>
-<li>so that all intensity values sum to 1.</li>
+<li>so that all intensity values sum to 1</li>
+<li>vector normalization</li>
+<li>Standard Normal Variate correction</li>
 </ul>
 </li>
-<li>smoothing:<ul>
+<li>smoothing:
+<ul>
 <li>Savitzky-Golay smoothing</li>
-<li>Fourier smoothing.</li>
+<li>Fourier smoothing</li>
 </ul>
 </li>
-<li>computing derivatives of spectra using Savitzky-Golay smoothing.</li>
-<li>mathematical transformations (addition, subtraction, multiplication, division).</li>
-<li>computing the variance of intensity values (optionally after subtracting reference spectra).</li>
-<li>computing maxima, minima, median, and ranges of intensity values of spectra.</li>
-<li>plotting.</li>
+<li>computing derivatives of spectra using Savitzky-Golay smoothing</li>
+<li>spectral arithmetic (addition, subtraction, multiplication, division)</li>
+<li>computing the variance of intensity values (optionally after subtracting reference spectra)</li>
+<li>computing maxima, minima, median, and ranges of intensity values of spectra</li>
+<li>Atmospheric background correction (Perez-Guaita et al. 2013)</li>
+<li>Scaling intensity values in spectra</li>
+<li>Wrapper to sampling algorithms implemented in the ‘prospectr’ package.</li>
+<li>plotting</li>
 <li>
-<a href="https://www.tidyverse.org/" class="external-link">tidyverse</a> methods.</li>
+<a href="https://www.tidyverse.org/" class="external-link">tidyverse</a> methods</li>
 </ol>
 <div class="section level3">
 <h3 id="how-to-install">How to install<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h3>
-<p>You can install ‘ir’ from CRAN using R via:</p>
+<p>You can install ‘ir’ from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ir"</span><span class="op">)</span></code></pre></div>
-<p>You can install ‘ir’ from GitHub using R via:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ir"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install the development version of ‘ir’ from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"henningte/ir"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"henningte/ir"</span>, ref <span class="op">=</span> <span class="st">"dev"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="how-to-use">How to use<a class="anchor" aria-label="anchor" href="#how-to-use"></a>
 </h3>
-<p>You can load ‘ir’ in R with:</p>
+<p>Load ‘ir’:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load ir package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://henningte.github.io/ir/">ir</a></span><span class="op">)</span>
-
-<span class="co"># load additional packages needed for this tutorial</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># load ir package</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://henningte.github.io/ir/">ir</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load additional packages needed for this tutorial</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
 <p>For brief introductions, see below and the two vignettes:</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://henningte.github.io/ir/articles/ir-introduction.html">Introduction to the ‘ir’ package</a></li>
@@ -151,13 +138,15 @@
 <div class="section level4">
 <h4 id="sample-workflow">Sample workflow<a class="anchor" aria-label="anchor" href="#sample-workflow"></a>
 </h4>
-<p>A simple workflow would be, for example, to baseline correct the spectra, then bin them to bins with a width of 10 wavenumber units, then normalize them so that the maximum intensity value is 1 and the minimum intensity value is 0 and then plot the baseline corrected spectra for each sample and sample type. Here’s the ‘ir’ code using the built-in sample data <code>ir_sample_data</code>.</p>
+<p>Here is an example preprocessing pipeline for the sample data in the package (<code>ir_sample_data</code>) which does baseline correction, binning (bin width of 10), normalization (so that the maximum intensity value is 1 and the minimum intensity value is 0), and finally plots the preprocessed spectra for each sample and sample type:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ir_sample_data</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>                                      <span class="co"># data</span>
-  <span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_bc.html">ir_bc</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"rubberband"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>                  <span class="co"># baseline correction</span>
-  <span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_bin.html">ir_bin</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>                            <span class="co"># binning</span>
-  <span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_normalize.html">ir_normalize</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"zeroone"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>              <span class="co"># normalization</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">sample_type</span><span class="op">)</span>           <span class="co"># plot</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ir_sample_data</span> <span class="op">|&gt;</span>                                      <span class="co"># data</span></span>
+<span>  <span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_bc.html">ir_bc</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"rubberband"</span><span class="op">)</span> <span class="op">|&gt;</span>                  <span class="co"># baseline correction</span></span>
+<span>  <span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_bin.html">ir_bin</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span>                            <span class="co"># binning</span></span>
+<span>  <span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_normalize.html">ir_normalize</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"zeroone"</span><span class="op">)</span> <span class="op">|&gt;</span>              <span class="co"># normalization</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">sample_type</span><span class="op">)</span>          <span class="co"># plot</span></span>
+<span><span class="co">#&gt; Warning: Function 'hyperSpec::spc.rubberband' is deprecated. </span></span>
+<span><span class="co">#&gt; Use function 'spc_rubberband' instead.</span></span></code></pre></div>
 <p><img src="reference/figures/README-sample_data_workflow-1.png"><!-- --></p>
 </div>
 <div class="section level4">
@@ -165,54 +154,51 @@
 </h4>
 <p>You can load the sample data with:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="reference/ir_sample_data.html">ir_sample_data</a></span>
-<span class="co">#&gt; # A tibble: 58 × 7</span>
-<span class="co">#&gt;    id_measurement id_sample sample_type sample_comment             klason_lignin</span>
-<span class="co">#&gt;             &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;                      &lt;units&gt;      </span>
-<span class="co">#&gt;  1              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     </span>
-<span class="co">#&gt;  2              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     </span>
-<span class="co">#&gt;  3              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     </span>
-<span class="co">#&gt;  4              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     </span>
-<span class="co">#&gt;  5              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     </span>
-<span class="co">#&gt;  6              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     </span>
-<span class="co">#&gt;  7              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     </span>
-<span class="co">#&gt;  8              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     </span>
-<span class="co">#&gt;  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     </span>
-<span class="co">#&gt; 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span>
-<span class="co">#&gt; # … with 48 more rows, and 2 more variables: holocellulose &lt;units&gt;,</span>
-<span class="co">#&gt; #   spectra &lt;named list&gt;</span></code></pre></div>
-<p><code>ir_sample_data</code> is an object of class <code>ir</code>. An Object of class <code>ir</code> is basically a data frame where each row represents one infrared measurement and column <code>spectra</code> contains the infrared spectra (one per row). This allows effectively storing repeated measurements for the same sample in the same table, as well as any metadata and accessory data (e.g. nitrogen content of the sample).</p>
-<p>The column <code>spectra</code> is a list column of data frames, meaning that each cell in <code>sample_data</code> contains for column <code>spectra</code> a data frame. For example, the first element of <code>ir_sample_data$spectra</code> represents the first spectrum as a data frame:</p>
+<code class="sourceCode R"><span><span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="reference/ir_sample_data.html">ir_sample_data</a></span></span>
+<span><span class="co">#&gt; # A tibble: 58 × 7</span></span>
+<span><span class="co">#&gt;    id_measurement id_sample sample_type sample_comment             klason_lignin</span></span>
+<span><span class="co">#&gt;             &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;                      &lt;units&gt;      </span></span>
+<span><span class="co">#&gt;  1              1 GN 11-389 needles     Abies Firma Momi fir       0.359944     </span></span>
+<span><span class="co">#&gt;  2              2 GN 11-400 needles     Cupressocyparis leylandii… 0.339405     </span></span>
+<span><span class="co">#&gt;  3              3 GN 11-407 needles     Juniperus chinensis Chine… 0.267552     </span></span>
+<span><span class="co">#&gt;  4              4 GN 11-411 needles     Metasequoia glyptostroboi… 0.350016     </span></span>
+<span><span class="co">#&gt;  5              5 GN 11-416 needles     Pinus strobus Torulosa     0.331100     </span></span>
+<span><span class="co">#&gt;  6              6 GN 11-419 needles     Pseudolarix amabili Golde… 0.279360     </span></span>
+<span><span class="co">#&gt;  7              7 GN 11-422 needles     Sequoia sempervirens Cali… 0.329672     </span></span>
+<span><span class="co">#&gt;  8              8 GN 11-423 needles     Taxodium distichum Cascad… 0.356950     </span></span>
+<span><span class="co">#&gt;  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     </span></span>
+<span><span class="co">#&gt; 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     </span></span>
+<span><span class="co">#&gt; # ℹ 48 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 2 more variables: holocellulose &lt;units&gt;, spectra &lt;named list&gt;</span></span></code></pre></div>
+<p><code>ir_sample_data</code> is an object of class <code>ir</code>. An Object of class <code>ir</code> is a data frame where each row represents one infrared measurement and column <code>spectra</code> contains the infrared spectra (one per row) as list column. This allows to store metadata along each spectrum (for example the N content for each sample) and to manipulate <code>ir</code> objects with ‘tidyverse’ functions.</p>
+<p>The column <code>spectra</code> is a list column of data frames, meaning that each cell of <code>spectra</code> contains a data frame which contains the data for one spectrum. For example, here are the first rows of the first spectrum in <code>ir_smaple_data</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># View the first ten rows of the first spectrum in ir_sample_data</span>
-<span class="fu">ir</span><span class="fu">::</span><span class="fu"><a href="reference/ir_get_spectrum.html">ir_get_spectrum</a></span><span class="op">(</span><span class="va">ir_sample_data</span>, what <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 × 2</span>
-<span class="co">#&gt;        x        y</span>
-<span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  4000 0.000361</span>
-<span class="co">#&gt;  2  3999 0.000431</span>
-<span class="co">#&gt;  3  3998 0.000501</span>
-<span class="co">#&gt;  4  3997 0.000571</span>
-<span class="co">#&gt;  5  3996 0.000667</span>
-<span class="co">#&gt;  6  3995 0.000704</span>
-<span class="co">#&gt;  7  3994 0.000612</span>
-<span class="co">#&gt;  8  3993 0.000525</span>
-<span class="co">#&gt;  9  3992 0.000502</span>
-<span class="co">#&gt; 10  3991 0.000565</span></code></pre></div>
-<p>Column <code>x</code> represents the x values (in this case wavenumbers [cm<sup>-1</sup>]) and column <code>y</code> the corresponding intensity values.</p>
+<code class="sourceCode R"><span><span class="co"># View the first ten rows of the first spectrum in ir_sample_data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ir_sample_data</span><span class="op">$</span><span class="va">spectra</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span><span class="co">#&gt;       x        y</span></span>
+<span><span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1  4000 0.000361</span></span>
+<span><span class="co">#&gt; 2  3999 0.000431</span></span>
+<span><span class="co">#&gt; 3  3998 0.000501</span></span>
+<span><span class="co">#&gt; 4  3997 0.000571</span></span>
+<span><span class="co">#&gt; 5  3996 0.000667</span></span>
+<span><span class="co">#&gt; 6  3995 0.000704</span></span></code></pre></div>
+<p>Column <code>x</code> contains values for the spectral channel (in this case wavenumbers [cm<sup>-1</sup>]) and column <code>y</code> the corresponding intensity values.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="how-to-cite">How to cite<a class="anchor" aria-label="anchor" href="#how-to-cite"></a>
 </h3>
 <p>Please cite this R package as:</p>
-<blockquote><p>Henning Teickner (2022). <em>ir: Functions to Handle and Preprocess Infrared Spectra</em>. DOI: 10.5281/zenodo.5747170. Accessed 15 Jun 2022. Online at <a href="https://zenodo.org/record/5747170" class="external-link uri">https://zenodo.org/record/5747170</a>.</p></blockquote>
+<blockquote>
+<p>Henning Teickner (2025). <em>ir: Functions to Handle and Preprocess Infrared Spectra</em>. DOI: 10.5281/zenodo.5747169. Accessed 04 Apr 2025. Online at <a href="https://zenodo.org/record/5747169" class="external-link uri">https://zenodo.org/record/5747169</a>.</p>
+</blockquote>
 </div>
 <div class="section level3">
 <h3 id="companion-packages">Companion packages<a class="anchor" aria-label="anchor" href="#companion-packages"></a>
 </h3>
-<p><a href="https://github.com/henningte/irpeat/" class="external-link">irpeat</a> builds on ‘ir’. irpeat provides functions to analyze infrared spectra of peat (humification indices, prediction models).</p>
+<p>The <a href="https://github.com/henningte/irpeat/" class="external-link">irpeat</a> package provides functions to analyze infrared spectra of peat (humification indices, prediction models) and uses the ‘ir’ package to handle spectral data.</p>
 </div>
 <div class="section level3">
 <h3 id="licenses">Licenses<a class="anchor" aria-label="anchor" href="#licenses"></a>
@@ -229,21 +215,24 @@
 <div class="section level3">
 <h3 id="sources">Sources<a class="anchor" aria-label="anchor" href="#sources"></a>
 </h3>
-<p>The complete data in this package is derived from Hodgkins et al. (2018) and was restructured to match the requirements of ‘ir’. The original article containing the data can be downloaded from <a href="https://www.nature.com/articles/s41467-018-06050-2" class="external-link uri">https://www.nature.com/articles/s41467-018-06050-2</a> and is distributed under the Creative Commons Attribution 4.0 International License (<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link uri">https://creativecommons.org/licenses/by/4.0/</a>). The data on Klason lignin and holocellulose content was originally derived from De La Cruz, Florentino B., Osborne, and Barlaz (2016).</p>
-<p>This packages was developed in R (R version 4.2.0 (2022-04-22 ucrt)) (R Core Team 2019) using functions from devtools (Wickham, Hester, and Chang 2019), usethis (Wickham and Bryan 2019), rrtools (Marwick 2019) and roxygen2 (Wickham et al. 2019).</p>
+<p><code>ir_sample_data</code> is derived from Hodgkins et al. (2018) and was reformatted to match the requirements of ‘ir’. The original article containing the data can be downloaded from <a href="https://www.nature.com/articles/s41467-018-06050-2" class="external-link uri">https://www.nature.com/articles/s41467-018-06050-2</a> and is distributed under the Creative Commons Attribution 4.0 International License (<a href="https://creativecommons.org/licenses/by/4.0/" class="external-link uri">https://creativecommons.org/licenses/by/4.0/</a>). The data on Klason lignin and holocellulose content are originally from De la Cruz, Osborne, and Barlaz (2016).</p>
 </div>
 <div class="section level3">
 <h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-LaCruz.2016" class="csl-entry"><p>De La Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016. “<span class="nocase">Determination of Sources of Organic Matter in Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of Lignin</span>.” <em>Journal of Environmental Engineering</em> 142 (2): 04015076. <a href="https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038" class="external-link uri">https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038</a>.</p></div>
-<div id="ref-Hodgkins.2018" class="csl-entry"><p>Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang, Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “<span class="nocase">Tropical peatland carbon storage linked to global latitudinal trends in peat recalcitrance</span>.” <em>Nature Communications</em> 9 (1): 3640. <a href="https://doi.org/10.1038/s41467-018-06050-2" class="external-link uri">https://doi.org/10.1038/s41467-018-06050-2</a>.</p></div>
-<div id="ref-Lasch.2012" class="csl-entry"><p>Lasch, Peter. 2012. “<span class="nocase">Spectral Pre-Processing for Biomedical Vibrational Spectroscopy and Microspectroscopic Imaging</span>.” <em>Chemometrics and Intelligent Laboratory Systems</em> 117 (August): 100–114. <a href="https://doi.org/10.1016/j.chemolab.2012.03.011" class="external-link uri">https://doi.org/10.1016/j.chemolab.2012.03.011</a>.</p></div>
-<div id="ref-Marwick.2019" class="csl-entry"><p>Marwick, Ben. 2019. “<span class="nocase">rrtools: Creates a Reproducible Research Compendium</span>.” <a href="https://github.com/benmarwick/rrtools" class="external-link uri">https://github.com/benmarwick/rrtools</a>.</p></div>
-<div id="ref-RCoreTeam.2019" class="csl-entry"><p>R Core Team. 2019. “<span class="nocase">R: A Language and Environment for Statistical Computing</span>.” Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="external-link uri">https://www.R-project.org/</a>.</p></div>
-<div id="ref-Wickham.2019b" class="csl-entry"><p>Wickham, Hadley, and Jennifer Bryan. 2019. “<span class="nocase">usethis: Automate Package and Project Setup</span>.” <a href="https://CRAN.R-project.org/package=usethis" class="external-link uri">https://CRAN.R-project.org/package=usethis</a>.</p></div>
-<div id="ref-Wickham.2019c" class="csl-entry"><p>Wickham, Hadley, Peter Danenberg, Gábor Csárdi, and Manuel Eugster. 2019. “<span class="nocase">roxygen2: In-Line Documentation for R</span>.” <a href="https://CRAN.R-project.org/package=roxygen2" class="external-link uri">https://CRAN.R-project.org/package=roxygen2</a>.</p></div>
-<div id="ref-Wickham.2019" class="csl-entry"><p>Wickham, Hadley, Jim Hester, and Winston Chang. 2019. “<span class="nocase">devtools: Tools to Make Developing R Packages Easier</span>.” <a href="https://CRAN.R-project.org/package=devtools" class="external-link uri">https://CRAN.R-project.org/package=devtools</a>.</p></div>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-DelaCruz.2016" class="csl-entry">
+De la Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016. “Determination of Sources of Organic Matter in Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of Lignin.” <em>Journal of Environmental Engineering</em> 142 (2): 04015076. <a href="https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038" class="external-link uri">https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038</a>.
+</div>
+<div id="ref-Hodgkins.2018" class="csl-entry">
+Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang, Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018. “Tropical Peatland Carbon Storage Linked to Global Latitudinal Trends in Peat Recalcitrance.” <em>Nature Communications</em> 9 (1): 3640. <a href="https://doi.org/10.1038/s41467-018-06050-2" class="external-link uri">https://doi.org/10.1038/s41467-018-06050-2</a>.
+</div>
+<div id="ref-Lasch.2012" class="csl-entry">
+Lasch, Peter. 2012. “Spectral Pre-Processing for Biomedical Vibrational Spectroscopy and Microspectroscopic Imaging.” <em>Chemometrics and Intelligent Laboratory Systems</em> 117 (August): 100–114. <a href="https://doi.org/10.1016/j.chemolab.2012.03.011" class="external-link uri">https://doi.org/10.1016/j.chemolab.2012.03.011</a>.
+</div>
+<div id="ref-Perez-Guaita.2013" class="csl-entry">
+Perez-Guaita, David, Julia Kuligowski, Guillermo Quintás, Salvador Garrigues, and Miguel de la Guardia. 2013. “Atmospheric Compensation in Fourier Transform Infrared (FT-IR) Spectra of Clinical Samples.” <em>Applied Spectroscopy</em> 67 (11): 1339–42. <a href="https://doi.org/10.1366/13-07159" class="external-link uri">https://doi.org/10.1366/13-07159</a>.
+</div>
 </div>
 </div>
 </div>
@@ -300,21 +289,19 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Henning Teickner.</p>
+  <p>Developed by Henning Teickner.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

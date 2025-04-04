@@ -1,216 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://henningte.github.io/ir/404.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/articles/ir-class.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/articles/ir-introduction.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/index.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/Ops.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/arrange.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/bind.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/distinct.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/extract.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/filter-joins.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/filter.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/group_by.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir-package.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_add.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_as_ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_average.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_bc.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_bc_polynomial.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_bc_rubberband.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_bc_sg.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_bin.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_clip.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_correct_atmosphere.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_divide.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_drop_spectra.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_export_prepare.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_flat_clean.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_flatten.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_get_intensity.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_get_spectrum.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_get_wavenumberindex.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_import_csv.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_import_spc.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_interpolate.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_interpolate_region.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_multiply.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_new_ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_new_ir_flat.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_normalize.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_remove_missing.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_sample_data.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_smooth.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_stack.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_subtract.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_to_transmittance.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/ir_variance_region.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/mutate-joins.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/mutate.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/nest.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/pivot_longer.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/pivot_wider.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/plot.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/range.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/rename.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/rep.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/rowwise.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/select.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/separate.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/separate_rows.ir.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/slice.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/subsetting.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/summarize.html</loc>
-  </url>
-  <url>
-    <loc>https://henningte.github.io/ir/reference/unite.ir.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://henningte.github.io/ir/404.html</loc></url>
+<url><loc>https://henningte.github.io/ir/CONDUCT.html</loc></url>
+<url><loc>https://henningte.github.io/ir/CONTRIBUTING.html</loc></url>
+<url><loc>https://henningte.github.io/ir/LICENSE.html</loc></url>
+<url><loc>https://henningte.github.io/ir/articles/index.html</loc></url>
+<url><loc>https://henningte.github.io/ir/articles/ir-class.html</loc></url>
+<url><loc>https://henningte.github.io/ir/articles/ir-introduction.html</loc></url>
+<url><loc>https://henningte.github.io/ir/authors.html</loc></url>
+<url><loc>https://henningte.github.io/ir/index.html</loc></url>
+<url><loc>https://henningte.github.io/ir/news/index.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/Ops.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/arrange.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/bind.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/distinct.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/extract.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/filter-joins.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/filter.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/group_by.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/index.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir-package.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_add.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_as_ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_average.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_bc.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_bc_polynomial.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_bc_rubberband.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_bc_sg.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_bin.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_clip.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_correct_atmosphere.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_divide.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_drop_spectra.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_export_prepare.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_flat_clean.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_flatten.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_get_intensity.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_get_spectrum.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_get_wavenumberindex.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_identify_empty_spectra.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_import_csv.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_import_spc.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_interpolate.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_interpolate_region.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_multiply.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_new_ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_new_ir_flat.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_normalize.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_remove_missing.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_sample_data.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_sample_prospectr.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_scale.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_smooth.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_stack.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_subtract.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_to_transmittance.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/ir_variance_region.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/mutate-joins.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/mutate.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/nest.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/pipe.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/pivot_longer.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/pivot_wider.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/plot.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/range.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/rename.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/rep.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/rowwise.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/select.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/separate.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/separate_rows.ir.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/slice.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/subsetting.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/summarize.html</loc></url>
+<url><loc>https://henningte.github.io/ir/reference/unite.ir.html</loc></url>
 </urlset>
+

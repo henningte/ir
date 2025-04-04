@@ -426,7 +426,9 @@ ir_drop_unneccesary_cols <- function(x) {
 #' @noRd
 ir_reclass_ir <- function(x) {
 
-  if(! "spectra" %in% colnames(x)) { # spectra column not present
+  if(is.null(x)) {
+    x
+  } else if(! "spectra" %in% colnames(x)) { # spectra column not present
     structure(x, class = setdiff(class(x), "ir"))
   } else if(inherits(try(ir_check_spectra(x$spectra), silent = TRUE), "try-error")) { # spectra column present, but wrong format
     structure(x, class = setdiff(class(x), "ir"))

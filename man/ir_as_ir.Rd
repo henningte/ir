@@ -40,31 +40,31 @@ objects.
 }
 \examples{
 # conversion from an ir object
-ir::ir_sample_data \%>\%
+ir::ir_sample_data |>
   ir_as_ir()
 
 # conversion from a data frame
 x_ir <- ir::ir_sample_data
 
 x_df <-
-  x_ir \%>\%
-  ir_drop_spectra() \%>\%
+  x_ir |>
+  ir_drop_spectra() |>
   dplyr::mutate(
     spectra = x_ir$spectra
-  ) \%>\%
+  ) |>
   ir_as_ir()
 
 # check that ir_as_ir preserves the input class
-ir_sample_data \%>\%
-  structure(class = setdiff(class(.), "ir")) \%>\%
-  dplyr::group_by(sample_type) \%>\%
+ir_sample_data |>
+  structure(class = setdiff(class(ir_sample_data), "ir")) |>
+  dplyr::group_by(sample_type) |>
   ir_as_ir()
 
 
 # conversion from an ir_flat object
 x_ir <-
-  ir::ir_sample_data \%>\%
-  ir::ir_flatten() \%>\%
+  ir::ir_sample_data |>
+  ir::ir_flatten() |>
   ir::ir_as_ir()
 
 # conversion from a hyperSpec object from package hyperSpec

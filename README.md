@@ -79,48 +79,6 @@ Load ‘ir’:
 ``` r
 # load ir package
 library(ir)
-#> Warning: replacing previous import 'lazyeval::is_lang' by 'rlang::is_lang' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::call_modify' by
-#> 'rlang::call_modify' when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::is_call' by 'rlang::is_call' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::is_formula' by
-#> 'rlang::is_formula' when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::as_name' by 'rlang::as_name' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_label' by 'rlang::f_label' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::is_atomic' by 'rlang::is_atomic'
-#> when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::is_pairlist' by
-#> 'rlang::is_pairlist' when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::call_standardise' by
-#> 'rlang::call_standardise' when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::expr_text' by 'rlang::expr_text'
-#> when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_env<-' by 'rlang::f_env<-' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_text' by 'rlang::f_text' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::missing_arg' by
-#> 'rlang::missing_arg' when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_rhs<-' by 'rlang::f_rhs<-' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_rhs' by 'rlang::f_rhs' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_env' by 'rlang::f_env' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_lhs<-' by 'rlang::f_lhs<-' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::expr_label' by
-#> 'rlang::expr_label' when loading 'hyperSpec'
-#> Warning: replacing previous import 'lazyeval::f_lhs' by 'rlang::f_lhs' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'rlang::as_list' by 'xml2::as_list' when
-#> loading 'hyperSpec'
-#> Warning: replacing previous import 'latticeExtra::layer' by 'ggplot2::layer'
-#> when loading 'hyperSpec'
 
 # load additional packages needed for this tutorial
 library(ggplot2)
@@ -142,11 +100,11 @@ and the minimum intensity value is 0), and finally plots the
 preprocessed spectra for each sample and sample type:
 
 ``` r
-ir_sample_data %>%                                      # data
-  ir::ir_bc(method = "rubberband") %>%                  # baseline correction
-  ir::ir_bin(width = 10) %>%                            # binning
-  ir::ir_normalize(method = "zeroone") %>%              # normalization
-  plot() + ggplot2::facet_wrap(~ sample_type)           # plot
+ir_sample_data |>                                      # data
+  ir::ir_bc(method = "rubberband") |>                  # baseline correction
+  ir::ir_bin(width = 10) |>                            # binning
+  ir::ir_normalize(method = "zeroone") |>              # normalization
+  plot() + ggplot2::facet_wrap(~ sample_type)          # plot
 #> Warning: Function 'hyperSpec::spc.rubberband' is deprecated. 
 #> Use function 'spc_rubberband' instead.
 ```
@@ -210,8 +168,8 @@ intensity values.
 
 Please cite this R package as:
 
-> Henning Teickner (2024). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 22 Mai 2024.
+> Henning Teickner (2025). *ir: Functions to Handle and Preprocess
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 04 Apr 2025.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages
@@ -246,26 +204,21 @@ containing the data can be downloaded from
 <https://www.nature.com/articles/s41467-018-06050-2> and is distributed
 under the Creative Commons Attribution 4.0 International License
 (<https://creativecommons.org/licenses/by/4.0/>). The data on Klason
-lignin and holocellulose content are originally from De La Cruz,
-Florentino B., Osborne, and Barlaz (2016).
-
-This packages was developed in R (R version 4.3.1 (2023-06-16 ucrt)) (R
-Core Team 2019) using functions from ‘devtools’ (Wickham, Hester, and
-Chang 2019), ‘usethis’ (Wickham and Bryan 2019), and ‘roxygen2’ (Wickham
-et al. 2019).
+lignin and holocellulose content are originally from De la Cruz,
+Osborne, and Barlaz (2016).
 
 ### References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
 entry-spacing="0">
 
-<div id="ref-LaCruz.2016" class="csl-entry">
+<div id="ref-DelaCruz.2016" class="csl-entry">
 
-De La Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016.
-“<span class="nocase">Determination of Sources of Organic Matter in
-Solid Waste by Analysis of Phenolic Copper Oxide Oxidation Products of
-Lignin</span>.” *Journal of Environmental Engineering* 142 (2):
-04015076. <https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038>.
+De la Cruz, Florentino B., Jason Osborne, and Morton A. Barlaz. 2016.
+“Determination of Sources of Organic Matter in Solid Waste by Analysis
+of Phenolic Copper Oxide Oxidation Products of Lignin.” *Journal of
+Environmental Engineering* 142 (2): 04015076.
+<https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038>.
 
 </div>
 
@@ -273,61 +226,28 @@ Lignin</span>.” *Journal of Environmental Engineering* 142 (2):
 
 Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
 Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
-“<span class="nocase">Tropical peatland carbon storage linked to global
-latitudinal trends in peat recalcitrance</span>.” *Nature
-Communications* 9 (1): 3640.
+“Tropical Peatland Carbon Storage Linked to Global Latitudinal Trends in
+Peat Recalcitrance.” *Nature Communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.
 
 </div>
 
 <div id="ref-Lasch.2012" class="csl-entry">
 
-Lasch, Peter. 2012. “<span class="nocase">Spectral Pre-Processing for
-Biomedical Vibrational Spectroscopy and Microspectroscopic
-Imaging</span>.” *Chemometrics and Intelligent Laboratory Systems* 117
-(August): 100–114. <https://doi.org/10.1016/j.chemolab.2012.03.011>.
+Lasch, Peter. 2012. “Spectral Pre-Processing for Biomedical Vibrational
+Spectroscopy and Microspectroscopic Imaging.” *Chemometrics and
+Intelligent Laboratory Systems* 117 (August): 100–114.
+<https://doi.org/10.1016/j.chemolab.2012.03.011>.
 
 </div>
 
-<div id="ref-PerezGuaita.2013" class="csl-entry">
+<div id="ref-Perez-Guaita.2013" class="csl-entry">
 
 Perez-Guaita, David, Julia Kuligowski, Guillermo Quintás, Salvador
-Garrigues, and Miguel de La Guardia. 2013.
-“<span class="nocase">Atmospheric compensation in Fourier transform
-infrared (FT-IR) spectra of clinical samples</span>.” *Applied
-Spectroscopy* 67 (11): 1339–42. <https://doi.org/10.1366/13-07159>.
-
-</div>
-
-<div id="ref-RCoreTeam.2019" class="csl-entry">
-
-R Core Team. 2019. “<span class="nocase">R: A Language and Environment
-for Statistical Computing</span>.” Vienna, Austria: R Foundation for
-Statistical Computing. <https://www.R-project.org/>.
-
-</div>
-
-<div id="ref-Wickham.2019b" class="csl-entry">
-
-Wickham, Hadley, and Jennifer Bryan. 2019.
-“<span class="nocase">usethis: Automate Package and Project
-Setup</span>.” <https://CRAN.R-project.org/package=usethis>.
-
-</div>
-
-<div id="ref-Wickham.2019c" class="csl-entry">
-
-Wickham, Hadley, Peter Danenberg, Gábor Csárdi, and Manuel Eugster.
-2019. “<span class="nocase">roxygen2: In-Line Documentation for
-R</span>.” <https://CRAN.R-project.org/package=roxygen2>.
-
-</div>
-
-<div id="ref-Wickham.2019" class="csl-entry">
-
-Wickham, Hadley, Jim Hester, and Winston Chang. 2019.
-“<span class="nocase">devtools: Tools to Make Developing R Packages
-Easier</span>.” <https://CRAN.R-project.org/package=devtools>.
+Garrigues, and Miguel de la Guardia. 2013. “Atmospheric Compensation in
+Fourier Transform Infrared (FT-IR) Spectra of Clinical Samples.”
+*Applied Spectroscopy* 67 (11): 1339–42.
+<https://doi.org/10.1366/13-07159>.
 
 </div>
 

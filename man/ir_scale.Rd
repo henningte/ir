@@ -34,8 +34,8 @@ numerical). \code{NA}s are omitted during this process.
 Scales spectra in an \code{ir} object
 }
 \examples{
-ir_sample_data \%>\%
- ir_scale() \%>\%
+ir_sample_data |>
+ ir_scale() |>
  plot()
 
 }

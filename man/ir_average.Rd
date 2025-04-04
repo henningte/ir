@@ -48,6 +48,6 @@ values are omitted by default.
 \examples{
 # average the sample data spectra across sample types
 x <-
-  ir_sample_data \%>\%
+  ir_sample_data |>
   ir_average(sample_type)
 }

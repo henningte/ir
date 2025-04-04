@@ -30,10 +30,10 @@ Separate a collapsed column in an \code{ir} object into multiple rows
 }
 \examples{
 ## separate_rows
-ir_sample_data \%>\%
+ir_sample_data |>
   tidyr::unite(
     col = content, holocellulose, klason_lignin
-  ) \%>\%
+  ) |>
   tidyr::separate_rows(
     col
   )

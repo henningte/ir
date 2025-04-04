@@ -29,9 +29,11 @@
 #' @examples
 #'
 #' # import data from csv files
-#' d <- ir::ir_import_csv(
-#'   system.file(package = "ir", "extdata/klh_hodgkins_mir.csv"),
-#'   sample_id = "from_colnames")
+#' d <-
+#'   ir::ir_import_csv(
+#'     system.file(package = "ir", "extdata/klh_hodgkins_mir.csv"),
+#'     sample_id = "from_colnames"
+#'   )
 #'
 #' @export
 ir_import_csv <- function(filenames,

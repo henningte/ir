@@ -22,8 +22,8 @@
 #'
 #' @examples
 #' x_index_1090 <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_flatten() %>%
+#'    ir::ir_sample_data |>
+#'    ir::ir_flatten() |>
 #'    ir::ir_get_wavenumberindex(wavenumber = 1090)
 #'
 #' @export

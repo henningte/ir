@@ -45,18 +45,18 @@ respective intensity value will be assigned to both neighboring bins.
 \examples{
 # new wavenumber values are the first wavenumber value for each bin
 x1 <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir_bin(width = 50, new_x_type = "start")
 
 # new wavenumber values are the last wavenumber value for each bin
 x2 <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir_bin(width = 50, new_x_type = "mean")
 
 # new wavenumber values are the average of the wavenumber values assigned to
 # each bin
 x3 <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir_bin(width = 50, new_x_type = "end")
 
 # compare wavenumber values for first spectra.

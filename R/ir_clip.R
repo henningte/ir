@@ -29,7 +29,7 @@
 #'
 #' # clip
 #' x <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_clip(range = range)
 #'
 #' ## clipping with mutliple ranges
@@ -40,7 +40,7 @@
 #'
 #' # clip
 #' x <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_clip(range = range)
 #' @export
 ir_clip <- function(x, range, return_ir_flat = FALSE) {

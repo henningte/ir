@@ -9,6 +9,7 @@ navbar:
     github:
       icon: fab fa-github fa-lg
       href: https://github.com/henningte/ir/
+      aria-label: View on GitHub
     articles:
       text: Articles
       menu:
@@ -77,6 +78,7 @@ reference:
       - ir_normalize
       - ir_smooth
       - ir_correct_atmosphere
+      - ir_scale
       - starts_with("ir_to_")
   - title: "Spectral analysis"
     desc: >
@@ -89,6 +91,7 @@ reference:
       - ir_divide
       - ir_variance_region
       - range
+      - ir_sample_prospectr
   - title: "tidyverse methods"
     desc: >
       tidyverse methods for `ir` objects
@@ -126,6 +129,7 @@ reference:
       - ir_flat_clean
       - ir_new_ir_flat
       - ir_stack
+      - ir_identify_empty_spectra
 
 
 

@@ -33,38 +33,38 @@
 #' @examples
 #' # with method = "area"
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_normalize(method = "area")
 #'
 #' # second derivative spectrum with method = "area" or method = "area_absolute"
 #' x2 <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_smooth(method = "sg", n = 31, m = 2) %>%
+#'    ir::ir_sample_data |>
+#'    ir::ir_smooth(method = "sg", n = 31, m = 2) |>
 #'    ir::ir_normalize(method = "area")
 #'
 #' x3 <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_smooth(method = "sg", n = 31, m = 2) %>%
+#'    ir::ir_sample_data |>
+#'    ir::ir_smooth(method = "sg", n = 31, m = 2) |>
 #'    ir::ir_normalize(method = "area_absolute")
 #'
 #' # with method = "zeroone"
 #' x4 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_normalize(method = "zeroone")
 #'
 #' # with method = "vector"
 #' x5 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_normalize(method = "vector")
 #'
 #' # with method = "snv"
 #' x6 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_normalize(method = "snv")
 #'
 #' # normalizing to a specific peak
 #' x7 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_normalize(method = 1090)
 #'
 #' @export

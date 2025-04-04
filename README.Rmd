@@ -57,7 +57,7 @@ knitr::opts_chunk$set(
 10. spectral arithmetic (addition, subtraction, multiplication, division)
 11. computing the variance of intensity values (optionally after subtracting reference spectra)
 12. computing maxima, minima, median, and ranges of intensity values of spectra
-13. Atmospheric background correction [@PerezGuaita.2013]
+13. Atmospheric background correction [@Perez-Guaita.2013]
 14. Scaling intensity values in spectra
 15. Wrapper to sampling algorithms implemented in the 'prospectr' package. 
 16. plotting
@@ -82,7 +82,7 @@ remotes::install_github(repo = "henningte/ir", ref = "dev")
 
 Load 'ir':
 
-```{r load_ir}
+```{r load_ir, warning=FALSE}
 # load ir package
 library(ir)
 
@@ -100,11 +100,11 @@ For brief introductions, see below and the two vignettes:
 Here is an example preprocessing pipeline for the sample data in the package (`ir_sample_data`) which does baseline correction, binning (bin width of 10), normalization (so that the maximum intensity value is 1 and the minimum intensity value is 0), and finally plots the preprocessed spectra for each sample and sample type:
 
 ```{r sample_data_workflow}
-ir_sample_data %>%                                      # data
-  ir::ir_bc(method = "rubberband") %>%                  # baseline correction
-  ir::ir_bin(width = 10) %>%                            # binning
-  ir::ir_normalize(method = "zeroone") %>%              # normalization
-  plot() + ggplot2::facet_wrap(~ sample_type)           # plot
+ir_sample_data |>                                      # data
+  ir::ir_bc(method = "rubberband") |>                  # baseline correction
+  ir::ir_bin(width = 10) |>                            # binning
+  ir::ir_normalize(method = "zeroone") |>              # normalization
+  plot() + ggplot2::facet_wrap(~ sample_type)          # plot
 ```
 
 #### Data structure
@@ -151,8 +151,6 @@ We welcome contributions from everyone. Before you get started, please see our [
 
 ### Sources
 
-`ir_sample_data` is derived from @Hodgkins.2018 and was reformatted to match the requirements of 'ir'. The original article containing the data can be downloaded from https://www.nature.com/articles/s41467-018-06050-2 and is distributed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). The data on Klason lignin and holocellulose content are originally from @LaCruz.2016.
-
-This packages was developed in R (`r R.Version()$version.string`) [@RCoreTeam.2019] using functions from 'devtools' [@Wickham.2019], 'usethis' [@Wickham.2019b], and 'roxygen2' [@Wickham.2019c].
+`ir_sample_data` is derived from @Hodgkins.2018 and was reformatted to match the requirements of 'ir'. The original article containing the data can be downloaded from https://www.nature.com/articles/s41467-018-06050-2 and is distributed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/). The data on Klason lignin and holocellulose content are originally from @DelaCruz.2016.
 
 ### References

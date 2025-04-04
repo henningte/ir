@@ -113,17 +113,17 @@ Nest and un-nest an \code{ir} object
 }
 \examples{
 ## nest
-ir_sample_data \%>\%
+ir_sample_data |>
   tidyr::nest(
     contents = c(holocellulose, klason_lignin)
   )
 
 
 ## unnest
-ir_sample_data \%>\%
+ir_sample_data |>
   tidyr::nest(
     contents = c(holocellulose, klason_lignin)
-  ) \%>\%
+  ) |>
   tidyr::unnest("contents")
 
 

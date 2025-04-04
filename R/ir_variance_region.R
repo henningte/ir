@@ -50,7 +50,7 @@
 #' @examples
 #' # Whole spectra variance
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_variance_region(
 #'       subtract_smoothed = FALSE,
 #'       do_normalize = TRUE,
@@ -62,8 +62,8 @@
 #' range <- data.frame(start = 2700, end = 2800)
 #'
 #' x2 <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_normalize(method = "area") %>%
+#'    ir::ir_sample_data |>
+#'    ir::ir_normalize(method = "area") |>
 #'    ir::ir_variance_region(
 #'       subtract_smoothed = FALSE,
 #'       do_normalize = TRUE,

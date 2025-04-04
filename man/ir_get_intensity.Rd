@@ -33,7 +33,7 @@ user-defined spectral channels ("x axis values", e.g. wavenumber values).
 }
 \examples{
 x <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir::ir_get_intensity(wavenumber = 1090)
 
 }

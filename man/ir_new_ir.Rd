@@ -33,7 +33,7 @@ sample in each row and a list column containing spectra for each sample.
 \examples{
 ir_new_ir(
   spectra = ir_sample_data$spectra,
-  metadata = ir_sample_data \%>\% dplyr::select(-spectra)
+  metadata = ir_sample_data |> dplyr::select(-spectra)
 )
 
 }

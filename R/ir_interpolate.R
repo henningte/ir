@@ -23,7 +23,7 @@
 #'
 #' @examples
 #' x <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_interpolate(start = NULL, dw = 1)
 #'
 #' @export

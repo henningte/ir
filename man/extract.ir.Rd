@@ -48,7 +48,7 @@ Extract a character column in an \code{ir} object into multiple columns using re
 }
 \examples{
 ## extract
-ir_sample_data \%>\%
+ir_sample_data |>
   tidyr::extract(
     id_sample,  "a"
   )

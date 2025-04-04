@@ -14,8 +14,8 @@
 #' @examples
 #' # rbind
 #' rbind(ir_sample_data, ir_sample_data)
-#' rbind(ir_sample_data %>% dplyr::select(spectra),
-#'       ir_sample_data %>% dplyr::select(spectra))
+#' rbind(ir_sample_data |> dplyr::select(spectra),
+#'       ir_sample_data |> dplyr::select(spectra))
 #'
 #' @export
 rbind.ir <- function(..., deparse.level = 1) {

@@ -64,22 +64,22 @@ intensity value of infrared spectra.
 \examples{
 # range of intensity values
 x1 <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    range(.dimension = "y")
 
 # minimum intensity values
 x1 <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    min(.dimension = "y")
 
 # maximum intensity values
 x1 <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    max(.dimension = "y")
 
 # median intensity values
 x1 <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    stats::median(.dimension = "y")
 
 }

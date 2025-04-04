@@ -38,7 +38,7 @@ range <-
 
 # clip
 x <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir::ir_clip(range = range)
 
 ## clipping with mutliple ranges
@@ -49,6 +49,6 @@ range <-
 
 # clip
 x <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir::ir_clip(range = range)
 }

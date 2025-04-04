@@ -33,30 +33,30 @@
 #'
 #' # rubberband baseline correction
 #' x1 <-
-#'    ir::ir_sample_data %>%
-#'    dplyr::slice(1:10) %>%
+#'    ir::ir_sample_data |>
+#'    dplyr::slice(1:10) |>
 #'    ir::ir_bc(method = "rubberband")
 #'
 #' # polynomial baseline correction
 #' if(!requireNamespace("ChemoSpec", quietly = TRUE)) {
 #'   x2 <-
-#'     ir::ir_sample_data %>%
-#'     dplyr::slice(1:10) %>%
+#'     ir::ir_sample_data |>
+#'     dplyr::slice(1:10) |>
 #'     ir::ir_bc(method = "polynomial", degree = 2)
 #' }
 #'
 #' # Savitzky-Golay baseline correction
 #' if(!requireNamespace("signal", quietly = TRUE)) {
 #'   x3 <-
-#'      ir::ir_sample_data %>%
-#'      dplyr::slice(1:10) %>%
+#'      ir::ir_sample_data |>
+#'      dplyr::slice(1:10) |>
 #'      ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
 #' }
 #'
 #' # return the baseline instead of the baseline corrected spectra
 #' x1_bl <-
-#'    ir::ir_sample_data %>%
-#'    dplyr::slice(1:10) %>%
+#'    ir::ir_sample_data |>
+#'    dplyr::slice(1:10) |>
 #'    ir::ir_bc(method = "rubberband", return_bl = TRUE)
 #'
 #' @export
@@ -124,7 +124,7 @@ ir_bc <- function(x,
 #' @examples
 #' if(! requireNamespace("ChemoSpec", quietly = TRUE)) {
 #'   x2 <-
-#'      ir::ir_sample_data %>%
+#'      ir::ir_sample_data |>
 #'      ir::ir_bc_polynomial(degree = 2, return_bl = FALSE)
 #' }
 #'
@@ -230,7 +230,7 @@ ir_bc_polynomial <- function(x,
 #'
 #' @examples
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_bc_rubberband(return_bl = FALSE)
 #'
 #' @export
@@ -315,7 +315,7 @@ ir_bc_rubberband <- function(x,
 #' @examples
 #' if(! requireNamespace("signal", quietly = TRUE)) {
 #'   x <-
-#'     ir::ir_sample_data %>%
+#'     ir::ir_sample_data |>
 #'     ir::ir_bc_sg(p = 3, n = 199, ts = 1, m = 0, return_bl = FALSE)
 #' }
 #'

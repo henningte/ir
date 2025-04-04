@@ -40,10 +40,10 @@ Unite multiple columns in an \code{ir} object into one by pasting strings togeth
 }
 \examples{
 ## unite
-ir_sample_data \%>\%
+ir_sample_data |>
   tidyr::separate(
     "id_sample",  c("a", "b", "c")
-  ) \%>\%
+  ) |>
   tidyr::unite(id_sample, a, b, c)
 
 

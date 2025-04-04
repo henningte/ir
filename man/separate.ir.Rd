@@ -74,7 +74,7 @@ Separate a character column in an \code{ir} object into multiple columns with a 
 }
 \examples{
 ## separate
-ir_sample_data \%>\%
+ir_sample_data |>
   tidyr::separate(
     col = "id_sample",  c("a", "b", "c")
   )

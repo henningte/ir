@@ -49,21 +49,20 @@ library(ir)
 ```
 
 
-
 # Data import and export
 
 ## Data import
 
-To test importing spectra from files, I'll use sample data provided in the 'ir' package (in folder `inst/extdata`). First, I'll show how to import spectra from `csv` files and then how to import  Thermo Galactic's spectral files (file extension `.spc`).
+To test importing spectra from files, I'll use sample data provided in the 'ir' package (in folder `inst/extdata`). First, I'll show how to import spectra from `csv` files and then how to import Thermo Galactic's spectral files (file extension `.spc`).
 
 ### `csv` files
 
 Spectra from `csv` files can be imported with `ir_import_csv()`. This function can import spectra from one or more `csv` files with the following format:
 
 ```{r import-csv-table-format, echo=FALSE}
-read.csv("../inst/extdata/klh_hodgkins_mir.csv") %>%
-  dplyr::select(1:5) %>%
-  dplyr::slice(1:6) %>%
+read.csv("../inst/extdata/klh_hodgkins_mir.csv") |>
+  dplyr::select(1:5) |>
+  dplyr::slice(1:6) |>
   kableExtra::kable()
 ```
 
@@ -72,7 +71,11 @@ This is a subset of the data we will import in a few moments. The first column m
 To import the data, you can simply pass the path to the file to `ir_import_csv()`:
 
 ```{r import-csv-1}
-d_csv <- ir_import_csv("../inst/extdata/klh_hodgkins_mir.csv", sample_id = "from_colnames")
+d_csv <- 
+  ir_import_csv(
+    "../inst/extdata/klh_hodgkins_mir.csv", 
+    sample_id = "from_colnames"
+  )
 ```
 
 The argument `sample_id = "from_colnames"` tells `ir_import_csv()` to extract names for the spectra from the column names of the `csv` file.
@@ -85,25 +88,27 @@ library(stringr)
 
 # import the metadata
 d_csv_metadata <- 
-  read.csv("./../inst/extdata/klh_hodgkins_reference.csv",
-           header = TRUE,
-           as.is = TRUE) %>%
+  read.csv(
+    "./../inst/extdata/klh_hodgkins_reference.csv",
+    header = TRUE,
+    as.is = TRUE
+  ) |>
   dplyr::rename(
     sample_id = "Sample.Name",
     sample_type = "Category",
     comment = "Description",
     holocellulose = "X..Cellulose...Hemicellulose..measured.",
     klason_lignin = "X..Klason.lignin..measured." 
-  ) %>%
+  ) |>
   # make the sample_id values fit to those in `d_csv$sample_id` to make combining easier
   dplyr::mutate(
     sample_id =
-      sample_id %>%
+      sample_id |>
       stringr::str_replace_all(pattern = "( |-)", replacement = "\\.")
   )
 
 d_csv <- 
-  d_csv %>%
+  d_csv |>
   dplyr::full_join(d_csv_metadata, by = "sample_id")
 ```
 
@@ -118,7 +123,7 @@ Spectra from `spc` files can be imported with `ir_import_spc()`. This function c
 d_spc <- ir_import_spc("../inst/extdata/1.spc", log.txt = FALSE)
 ```
 
-In this case, names for the spectra and other metadata are extracted from the `spc` file(s) and added to the `ir` object. You can inspect `d_spc` to see these additional variables.
+In this case, names for the spectra and other metadata are extracted from the `spc` file(s) and added to the `ir` object. You can inspect `d_spc` to see these additional variables. The option `log.txt = FALSE` means that some of the metadata will not be imported. To import these additional metadata, you need to install version 0.200.0.9000 or higher of the 'hyperSpec' package, which is currently only available from GitHub (https://github.com/r-hyperspec/hyperSpec).
 
 
 ## Data export
@@ -129,8 +134,8 @@ To export the spectra, type:
 
 ```{r export-csv-1}
 # export only the spectra
-ir_sample_data %>%
-  ir_export_prepare(what = "spectra") %>%
+ir_sample_data |>
+  ir_export_prepare(what = "spectra") |>
   write.csv(tempfile("ir_sample_data_spectra", fileext = "csv"), row.names = FALSE)
 ```
 
@@ -138,8 +143,8 @@ To export the additional metadata contained in an `ir` object, type:
 
 ```{r export-csv-2}
 # export only the metadata
-ir_sample_data %>%
-  ir_drop_spectra() %>%
+ir_sample_data |>
+  ir_drop_spectra() |>
   write.csv(tempfile("ir_sample_data_metadata", fileext = "csv"), row.names = FALSE)
 ```
 
@@ -194,8 +199,8 @@ plot(d_spc)
 Baseline correction with a rubberband algorithm (see the `spc.rubberband` function in the ['hyperspec'](https://cran.r-project.org/package=hyperSpec) package):
 
 ```{r preprocessing-bc-1}
-d_spc %>%
-  ir_bc(method = "rubberband") %>%
+d_spc |>
+  ir_bc(method = "rubberband") |>
   plot()
 ```
 
@@ -205,16 +210,16 @@ d_spc %>%
 Normalization of intensity values by dividing each intensity value by the sum of all intensity values (note the different scale of the y axis in comparison to the spectrum before any preprocessing):
 
 ```{r preprocessing-normalization-1}
-d_spc %>%
-  ir_normalize(method = "area") %>%
+d_spc |>
+  ir_normalize(method = "area") |>
   plot()
 ```
 
 Normalization of intensity values by dividing each intensity value by the the intensity value at a specific wavenumber (the horizontal and vertical lines highlight that the intensity at the selected wavenumber is 1 after normalization):
 
 ```{r preprocessing-normalization-2}
-d_spc %>%
-  ir_normalize(method = 1090) %>%
+d_spc |>
+  ir_normalize(method = 1090) |>
   plot() +
   geom_hline(yintercept = 1, linetype = 2) +
   geom_vline(xintercept = 1090, linetype = 2)
@@ -227,8 +232,8 @@ The warning just says that the spectrum's wavenumber values did not exactly matc
 Smoothing of spectra with the Savitzky-Golay algorithm (see the `sgolayfilt()` function from the ['signal'](https://cran.r-project.org/package=signal) package for details):
 
 ```{r}
-d_spc %>%
-  ir_smooth(method = "sg", p = 3, n = 91, m = 0) %>%
+d_spc |>
+  ir_smooth(method = "sg", p = 3, n = 91, m = 0) |>
   plot()
 ```
 
@@ -237,8 +242,8 @@ d_spc %>%
 Savitzky-Golay smoothing can also be used to compute derivative spectra (here the first derivative is computed by setting the argument `m` to `1`. See `?ir_smooth()` for more information):
 
 ```{r}
-d_spc %>%
-  ir_smooth(method = "sg", p = 3, n = 9, m = 1) %>%
+d_spc |>
+  ir_smooth(method = "sg", p = 3, n = 9, m = 1) |>
   plot()
 ```
 
@@ -248,8 +253,8 @@ d_spc %>%
 Spectra can be clipped to desired ranges for spectral channels ("x axis values", e.g. wavenumbers). Here, I clip the spectrum to the range [1000, 3000]:
 
 ```{r}
-d_spc %>%
-  ir_clip(range = data.frame(start = 1000, end = 3000)) %>%
+d_spc |>
+  ir_clip(range = data.frame(start = 1000, end = 3000)) |>
   plot()
 ```
 
@@ -259,8 +264,8 @@ d_spc %>%
 Spectral interpolation (interpolating intensity values for new wavenumber values) can be performed. Here, intensity values are interpolated to integer wavenumbers increasing by 1 (by setting `dw = 1`) within the range of the data:
 
 ```{r}
-d_spc %>%
-  ir_interpolate(dw = 1) %>%
+d_spc |>
+  ir_interpolate(dw = 1) |>
   plot()
 ```
 
@@ -269,8 +274,8 @@ This is not easy to see from the plot, but the warning shown above (section [Nor
 
 ```{r}
 d_spc %>%
-  ir_interpolate(dw = 1) %>%
-  ir_normalize(method = 1090) %>%
+  ir_interpolate(dw = 1) |>
+  ir_normalize(method = 1090) |>
   plot() +
   geom_hline(yintercept = 1, linetype = 2) +
   geom_vline(xintercept = 1090, linetype = 2)
@@ -281,8 +286,8 @@ d_spc %>%
 Sometimes, it is useful to replace parts of spectra by straight lines which connect the start and end points of a specified range. This can be done with `ir_interpolate_region()`:
 
 ```{r}
-d_spc %>%
-  ir_interpolate_region(range = data.frame(start = 1000, end = 3000)) %>%
+d_spc |>
+  ir_interpolate_region(range = data.frame(start = 1000, end = 3000)) |>
   plot()
 ```
 
@@ -292,8 +297,8 @@ d_spc %>%
 Spectral binning collects all intensity values in contiguous spectral ranges ("bins") with specified widths and averages these:
 
 ```{r}
-d_spc %>%
-  ir_bin(width = 30) %>%
+d_spc |>
+  ir_bin(width = 30) |>
   plot()
 ```
 
@@ -303,8 +308,8 @@ d_spc %>%
 Scaling takes a set of spectra with the same x axis values and then applies `base::scale()` on the intensity values of all spectra for the same x axis value:
 
 ```{r}
-d_csv %>%
-  ir_scale(center = TRUE, scale = FALSE) %>%
+d_csv |>
+  ir_scale(center = TRUE, scale = FALSE) |>
   plot()
 ```
 
@@ -314,12 +319,12 @@ d_csv %>%
 With 'ir', it is very easy to build complex preprocessing workflows by "piping" together different preprocessing steps (using the pipe (`%>%`) operator in the ['magrittr'](https://cran.r-project.org/package=magrittr) package):
 
 ```{r}
-d_spc %>%
-  ir_interpolate(dw = 1) %>%
-  ir_clip(range = data.frame(start = 700, end = 3900)) %>%
-  ir_bc(method = "rubberband") %>%
-  ir_normalise(method = "area") %>%
-  ir_bin(width = 10) %>%
+d_spc |>
+  ir_interpolate(dw = 1) |>
+  ir_clip(range = data.frame(start = 700, end = 3900)) |>
+  ir_bc(method = "rubberband") |>
+  ir_normalise(method = "area") |>
+  ir_bin(width = 10) |>
   plot()
 ```
 

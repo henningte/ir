@@ -23,7 +23,7 @@ An object of class \code{\link[=ir_new_ir_flat]{ir_flat}}.
 }
 \examples{
 x_flat <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir::ir_flatten()
 
 }

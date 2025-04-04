@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' x <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_get_spectrum(what = c(5, 9))
 #'
 #' @export

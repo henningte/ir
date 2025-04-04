@@ -27,8 +27,8 @@ Bind rows of \code{ir} objects
 \examples{
 # rbind
 rbind(ir_sample_data, ir_sample_data)
-rbind(ir_sample_data \%>\% dplyr::select(spectra),
-      ir_sample_data \%>\% dplyr::select(spectra))
+rbind(ir_sample_data |> dplyr::select(spectra),
+      ir_sample_data |> dplyr::select(spectra))
 
 # cbind
 cbind(ir_sample_data, a = seq_len(nrow(ir_sample_data)))

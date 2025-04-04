@@ -156,8 +156,8 @@ library(dplyr)
 d <- ir_sample_data
 
 d <- 
-  d %>%
-  mutate(a = rnorm(n = nrow(.)))
+  d |>
+  mutate(a = rnorm(n = length(spectra)))
   
 head(ir_sample_data)
 ```
@@ -169,8 +169,8 @@ library(dplyr)
 d <- ir_sample_data
 
 d1 <- 
-  d %>%
-  mutate(a = rnorm(n = nrow(.)))
+  d |>
+  mutate(a = rnorm(n = length(spectra)))
   
 rmarkdown::paged_table(head(ir_sample_data))
 ```
@@ -183,19 +183,19 @@ library(purrr)
 library(ggplot2)
 
 d2 <- 
-  d %>%
-  group_by(sample_type) %>%
+  d |>
+  group_by(sample_type) |>
   summarize(
     spectra = {
       res <- map_dfc(spectra, function(.x) .x[, 2, drop = TRUE])
-      spectra[[1]] %>%
+      spectra[[1]] |>
         dplyr::mutate(
           y =
-            res %>%
-            rowwise() %>%
-            mutate(y = max(c_across(everything()))) %>%
+            res |>
+            rowwise() |>
+            mutate(y = max(c_across(everything()))) |>
             pull(y)
-        ) %>%
+        ) |>
         list()
     },
     .groups = "drop"
@@ -216,15 +216,15 @@ There are some more special functions to manipulate `ir` objects which are not d
 Sometimes, it is useful to replicate one or multiple measurements. This can be done with the `rep()` method for `ir` objects. For example, we can replicate the second spectrum in `ir_sample_data`:
 
 ```{r, results='hide'}
-ir_sample_data %>%
-  slice(2) %>%
+ir_sample_data |>
+  slice(2) |>
   rep(20)
 ```
 
 ```{r, echo=FALSE}
-ir_sample_data %>%
-  slice(2) %>%
-  rep(20) %>%
+ir_sample_data |>
+  slice(2) |>
+  rep(20) |>
   rmarkdown::paged_table()
 ```
 
@@ -235,25 +235,26 @@ ir_sample_data %>%
 The `ir` packages supports arithmetic operations with spectra, i.e. addition, subtraction, multiplication, and division of intensity values with the same "x axis values". For example, we can subtract the third spectrum in `ir_sample_data` from the second:
 
 ```{r}
-ir_sample_data %>%
-  slice(2) %>%
-  ir_subtract(y = ir_sample_data[3, ]) %>%
-  dplyr::mutate(id_sample = "subtraction_result") %>%
-  rbind(ir_sample_data[2:3, ]) %>%
-  plot() + facet_wrap(~ id_sample)
+ir_sample_data |>
+  slice(2) |>
+  ir_subtract(y = ir_sample_data[3, ]) |>
+  dplyr::mutate(id_sample = "subtraction_result") |>
+  rbind(ir_sample_data[2:3, ]) |>
+  plot() + 
+  facet_wrap(~ id_sample)
 ```
 
 Note that all metadata of the first argument (`x`) will be retained, but not of the second (`y`). This is why we had to manually change `id_sample` before `rbind`ing the other spectra above. Note also that `x` can contain multiple spectra, `y` must either only contain one spectrum or the same number of spectra as `x` in which case spectra of matching rows are subtracted (added, multiplied, divided):
 
 ```{r, error=TRUE}
 # This will not work
-ir_sample_data %>%
-  slice(6) %>%
+ir_sample_data |>
+  slice(6) |>
   ir_add(y = ir_sample_data[3:4, ])
 
 # but this will
-ir_sample_data %>%
-  slice(2:6) %>%
+ir_sample_data |>
+  slice(2:6) |>
   ir_add(y = ir_sample_data[3, ]) 
 ```
 

@@ -96,7 +96,7 @@ ungroup.ir <- function(.data, ...) {
 #'
 #' @examples
 #' ## rowwise
-#' dplyr::rowwise(ir_sample_data) %>%
+#' dplyr::rowwise(ir_sample_data) |>
 #'   dplyr::mutate(
 #'     hkl =
 #'       mean(
@@ -279,8 +279,8 @@ slice_sample.ir <- function(.data, ..., n, prop, weight_by = NULL, replace = FAL
 #' ## summarize
 #'
 #' # select in each sample_type groups the first spectrum
-#' ir_sample_data %>%
-#'   dplyr::group_by(sample_type) %>%
+#' ir_sample_data |>
+#'   dplyr::group_by(sample_type) |>
 #'   dplyr::summarize(spectra = spectra[[1]])
 #'
 #'
@@ -332,7 +332,7 @@ distinct.ir <- function(.data, ..., .keep_all = FALSE) {
 #'
 #' @examples
 #' ## pivot_longer
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::pivot_longer(
 #'     cols = dplyr::any_of(c("holocellulose", "klason_lignin"))
 #'   )
@@ -373,10 +373,10 @@ pivot_longer.ir <- function(
 #'
 #' @examples
 #' ## pivot_wider
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::pivot_longer(
 #'     cols = dplyr::any_of(c("holocellulose", "klason_lignin"))
-#'   ) %>%
+#'   ) |>
 #'   tidyr::pivot_wider(names_from = "name", values_from = "value")
 #'
 #'
@@ -427,7 +427,7 @@ pivot_wider.ir <- function(
 #'
 #' @examples
 #' ## nest
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::nest(
 #'     contents = c(holocellulose, klason_lignin)
 #'   )
@@ -444,10 +444,10 @@ nest.ir <- function(.data, ..., .names_sep = NULL, .key = deprecated()) {
 #'
 #' @examples
 #' ## unnest
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::nest(
 #'     contents = c(holocellulose, klason_lignin)
-#'   ) %>%
+#'   ) |>
 #'   tidyr::unnest("contents")
 #'
 #'
@@ -484,7 +484,7 @@ unnest.ir <- function(
 #'
 #' @examples
 #' ## separate
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::separate(
 #'     col = "id_sample",  c("a", "b", "c")
 #'   )
@@ -521,10 +521,10 @@ separate.ir <- function(
 #'
 #' @examples
 #' ## unite
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::separate(
 #'     "id_sample",  c("a", "b", "c")
-#'   ) %>%
+#'   ) |>
 #'   tidyr::unite(id_sample, a, b, c)
 #'
 #'
@@ -548,7 +548,7 @@ unite.ir <- function(data, col, ..., sep = "_", remove = TRUE, na.rm = FALSE) {
 #'
 #' @examples
 #' ## extract
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::extract(
 #'     id_sample,  "a"
 #'   )
@@ -582,10 +582,10 @@ extract.ir <- function(
 #'
 #' @examples
 #' ## separate_rows
-#' ir_sample_data %>%
+#' ir_sample_data |>
 #'   tidyr::unite(
 #'     col = content, holocellulose, klason_lignin
-#'   ) %>%
+#'   ) |>
 #'   tidyr::separate_rows(
 #'     col
 #'   )

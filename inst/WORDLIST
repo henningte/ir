@@ -1,4 +1,3 @@
-ASCE
 ATR
 Barlaz
 ChemoSpec
@@ -8,7 +7,6 @@ DOI
 Danenberg
 De
 Dommain
-EE
 Eugster
 Florentino
 Galactic's
@@ -26,7 +24,6 @@ Klason
 Kuligowski
 Lasch
 Lifecycle
-Marwick
 Microspectroscopic
 ORCID
 POSIXct
@@ -48,13 +45,10 @@ absorbances
 al
 apodisation
 argment
-benmarwick
-chemolab
-creativecommons
 csv
 de
 devtools
-doi
+devtools’
 dplyr
 et
 ggplot
@@ -68,18 +62,18 @@ ing
 irpeat
 ir’
 magrittr
-magrittr's
 mth
 numeic
-ortion
 peatland
 polynom
 preprocess
+preprocessed
+prospectr
+prospectr’
 ptype
 purrr
 rowwise
 roxygen
-rrtools
 rubberband
 smoothes
 spc
@@ -90,7 +84,9 @@ standardised
 summarise
 tibble
 tidyr
+tidyselect
 tidyverse
+tidyverse’
 ucrt
 un
 unchopping
@@ -101,7 +97,8 @@ unnested
 unnesting
 unsmoothed
 usethis
+usethis’
 wavenumber
 wavenumbers
-www
 zenodo
+’

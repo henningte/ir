@@ -13,15 +13,15 @@
 #' @examples
 #' # from data frame
 #' x1 <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_flatten() %>%
+#'    ir::ir_sample_data |>
+#'    ir::ir_flatten() |>
 #'    ir::ir_stack()
 #'
 #' # from matrix
 #' x2 <-
-#'    ir::ir_sample_data %>%
-#'    ir::ir_flatten() %>%
-#'    as.matrix() %>%
+#'    ir::ir_sample_data |>
+#'    ir::ir_flatten() |>
+#'    as.matrix() |>
 #'    ir::ir_stack()
 #'
 #' @export

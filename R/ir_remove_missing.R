@@ -23,13 +23,13 @@
 #'
 #' # remove missing values (but remove no rows in x)
 #' x1 <-
-#'    x %>%
+#'    x |>
 #'    ir::ir_remove_missing(remove_rows = FALSE)
 #'
 #' # remove missing values (and remove rows in x if a compete spectrum is
 #' # missing)
 #' x2 <-
-#'    x %>%
+#'    x |>
 #'    ir::ir_remove_missing(remove_rows = TRUE)
 #'
 #' nrow(x)

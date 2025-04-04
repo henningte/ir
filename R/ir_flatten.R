@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' x_flat <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir::ir_flatten()
 #'
 #' @export

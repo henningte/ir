@@ -18,7 +18,7 @@ attribute.
 of class \code{ir} and removes the \code{"ir"} class attribute.
 }
 \examples{
-ir::ir_sample_data \%>\%
+ir::ir_sample_data |>
   ir_drop_spectra()
 
 }

@@ -32,7 +32,7 @@ An object of class \code{ir} with the baseline corrected spectra, or if
 correction is either performed by using a polynomial with user defined
 degree fitted to each spectrum (see \code{\link[ChemoSpec:baselineSpectra]{ChemoSpec::baselineSpectra()}}), or by
 using a rubberband function that is fitted to each spectrum (see
-\code{\link[hyperSpec:spc.rubberband]{hyperSpec::spc.rubberband()}}), or using a Savitzky-Golay smoothed version of
+\code{\link[hyperSpec:spc-rubberband]{hyperSpec::spc.rubberband()}}), or using a Savitzky-Golay smoothed version of
 the input spectra (see \code{\link[=ir_bc_sg]{ir_bc_sg()}}).
 }
 \examples{
@@ -40,30 +40,30 @@ library(dplyr)
 
 # rubberband baseline correction
 x1 <-
-   ir::ir_sample_data \%>\%
-   dplyr::slice(1:10) \%>\%
+   ir::ir_sample_data |>
+   dplyr::slice(1:10) |>
    ir::ir_bc(method = "rubberband")
 
 # polynomial baseline correction
 if(!requireNamespace("ChemoSpec", quietly = TRUE)) {
   x2 <-
-    ir::ir_sample_data \%>\%
-    dplyr::slice(1:10) \%>\%
+    ir::ir_sample_data |>
+    dplyr::slice(1:10) |>
     ir::ir_bc(method = "polynomial", degree = 2)
 }
 
 # Savitzky-Golay baseline correction
 if(!requireNamespace("signal", quietly = TRUE)) {
   x3 <-
-     ir::ir_sample_data \%>\%
-     dplyr::slice(1:10) \%>\%
+     ir::ir_sample_data |>
+     dplyr::slice(1:10) |>
      ir::ir_bc(method = "sg", p = 3, n = 199, ts = 1, m = 0)
 }
 
 # return the baseline instead of the baseline corrected spectra
 x1_bl <-
-   ir::ir_sample_data \%>\%
-   dplyr::slice(1:10) \%>\%
+   ir::ir_sample_data |>
+   dplyr::slice(1:10) |>
    ir::ir_bc(method = "rubberband", return_bl = TRUE)
 
 }

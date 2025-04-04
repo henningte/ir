@@ -31,16 +31,16 @@ cover the wavenumber range of all spectra in \code{x}, and if
 \code{do_interpolate = FALSE}, all spectra must have identical wavenumber values.}
 
 \item{wn1}{A numeric value representing the first wavenumber value to use as
-reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
-\insertCite{PerezGuaita.2013;textual}{ir} are:
+reference point \insertCite{Perez-Guaita.2013}{ir}. Examples used by
+\insertCite{Perez-Guaita.2013;textual}{ir} are:
 \describe{
 \item{H\eqn{_2}O}{3902 cm\eqn{^{-1}}.}
 \item{CO\eqn{_2}}{2361 cm\eqn{^{-1}}.}
 }}
 
 \item{wn2}{A numeric value representing the second wavenumber value to use as
-reference point \insertCite{PerezGuaita.2013}{ir}. Examples used by
-\insertCite{PerezGuaita.2013;textual}{ir} are:
+reference point \insertCite{Perez-Guaita.2013}{ir}. Examples used by
+\insertCite{Perez-Guaita.2013;textual}{ir} are:
 \describe{
 \item{H\eqn{_2}O}{3912 cm\eqn{^{-1}}.}
 \item{CO\eqn{_2}}{2349 cm\eqn{^{-1}}.}
@@ -74,7 +74,7 @@ difference between the selected and targeted wavenumber value.}
 \code{ir_correct_atmosphere} takes two objects of class \code{ir} with the same number
 of spectra in each and corrects the spectra of the first object with the
 spectra of the second object according to the procedure presented by
-\insertCite{PerezGuaita.2013}{ir}.
+\insertCite{Perez-Guaita.2013}{ir}.
 }
 \examples{
 x1 <-

@@ -24,7 +24,7 @@
 #' @examples
 #' ir_new_ir(
 #'   spectra = ir_sample_data$spectra,
-#'   metadata = ir_sample_data %>% dplyr::select(-spectra)
+#'   metadata = ir_sample_data |> dplyr::select(-spectra)
 #' )
 #'
 #' @export
@@ -182,7 +182,7 @@ NULL
 #' attribute.
 #'
 #' @examples
-#' ir::ir_sample_data %>%
+#' ir::ir_sample_data |>
 #'   ir_drop_spectra()
 #'
 #' @export
@@ -220,7 +220,7 @@ ir_as_ir <- function(x, ...) {
 #'
 #' @examples
 #' # conversion from an ir object
-#' ir::ir_sample_data %>%
+#' ir::ir_sample_data |>
 #'   ir_as_ir()
 #'
 #' @export
@@ -235,17 +235,17 @@ ir_as_ir.ir <- function(x, ...) {
 #' x_ir <- ir::ir_sample_data
 #'
 #' x_df <-
-#'   x_ir %>%
-#'   ir_drop_spectra() %>%
+#'   x_ir |>
+#'   ir_drop_spectra() |>
 #'   dplyr::mutate(
 #'     spectra = x_ir$spectra
-#'   ) %>%
+#'   ) |>
 #'   ir_as_ir()
 #'
 #' # check that ir_as_ir preserves the input class
-#' ir_sample_data %>%
-#'   structure(class = setdiff(class(.), "ir")) %>%
-#'   dplyr::group_by(sample_type) %>%
+#' ir_sample_data |>
+#'   structure(class = setdiff(class(ir_sample_data), "ir")) |>
+#'   dplyr::group_by(sample_type) |>
 #'   ir_as_ir()
 #'
 #'
@@ -259,8 +259,8 @@ ir_as_ir.data.frame <- function(x, ...) {
 #' @examples
 #' # conversion from an ir_flat object
 #' x_ir <-
-#'   ir::ir_sample_data %>%
-#'   ir::ir_flatten() %>%
+#'   ir::ir_sample_data |>
+#'   ir::ir_flatten() |>
 #'   ir::ir_as_ir()
 #'
 #' @export
@@ -398,7 +398,7 @@ rep.ir <- function(x, ...) {
 #'
 #' @examples
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    ir_drop_unneccesary_cols()
 #'
 #' @keywords internal

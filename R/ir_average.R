@@ -18,7 +18,7 @@
 #' @examples
 #' # average the sample data spectra across sample types
 #' x <-
-#'   ir_sample_data %>%
+#'   ir_sample_data |>
 #'   ir_average(sample_type)
 #' @export
 ir_average <- function(x, ..., na.rm = TRUE, .groups = "drop") {

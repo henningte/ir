@@ -33,7 +33,7 @@ range <- data.frame(start = 1000, end = 1500)
 
 # do the interpolation
 x <-
-   ir::ir_sample_data \%>\%
+   ir::ir_sample_data |>
    ir::ir_interpolate_region(range = range)
 
 }

@@ -17,8 +17,8 @@
 #' numerical). `NA`s are omitted during this process.
 #'
 #' @examples
-#' ir_sample_data %>%
-#'  ir_scale() %>%
+#' ir_sample_data |>
+#'  ir_scale() |>
 #'  plot()
 #'
 #' @export

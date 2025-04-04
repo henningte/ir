@@ -90,10 +90,10 @@ Pivot an \code{ir} object from wide to long
 }
 \examples{
 ## pivot_wider
-ir_sample_data \%>\%
+ir_sample_data |>
   tidyr::pivot_longer(
     cols = dplyr::any_of(c("holocellulose", "klason_lignin"))
-  ) \%>\%
+  ) |>
   tidyr::pivot_wider(names_from = "name", values_from = "value")
 
 

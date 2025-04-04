@@ -29,7 +29,7 @@ Group input \code{ir} objects by rows
 }
 \examples{
 ## rowwise
-dplyr::rowwise(ir_sample_data) \%>\%
+dplyr::rowwise(ir_sample_data) |>
   dplyr::mutate(
     hkl =
       mean(

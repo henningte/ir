@@ -29,19 +29,19 @@ absorbance or transmittance spectra.
 \examples{
 # convert from absorbance to transmittance
 x1 <-
-    ir_sample_data \%>\%
+    ir_sample_data |>
     ir_to_transmittance()
 
 # convert from transmittance to absorbance
 x2 <-
-    x1 \%>\%
+    x1 |>
     ir::ir_to_absorbance()
 
 vapply(
   seq_along(x2$spectra),
   FUN = function(i) all.equal(x2$spectra[[i]], ir::ir_sample_data$spectra[[i]]),
   FUN.VALUE = logical(1L)
-) \%>\%
+) |>
   all()
 
 }

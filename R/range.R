@@ -29,7 +29,7 @@
 #' @examples
 #' # range of intensity values
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    range(.dimension = "y")
 #'
 #' @export
@@ -55,7 +55,7 @@ range.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_names = c("y_
 #' @examples
 #' # minimum intensity values
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    min(.dimension = "y")
 #'
 #' @export
@@ -86,7 +86,7 @@ min.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_min")
 #' @examples
 #' # maximum intensity values
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    max(.dimension = "y")
 #'
 #' @export
@@ -117,7 +117,7 @@ max.ir <- function(x, ..., na.rm = FALSE, .dimension = "y", .col_name = "y_max")
 #' @examples
 #' # median intensity values
 #' x1 <-
-#'    ir::ir_sample_data %>%
+#'    ir::ir_sample_data |>
 #'    stats::median(.dimension = "y")
 #'
 #' @importFrom stats median

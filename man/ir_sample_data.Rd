@@ -25,7 +25,7 @@ holocellulose in each sample.}
 The data set was derived from \url{https://www.nature.com/articles/s41467-018-06050-2}
 and published by \insertCite{Hodgkins.2018;textual}{ir} under the CC BY 4.0 license \url{https://creativecommons.org/licenses/by/4.0/}.
 \insertCite{Hodgkins.2018;textual}{ir} originally derived the data on Klason Lignin and Holocellulose content from
-\insertCite{LaCruz.2016;textual}{ir}.
+\insertCite{DelaCruz.2016;textual}{ir}.
 }
 \usage{
 ir_sample_data

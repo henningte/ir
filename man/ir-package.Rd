@@ -6,7 +6,7 @@
 \alias{ir-package}
 \title{ir: Functions to Handle and Preprocess Infrared Spectra}
 \description{
-Functions to import and handle infrared spectra (import from '.csv' and Thermo Galactic's '.spc', baseline correction, binning, clipping, interpolating, smoothing, averaging, adding, subtracting, dividing, multiplying, plotting).
+Functions to import and handle infrared spectra (import from '.csv' and Thermo Galactic's '.spc', baseline correction, binning, clipping, interpolating, smoothing, averaging, adding, subtracting, dividing, multiplying, atmospheric correction, 'tidyverse' methods, plotting).
 }
 \seealso{
 Useful links:

@@ -11,7 +11,7 @@ Description:
   Functions to import and handle infrared spectra (import from '.csv' and
   Thermo Galactic's '.spc', baseline correction, binning, clipping,
   interpolating, smoothing, averaging, adding, subtracting, dividing, 
-  multiplying, plotting).
+  multiplying, atmospheric correction, 'tidyverse' methods, plotting).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

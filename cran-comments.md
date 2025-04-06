@@ -1,3 +1,16 @@
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+addressed the note
+
+```
+  Problems when formatting CITATION entries:
+    partial match of 'url' to 'urldate'
+```
+by removing the superfluous 'urldate' field.
+
+
 ## R CMD check results
 
 0 errors ✔ | 0 warnings ✔ |  0 notes ✔

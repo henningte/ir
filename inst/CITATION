@@ -7,7 +7,6 @@ bibentry(
   author = "Henning Teickner",
   publisher = "Comprehensive R Archive Network",
   doi = "10.32614/CRAN.package.ir",
-  urldate = "2025-04-04",
   langid = "english",
   textVersion = "Henning Teickner (2025): ir: Functions to handle and preprocess infrared spectra. DOI: 10.32614/CRAN.package.ir."
 )

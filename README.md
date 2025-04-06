@@ -167,7 +167,7 @@ intensity values.
 Please cite this R package as:
 
 > Henning Teickner (2025). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 04 Apr 2025.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 06 Apr 2025.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages

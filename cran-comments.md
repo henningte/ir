@@ -2,13 +2,13 @@
 
 This is a resubmission. In this version I have:
 
-addressed the note
+addressed the note that was returned by the check of my previous submission:
 
 ```
   Problems when formatting CITATION entries:
     partial match of 'url' to 'urldate'
 ```
-by removing the superfluous 'urldate' field.
+by removing the superfluous 'urldate' field in the CITATION file.
 
 
 ## R CMD check results

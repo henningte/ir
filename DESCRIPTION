@@ -1,6 +1,6 @@
 Package: ir
 Title: Functions to Handle and Preprocess Infrared Spectra
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: 
     person(given = "Henning",
            family = "Teickner",
@@ -51,7 +51,7 @@ VignetteBuilder:
   knitr
 RdMacros: 
   Rdpack
-Date: 2025-04-04
+Date: 2025-04-06
 Roxygen: list(markdown = TRUE)
 URL: https://henningte.github.io/ir/, https://github.com/henningte/ir/
 BugReports: https://github.com/henningte/ir/issues/

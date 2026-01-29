@@ -39,11 +39,11 @@ If not supplied, then \code{...} is derived as all columns \emph{not} selected b
 \code{.by}, and will use the column name from \code{.key}.
 
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
-previously you could write \code{df \%>\% nest(x, y, z)}.
-Convert to \code{df \%>\% nest(data = c(x, y, z))}.}
+previously you could write \code{df |> nest(x, y, z)}.
+Convert to \code{df |> nest(data = c(x, y, z))}.}
 
 \item{.key}{The name of the resulting nested column. Only applicable when
-\code{...} isn't specified, i.e. in the case of \code{df \%>\% nest(.by = x)}.
+\code{...} isn't specified, i.e. in the case of \code{df |> nest(.by = x)}.
 
 If \code{NULL}, then \code{"data"} will be used by default.}
 
@@ -98,7 +98,7 @@ don't want in the output use \code{select()} to remove them prior to
 unnesting.}
 
 \item{.id}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
-convert \code{df \%>\% unnest(x, .id = "id")} to \verb{df \%>\% mutate(id = names(x)) \%>\% unnest(x))}.}
+convert \code{df |> unnest(x, .id = "id")} to \verb{df |> mutate(id = names(x)) |> unnest(x))}.}
 
 \item{.sep}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 use \code{names_sep} instead.}

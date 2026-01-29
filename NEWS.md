@@ -1,4 +1,8 @@
+# ir 0.4.2
+
 # ir 0.4.1
+
+* Updates due to a new R version.
 
 # ir 0.4.0
 

@@ -61,7 +61,7 @@ knitr::opts_chunk$set(
 14. Scaling intensity values in spectra
 15. Wrapper to sampling algorithms implemented in the 'prospectr' package. 
 16. plotting
-17. [tidyverse](https://www.tidyverse.org/) methods
+17. [tidyverse](https://tidyverse.org/) methods
 
 ### How to install
 

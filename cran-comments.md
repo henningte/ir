@@ -2,14 +2,7 @@
 
 This is a resubmission. In this version I have:
 
-addressed the note that was returned by the check of my previous submission:
-
-```
-  Problems when formatting CITATION entries:
-    partial match of 'url' to 'urldate'
-```
-by removing the superfluous 'urldate' field in the CITATION file.
-
+addressed an error caused in one example that will be caused by the new dplyr version (dplyr 1.2.0) that is submitted to CRAN on 2026-02-02: https://github.com/henningte/ir/issues/3
 
 ## R CMD check results
 

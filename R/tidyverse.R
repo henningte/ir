@@ -281,7 +281,7 @@ slice_sample.ir <- function(.data, ..., n, prop, weight_by = NULL, replace = FAL
 #' # select in each sample_type groups the first spectrum
 #' ir_sample_data |>
 #'   dplyr::group_by(sample_type) |>
-#'   dplyr::summarize(spectra = spectra[[1]])
+#'   dplyr::summarize(spectra = list(spectra[[1]]))
 #'
 #'
 summarize.ir <- function(.data, ..., .groups = NULL) {

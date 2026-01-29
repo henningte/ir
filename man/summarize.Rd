@@ -66,7 +66,7 @@ Summarize each group in a \code{ir} object to fewer rows
 # select in each sample_type groups the first spectrum
 ir_sample_data |>
   dplyr::group_by(sample_type) |>
-  dplyr::summarize(spectra = spectra[[1]])
+  dplyr::summarize(spectra = list(spectra[[1]]))
 
 
 }

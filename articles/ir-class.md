@@ -348,7 +348,7 @@ from Hodgkins et al. (2018)
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> other attached packages:
-    #> [1] ggplot2_4.0.1 purrr_1.2.1   dplyr_1.1.4   ir_0.4.1     
+    #> [1] ggplot2_4.0.1 purrr_1.2.1   dplyr_1.1.4   ir_0.4.2     
     #> 
     #> loaded via a namespace (and not attached):
     #>  [1] tidyr_1.3.2         sass_0.4.10         utf8_1.2.6         

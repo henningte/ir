@@ -473,7 +473,7 @@ from Hodgkins et al. (2018)
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> other attached packages:
-    #> [1] ggplot2_4.0.1    stringr_1.6.0    dplyr_1.1.4      ir_0.4.1        
+    #> [1] ggplot2_4.0.1    stringr_1.6.0    dplyr_1.1.4      ir_0.4.2        
     #> [5] kableExtra_1.4.0
     #> 
     #> loaded via a namespace (and not attached):

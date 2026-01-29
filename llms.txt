@@ -44,7 +44,7 @@ efficient storage of metadata along with the spectra and using
 15. Wrapper to sampling algorithms implemented in the ‘prospectr’
     package.
 16. plotting
-17. [tidyverse](https://www.tidyverse.org/) methods
+17. [tidyverse](https://tidyverse.org/) methods
 
 ### How to install
 
@@ -93,6 +93,8 @@ ir_sample_data |>                                      # data
   ir::ir_bin(width = 10) |>                            # binning
   ir::ir_normalize(method = "zeroone") |>              # normalization
   plot() + ggplot2::facet_wrap(~ sample_type)          # plot
+#> Warning: Function 'hyperSpec::spc.rubberband' is deprecated. 
+#> Use function 'spc_rubberband' instead.
 ```
 
 ![](reference/figures/README-sample_data_workflow-1.png)
@@ -153,8 +155,8 @@ wavenumbers \[cm⁻¹\]) and column `y` the corresponding intensity values.
 
 Please cite this R package as:
 
-> Henning Teickner (2025). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 06 Apr 2025.
+> Henning Teickner (2026). *ir: Functions to Handle and Preprocess
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 29 Jan 2026.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages

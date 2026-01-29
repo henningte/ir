@@ -1,8 +1,12 @@
 # Changelog
 
+## ir 0.4.2
+
 ## ir 0.4.1
 
 CRAN release: 2025-04-06
+
+- Updates due to a new R version.
 
 ## ir 0.4.0
 

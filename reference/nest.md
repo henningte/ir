@@ -44,13 +44,13 @@ unnest.ir(
   If not supplied, then `...` is derived as all columns *not* selected
   by `.by`, and will use the column name from `.key`.
 
-  **\[deprecated\]**: previously you could write `df %>% nest(x, y, z)`.
-  Convert to `df %>% nest(data = c(x, y, z))`.
+  **\[deprecated\]**: previously you could write `df |> nest(x, y, z)`.
+  Convert to `df |> nest(data = c(x, y, z))`.
 
 - .key:
 
   The name of the resulting nested column. Only applicable when `...`
-  isn't specified, i.e. in the case of `df %>% nest(.by = x)`.
+  isn't specified, i.e. in the case of `df |> nest(.by = x)`.
 
   If `NULL`, then `"data"` will be used by default.
 
@@ -131,8 +131,8 @@ unnest.ir(
 
 - .id:
 
-  **\[deprecated\]**: convert `df %>% unnest(x, .id = "id")` to
-  `df %>% mutate(id = names(x)) %>% unnest(x))`.
+  **\[deprecated\]**: convert `df |> unnest(x, .id = "id")` to
+  `df |> mutate(id = names(x)) |> unnest(x))`.
 
 - .sep:
 

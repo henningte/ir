@@ -1,8 +1,6 @@
-## Resubmission
+In this version I have:
 
-This is a resubmission. In this version I have:
-
-addressed an error caused in one example that will be caused by the new dplyr version (dplyr 1.2.0) that is submitted to CRAN on 2026-02-02: https://github.com/henningte/ir/issues/3
+addressed an error caused in one example that is caused by the new dplyr version (dplyr 1.2.0) that was submitted to CRAN on 2026-02-02: https://github.com/henningte/ir/issues/3
 
 ## R CMD check results
 

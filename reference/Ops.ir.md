@@ -54,7 +54,7 @@ ir::ir_sample_data + ir::ir_sample_data
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data + 2
 #> # A tibble: 58 × 7
 #>    id_measurement id_sample sample_type sample_comment             klason_lignin
@@ -70,7 +70,7 @@ ir::ir_sample_data + 2
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data +
    seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 #> # A tibble: 58 × 7
@@ -87,7 +87,7 @@ ir::ir_sample_data +
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 
 ## subtraction
 ir::ir_sample_data - ir::ir_sample_data
@@ -105,7 +105,7 @@ ir::ir_sample_data - ir::ir_sample_data
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data - 2
 #> # A tibble: 58 × 7
 #>    id_measurement id_sample sample_type sample_comment             klason_lignin
@@ -121,7 +121,7 @@ ir::ir_sample_data - 2
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data -
    seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 #> # A tibble: 58 × 7
@@ -138,7 +138,7 @@ ir::ir_sample_data -
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 
 ## multiplication
 ir::ir_sample_data * ir::ir_sample_data
@@ -156,7 +156,7 @@ ir::ir_sample_data * ir::ir_sample_data
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data * 2
 #> # A tibble: 58 × 7
 #>    id_measurement id_sample sample_type sample_comment             klason_lignin
@@ -172,7 +172,7 @@ ir::ir_sample_data * 2
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data *
    seq(from = 0, to = 2, length.out = nrow(ir::ir_sample_data))
 #> # A tibble: 58 × 7
@@ -189,7 +189,7 @@ ir::ir_sample_data *
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 
 ## division
 ir::ir_sample_data / ir::ir_sample_data
@@ -207,7 +207,7 @@ ir::ir_sample_data / ir::ir_sample_data
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data / 2
 #> # A tibble: 58 × 7
 #>    id_measurement id_sample sample_type sample_comment             klason_lignin
@@ -223,7 +223,7 @@ ir::ir_sample_data / 2
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir::ir_sample_data /
    seq(from = 0.1, to = 2, length.out = nrow(ir::ir_sample_data))
 #> # A tibble: 58 × 7
@@ -240,5 +240,5 @@ ir::ir_sample_data /
 #>  9              9 GN 11-428 needles     Thuja occidentalis Easter… 0.369360     
 #> 10             10 GN 11-434 needles     Tsuga caroliniana Carolin… 0.289050     
 #> # ℹ 48 more rows
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ```

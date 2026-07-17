@@ -42,6 +42,7 @@ To follow this vignette, you have to install the ‘ir’ package as
 described in the Readme file and you have to load it:
 
 ``` r
+
 library(ir)
 ```
 
@@ -50,6 +51,7 @@ library(ir)
 Objects of class `ir` are in principle data frames (or `tibble`s):
 
 ``` r
+
 ir_sample_data
 ```
 
@@ -69,6 +71,7 @@ column `x` storing the wavenumber values and a column `y` storing the
 respective intensity values. No additional columns are allowed:
 
 ``` r
+
 head(ir_sample_data$spectra[[1]])
 #> # A tibble: 6 × 2
 #>       x        y
@@ -85,6 +88,7 @@ If there is no spectrum available for a sample, an empty data frame is a
 placeholder:
 
 ``` r
+
 d <- ir_sample_data
 d$spectra[[1]] <- d$spectra[[1]][0, ]
 d$spectra[[1]]
@@ -98,6 +102,7 @@ ir_normalize(d, method = "area")
 Currently, the following methods are available for `ir` objects:
 
 ``` r
+
 methods(class = "ir")
 #>  [1] [        [[       [[<-     [<-      $        $<-      cbind    filter  
 #>  [9] ir_as_ir max      median   min      Ops      plot     range    rbind   
@@ -114,6 +119,7 @@ same way as for data frames. For example, specific rows (= measurements)
 can be filtered:
 
 ``` r
+
 ir_sample_data[5:10, ]
 ```
 
@@ -125,6 +131,7 @@ One exception is that while subsetting, one must not remove the
 `spectra` column. If it is removed, the `ir` class attribute is dropped:
 
 ``` r
+
 d1 <- ir_sample_data
 
 class(d1[, setdiff(colnames(d), "id_sample")])
@@ -140,6 +147,7 @@ elements (e.g. wrong column names, additional columns, duplicated “x
 axis values”), the object also loses its `ir` class:
 
 ``` r
+
 d2 <- ir_sample_data
 d2$spectra[[1]] <- rep(d2$spectra[[1]], 2)
 class(d2)
@@ -158,6 +166,7 @@ example, we can use `mutate` to add new variables and we can use pipes
 (`%>%`) to make coding and reading code easier:
 
 ``` r
+
 library(dplyr)
 #> 
 #> Attaching package: 'dplyr'
@@ -182,6 +191,7 @@ Or, a another example, we can summarize spectra for some defined groups
 `sample_type` value):
 
 ``` r
+
 library(purrr)
 library(ggplot2)
 
@@ -225,6 +235,7 @@ for `ir` objects. For example, we can replicate the second spectrum in
 `ir_sample_data`:
 
 ``` r
+
 ir_sample_data |>
   slice(2) |>
   rep(20)
@@ -238,6 +249,7 @@ values with the same “x axis values”. For example, we can subtract the
 third spectrum in `ir_sample_data` from the second:
 
 ``` r
+
 ir_sample_data |>
   slice(2) |>
   ir_subtract(y = ir_sample_data[3, ]) |>
@@ -257,6 +269,7 @@ spectrum or the same number of spectra as `x` in which case spectra of
 matching rows are subtracted (added, multiplied, divided):
 
 ``` r
+
 # This will not work
 ir_sample_data |>
   slice(6) |>
@@ -276,37 +289,38 @@ ir_sample_data |>
 #> 3              4 GN 11-411 needles     Metasequoia glyptostroboid… 0.350016     
 #> 4              5 GN 11-416 needles     Pinus strobus Torulosa      0.331100     
 #> 5              6 GN 11-419 needles     Pseudolarix amabili Golden… 0.279360     
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ```
 
 Note that arithmetic operations are also available as infix operators,
 i.e. it is possible to compute:
 
 ``` r
+
 ir_sample_data[2, ] + ir_sample_data[3, ]
 #> # A tibble: 1 × 7
 #>   id_measurement id_sample sample_type sample_comment              klason_lignin
 #> *          <int> <chr>     <chr>       <chr>                       <units>      
 #> 1              2 GN 11-400 needles     Cupressocyparis leylandii … 0.339405     
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir_sample_data[2, ] - ir_sample_data[3, ]
 #> # A tibble: 1 × 7
 #>   id_measurement id_sample sample_type sample_comment              klason_lignin
 #> *          <int> <chr>     <chr>       <chr>                       <units>      
 #> 1              2 GN 11-400 needles     Cupressocyparis leylandii … 0.339405     
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir_sample_data[2, ] * ir_sample_data[3, ]
 #> # A tibble: 1 × 7
 #>   id_measurement id_sample sample_type sample_comment              klason_lignin
 #> *          <int> <chr>     <chr>       <chr>                       <units>      
 #> 1              2 GN 11-400 needles     Cupressocyparis leylandii … 0.339405     
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ir_sample_data[2, ] / ir_sample_data[3, ]
 #> # A tibble: 1 × 7
 #>   id_measurement id_sample sample_type sample_comment              klason_lignin
 #> *          <int> <chr>     <chr>       <chr>                       <units>      
 #> 1              2 GN 11-400 needles     Cupressocyparis leylandii … 0.339405     
-#> # ℹ 2 more variables: holocellulose <units>, spectra <list>
+#> # ℹ 2 more variables: holocellulose <units>, spectra <named list>
 ```
 
 ## Further information
@@ -327,9 +341,9 @@ from Hodgkins et al. (2018)
 
 ## Session info
 
-    #> R version 4.5.2 (2025-10-31)
+    #> R version 4.6.1 (2026-06-24)
     #> Platform: x86_64-pc-linux-gnu
-    #> Running under: Ubuntu 24.04.3 LTS
+    #> Running under: Ubuntu 24.04.4 LTS
     #> 
     #> Matrix products: default
     #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -348,34 +362,33 @@ from Hodgkins et al. (2018)
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> other attached packages:
-    #> [1] ggplot2_4.0.1 purrr_1.2.1   dplyr_1.1.4   ir_0.4.2     
+    #> [1] ggplot2_4.0.3 purrr_1.2.2   dplyr_1.2.1   ir_0.4.2.9000
     #> 
     #> loaded via a namespace (and not attached):
     #>  [1] tidyr_1.3.2         sass_0.4.10         utf8_1.2.6         
-    #>  [4] generics_0.1.4      xml2_1.5.2          hyperSpec_0.100.3  
-    #>  [7] jpeg_0.1-11         lattice_0.22-7      digest_0.6.39      
-    #> [10] magrittr_2.0.4      evaluate_1.0.5      grid_4.5.2         
+    #>  [4] generics_0.1.4      xml2_1.6.0          hyperSpec_0.100.3  
+    #>  [7] jpeg_0.1-11         lattice_0.22-9      digest_0.6.39      
+    #> [10] magrittr_2.0.5      evaluate_1.0.5      grid_4.6.1         
     #> [13] RColorBrewer_1.1-3  fastmap_1.2.0       jsonlite_2.0.0     
-    #> [16] brio_1.1.5          scales_1.4.0        lazyeval_0.2.2     
-    #> [19] textshaping_1.0.4   jquerylib_0.1.4     Rdpack_2.6.5       
-    #> [22] cli_3.6.5           rlang_1.1.7         rbibutils_2.4.1    
-    #> [25] withr_3.0.2         cachem_1.1.0        yaml_2.3.12        
-    #> [28] otel_0.2.0          tools_4.5.2         deldir_2.0-4       
-    #> [31] interp_1.1-6        vctrs_0.7.1         R6_2.6.1           
-    #> [34] png_0.1-8           lifecycle_1.0.5     fs_1.6.6           
-    #> [37] htmlwidgets_1.6.4   ragg_1.5.0          pkgconfig_2.0.3    
-    #> [40] desc_1.4.3          pkgdown_2.2.0       pillar_1.11.1      
-    #> [43] bslib_0.10.0        gtable_0.3.6        glue_1.8.0         
-    #> [46] Rcpp_1.1.1          systemfonts_1.3.1   xfun_0.56          
+    #> [16] brio_1.1.5          scales_1.4.0        lazyeval_0.2.3     
+    #> [19] textshaping_1.0.5   jquerylib_0.1.4     Rdpack_2.6.6       
+    #> [22] cli_3.6.6           rlang_1.3.0         rbibutils_2.4.1    
+    #> [25] withr_3.0.3         cachem_1.1.0        yaml_2.3.12        
+    #> [28] otel_0.2.0          tools_4.6.1         deldir_2.0-4       
+    #> [31] interp_1.1-6        vctrs_0.7.3         R6_2.6.1           
+    #> [34] png_0.1-9           lifecycle_1.0.5     fs_2.1.0           
+    #> [37] htmlwidgets_1.6.4   ragg_1.5.2          pkgconfig_2.0.3    
+    #> [40] desc_1.4.3          pkgdown_2.2.1       pillar_1.11.1      
+    #> [43] bslib_0.11.0        gtable_0.3.6        glue_1.8.1         
+    #> [46] Rcpp_1.1.2          systemfonts_1.3.2   xfun_0.60          
     #> [49] tibble_3.3.1        tidyselect_1.2.1    knitr_1.51         
     #> [52] latticeExtra_0.6-31 farver_2.1.2        htmltools_0.5.9    
-    #> [55] labeling_0.4.3      rmarkdown_2.30      testthat_3.3.2     
-    #> [58] compiler_4.5.2      S7_0.2.1
+    #> [55] labeling_0.4.3      rmarkdown_2.31      testthat_3.3.2     
+    #> [58] compiler_4.6.1      S7_0.2.2
 
 ## References
 
-Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
-Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
+Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, et al. 2018.
 “Tropical Peatland Carbon Storage Linked to Global Latitudinal Trends in
 Peat Recalcitrance.” *Nature Communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.

@@ -48,6 +48,7 @@ the infrared spectra extracted from the `.csv` file(s).
 ## Examples
 
 ``` r
+
 # import data from csv files
 d <-
   ir::ir_import_csv(

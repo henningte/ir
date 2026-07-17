@@ -27,7 +27,7 @@ ir_correct_atmosphere(
 Perez-Guaita D, Kuligowski J, Quintás G, Garrigues S, de la Guardia M
 (2013). “Atmospheric Compensation in Fourier Transform Infrared (FT-IR)
 Spectra of Clinical Samples.” *Applied Spectroscopy*, **67**(11),
-1339–1342. ISSN 0003-7028, 1943-3530,
+1339–1342. ISSN 0003-7028, 1943-3530.
 [doi:10.1366/13-07159](https://doi.org/10.1366/13-07159) .
 
 ## Arguments

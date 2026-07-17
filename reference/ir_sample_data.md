@@ -63,7 +63,7 @@ from De la Cruz et al. (2016) .
 De la Cruz FB, Osborne J, Barlaz MA (2016). “Determination of Sources of
 Organic Matter in Solid Waste by Analysis of Phenolic Copper Oxide
 Oxidation Products of Lignin.” *Journal of Environmental Engineering*,
-**142**(2), 04015076. ISSN 0733-9372, 1943-7870,
+**142**(2), 04015076. ISSN 0733-9372, 1943-7870.
 [doi:10.1061/(ASCE)EE.1943-7870.0001038](https://doi.org/10.1061/%28ASCE%29EE.1943-7870.0001038)
 .  
   
@@ -72,6 +72,6 @@ Winkler BR, Cobb AR, Rich VI, Missilmani M, Flanagan N, Ho M, Hoyt AM,
 Harvey CF, Vining SR, Hough MA, Moore TR, Richard PJH, De La Cruz FB,
 Toufaily J, Hamdan R, Cooper WT, Chanton JP (2018). “Tropical Peatland
 Carbon Storage Linked to Global Latitudinal Trends in Peat
-Recalcitrance.” *Nature Communications*, **9**(1), 3640. ISSN 2041-1723,
+Recalcitrance.” *Nature Communications*, **9**(1), 3640. ISSN 2041-1723.
 [doi:10.1038/s41467-018-06050-2](https://doi.org/10.1038/s41467-018-06050-2)
 .

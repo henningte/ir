@@ -39,7 +39,7 @@ An object of class `ir` with the baseline corrected spectra and, if
 
 Lasch P (2012). “Spectral Pre-Processing for Biomedical Vibrational
 Spectroscopy and Microspectroscopic Imaging.” *Chemometrics and
-Intelligent Laboratory Systems*, **117**, 100–114. ISSN 01697439,
+Intelligent Laboratory Systems*, **117**, 100–114. ISSN 01697439.
 [doi:10.1016/j.chemolab.2012.03.011](https://doi.org/10.1016/j.chemolab.2012.03.011)
 .
 

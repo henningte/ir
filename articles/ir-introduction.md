@@ -41,6 +41,7 @@ To follow this vignette, you have to install the ‘ir’ package as
 described in the Readme file and you have to load it:
 
 ``` r
+
 library(ir)
 ```
 
@@ -80,6 +81,7 @@ To import the data, you can simply pass the path to the file to
 [`ir_import_csv()`](https://henningte.github.io/ir/reference/ir_import_csv.md):
 
 ``` r
+
 d_csv <- 
   ir_import_csv(
     "../inst/extdata/klh_hodgkins_mir.csv", 
@@ -99,6 +101,7 @@ metadata; you don’t need to understand the details of this data cleanup
 to follow the rest of this vignette):
 
 ``` r
+
 library(dplyr)
 #> 
 #> Attaching package: 'dplyr'
@@ -149,6 +152,7 @@ Spectra from `spc` files can be imported with
 This function can import spectra from one or more `spc` files:
 
 ``` r
+
 d_spc <- ir_import_spc("../inst/extdata/1.spc", log.txt = FALSE)
 ```
 
@@ -169,6 +173,7 @@ sample data we imported in subsection [`csv` files](#csv-files).
 To export the spectra, type:
 
 ``` r
+
 # export only the spectra
 ir_sample_data |>
   ir_export_prepare(what = "spectra") |>
@@ -178,6 +183,7 @@ ir_sample_data |>
 To export the additional metadata contained in an `ir` object, type:
 
 ``` r
+
 # export only the metadata
 ir_sample_data |>
   ir_drop_spectra() |>
@@ -192,6 +198,7 @@ column format as in `ir_sample_data`.
 The ‘ir’ package provides a function to create simple plots of spectra:
 
 ``` r
+
 plot(d_csv)
 ```
 
@@ -209,6 +216,7 @@ means that you can modify plots of spectra with all functions from
 class:
 
 ``` r
+
 library(ggplot2)
 
 plot(d_csv) + 
@@ -221,6 +229,7 @@ And of course, we can change axis labels, layout, etc, to create plots
 nice enough for publications:
 
 ``` r
+
 plot(d_csv) + 
   geom_path(aes(color = sample_type)) +
   labs(x = expression("Wavenumber ["*cm^{-1}*"]"), y = "Absorbance") +
@@ -240,6 +249,7 @@ each function has, we’ll have a look at the sample spectrum before any
 preprocessing:
 
 ``` r
+
 plot(d_spc)
 ```
 
@@ -252,6 +262,7 @@ Baseline correction with a rubberband algorithm (see the
 [‘hyperspec’](https://cran.r-project.org/package=hyperSpec) package):
 
 ``` r
+
 d_spc |>
   ir_bc(method = "rubberband") |>
   plot()
@@ -266,6 +277,7 @@ the sum of all intensity values (note the different scale of the y axis
 in comparison to the spectrum before any preprocessing):
 
 ``` r
+
 d_spc |>
   ir_normalize(method = "area") |>
   plot()
@@ -279,6 +291,7 @@ vertical lines highlight that the intensity at the selected wavenumber
 is 1 after normalization):
 
 ``` r
+
 d_spc |>
   ir_normalize(method = 1090) |>
   plot() +
@@ -303,6 +316,7 @@ Smoothing of spectra with the Savitzky-Golay algorithm (see the
 details):
 
 ``` r
+
 d_spc |>
   ir_smooth(method = "sg", p = 3, n = 91, m = 0) |>
   plot()
@@ -317,6 +331,7 @@ Savitzky-Golay smoothing can also be used to compute derivative spectra
 `1`. See `?ir_smooth()` for more information):
 
 ``` r
+
 d_spc |>
   ir_smooth(method = "sg", p = 3, n = 9, m = 1) |>
   plot()
@@ -331,6 +346,7 @@ values”, e.g. wavenumbers). Here, I clip the spectrum to the range
 \[1000, 3000\]:
 
 ``` r
+
 d_spc |>
   ir_clip(range = data.frame(start = 1000, end = 3000)) |>
   plot()
@@ -346,6 +362,7 @@ interpolated to integer wavenumbers increasing by 1 (by setting
 `dw = 1`) within the range of the data:
 
 ``` r
+
 d_spc |>
   ir_interpolate(dw = 1) |>
   plot()
@@ -358,6 +375,7 @@ This is not easy to see from the plot, but the warning shown above
 not appear:
 
 ``` r
+
 d_spc %>%
   ir_interpolate(dw = 1) |>
   ir_normalize(method = 1090) |>
@@ -376,6 +394,7 @@ done with
 [`ir_interpolate_region()`](https://henningte.github.io/ir/reference/ir_interpolate_region.md):
 
 ``` r
+
 d_spc |>
   ir_interpolate_region(range = data.frame(start = 1000, end = 3000)) |>
   plot()
@@ -391,6 +410,7 @@ Spectral binning collects all intensity values in contiguous spectral
 ranges (“bins”) with specified widths and averages these:
 
 ``` r
+
 d_spc |>
   ir_bin(width = 30) |>
   plot()
@@ -405,6 +425,7 @@ applies [`base::scale()`](https://rdrr.io/r/base/scale.html) on the
 intensity values of all spectra for the same x axis value:
 
 ``` r
+
 d_csv |>
   ir_scale(center = TRUE, scale = FALSE) |>
   plot()
@@ -420,6 +441,7 @@ operator in the
 [‘magrittr’](https://cran.r-project.org/package=magrittr) package):
 
 ``` r
+
 d_spc |>
   ir_interpolate(dw = 1) |>
   ir_clip(range = data.frame(start = 700, end = 3900)) |>
@@ -432,7 +454,7 @@ d_spc |>
 ![](ir-introduction_files/figure-html/unnamed-chunk-13-1.png)
 
 Now, we have a baseline corrected spectrum, `"area"` normalized, clipped
-to \[650, 3900\], and binned to bin widths of 10 cm$^{- 1}$.
+to \[650, 3900\], and binned to bin widths of 10 cm$`^{-1}`$.
 
 ## Further information
 
@@ -452,9 +474,9 @@ from Hodgkins et al. (2018)
 
 ## Session info
 
-    #> R version 4.5.2 (2025-10-31)
+    #> R version 4.6.1 (2026-06-24)
     #> Platform: x86_64-pc-linux-gnu
-    #> Running under: Ubuntu 24.04.3 LTS
+    #> Running under: Ubuntu 24.04.4 LTS
     #> 
     #> Matrix products: default
     #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -473,37 +495,36 @@ from Hodgkins et al. (2018)
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> other attached packages:
-    #> [1] ggplot2_4.0.1    stringr_1.6.0    dplyr_1.1.4      ir_0.4.2        
-    #> [5] kableExtra_1.4.0
+    #> [1] ggplot2_4.0.3    stringr_1.6.0    dplyr_1.2.1      ir_0.4.2.9000   
+    #> [5] kableExtra_1.4.1
     #> 
     #> loaded via a namespace (and not attached):
     #>  [1] tidyr_1.3.2         sass_0.4.10         generics_0.1.4     
-    #>  [4] xml2_1.5.2          hyperSpec_0.100.3   jpeg_0.1-11        
-    #>  [7] stringi_1.8.7       lattice_0.22-7      digest_0.6.39      
-    #> [10] magrittr_2.0.4      evaluate_1.0.5      grid_4.5.2         
+    #>  [4] xml2_1.6.0          hyperSpec_0.100.3   jpeg_0.1-11        
+    #>  [7] stringi_1.8.7       lattice_0.22-9      digest_0.6.39      
+    #> [10] magrittr_2.0.5      evaluate_1.0.5      grid_4.6.1         
     #> [13] RColorBrewer_1.1-3  fastmap_1.2.0       jsonlite_2.0.0     
-    #> [16] brio_1.1.5          purrr_1.2.1         viridisLite_0.4.2  
-    #> [19] scales_1.4.0        lazyeval_0.2.2      textshaping_1.0.4  
-    #> [22] jquerylib_0.1.4     Rdpack_2.6.5        cli_3.6.5          
-    #> [25] rlang_1.1.7         rbibutils_2.4.1     withr_3.0.2        
+    #> [16] brio_1.1.5          purrr_1.2.2         viridisLite_0.4.3  
+    #> [19] scales_1.4.0        lazyeval_0.2.3      textshaping_1.0.5  
+    #> [22] jquerylib_0.1.4     Rdpack_2.6.6        cli_3.6.6          
+    #> [25] rlang_1.3.0         rbibutils_2.4.1     withr_3.0.3        
     #> [28] cachem_1.1.0        yaml_2.3.12         otel_0.2.0         
-    #> [31] tools_4.5.2         deldir_2.0-4        interp_1.1-6       
-    #> [34] png_0.1-8           vctrs_0.7.1         R6_2.6.1           
-    #> [37] lifecycle_1.0.5     fs_1.6.6            htmlwidgets_1.6.4  
-    #> [40] MASS_7.3-65         ragg_1.5.0          pkgconfig_2.0.3    
-    #> [43] desc_1.4.3          pkgdown_2.2.0       bslib_0.10.0       
-    #> [46] pillar_1.11.1       gtable_0.3.6        Rcpp_1.1.1         
-    #> [49] glue_1.8.0          systemfonts_1.3.1   xfun_0.56          
-    #> [52] tibble_3.3.1        tidyselect_1.2.1    rstudioapi_0.18.0  
+    #> [31] tools_4.6.1         deldir_2.0-4        interp_1.1-6       
+    #> [34] png_0.1-9           vctrs_0.7.3         R6_2.6.1           
+    #> [37] lifecycle_1.0.5     fs_2.1.0            htmlwidgets_1.6.4  
+    #> [40] MASS_7.3-65         ragg_1.5.2          pkgconfig_2.0.3    
+    #> [43] desc_1.4.3          pkgdown_2.2.1       bslib_0.11.0       
+    #> [46] pillar_1.11.1       gtable_0.3.6        Rcpp_1.1.2         
+    #> [49] glue_1.8.1          systemfonts_1.3.2   xfun_0.60          
+    #> [52] tibble_3.3.1        tidyselect_1.2.1    rstudioapi_0.19.0  
     #> [55] knitr_1.51          latticeExtra_0.6-31 farver_2.1.2       
-    #> [58] htmltools_0.5.9     labeling_0.4.3      rmarkdown_2.30     
+    #> [58] htmltools_0.5.9     labeling_0.4.3      rmarkdown_2.31     
     #> [61] svglite_2.2.2       testthat_3.3.2      signal_1.8-1       
-    #> [64] compiler_4.5.2      S7_0.2.1
+    #> [64] compiler_4.6.1      S7_0.2.2
 
 ## References
 
-Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
-Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
+Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, et al. 2018.
 “Tropical Peatland Carbon Storage Linked to Global Latitudinal Trends in
 Peat Recalcitrance.” *Nature Communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.

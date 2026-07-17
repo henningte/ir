@@ -1,6 +1,13 @@
 # Changelog
 
+## ir 0.4.2.9000
+
+- Bug fix: Avoid removing names of elements in the `spectra` list column
+  of `ir` objects ([\#4](https://github.com/henningte/ir/issues/4)).
+
 ## ir 0.4.2
+
+CRAN release: 2026-02-03
 
 - Bug fix in an example due to a new dplyr version (1.2.0).
 
@@ -83,8 +90,8 @@ CRAN release: 2025-04-06
 - [`ir_export_prepare()`](https://henningte.github.io/ir/reference/ir_export_prepare.md)
   to support exporting `ir` objects to `csv`.
 - [`ir_correct_atmosphere()`](https://henningte.github.io/ir/reference/ir_correct_atmosphere.md)
-  enables correcting for atmospheric artifacts (e.g. H$_{2}$O and
-  CO$_{2}$ peaks) following Perez-Guaita et al. (2013) (DOI:
+  enables correcting for atmospheric artifacts (e.g. H$`_2`$O and
+  CO$`_2`$ peaks) following Perez-Guaita et al. (2013) (DOI:
   10.1366/13-07159).
 
 ### Improvements

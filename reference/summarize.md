@@ -106,7 +106,7 @@ ir_sample_data |>
   dplyr::summarize(spectra = list(spectra[[1]]))
 #> # A tibble: 8 × 2
 #>   sample_type              spectra             
-#> * <chr>                    <list>              
+#> * <chr>                    <named list>        
 #> 1 hardwood                 <tibble [3,351 × 2]>
 #> 2 leaves and grasses       <tibble [3,351 × 2]>
 #> 3 needles                  <tibble [3,351 × 2]>

@@ -34,7 +34,7 @@ ir_to_absorbance(x)
 
 Stuart BH (2004). *Infrared Spectroscopy: Fundamentals and
 Applications*, Analytical Techniques in the Sciences. John Wiley and
-Sons, Ltd, Chichester, UK. ISBN 978-0-470-01114-0 978-0-470-85428-0,
+Sons, Ltd, Chichester, UK. ISBN 978-0-470-01114-0 978-0-470-85428-0.
 [doi:10.1002/0470011149](https://doi.org/10.1002/0470011149) .
 
 ## Examples

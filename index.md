@@ -39,7 +39,7 @@ efficient storage of metadata along with the spectra and using
     subtracting reference spectra)
 12. computing maxima, minima, median, and ranges of intensity values of
     spectra
-13. Atmospheric background correction (Perez-Guaita et al. 2013)
+13. Atmospheric background correction (Perez-Guaita et al. 2013)
 14. Scaling intensity values in spectra
 15. Wrapper to sampling algorithms implemented in the ‘prospectr’
     package.
@@ -51,13 +51,15 @@ efficient storage of metadata along with the spectra and using
 You can install ‘ir’ from CRAN:
 
 ``` r
+
 install.packages("ir")
 ```
 
 You can install the development version of ‘ir’ from GitHub:
 
 ``` r
-remotes::install_github(repo = "henningte/ir", ref = "dev")
+
+remotes::install_github(repo = "henningte/ir")
 ```
 
 ### How to use
@@ -65,6 +67,7 @@ remotes::install_github(repo = "henningte/ir", ref = "dev")
 Load ‘ir’:
 
 ``` r
+
 # load ir package
 library(ir)
 
@@ -88,6 +91,7 @@ and the minimum intensity value is 0), and finally plots the
 preprocessed spectra for each sample and sample type:
 
 ``` r
+
 ir_sample_data |>                                      # data
   ir::ir_bc(method = "rubberband") |>                  # baseline correction
   ir::ir_bin(width = 10) |>                            # binning
@@ -102,6 +106,7 @@ ir_sample_data |>                                      # data
 You can load the sample data with:
 
 ``` r
+
 ir::ir_sample_data
 #> # A tibble: 58 × 7
 #>    id_measurement id_sample sample_type sample_comment             klason_lignin
@@ -133,6 +138,7 @@ spectrum. For example, here are the first rows of the first spectrum in
 `ir_smaple_data`:
 
 ``` r
+
 # View the first ten rows of the first spectrum in ir_sample_data
 head(ir_sample_data$spectra[[1]])
 #> # A tibble: 6 × 2
@@ -154,7 +160,7 @@ wavenumbers \[cm⁻¹\]) and column `y` the corresponding intensity values.
 Please cite this R package as:
 
 > Henning Teickner (2026). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 03 Feb 2026.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 17 Jul 2026.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages
@@ -192,8 +198,8 @@ containing the data can be downloaded from
 <https://www.nature.com/articles/s41467-018-06050-2> and is distributed
 under the Creative Commons Attribution 4.0 International License
 (<https://creativecommons.org/licenses/by/4.0/>). The data on Klason
-lignin and holocellulose content are originally from De la Cruz,
-Osborne, and Barlaz (2016).
+lignin and holocellulose content are originally from De la Cruz et al.
+(2016).
 
 ### References
 
@@ -203,8 +209,7 @@ of Phenolic Copper Oxide Oxidation Products of Lignin.” *Journal of
 Environmental Engineering* 142 (2): 04015076.
 <https://doi.org/10.1061/(ASCE)EE.1943-7870.0001038>.
 
-Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
-Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
+Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, et al. 2018.
 “Tropical Peatland Carbon Storage Linked to Global Latitudinal Trends in
 Peat Recalcitrance.” *Nature Communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.

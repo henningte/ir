@@ -53,15 +53,18 @@
 ir_import_spc <- function(filenames, log.txt = TRUE) {
 
   # read spectra and metadata
-  d <- purrr::map(filenames, function(x){
-    hyperSpec::read.spc(x,
-                        log.txt = log.txt,
-                        log.bin = TRUE,
-                        log.disk = TRUE,
-                        keys.hdr2data = TRUE,
-                        keys.log2data = TRUE,
-                        no.object = FALSE)
-  })
+  d <-
+    purrr::map(filenames, function(x){
+      hyperSpec::read.spc(
+        x,
+        log.txt = log.txt,
+        log.bin = TRUE,
+        log.disk = TRUE,
+        keys.hdr2data = TRUE,
+        keys.log2data = TRUE,
+        no.object = FALSE
+      )
+    })
 
   # reformat metadata
   metadata <-
@@ -103,6 +106,13 @@ ir_import_spc <- function(filenames, log.txt = TRUE) {
         y = !!x@data$spc[1, , drop = TRUE]
       )
     })
+
+  names(spectra) <-
+    if("sample_id" %in% colnames(metadata)) {
+      metadata$sample_id
+    } else {
+      seq_along(spectra)
+    }
 
   d <-
     ir_new_ir(

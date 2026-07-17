@@ -1,3 +1,7 @@
+# ir 0.4.2.9000
+
+* Bug fix: Avoid removing names of elements in the `spectra` list column of `ir` objects (#4).
+
 # ir 0.4.2
 
 * Bug fix in an example due to a new dplyr version (1.2.0).

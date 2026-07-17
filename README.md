@@ -51,7 +51,8 @@ efficient storage of metadata along with the spectra and using
     subtracting reference spectra)
 12. computing maxima, minima, median, and ranges of intensity values of
     spectra
-13. Atmospheric background correction (Perez-Guaita et al. 2013)
+13. Atmospheric background correction (<span class="nocase">Perez-Guaita
+    et al.</span> 2013)
 14. Scaling intensity values in spectra
 15. Wrapper to sampling algorithms implemented in the ‘prospectr’
     package.
@@ -69,7 +70,7 @@ install.packages("ir")
 You can install the development version of ‘ir’ from GitHub:
 
 ``` r
-remotes::install_github(repo = "henningte/ir", ref = "dev")
+remotes::install_github(repo = "henningte/ir")
 ```
 
 ### How to use
@@ -167,7 +168,7 @@ intensity values.
 Please cite this R package as:
 
 > Henning Teickner (2026). *ir: Functions to Handle and Preprocess
-> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 03 Feb 2026.
+> Infrared Spectra*. DOI: 10.5281/zenodo.5747169. Accessed 17 Jul 2026.
 > Online at <https://zenodo.org/record/5747169>.
 
 ### Companion packages
@@ -202,13 +203,12 @@ containing the data can be downloaded from
 <https://www.nature.com/articles/s41467-018-06050-2> and is distributed
 under the Creative Commons Attribution 4.0 International License
 (<https://creativecommons.org/licenses/by/4.0/>). The data on Klason
-lignin and holocellulose content are originally from De la Cruz,
-Osborne, and Barlaz (2016).
+lignin and holocellulose content are originally from De la Cruz et al.
+(2016).
 
 ### References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-DelaCruz.2016" class="csl-entry">
 
@@ -222,8 +222,7 @@ Environmental Engineering* 142 (2): 04015076.
 
 <div id="ref-Hodgkins.2018" class="csl-entry">
 
-Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, Hongjun Wang,
-Paul H. Glaser, Brittany Verbeke, B. Rose Winkler, et al. 2018.
+Hodgkins, Suzanne B., Curtis J. Richardson, René Dommain, et al. 2018.
 “Tropical Peatland Carbon Storage Linked to Global Latitudinal Trends in
 Peat Recalcitrance.” *Nature Communications* 9 (1): 3640.
 <https://doi.org/10.1038/s41467-018-06050-2>.
@@ -241,10 +240,10 @@ Intelligent Laboratory Systems* 117 (August): 100–114.
 
 <div id="ref-Perez-Guaita.2013" class="csl-entry">
 
-Perez-Guaita, David, Julia Kuligowski, Guillermo Quintás, Salvador
-Garrigues, and Miguel de la Guardia. 2013. “Atmospheric Compensation in
-Fourier Transform Infrared (FT-IR) Spectra of Clinical Samples.”
-*Applied Spectroscopy* 67 (11): 1339–42.
+<span class="nocase">Perez-Guaita, David, Julia Kuligowski, Guillermo
+Quintás, Salvador Garrigues, and Miguel de la Guardia</span>. 2013.
+“Atmospheric Compensation in Fourier Transform Infrared (FT-IR) Spectra
+of Clinical Samples.” *Applied Spectroscopy* 67 (11): 1339–42.
 <https://doi.org/10.1366/13-07159>.
 
 </div>

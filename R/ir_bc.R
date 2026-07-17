@@ -192,7 +192,7 @@ ir_bc_polynomial <- function(x,
   x_bc1[,-1] <- t(x_bc@corrected)
 
   # replace the values in x by the baseline corrected values
-  x$spectra <- ir_stack(x_bc1)$spectra
+  x$spectra <- stats::setNames(ir_stack(x_bc1)$spectra, nm = names(x$spectra))
 
   # add baselines to x
   if(return_bl) {
@@ -288,7 +288,8 @@ ir_bc_rubberband <- function(x,
             res$y <- y[! is.na(y)]
           }
           res
-        })
+        }) |>
+        stats::setNames(nm = names(x$spectra))
     )
 
 }

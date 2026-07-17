@@ -288,6 +288,7 @@ ir_as_ir.hyperSpec <- function(x, ...) {
         y = unlist(!!x@data$spc[i, ])
       )
     })
+  names(x_spectra) <- rownames(hyperSpec::laser@data)
 
   # metadata
   x_metadata <-
@@ -339,6 +340,7 @@ ir_as_ir.Spectra <- function(x, ...) {
         y = !!x$data[i, ]
       )
     })
+  names(x_spectra) <- x$names
 
   # metadata
   x_metadata <-
@@ -497,6 +499,9 @@ ir_check_spectra <- function(x) {
   if(any(x_values_duplicated)) {
     rlang::abort(paste0("The first column of each element of `x` must not contain duplicated values.\n
                         Elements ", which(x_values_duplicated), " have duplicate values in the first column."))
+  }
+  if(is.null(names(x))) {
+    stop("`x` must have a name for each list element.")
   }
 
   x

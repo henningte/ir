@@ -285,7 +285,11 @@ slice_sample.ir <- function(.data, ..., n, prop, weight_by = NULL, replace = FAL
 #'
 #'
 summarize.ir <- function(.data, ..., .groups = NULL) {
-  ir_reclass_ir(NextMethod())
+  res <- NextMethod()
+  if("spectra" %in% colnames(res) && is.null(names(res$spectra))) {
+    names(res$spectra) <- seq_len(nrow(res))
+  }
+  ir_reclass_ir(res)
 }
 
 #' @rdname summarize

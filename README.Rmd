@@ -75,7 +75,7 @@ install.packages("ir")
 You can install the development version of 'ir' from GitHub:
 
 ```{r installation-github, eval = FALSE}
-remotes::install_github(repo = "henningte/ir", ref = "dev")
+remotes::install_github(repo = "henningte/ir")
 ```
 
 ### How to use

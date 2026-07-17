@@ -59,7 +59,9 @@ ir_subtract <- function(x, y) {
             z$y <- z$y - y[[i]]
             z
           })
-        }
+        },
+      spectra =
+        stats::setNames(.data$spectra, nm = names(x$spectra))
     )
 
 }
@@ -115,7 +117,9 @@ ir_add <- function(x, y) {
             z$y <- z$y + y[[i]]
             z
           })
-        }
+        },
+      spectra =
+        stats::setNames(.data$spectra, nm = names(x$spectra))
     )
 
 }
@@ -175,7 +179,9 @@ ir_multiply <- function(x, y) {
             z$y <- z$y * y[[i]]
             z
           })
-        }
+        },
+      spectra =
+        stats::setNames(.data$spectra, nm = names(x$spectra))
     )
 
 }
@@ -236,7 +242,9 @@ ir_divide <- function(x, y) {
             z$y <- z$y / y[[i]]
             z
           })
-        }
+        },
+      spectra =
+        stats::setNames(.data$spectra, nm = names(x$spectra))
     )
 
 }
@@ -333,8 +341,10 @@ ir_prepare_Ops <- function(x, y) {
 
   ir_check_ir(x)
   stopifnot(inherits(y, "ir") || (is.numeric(y) && (length(y) == 1L || length(y) == nrow(x))))
+  x_spectra_names <- names(x$spectra)
   if(inherits(y, "ir")) {
     ir_check_ir(y)
+    y_spectra_names <- names(y$spectra)
 
     if(nrow(y) != 1 && nrow(y) != nrow(x)) {
       rlang::abort("`y` must either have only one row or as many rows as `x`.")
@@ -346,12 +356,14 @@ ir_prepare_Ops <- function(x, y) {
     x_spectrum_is_empty <- ir_identify_empty_spectra(x)
     y_spectrum_is_empty <- ir_identify_empty_spectra(y)
     if(all(y_spectrum_is_empty) || all(x_spectrum_is_empty)) { # in case all spectra in x or y are empty, return NA (in analogy to 1 - NA)
-      x$spectra <- purrr::map(x$spectra, function(.x) {
-        .x %>%
-          dplyr::mutate(
-            y = NA_real_
-          )
-      })
+      x$spectra <-
+        purrr::map(x$spectra, function(.x) {
+          .x %>%
+            dplyr::mutate(
+              y = NA_real_
+            )
+        })
+      names(x$spectra) <- x_spectra_names
       return(x)
     } else { # otherwise, impute gaps
       if(any(y_spectrum_is_empty)) {
@@ -371,6 +383,7 @@ ir_prepare_Ops <- function(x, y) {
                 y = NA_real_
               )
           })
+        names(x$spectra) <- x_spectra_names
       }
     }
 
@@ -381,6 +394,7 @@ ir_prepare_Ops <- function(x, y) {
     if(any(cond)) {
       rlang::abort(paste0("Not all spectra in `y` have x axis values matching those in `x`. Mismatches have been found for spectra ", paste(which(cond), collapse = ", "), "."))
     }
+    names(y$spectra) <- y_spectra_names
 
   } else {
     if(length(y) == 1) {

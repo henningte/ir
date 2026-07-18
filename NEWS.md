@@ -1,6 +1,7 @@
 # ir 0.4.2.9000
 
 * Bug fix: Avoid removing names of elements in the `spectra` list column of `ir` objects (#4).
+* Bug fix: Avoid reversed `x` values in spectra when applying `ir_bc_rubberband()` to an `ir` object where spectra have decreasing `x` values (#5).
 
 # ir 0.4.2
 

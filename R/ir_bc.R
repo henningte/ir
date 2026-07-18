@@ -278,19 +278,8 @@ ir_bc_rubberband <- function(x,
   }
   x_flat[index_x_flat_is_na] <- NA_real_
 
-  x %>%
-    dplyr::mutate(
-      spectra =
-        purrr::map(seq_along(.data$spectra), function(i) {
-          res <- .data$spectra[[i]]
-          if(! spectrum_is_empty[[i]]) {
-            y <- x_flat[, i + 1L, drop = TRUE]
-            res$y <- y[! is.na(y)]
-          }
-          res
-        }) |>
-        stats::setNames(nm = names(x$spectra))
-    )
+  x$spectra[spectrum_is_empty] <- ir_stack(x_flat)$spectra[spectrum_is_empty]
+  x
 
 }
 

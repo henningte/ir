@@ -278,7 +278,7 @@ ir_bc_rubberband <- function(x,
   }
   x_flat[index_x_flat_is_na] <- NA_real_
 
-  x$spectra[spectrum_is_empty] <- ir_stack(x_flat)$spectra[spectrum_is_empty]
+  x$spectra[! spectrum_is_empty] <- ir_stack(x_flat)$spectra[! spectrum_is_empty]
   x
 
 }

@@ -10,22 +10,27 @@
 \alias{[[<-.ir}
 \title{Subsetting \code{ir} objects}
 \usage{
-\method{[}{ir}(x, i, j, ..., exact = TRUE)
+\method{[}{ir}(x, i, j, drop = TRUE)
 
-\method{$}{ir}(x, i)
+\method{$}{ir}(x, name)
 
-\method{[[}{ir}(x, i, j, ..., exact = TRUE)
+\method{[[}{ir}(x, ..., exact = TRUE)
 
-\method{$}{ir}(x, i, j, ...) <- value
+\method{$}{ir}(x, name) <- value
 
-\method{[}{ir}(i, j, ..., exact = TRUE) <- value
+\method{[}{ir}(x, i, j) <- value
 
-\method{[[}{ir}(i, j, ..., exact = TRUE) <- value
+\method{[[}{ir}(x, i, j) <- value
 }
 \arguments{
 \item{x}{An object of class \code{ir}.}
 
 \item{i, j}{Row and column indices. If \code{j} is omitted, \code{i} is used as column index.}
+
+\item{drop}{Coerce to a vector if fetching one column via \code{tbl[, j]} .
+Default \code{FALSE}, ignored when accessing a column via \code{tbl[j]} .}
+
+\item{name}{A \link{name} or a string.}
 
 \item{...}{Ignored.}
 

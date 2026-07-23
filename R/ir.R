@@ -89,15 +89,15 @@ NULL
 #' class(ir_sample_data[, "spectra"])
 #'
 #' @export
-"[.ir" <- function(x, i, j, ..., exact = TRUE) {
+"[.ir" <- function(x, i, j, drop = TRUE) {
   ir_reclass_ir(NextMethod())
 }
 
 #' @rdname subsetting
 #'
 #' @export
-"$.ir" <- function(x, i) {
-  ir_reclass_ir(NextMethod())
+"$.ir" <- function(x, name) {
+  NextMethod()
 }
 
 #' @rdname subsetting
@@ -110,8 +110,8 @@ NULL
 #' ir_sample_data[[1, 1]]
 #'
 #' @export
-"[[.ir" <- function(x, i, j, ..., exact = TRUE) {
-  ir_reclass_ir(NextMethod())
+"[[.ir" <- function(x, ..., exact = TRUE) {
+  NextMethod()
 }
 
 #' @rdname subsetting
@@ -129,7 +129,7 @@ NULL
 #' class(x)
 #'
 #' @export
-"$<-.ir" <- function(x, i, j, ..., value) {
+"$<-.ir" <- function(x, name, value) {
   ir_reclass_ir(NextMethod())
 }
 
@@ -148,7 +148,7 @@ NULL
 #' class(x)
 #'
 #' @export
-"[<-.ir" <- function(i, j, ..., exact = TRUE, value) {
+"[<-.ir" <- function(x, i, j, value) {
   ir_reclass_ir(NextMethod())
 }
 
@@ -165,7 +165,7 @@ NULL
 #' class(x)
 #'
 #' @export
-"[[<-.ir" <- function(i, j, ..., exact = TRUE, value) {
+"[[<-.ir" <- function(x, i, j, value) {
   ir_reclass_ir(NextMethod())
 }
 

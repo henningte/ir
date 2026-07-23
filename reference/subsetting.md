@@ -6,22 +6,22 @@ Subsetting `ir` objects
 
 ``` r
 # S3 method for class 'ir'
-x[i, j, ..., exact = TRUE]
+x[i, j, drop = TRUE]
 
 # S3 method for class 'ir'
-x$i
+x$name
 
 # S3 method for class 'ir'
-x[[i, j, ..., exact = TRUE]]
+x[[..., exact = TRUE]]
 
 # S3 method for class 'ir'
-`$`(x, i, j, ...) <- value
+x$name <- value
 
 # S3 method for class 'ir'
-i[j, ..., exact = TRUE] <- value
+x[i, j] <- value
 
 # S3 method for class 'ir'
-i[[j, ..., exact = TRUE]] <- value
+x[[i, j]] <- value
 ```
 
 ## Arguments
@@ -34,6 +34,15 @@ i[[j, ..., exact = TRUE]] <- value
 
   Row and column indices. If `j` is omitted, `i` is used as column
   index.
+
+- drop:
+
+  Coerce to a vector if fetching one column via `tbl[, j]` . Default
+  `FALSE`, ignored when accessing a column via `tbl[j]` .
+
+- name:
+
+  A [name](https://rdrr.io/r/base/name.html) or a string.
 
 - ...:
 
@@ -1032,8 +1041,6 @@ ir_sample_data[["spectra"]]
 #> 10  3991 0.000304
 #> # ℹ 3,341 more rows
 #> 
-#> attr(,"class")
-#> [1] "list"
 ir_sample_data$spectra
 #> $GN.11.389
 #> # A tibble: 3,351 × 2
@@ -1963,8 +1970,6 @@ ir_sample_data$spectra
 #> 10  3991 0.000304
 #> # ℹ 3,341 more rows
 #> 
-#> attr(,"class")
-#> [1] "list"
 
 # not explicitly selecting the spectra column drops the ir class
 class(ir_sample_data[, 1])
@@ -2016,12 +2021,8 @@ ir_sample_data$id_sample
 #> [46] "OMG 11-454" "OMG 11-455" "OMG 11-456" "ONP 08-78"  "ONP 09-388"
 #> [51] "ONP 11-450" "ONP 11-451" "ONP 11-458" "ONP 11-459" "OFF 10-506"
 #> [56] "OFF 13-144" "OFF 08-80"  "OFF 08-852"
-#> attr(,"class")
-#> [1] "character"
 ir_sample_data[[1, 1]]
 #> [1] 1
-#> attr(,"class")
-#> [1] "integer"
 
 # setting and replacing columns
 x <- ir::ir_sample_data

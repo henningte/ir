@@ -46,22 +46,22 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'ir'</span></span>
-<span><span class="va">x</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span>, <span class="va">...</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'ir'</span></span>
-<span><span class="va">x</span><span class="op">$</span><span class="va">i</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="va">name</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'ir'</span></span>
-<span><span class="va">x</span><span class="op">[[</span><span class="va">i</span>, <span class="va">j</span>, <span class="va">...</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">x</span><span class="op">[[</span><span class="va">...</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'ir'</span></span>
-<span><span class="fu">`$`</span><span class="op">(</span><span class="va">x</span>, <span class="va">i</span>, <span class="va">j</span>, <span class="va">...</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">value</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="va">value</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'ir'</span></span>
-<span><span class="va">i</span><span class="op">[</span><span class="va">j</span>, <span class="va">...</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">value</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">value</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'ir'</span></span>
-<span><span class="va">i</span><span class="op">[[</span><span class="va">j</span>, <span class="va">...</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">value</span></span></code></pre></div>
+<span><span class="va">x</span><span class="op">[[</span><span class="va">i</span>, <span class="va">j</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">value</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,6 +74,15 @@
 
 <dt id="arg-i-j">i, j<a class="anchor" aria-label="anchor" href="#arg-i-j"></a></dt>
 <dd><p>Row and column indices. If <code>j</code> is omitted, <code>i</code> is used as column index.</p></dd>
+
+
+<dt id="arg-drop">drop<a class="anchor" aria-label="anchor" href="#arg-drop"></a></dt>
+<dd><p>Coerce to a vector if fetching one column via <code>tbl[, j]</code> .
+Default <code>FALSE</code>, ignored when accessing a column via <code>tbl[j]</code> .</p></dd>
+
+
+<dt id="arg-name">name<a class="anchor" aria-label="anchor" href="#arg-name"></a></dt>
+<dd><p>A <a href="https://rdrr.io/r/base/name.html" class="external-link">name</a> or a string.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -1072,8 +1081,6 @@ vector.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">3</span>991 0.000<span style="text-decoration: underline;">304</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,341 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "list"</span>
 <span class="r-in"><span><span class="va">ir_sample_data</span><span class="op">$</span><span class="va">spectra</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $GN.11.389</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,351 × 2</span></span>
@@ -2003,8 +2010,6 @@ vector.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">3</span>991 0.000<span style="text-decoration: underline;">304</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,341 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "list"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># not explicitly selecting the spectra column drops the ir class</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ir_sample_data</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
@@ -2056,12 +2061,8 @@ vector.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [46] "OMG 11-454" "OMG 11-455" "OMG 11-456" "ONP 08-78"  "ONP 09-388"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [51] "ONP 11-450" "ONP 11-451" "ONP 11-458" "ONP 11-459" "OFF 10-506"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [56] "OFF 13-144" "OFF 08-80"  "OFF 08-852"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "character"</span>
 <span class="r-in"><span><span class="va">ir_sample_data</span><span class="op">[[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "integer"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># setting and replacing columns</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">ir</span><span class="fu">::</span><span class="va"><a href="ir_sample_data.html">ir_sample_data</a></span></span></span>
